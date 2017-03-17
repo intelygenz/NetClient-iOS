@@ -15,7 +15,7 @@ public extension NetURLSession {
         return task
     }
 
-    public func stream(_ domain: String, type: String, name: String = "", port: Int32?) -> URLSessionTask {
+    public func stream(_ domain: String, type: String, name: String = "", port: Int32? = nil) -> URLSessionTask {
         guard let port = port else {
             return stream(NetService(domain: domain, type: type, name: name))
         }
