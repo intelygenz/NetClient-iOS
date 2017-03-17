@@ -11,13 +11,13 @@ import Net
 
 class ViewController: UIViewController {
 
-    let net = NetURLSession.shared
+    let net = NetURLSession()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
             let date = Date()
-            print(try net.json("http://www.alexruperez.com/home.json") ?? "No data!")
+            _ = try net.json("http://www.alexruperez.com/home.json")
             print("Time: \(Date().timeIntervalSince(date))")
         } catch {
             print("Error: \(error)")

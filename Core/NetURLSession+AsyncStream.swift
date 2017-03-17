@@ -6,7 +6,7 @@
 //
 //
 
-@available(iOS 9.0, *)
+@available(iOSApplicationExtension 9.0, *)
 public extension NetURLSession {
 
     public func stream(_ netService: NetService) -> URLSessionTask {
