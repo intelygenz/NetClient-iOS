@@ -1,0 +1,8 @@
+language: objective-c
+xcode_project: Net.xcodeproj
+
+osx_image: xcode8.2
+xcode_sdk: iphonesimulator10.2
+
+script:
+- xcodebuild -project Net.xcodeproj -sdk iphonesimulator10.2 -destination "platform=iOS Simulator,name=iPhone 7,OS=10.1" -configuration Debug -enableCodeCoverage YES clean build test
