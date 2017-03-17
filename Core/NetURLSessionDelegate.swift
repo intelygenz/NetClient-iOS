@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetURLSessionDelegate: NSObject, URLSessionDelegate {
+class NetURLSessionDelegate: NSObject {
 
     let netURLSession: NetURLSession
 
@@ -16,8 +16,35 @@ class NetURLSessionDelegate: NSObject, URLSessionDelegate {
         self.netURLSession = netURLSession
     }
 
+}
+
+extension NetURLSessionDelegate: URLSessionDelegate {
+
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         netURLSession.authChallenge?(challenge, completionHandler)
     }
 
+}
+
+extension NetURLSessionDelegate: URLSessionTaskDelegate {
+    
+}
+
+extension NetURLSessionDelegate: URLSessionDataDelegate {
+    
+}
+
+
+extension NetURLSessionDelegate: URLSessionDownloadDelegate {
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+
+    }
+    
+}
+
+extension NetURLSessionDelegate: URLSessionStreamDelegate {
+
+    
+    
 }

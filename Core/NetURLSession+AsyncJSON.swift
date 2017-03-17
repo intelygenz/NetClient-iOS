@@ -10,7 +10,7 @@ public extension NetURLSession {
 
     public func json(_ request: URLRequest, options: JSONSerialization.ReadingOptions = .allowFragments, completion: @escaping (Any?, URLResponse?, Error?) -> Swift.Void) -> URLSessionTask {
         return data(request, completion: { (data, response, error) in
-            guard let data = data else {
+            guard let data = data, data.count > 0 else {
                 completion(nil, response, error)
                 return
             }

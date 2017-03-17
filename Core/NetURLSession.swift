@@ -10,9 +10,9 @@ import Foundation
 
 open class NetURLSession {
 
-    open class var shared: NetURLSession { return NetURLSession() }
+    open static let shared = NetURLSession(URLSession.shared)
 
-    open private(set) var session = URLSession.shared
+    open private(set) var session: URLSession!
 
     open var delegateQueue: OperationQueue { return session.delegateQueue }
 
@@ -24,14 +24,20 @@ open class NetURLSession {
 
     var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void)?
 
-    public init() {}
+    public convenience init() {
+        self.init(.default)
+    }
 
-    public init(configuration: URLSessionConfiguration, delegate: URLSessionDelegate? = nil, delegateQueue: OperationQueue? = OperationQueue.current) {
+    public init(_ urlSession: URLSession) {
+        session = urlSession
+    }
+
+    public init(_ configuration: URLSessionConfiguration, delegateQueue: OperationQueue? = OperationQueue.current, delegate: URLSessionDelegate? = nil) {
         let sessionDelegate = delegate ?? NetURLSessionDelegate(self)
         session = URLSession(configuration: configuration, delegate: sessionDelegate, delegateQueue: delegateQueue)
     }
 
-    public init(configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = OperationQueue.current, authenticationChallenge: @escaping (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void) {
+    public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = OperationQueue.current, authenticationChallenge: @escaping (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void) {
         session = URLSession(configuration: configuration, delegate: NetURLSessionDelegate(self), delegateQueue: challengeQueue)
         authChallenge = authenticationChallenge
     }

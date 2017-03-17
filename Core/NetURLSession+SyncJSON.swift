@@ -9,7 +9,7 @@
 public extension NetURLSession {
 
     public func json(_ request: URLRequest, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any? {
-        guard let data = try data(request) else {
+        guard let data = try data(request), data.count > 0 else {
             return nil
         }
         return try json(data, options: options)
