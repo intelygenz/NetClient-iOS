@@ -20,6 +20,22 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		817F74731E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74711E7BFFD40025B59D /* NetURLSession+SyncData.swift */; };
+		817F74741E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74711E7BFFD40025B59D /* NetURLSession+SyncData.swift */; };
+		817F74751E7BFFDD0025B59D /* NetURLSession+SyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74711E7BFFD40025B59D /* NetURLSession+SyncData.swift */; };
+		817F74761E7BFFDE0025B59D /* NetURLSession+SyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74711E7BFFD40025B59D /* NetURLSession+SyncData.swift */; };
+		817F74791E7C00FF0025B59D /* NetURLSession+AsyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74771E7C00D10025B59D /* NetURLSession+AsyncData.swift */; };
+		817F747A1E7C01000025B59D /* NetURLSession+AsyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74771E7C00D10025B59D /* NetURLSession+AsyncData.swift */; };
+		817F747B1E7C01010025B59D /* NetURLSession+AsyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74771E7C00D10025B59D /* NetURLSession+AsyncData.swift */; };
+		817F747C1E7C01020025B59D /* NetURLSession+AsyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74771E7C00D10025B59D /* NetURLSession+AsyncData.swift */; };
+		817F747F1E7C01890025B59D /* NetURLSession+SyncJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F747D1E7C015A0025B59D /* NetURLSession+SyncJSON.swift */; };
+		817F74801E7C018A0025B59D /* NetURLSession+SyncJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F747D1E7C015A0025B59D /* NetURLSession+SyncJSON.swift */; };
+		817F74811E7C018B0025B59D /* NetURLSession+SyncJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F747D1E7C015A0025B59D /* NetURLSession+SyncJSON.swift */; };
+		817F74821E7C018C0025B59D /* NetURLSession+SyncJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F747D1E7C015A0025B59D /* NetURLSession+SyncJSON.swift */; };
+		817F74851E7C01E50025B59D /* NetURLSession+AsyncJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74831E7C01E10025B59D /* NetURLSession+AsyncJSON.swift */; };
+		817F74861E7C01E60025B59D /* NetURLSession+AsyncJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74831E7C01E10025B59D /* NetURLSession+AsyncJSON.swift */; };
+		817F74871E7C01E70025B59D /* NetURLSession+AsyncJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74831E7C01E10025B59D /* NetURLSession+AsyncJSON.swift */; };
+		817F74881E7C01E80025B59D /* NetURLSession+AsyncJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74831E7C01E10025B59D /* NetURLSession+AsyncJSON.swift */; };
 		D5A521741E7B342100406F0F /* Net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A5216A1E7B342100406F0F /* Net.framework */; };
 		D5A521791E7B342100406F0F /* iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A521781E7B342100406F0F /* iOSTests.swift */; };
 		D5A5219D1E7B343D00406F0F /* Net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A521941E7B343D00406F0F /* Net.framework */; };
@@ -125,6 +141,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		817F74711E7BFFD40025B59D /* NetURLSession+SyncData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+SyncData.swift"; sourceTree = "<group>"; };
+		817F74771E7C00D10025B59D /* NetURLSession+AsyncData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+AsyncData.swift"; sourceTree = "<group>"; };
+		817F747D1E7C015A0025B59D /* NetURLSession+SyncJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+SyncJSON.swift"; sourceTree = "<group>"; };
+		817F74831E7C01E10025B59D /* NetURLSession+AsyncJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+AsyncJSON.swift"; sourceTree = "<group>"; };
 		D5A5216A1E7B342100406F0F /* Net.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Net.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521731E7B342100406F0F /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521781E7B342100406F0F /* iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTests.swift; sourceTree = "<group>"; };
@@ -340,6 +360,10 @@
 				D5A521F31E7B35B400406F0F /* Info.plist */,
 				D5A521EE1E7B351100406F0F /* Net.h */,
 				D5A5220D1E7B5DBD00406F0F /* NetURLSession.swift */,
+				817F74771E7C00D10025B59D /* NetURLSession+AsyncData.swift */,
+				817F74711E7BFFD40025B59D /* NetURLSession+SyncData.swift */,
+				817F74831E7C01E10025B59D /* NetURLSession+AsyncJSON.swift */,
+				817F747D1E7C015A0025B59D /* NetURLSession+SyncJSON.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -714,7 +738,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817F74791E7C00FF0025B59D /* NetURLSession+AsyncData.swift in Sources */,
+				817F74731E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				D5A5220E1E7B5DC400406F0F /* NetURLSession.swift in Sources */,
+				817F747F1E7C01890025B59D /* NetURLSession+SyncJSON.swift in Sources */,
+				817F74851E7C01E50025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,7 +758,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817F747A1E7C01000025B59D /* NetURLSession+AsyncData.swift in Sources */,
+				817F74741E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				D5A5220F1E7B5DC500406F0F /* NetURLSession.swift in Sources */,
+				817F74801E7C018A0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
+				817F74861E7C01E60025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,7 +770,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817F747B1E7C01010025B59D /* NetURLSession+AsyncData.swift in Sources */,
+				817F74751E7BFFDD0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				D5A522101E7B5DC600406F0F /* NetURLSession.swift in Sources */,
+				817F74811E7C018B0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
+				817F74871E7C01E70025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,7 +790,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817F747C1E7C01020025B59D /* NetURLSession+AsyncData.swift in Sources */,
+				817F74761E7BFFDE0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				D5A522111E7B5DC700406F0F /* NetURLSession.swift in Sources */,
+				817F74821E7C018C0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
+				817F74881E7C01E80025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1777,6 +1817,7 @@
 				D5A521641E7B340D00406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A5217C1E7B342100406F0F /* Build configuration list for PBXNativeTarget "iOS" */ = {
 			isa = XCConfigurationList;
@@ -1785,6 +1826,7 @@
 				D5A5217E1E7B342100406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A5217F1E7B342100406F0F /* Build configuration list for PBXNativeTarget "iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1793,6 +1835,7 @@
 				D5A521811E7B342100406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A5218C1E7B342F00406F0F /* Build configuration list for PBXNativeTarget "watchOS" */ = {
 			isa = XCConfigurationList;
@@ -1801,6 +1844,7 @@
 				D5A5218E1E7B342F00406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A521A51E7B343D00406F0F /* Build configuration list for PBXNativeTarget "tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1809,6 +1853,7 @@
 				D5A521A71E7B343D00406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A521A81E7B343D00406F0F /* Build configuration list for PBXNativeTarget "tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1817,6 +1862,7 @@
 				D5A521AA1E7B343D00406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A521C11E7B345000406F0F /* Build configuration list for PBXNativeTarget "macOS" */ = {
 			isa = XCConfigurationList;
@@ -1825,6 +1871,7 @@
 				D5A521C31E7B345000406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A521C41E7B345000406F0F /* Build configuration list for PBXNativeTarget "macOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1833,6 +1880,7 @@
 				D5A521C61E7B345000406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A521E51E7B348200406F0F /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
@@ -1841,6 +1889,7 @@
 				D5A521E71E7B348200406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5A521E81E7B348200406F0F /* Build configuration list for PBXNativeTarget "ExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -1849,6 +1898,7 @@
 				D5A521EA1E7B348200406F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
