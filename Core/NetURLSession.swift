@@ -76,15 +76,17 @@ open class NetURLSession {
         var jsonObject: Any?
         var jsonError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
-        let task = json(request, options: options, completion: { (data, response, error) in
+        json(request, options: options, completion: { (data, response, error) in
             jsonObject = data
             jsonError = error
             dispatchSemaphore.signal()
-        })
-        task.resume()
-        dispatchSemaphore.wait()
+        }).resume()
+        let dispatchTimeoutResult = dispatchSemaphore.wait(timeout: DispatchTime.distantFuture)
         if let jsonError = jsonError {
             throw jsonError
+        }
+        if dispatchTimeoutResult == .timedOut {
+            throw URLError(.timedOut)
         }
         return jsonObject
     }
