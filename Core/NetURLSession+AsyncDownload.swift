@@ -1,5 +1,5 @@
 //
-//  NetURLSession+AsyncData.swift
+//  NetURLSession+AsyncDownload.swift
 //  Net
 //
 //  Created by Alejandro Ruperez Hernando on 17/3/17.

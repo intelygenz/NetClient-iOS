@@ -22,10 +22,18 @@ open class NetURLSession {
 
     open var sessionDescription: String? { return session.sessionDescription }
 
+    var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void)?
+
     public init() {}
 
     public init(configuration: URLSessionConfiguration, delegate: URLSessionDelegate? = nil, delegateQueue: OperationQueue? = OperationQueue.current) {
-        session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: delegateQueue)
+        let sessionDelegate = delegate ?? NetURLSessionDelegate(self)
+        session = URLSession(configuration: configuration, delegate: sessionDelegate, delegateQueue: delegateQueue)
+    }
+
+    public init(configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = OperationQueue.current, authenticationChallenge: @escaping (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void) {
+        session = URLSession(configuration: configuration, delegate: NetURLSessionDelegate(self), delegateQueue: challengeQueue)
+        authChallenge = authenticationChallenge
     }
     
 }
