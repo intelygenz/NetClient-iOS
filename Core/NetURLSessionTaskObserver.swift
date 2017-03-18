@@ -10,19 +10,25 @@ import Foundation
 
 class NetURLSessionTaskObserver: NSObject {
 
-    private enum ObservedValue: String {
+    private enum ObservedKeyPath: String {
         case countOfBytesReceived,
              countOfBytesSent,
              countOfBytesExpectedToSend,
              countOfBytesExpectedToReceive,
              state
+
+        static let all = [countOfBytesReceived,
+                          countOfBytesSent,
+                          countOfBytesExpectedToSend,
+                          countOfBytesExpectedToReceive,
+                          state]
     }
 
     var progress = [NetURLSessionTaskIdentifier: Progress]()
 
     func add(_ task: URLSessionTask) {
-        for observedValue in iterateEnum(ObservedValue.self) {
-            task.addObserver(self, forKeyPath: observedValue.rawValue, options: .new, context: nil)
+        for observedKeyPath in ObservedKeyPath.all {
+            task.addObserver(self, forKeyPath: observedKeyPath.rawValue, options: .new, context: nil)
         }
     }
 
@@ -30,26 +36,39 @@ class NetURLSessionTaskObserver: NSObject {
         guard let keyPath = keyPath, let task = object as? URLSessionTask, let newValue = change?[.newKey] else {
             return
         }
-        if let state = newValue as? Int, ObservedValue(rawValue: keyPath) == .state, URLSessionTask.State(rawValue: state) != .running {
-            progress[task.taskIdentifier] = nil
-            for observedValue in iterateEnum(ObservedValue.self) {
-                task.removeObserver(self, forKeyPath: observedValue.rawValue, context: context)
+        var taskProgress = progress[task.taskIdentifier]
+        if ObservedKeyPath(rawValue: keyPath) == .state, let intValue = newValue as? Int, let state = URLSessionTask.State(rawValue: intValue), state != .running {
+            if taskProgress == Progress.current() {
+                taskProgress?.resignCurrent()
             }
-            return
+            if state == .suspended {
+                taskProgress?.pause()
+            } else {
+                if state == .canceling {
+                    taskProgress?.cancel()
+                }
+                progress[task.taskIdentifier] = nil
+                for observedValue in ObservedKeyPath.all {
+                    task.removeObserver(self, forKeyPath: observedValue.rawValue, context: context)
+                }
+                return
+            }
         }
-        if progress[task.taskIdentifier] == nil {
-            progress[task.taskIdentifier] = Progress(totalUnitCount: max(task.countOfBytesExpectedToReceive, task.countOfBytesExpectedToSend))
+        let completedUnitCount = max(task.countOfBytesReceived, task.countOfBytesSent)
+        let totalUnitCount = max(task.countOfBytesExpectedToReceive, task.countOfBytesExpectedToSend)
+        if taskProgress == nil {
+            taskProgress = Progress(totalUnitCount: totalUnitCount)
+            taskProgress?.isPausable = true
+            taskProgress?.isCancellable = true
+            progress[task.taskIdentifier] = taskProgress
+            taskProgress?.becomeCurrent(withPendingUnitCount: totalUnitCount)
         }
-        progress[task.taskIdentifier]?.completedUnitCount = max(task.countOfBytesReceived, task.countOfBytesSent)
-    }
-
-    private func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
-        var i = 0
-        return AnyIterator {
-            let next = withUnsafeBytes(of: &i) { $0.load(as: T.self) }
-            if next.hashValue != i { return nil }
-            i += 1
-            return next
+        taskProgress?.completedUnitCount = completedUnitCount
+        taskProgress?.totalUnitCount = totalUnitCount
+        if #available(iOSApplicationExtension 9.0, *) {
+            if taskProgress?.isPaused == true {
+                taskProgress?.resume()
+            }
         }
     }
 

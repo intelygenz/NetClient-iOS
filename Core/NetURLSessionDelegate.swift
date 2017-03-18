@@ -60,9 +60,9 @@ fileprivate extension NetURLSessionDelegate {
         guard let authChallenge = netURLSession.authChallenge else {
             if let realm = challenge.protectionSpace.realm {
                 print(realm)
+                print(challenge.protectionSpace.authenticationMethod)
             }
-            print(challenge.protectionSpace.authenticationMethod)
-            completion(.cancelAuthenticationChallenge, nil)
+            completion(.useCredential, nil)
             return
         }
         authChallenge(challenge, completion)
