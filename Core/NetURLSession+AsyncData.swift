@@ -11,10 +11,12 @@ public extension NetURLSession {
     public func data(_ request: URLRequest, completion: ((Data?, URLResponse?, Error?) -> Swift.Void)? = nil) -> URLSessionTask {
         guard let completion = completion else {
             let task = session.dataTask(with: request)
+            observe(task)
             task.resume()
             return task
         }
         let task = session.dataTask(with: request, completionHandler: completion)
+        observe(task)
         task.resume()
         return task
     }

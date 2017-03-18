@@ -11,10 +11,12 @@ public extension NetURLSession {
     public func download(_ resumeData: Data, completion: ((URL?, URLResponse?, Error?) -> Swift.Void)? = nil) -> URLSessionTask {
         guard let completion = completion else {
             let task = session.downloadTask(withResumeData: resumeData)
+            observe(task)
             task.resume()
             return task
         }
         let task = session.downloadTask(withResumeData: resumeData, completionHandler: completion)
+        observe(task)
         task.resume()
         return task
     }
@@ -22,10 +24,12 @@ public extension NetURLSession {
     public func download(_ request: URLRequest, completion: ((URL?, URLResponse?, Error?) -> Swift.Void)? = nil) -> URLSessionTask {
         guard let completion = completion else {
             let task = session.downloadTask(with: request)
+            observe(task)
             task.resume()
             return task
         }
         let task = session.downloadTask(with: request, completionHandler: completion)
+        observe(task)
         task.resume()
         return task
     }

@@ -10,12 +10,13 @@ import Foundation
 
 class NetURLSessionDelegate: NSObject {
 
-    let netURLSession: NetURLSession
+    fileprivate let netURLSession: NetURLSession
 
     var metrics = [NetURLSessionTaskIdentifier: Any]()
 
     init(_ urlSession: NetURLSession) {
         netURLSession = urlSession
+        super.init()
     }
 
 }

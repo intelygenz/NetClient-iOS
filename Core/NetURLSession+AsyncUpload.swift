@@ -10,6 +10,7 @@ public extension NetURLSession {
 
     public func upload(_ streamedRequest: URLRequest) -> URLSessionTask {
         let task = session.uploadTask(withStreamedRequest: streamedRequest)
+        observe(task)
         task.resume()
         return task
     }
@@ -28,10 +29,12 @@ public extension NetURLSession {
     public func upload(_ request: URLRequest, data: Data, completion: ((Data?, URLResponse?, Error?) -> Swift.Void)? = nil) -> URLSessionTask {
         guard let completion = completion else {
             let task = session.uploadTask(with: request, from: data)
+            observe(task)
             task.resume()
             return task
         }
         let task = session.uploadTask(with: request, from: data, completionHandler: completion)
+        observe(task)
         task.resume()
         return task
     }
@@ -50,10 +53,12 @@ public extension NetURLSession {
     public func upload(_ request: URLRequest, fileURL: URL, completion: ((Data?, URLResponse?, Error?) -> Swift.Void)? = nil) -> URLSessionTask {
         guard let completion = completion else {
             let task = session.uploadTask(with: request, fromFile: fileURL)
+            observe(task)
             task.resume()
             return task
         }
         let task = session.uploadTask(with: request, fromFile: fileURL, completionHandler: completion)
+        observe(task)
         task.resume()
         return task
     }

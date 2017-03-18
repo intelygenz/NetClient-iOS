@@ -24,7 +24,11 @@ open class NetURLSession {
 
     open var sessionDescription: String? { return session.sessionDescription }
 
-    private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void)?
+    open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void)?
+
+    open var progress: [NetURLSessionTaskIdentifier: Progress] {
+        return taskObserver.progress
+    }
 
     @available(iOSApplicationExtension 10.0, *)
     open var metrics: [NetURLSessionTaskIdentifier: URLSessionTaskMetrics] {
@@ -33,6 +37,8 @@ open class NetURLSession {
         }
         return metrics
     }
+
+    fileprivate let taskObserver = NetURLSessionTaskObserver()
 
     public convenience init() {
         self.init(.default)
@@ -54,9 +60,13 @@ open class NetURLSession {
     
 }
 
-@available(iOSApplicationExtension 10.0, *)
 public extension NetURLSession {
 
+    func progress(_ task: URLSessionTask) -> Progress? {
+        return progress[task.taskIdentifier]
+    }
+
+    @available(iOSApplicationExtension 10.0, *)
     func metrics(_ task: URLSessionTask) -> URLSessionTaskMetrics? {
         return metrics[task.taskIdentifier]
     }
@@ -73,6 +83,10 @@ extension NetURLSession {
 
     func json(_ data: Data, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any {
         return try JSONSerialization.jsonObject(with: data, options: options)
+    }
+
+    func observe(_ task: URLSessionTask) {
+        taskObserver.add(task)
     }
 
 }

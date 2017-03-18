@@ -11,6 +11,7 @@ public extension NetURLSession {
 
     public func stream(_ netService: NetService) -> URLSessionTask {
         let task = session.streamTask(with: netService)
+        observe(task)
         task.resume()
         return task
     }
@@ -24,6 +25,7 @@ public extension NetURLSession {
 
     public func stream(_ hostName: String, port: Int) -> URLSessionTask {
         let task = session.streamTask(withHostName: hostName, port: port)
+        observe(task)
         task.resume()
         return task
     }

@@ -82,6 +82,10 @@
 		D5A522151E7C3C9500406F0F /* NetURLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A522121E7C3C8F00406F0F /* NetURLSessionDelegate.swift */; };
 		D5A522161E7C3C9600406F0F /* NetURLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A522121E7C3C8F00406F0F /* NetURLSessionDelegate.swift */; };
 		D5A522171E7C3C9600406F0F /* NetURLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A522121E7C3C8F00406F0F /* NetURLSessionDelegate.swift */; };
+		D5A5221A1E7CC33F00406F0F /* NetURLSessionTaskObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A522181E7CC33900406F0F /* NetURLSessionTaskObserver.swift */; };
+		D5A5221B1E7CC34100406F0F /* NetURLSessionTaskObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A522181E7CC33900406F0F /* NetURLSessionTaskObserver.swift */; };
+		D5A5221C1E7CC34100406F0F /* NetURLSessionTaskObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A522181E7CC33900406F0F /* NetURLSessionTaskObserver.swift */; };
+		D5A5221D1E7CC34200406F0F /* NetURLSessionTaskObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A522181E7CC33900406F0F /* NetURLSessionTaskObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +205,7 @@
 		D5A521F31E7B35B400406F0F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5A5220D1E7B5DBD00406F0F /* NetURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetURLSession.swift; sourceTree = "<group>"; };
 		D5A522121E7C3C8F00406F0F /* NetURLSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetURLSessionDelegate.swift; sourceTree = "<group>"; };
+		D5A522181E7CC33900406F0F /* NetURLSessionTaskObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetURLSessionTaskObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +405,7 @@
 				817F748C1E7C0A680025B59D /* NetURLSession+SyncUpload.swift */,
 				817F748D1E7C0A680025B59D /* NetURLSession+AsyncStream.swift */,
 				D5A522121E7C3C8F00406F0F /* NetURLSessionDelegate.swift */,
+				D5A522181E7CC33900406F0F /* NetURLSessionTaskObserver.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -781,6 +787,7 @@
 				817F74731E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74931E7C0A6F0025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A5220E1E7B5DC400406F0F /* NetURLSession.swift in Sources */,
+				D5A5221A1E7CC33F00406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				817F747F1E7C01890025B59D /* NetURLSession+SyncJSON.swift in Sources */,
 				817F74921E7C0A6F0025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522141E7C3C9400406F0F /* NetURLSessionDelegate.swift in Sources */,
@@ -807,6 +814,7 @@
 				817F74741E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74991E7C0A700025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A5220F1E7B5DC500406F0F /* NetURLSession.swift in Sources */,
+				D5A5221B1E7CC34100406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				817F74801E7C018A0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
 				817F74981E7C0A700025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522151E7C3C9500406F0F /* NetURLSessionDelegate.swift in Sources */,
@@ -825,6 +833,7 @@
 				817F74751E7BFFDD0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F749F1E7C0A710025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A522101E7B5DC600406F0F /* NetURLSession.swift in Sources */,
+				D5A5221C1E7CC34100406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				817F74811E7C018B0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
 				817F749E1E7C0A710025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522161E7C3C9600406F0F /* NetURLSessionDelegate.swift in Sources */,
@@ -851,6 +860,7 @@
 				817F74761E7BFFDE0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74A51E7C0A720025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A522111E7B5DC700406F0F /* NetURLSession.swift in Sources */,
+				D5A5221D1E7CC34200406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				817F74821E7C018C0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
 				817F74A41E7C0A720025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522171E7C3C9600406F0F /* NetURLSessionDelegate.swift in Sources */,
