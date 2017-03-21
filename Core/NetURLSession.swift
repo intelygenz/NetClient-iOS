@@ -27,7 +27,10 @@ open class NetURLSession {
     open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void)?
 
     open var progress: [NetURLSessionTaskIdentifier: Progress] {
-        return taskObserver.progress
+        guard let progress = taskObserver?.progress else {
+            return [:]
+        }
+        return progress
     }
 
     @available(iOSApplicationExtension 10.0, *)
@@ -38,7 +41,7 @@ open class NetURLSession {
         return metrics
     }
 
-    fileprivate let taskObserver = NetURLSessionTaskObserver()
+    fileprivate var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
     public convenience init() {
         self.init(.default)
@@ -56,6 +59,13 @@ open class NetURLSession {
     public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = nil, authenticationChallenge: @escaping (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void) {
         session = URLSession(configuration: configuration, delegate: NetURLSessionDelegate(self), delegateQueue: challengeQueue)
         authChallenge = authenticationChallenge
+    }
+
+    deinit {
+        taskObserver = nil
+        authChallenge = nil
+        session.invalidateAndCancel()
+        session = nil
     }
     
 }
@@ -86,7 +96,7 @@ extension NetURLSession {
     }
 
     func observe(_ task: URLSessionTask) {
-        taskObserver.add(task)
+        taskObserver?.add(task)
     }
 
 }

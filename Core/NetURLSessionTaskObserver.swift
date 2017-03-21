@@ -32,6 +32,16 @@ class NetURLSessionTaskObserver: NSObject {
         }
     }
 
+    deinit {
+        for taskProgress in progress.values {
+            if taskProgress == Progress.current() {
+                taskProgress.resignCurrent()
+            }
+            taskProgress.cancel()
+        }
+        progress.removeAll()
+    }
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let keyPath = keyPath, let task = object as? URLSessionTask, let newValue = change?[.newKey] else {
             return

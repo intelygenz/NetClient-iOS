@@ -10,13 +10,18 @@ import Foundation
 
 class NetURLSessionDelegate: NSObject {
 
-    fileprivate let netURLSession: NetURLSession
+    fileprivate weak var netURLSession: NetURLSession?
 
     var metrics = [NetURLSessionTaskIdentifier: Any]()
 
     init(_ urlSession: NetURLSession) {
         netURLSession = urlSession
         super.init()
+    }
+
+    deinit {
+        metrics.removeAll()
+        netURLSession = nil
     }
 
 }
@@ -57,7 +62,7 @@ extension NetURLSessionDelegate: URLSessionStreamDelegate {}
 fileprivate extension NetURLSessionDelegate {
 
     func handle(_ challenge: URLAuthenticationChallenge, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        guard let authChallenge = netURLSession.authChallenge else {
+        guard let authChallenge = netURLSession?.authChallenge else {
             if let realm = challenge.protectionSpace.realm {
                 print(realm)
                 print(challenge.protectionSpace.authenticationMethod)
