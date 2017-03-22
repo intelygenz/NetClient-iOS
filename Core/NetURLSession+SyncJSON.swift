@@ -2,7 +2,7 @@
 //  NetURLSession+SyncJSON.swift
 //  Net
 //
-//  Created by Alejandro Ruperez Hernando on 17/3/17.
+//  Created by Alex Rupérez on 17/3/17.
 //
 //
 

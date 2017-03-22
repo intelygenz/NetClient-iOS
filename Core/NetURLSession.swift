@@ -10,7 +10,7 @@ import Foundation
 
 public typealias NetURLSessionTaskIdentifier = Int
 
-open class NetURLSession {
+open class NetURLSession: Net {
 
     open static let shared = NetURLSession(URLSession.shared)
 
@@ -72,12 +72,12 @@ open class NetURLSession {
 
 public extension NetURLSession {
 
-    func progress(_ task: URLSessionTask) -> Progress? {
+    public func progress(_ task: URLSessionTask) -> Progress? {
         return progress[task.taskIdentifier]
     }
 
     @available(iOSApplicationExtension 10.0, *)
-    func metrics(_ task: URLSessionTask) -> URLSessionTaskMetrics? {
+    public func metrics(_ task: URLSessionTask) -> URLSessionTaskMetrics? {
         return metrics[task.taskIdentifier]
     }
 
@@ -97,6 +97,24 @@ extension NetURLSession {
 
     func observe(_ task: URLSessionTask) {
         taskObserver?.add(task)
+    }
+
+    func netResponse(_ response: URLResponse?) -> NetResponse? {
+        if let httpResponse = response as? HTTPURLResponse {
+            return NetResponse(httpResponse)
+        } else if let response = response {
+            return NetResponse(response)
+        }
+        return nil
+    }
+
+    func netError(_ error: Error?) -> NetError? {
+        if let error = error as? NSError {
+            return NetError.error(code: error.code, message: error.localizedDescription, underlying: error)
+        } else if let error = error {
+            return NetError.error(code: nil, message: error.localizedDescription, underlying: error)
+        }
+        return nil
     }
 
 }

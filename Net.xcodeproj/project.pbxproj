@@ -56,6 +56,26 @@
 		817F74A31E7C0A720025B59D /* NetURLSession+SyncDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F748B1E7C0A680025B59D /* NetURLSession+SyncDownload.swift */; };
 		817F74A41E7C0A720025B59D /* NetURLSession+SyncUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F748C1E7C0A680025B59D /* NetURLSession+SyncUpload.swift */; };
 		817F74A51E7C0A720025B59D /* NetURLSession+AsyncStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F748D1E7C0A680025B59D /* NetURLSession+AsyncStream.swift */; };
+		818FC9281E82BF3B00FEC5A3 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9261E82BF3200FEC5A3 /* Net.swift */; };
+		818FC9291E82BF3C00FEC5A3 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9261E82BF3200FEC5A3 /* Net.swift */; };
+		818FC92A1E82BF3D00FEC5A3 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9261E82BF3200FEC5A3 /* Net.swift */; };
+		818FC92B1E82BF3D00FEC5A3 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9261E82BF3200FEC5A3 /* Net.swift */; };
+		818FC92E1E82BFDE00FEC5A3 /* NetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC92C1E82BFD800FEC5A3 /* NetError.swift */; };
+		818FC92F1E82BFDF00FEC5A3 /* NetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC92C1E82BFD800FEC5A3 /* NetError.swift */; };
+		818FC9301E82BFE000FEC5A3 /* NetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC92C1E82BFD800FEC5A3 /* NetError.swift */; };
+		818FC9311E82BFE100FEC5A3 /* NetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC92C1E82BFD800FEC5A3 /* NetError.swift */; };
+		818FC9341E82C26200FEC5A3 /* NetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9321E82C22000FEC5A3 /* NetResponse.swift */; };
+		818FC9351E82C26300FEC5A3 /* NetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9321E82C22000FEC5A3 /* NetResponse.swift */; };
+		818FC9361E82C26400FEC5A3 /* NetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9321E82C22000FEC5A3 /* NetResponse.swift */; };
+		818FC9371E82C26400FEC5A3 /* NetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9321E82C22000FEC5A3 /* NetResponse.swift */; };
+		818FC93A1E82C61100FEC5A3 /* NetResponse+URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */; };
+		818FC93B1E82C61200FEC5A3 /* NetResponse+URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */; };
+		818FC93C1E82C61200FEC5A3 /* NetResponse+URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */; };
+		818FC93D1E82C61300FEC5A3 /* NetResponse+URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */; };
+		81F044001E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */; };
+		81F044011E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */; };
+		81F044021E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */; };
+		81F044031E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */; };
 		D5A521741E7B342100406F0F /* Net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A5216A1E7B342100406F0F /* Net.framework */; };
 		D5A521791E7B342100406F0F /* iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A521781E7B342100406F0F /* iOSTests.swift */; };
 		D5A5219D1E7B343D00406F0F /* Net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A521941E7B343D00406F0F /* Net.framework */; };
@@ -178,6 +198,11 @@
 		817F748B1E7C0A680025B59D /* NetURLSession+SyncDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+SyncDownload.swift"; sourceTree = "<group>"; };
 		817F748C1E7C0A680025B59D /* NetURLSession+SyncUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+SyncUpload.swift"; sourceTree = "<group>"; };
 		817F748D1E7C0A680025B59D /* NetURLSession+AsyncStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+AsyncStream.swift"; sourceTree = "<group>"; };
+		818FC9261E82BF3200FEC5A3 /* Net.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
+		818FC92C1E82BFD800FEC5A3 /* NetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetError.swift; sourceTree = "<group>"; };
+		818FC9321E82C22000FEC5A3 /* NetResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetResponse.swift; sourceTree = "<group>"; };
+		818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetResponse+URLResponse.swift"; sourceTree = "<group>"; };
+		81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetResponse+HTTPURLResponse.swift"; sourceTree = "<group>"; };
 		D5A5216A1E7B342100406F0F /* Net.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Net.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521731E7B342100406F0F /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521781E7B342100406F0F /* iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTests.swift; sourceTree = "<group>"; };
@@ -394,6 +419,11 @@
 			children = (
 				D5A521F31E7B35B400406F0F /* Info.plist */,
 				D5A521EE1E7B351100406F0F /* Net.h */,
+				818FC9261E82BF3200FEC5A3 /* Net.swift */,
+				818FC9321E82C22000FEC5A3 /* NetResponse.swift */,
+				818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */,
+				81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */,
+				818FC92C1E82BFD800FEC5A3 /* NetError.swift */,
 				D5A5220D1E7B5DBD00406F0F /* NetURLSession.swift */,
 				817F74771E7C00D10025B59D /* NetURLSession+AsyncData.swift */,
 				817F74711E7BFFD40025B59D /* NetURLSession+SyncData.swift */,
@@ -782,13 +812,18 @@
 			files = (
 				817F74791E7C00FF0025B59D /* NetURLSession+AsyncData.swift in Sources */,
 				817F74901E7C0A6F0025B59D /* NetURLSession+AsyncUpload.swift in Sources */,
+				818FC9341E82C26200FEC5A3 /* NetResponse.swift in Sources */,
+				818FC9281E82BF3B00FEC5A3 /* Net.swift in Sources */,
 				817F74911E7C0A6F0025B59D /* NetURLSession+SyncDownload.swift in Sources */,
+				81F044001E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				817F748F1E7C0A6F0025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
 				817F74731E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74931E7C0A6F0025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A5220E1E7B5DC400406F0F /* NetURLSession.swift in Sources */,
 				D5A5221A1E7CC33F00406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				817F747F1E7C01890025B59D /* NetURLSession+SyncJSON.swift in Sources */,
+				818FC93A1E82C61100FEC5A3 /* NetResponse+URLResponse.swift in Sources */,
+				818FC92E1E82BFDE00FEC5A3 /* NetError.swift in Sources */,
 				817F74921E7C0A6F0025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522141E7C3C9400406F0F /* NetURLSessionDelegate.swift in Sources */,
 				817F74851E7C01E50025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
@@ -809,13 +844,18 @@
 			files = (
 				817F747A1E7C01000025B59D /* NetURLSession+AsyncData.swift in Sources */,
 				817F74961E7C0A700025B59D /* NetURLSession+AsyncUpload.swift in Sources */,
+				818FC9351E82C26300FEC5A3 /* NetResponse.swift in Sources */,
+				818FC9291E82BF3C00FEC5A3 /* Net.swift in Sources */,
 				817F74971E7C0A700025B59D /* NetURLSession+SyncDownload.swift in Sources */,
+				81F044011E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				817F74951E7C0A700025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
 				817F74741E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74991E7C0A700025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A5220F1E7B5DC500406F0F /* NetURLSession.swift in Sources */,
 				D5A5221B1E7CC34100406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				817F74801E7C018A0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
+				818FC93B1E82C61200FEC5A3 /* NetResponse+URLResponse.swift in Sources */,
+				818FC92F1E82BFDF00FEC5A3 /* NetError.swift in Sources */,
 				817F74981E7C0A700025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522151E7C3C9500406F0F /* NetURLSessionDelegate.swift in Sources */,
 				817F74861E7C01E60025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
@@ -828,13 +868,18 @@
 			files = (
 				817F747B1E7C01010025B59D /* NetURLSession+AsyncData.swift in Sources */,
 				817F749C1E7C0A710025B59D /* NetURLSession+AsyncUpload.swift in Sources */,
+				818FC9361E82C26400FEC5A3 /* NetResponse.swift in Sources */,
+				818FC92A1E82BF3D00FEC5A3 /* Net.swift in Sources */,
 				817F749D1E7C0A710025B59D /* NetURLSession+SyncDownload.swift in Sources */,
+				81F044021E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				817F749B1E7C0A710025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
 				817F74751E7BFFDD0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F749F1E7C0A710025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A522101E7B5DC600406F0F /* NetURLSession.swift in Sources */,
 				D5A5221C1E7CC34100406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				817F74811E7C018B0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
+				818FC93C1E82C61200FEC5A3 /* NetResponse+URLResponse.swift in Sources */,
+				818FC9301E82BFE000FEC5A3 /* NetError.swift in Sources */,
 				817F749E1E7C0A710025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522161E7C3C9600406F0F /* NetURLSessionDelegate.swift in Sources */,
 				817F74871E7C01E70025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
@@ -855,13 +900,18 @@
 			files = (
 				817F747C1E7C01020025B59D /* NetURLSession+AsyncData.swift in Sources */,
 				817F74A21E7C0A720025B59D /* NetURLSession+AsyncUpload.swift in Sources */,
+				818FC9371E82C26400FEC5A3 /* NetResponse.swift in Sources */,
+				818FC92B1E82BF3D00FEC5A3 /* Net.swift in Sources */,
 				817F74A31E7C0A720025B59D /* NetURLSession+SyncDownload.swift in Sources */,
+				81F044031E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				817F74A11E7C0A720025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
 				817F74761E7BFFDE0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74A51E7C0A720025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A522111E7B5DC700406F0F /* NetURLSession.swift in Sources */,
 				D5A5221D1E7CC34200406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				817F74821E7C018C0025B59D /* NetURLSession+SyncJSON.swift in Sources */,
+				818FC93D1E82C61300FEC5A3 /* NetResponse+URLResponse.swift in Sources */,
+				818FC9311E82BFE100FEC5A3 /* NetError.swift in Sources */,
 				817F74A41E7C0A720025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522171E7C3C9600406F0F /* NetURLSessionDelegate.swift in Sources */,
 				817F74881E7C01E80025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
