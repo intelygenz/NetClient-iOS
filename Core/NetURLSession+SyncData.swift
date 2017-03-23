@@ -8,6 +8,10 @@
 
 public extension NetURLSession {
 
+    public func data(_ request: NetRequest) throws -> Data? {
+        return try data(request.urlRequest)
+    }
+
     public func data(_ request: URLRequest) throws -> Data? {
         var dataObject: Data?
         var dataError: Error?

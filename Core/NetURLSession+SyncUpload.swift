@@ -8,6 +8,10 @@
 
 public extension NetURLSession {
 
+    public func upload(_ request: NetRequest, data: Data) throws -> Data? {
+        return try upload(request.urlRequest, data: data)
+    }
+
     public func upload(_ request: URLRequest, data: Data) throws -> Data? {
         var dataObject: Data?
         var dataError: Error?
@@ -36,6 +40,10 @@ public extension NetURLSession {
             throw URLError(.badURL)
         }
         return try upload(url, data: data, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+    }
+
+    public func upload(_ request: NetRequest, fileURL: URL) throws -> Data? {
+        return try upload(request.urlRequest, fileURL: fileURL)
     }
 
     public func upload(_ request: URLRequest, fileURL: URL) throws -> Data? {

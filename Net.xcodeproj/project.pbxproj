@@ -72,6 +72,26 @@
 		818FC93B1E82C61200FEC5A3 /* NetResponse+URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */; };
 		818FC93C1E82C61200FEC5A3 /* NetResponse+URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */; };
 		818FC93D1E82C61300FEC5A3 /* NetResponse+URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */; };
+		81ACB7DE1E83C656006D05DD /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7DC1E83C64F006D05DD /* NetRequest.swift */; };
+		81ACB7DF1E83C657006D05DD /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7DC1E83C64F006D05DD /* NetRequest.swift */; };
+		81ACB7E01E83C658006D05DD /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7DC1E83C64F006D05DD /* NetRequest.swift */; };
+		81ACB7E11E83C659006D05DD /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7DC1E83C64F006D05DD /* NetRequest.swift */; };
+		81ACB7E41E84020C006D05DD /* NetContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7E21E83D0C8006D05DD /* NetContentType.swift */; };
+		81ACB7E51E84020E006D05DD /* NetContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7E21E83D0C8006D05DD /* NetContentType.swift */; };
+		81ACB7E61E84020E006D05DD /* NetContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7E21E83D0C8006D05DD /* NetContentType.swift */; };
+		81ACB7E71E84020F006D05DD /* NetContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7E21E83D0C8006D05DD /* NetContentType.swift */; };
+		81ACB7EE1E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7ED1E84075B006D05DD /* NetRequest+URLRequest.swift */; };
+		81ACB7EF1E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7ED1E84075B006D05DD /* NetRequest+URLRequest.swift */; };
+		81ACB7F01E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7ED1E84075B006D05DD /* NetRequest+URLRequest.swift */; };
+		81ACB7F11E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7ED1E84075B006D05DD /* NetRequest+URLRequest.swift */; };
+		81ACB7F41E84306B006D05DD /* NetURLSession+AsyncString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7F21E843059006D05DD /* NetURLSession+AsyncString.swift */; };
+		81ACB7F51E84306C006D05DD /* NetURLSession+AsyncString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7F21E843059006D05DD /* NetURLSession+AsyncString.swift */; };
+		81ACB7F61E84306D006D05DD /* NetURLSession+AsyncString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7F21E843059006D05DD /* NetURLSession+AsyncString.swift */; };
+		81ACB7F71E84306E006D05DD /* NetURLSession+AsyncString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7F21E843059006D05DD /* NetURLSession+AsyncString.swift */; };
+		81ACB7F81E843074006D05DD /* NetURLSession+SyncString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7F31E843059006D05DD /* NetURLSession+SyncString.swift */; };
+		81ACB7F91E843075006D05DD /* NetURLSession+SyncString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7F31E843059006D05DD /* NetURLSession+SyncString.swift */; };
+		81ACB7FA1E843075006D05DD /* NetURLSession+SyncString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7F31E843059006D05DD /* NetURLSession+SyncString.swift */; };
+		81ACB7FB1E843077006D05DD /* NetURLSession+SyncString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7F31E843059006D05DD /* NetURLSession+SyncString.swift */; };
 		81F044001E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */; };
 		81F044011E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */; };
 		81F044021E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */; };
@@ -202,6 +222,11 @@
 		818FC92C1E82BFD800FEC5A3 /* NetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetError.swift; sourceTree = "<group>"; };
 		818FC9321E82C22000FEC5A3 /* NetResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetResponse.swift; sourceTree = "<group>"; };
 		818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetResponse+URLResponse.swift"; sourceTree = "<group>"; };
+		81ACB7DC1E83C64F006D05DD /* NetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequest.swift; sourceTree = "<group>"; };
+		81ACB7E21E83D0C8006D05DD /* NetContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetContentType.swift; sourceTree = "<group>"; };
+		81ACB7ED1E84075B006D05DD /* NetRequest+URLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetRequest+URLRequest.swift"; sourceTree = "<group>"; };
+		81ACB7F21E843059006D05DD /* NetURLSession+AsyncString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+AsyncString.swift"; sourceTree = "<group>"; };
+		81ACB7F31E843059006D05DD /* NetURLSession+SyncString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+SyncString.swift"; sourceTree = "<group>"; };
 		81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetResponse+HTTPURLResponse.swift"; sourceTree = "<group>"; };
 		D5A5216A1E7B342100406F0F /* Net.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Net.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521731E7B342100406F0F /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -420,6 +445,9 @@
 				D5A521F31E7B35B400406F0F /* Info.plist */,
 				D5A521EE1E7B351100406F0F /* Net.h */,
 				818FC9261E82BF3200FEC5A3 /* Net.swift */,
+				81ACB7DC1E83C64F006D05DD /* NetRequest.swift */,
+				81ACB7ED1E84075B006D05DD /* NetRequest+URLRequest.swift */,
+				81ACB7E21E83D0C8006D05DD /* NetContentType.swift */,
 				818FC9321E82C22000FEC5A3 /* NetResponse.swift */,
 				818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */,
 				81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */,
@@ -429,6 +457,8 @@
 				817F74711E7BFFD40025B59D /* NetURLSession+SyncData.swift */,
 				817F74831E7C01E10025B59D /* NetURLSession+AsyncJSON.swift */,
 				817F747D1E7C015A0025B59D /* NetURLSession+SyncJSON.swift */,
+				81ACB7F21E843059006D05DD /* NetURLSession+AsyncString.swift */,
+				81ACB7F31E843059006D05DD /* NetURLSession+SyncString.swift */,
 				817F74891E7C0A680025B59D /* NetURLSession+AsyncDownload.swift */,
 				817F748B1E7C0A680025B59D /* NetURLSession+SyncDownload.swift */,
 				817F748A1E7C0A680025B59D /* NetURLSession+AsyncUpload.swift */,
@@ -811,12 +841,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				817F74791E7C00FF0025B59D /* NetURLSession+AsyncData.swift in Sources */,
+				81ACB7F41E84306B006D05DD /* NetURLSession+AsyncString.swift in Sources */,
+				81ACB7F81E843074006D05DD /* NetURLSession+SyncString.swift in Sources */,
 				817F74901E7C0A6F0025B59D /* NetURLSession+AsyncUpload.swift in Sources */,
 				818FC9341E82C26200FEC5A3 /* NetResponse.swift in Sources */,
 				818FC9281E82BF3B00FEC5A3 /* Net.swift in Sources */,
 				817F74911E7C0A6F0025B59D /* NetURLSession+SyncDownload.swift in Sources */,
 				81F044001E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				817F748F1E7C0A6F0025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
+				81ACB7E41E84020C006D05DD /* NetContentType.swift in Sources */,
 				817F74731E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74931E7C0A6F0025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A5220E1E7B5DC400406F0F /* NetURLSession.swift in Sources */,
@@ -826,7 +859,9 @@
 				818FC92E1E82BFDE00FEC5A3 /* NetError.swift in Sources */,
 				817F74921E7C0A6F0025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522141E7C3C9400406F0F /* NetURLSessionDelegate.swift in Sources */,
+				81ACB7EE1E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */,
 				817F74851E7C01E50025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
+				81ACB7DE1E83C656006D05DD /* NetRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,12 +878,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				817F747A1E7C01000025B59D /* NetURLSession+AsyncData.swift in Sources */,
+				81ACB7F51E84306C006D05DD /* NetURLSession+AsyncString.swift in Sources */,
+				81ACB7F91E843075006D05DD /* NetURLSession+SyncString.swift in Sources */,
 				817F74961E7C0A700025B59D /* NetURLSession+AsyncUpload.swift in Sources */,
 				818FC9351E82C26300FEC5A3 /* NetResponse.swift in Sources */,
 				818FC9291E82BF3C00FEC5A3 /* Net.swift in Sources */,
 				817F74971E7C0A700025B59D /* NetURLSession+SyncDownload.swift in Sources */,
 				81F044011E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				817F74951E7C0A700025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
+				81ACB7E51E84020E006D05DD /* NetContentType.swift in Sources */,
 				817F74741E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74991E7C0A700025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A5220F1E7B5DC500406F0F /* NetURLSession.swift in Sources */,
@@ -858,7 +896,9 @@
 				818FC92F1E82BFDF00FEC5A3 /* NetError.swift in Sources */,
 				817F74981E7C0A700025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522151E7C3C9500406F0F /* NetURLSessionDelegate.swift in Sources */,
+				81ACB7EF1E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */,
 				817F74861E7C01E60025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
+				81ACB7DF1E83C657006D05DD /* NetRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,12 +907,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				817F747B1E7C01010025B59D /* NetURLSession+AsyncData.swift in Sources */,
+				81ACB7F61E84306D006D05DD /* NetURLSession+AsyncString.swift in Sources */,
+				81ACB7FA1E843075006D05DD /* NetURLSession+SyncString.swift in Sources */,
 				817F749C1E7C0A710025B59D /* NetURLSession+AsyncUpload.swift in Sources */,
 				818FC9361E82C26400FEC5A3 /* NetResponse.swift in Sources */,
 				818FC92A1E82BF3D00FEC5A3 /* Net.swift in Sources */,
 				817F749D1E7C0A710025B59D /* NetURLSession+SyncDownload.swift in Sources */,
 				81F044021E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				817F749B1E7C0A710025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
+				81ACB7E61E84020E006D05DD /* NetContentType.swift in Sources */,
 				817F74751E7BFFDD0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F749F1E7C0A710025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A522101E7B5DC600406F0F /* NetURLSession.swift in Sources */,
@@ -882,7 +925,9 @@
 				818FC9301E82BFE000FEC5A3 /* NetError.swift in Sources */,
 				817F749E1E7C0A710025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522161E7C3C9600406F0F /* NetURLSessionDelegate.swift in Sources */,
+				81ACB7F01E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */,
 				817F74871E7C01E70025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
+				81ACB7E01E83C658006D05DD /* NetRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,12 +944,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				817F747C1E7C01020025B59D /* NetURLSession+AsyncData.swift in Sources */,
+				81ACB7F71E84306E006D05DD /* NetURLSession+AsyncString.swift in Sources */,
+				81ACB7FB1E843077006D05DD /* NetURLSession+SyncString.swift in Sources */,
 				817F74A21E7C0A720025B59D /* NetURLSession+AsyncUpload.swift in Sources */,
 				818FC9371E82C26400FEC5A3 /* NetResponse.swift in Sources */,
 				818FC92B1E82BF3D00FEC5A3 /* Net.swift in Sources */,
 				817F74A31E7C0A720025B59D /* NetURLSession+SyncDownload.swift in Sources */,
 				81F044031E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				817F74A11E7C0A720025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
+				81ACB7E71E84020F006D05DD /* NetContentType.swift in Sources */,
 				817F74761E7BFFDE0025B59D /* NetURLSession+SyncData.swift in Sources */,
 				817F74A51E7C0A720025B59D /* NetURLSession+AsyncStream.swift in Sources */,
 				D5A522111E7B5DC700406F0F /* NetURLSession.swift in Sources */,
@@ -914,7 +962,9 @@
 				818FC9311E82BFE100FEC5A3 /* NetError.swift in Sources */,
 				817F74A41E7C0A720025B59D /* NetURLSession+SyncUpload.swift in Sources */,
 				D5A522171E7C3C9600406F0F /* NetURLSessionDelegate.swift in Sources */,
+				81ACB7F11E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */,
 				817F74881E7C01E80025B59D /* NetURLSession+AsyncJSON.swift in Sources */,
+				81ACB7E11E83C659006D05DD /* NetRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

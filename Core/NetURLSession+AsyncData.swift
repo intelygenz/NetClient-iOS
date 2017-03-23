@@ -8,6 +8,10 @@
 
 public extension NetURLSession {
 
+    public func data(_ request: NetRequest, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
+        return data(request.urlRequest, completion: completion)
+    }
+
     public func data(_ request: URLRequest, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
         guard let completion = completion else {
             let task = session.dataTask(with: request)

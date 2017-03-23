@@ -95,6 +95,10 @@ extension NetURLSession {
         return try JSONSerialization.jsonObject(with: data, options: options)
     }
 
+    func string(_ data: Data, encoding: String.Encoding = .utf8) -> String? {
+        return String(data: data, encoding: encoding)
+    }
+
     func observe(_ task: URLSessionTask) {
         taskObserver?.add(task)
     }

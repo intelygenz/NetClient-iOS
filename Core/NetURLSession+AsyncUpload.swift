@@ -8,6 +8,10 @@
 
 public extension NetURLSession {
 
+    public func upload(_ streamedRequest: NetRequest) -> URLSessionTask {
+        return upload(streamedRequest.urlRequest)
+    }
+
     public func upload(_ streamedRequest: URLRequest) -> URLSessionTask {
         let task = session.uploadTask(withStreamedRequest: streamedRequest)
         observe(task)
@@ -24,6 +28,10 @@ public extension NetURLSession {
             throw URLError(.badURL)
         }
         return upload(url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+    }
+
+    public func upload(_ request: NetRequest, data: Data, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
+        return upload(request.urlRequest, data: data, completion: completion)
     }
 
     public func upload(_ request: URLRequest, data: Data, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
@@ -50,6 +58,10 @@ public extension NetURLSession {
             throw URLError(.badURL)
         }
         return upload(url, data: data, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval, completion: completion)
+    }
+
+    public func upload(_ request: NetRequest, fileURL: URL, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
+        return upload(request.urlRequest, fileURL: fileURL, completion: completion)
     }
 
     public func upload(_ request: URLRequest, fileURL: URL, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {

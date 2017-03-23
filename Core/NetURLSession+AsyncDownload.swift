@@ -23,6 +23,10 @@ public extension NetURLSession {
         return task
     }
 
+    public func download(_ request: NetRequest, completion: ((URL?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
+        return download(request.urlRequest, completion: completion)
+    }
+
     public func download(_ request: URLRequest, completion: ((URL?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
         guard let completion = completion else {
             let task = session.downloadTask(with: request)

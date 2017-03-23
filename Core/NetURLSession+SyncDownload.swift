@@ -27,6 +27,10 @@ public extension NetURLSession {
         return locationObject
     }
 
+    public func download(_ request: NetRequest) throws -> URL? {
+        return try download(request.urlRequest)
+    }
+
     public func download(_ request: URLRequest) throws -> URL? {
         var locationObject: URL?
         var locationError: Error?
