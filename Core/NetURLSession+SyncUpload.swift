@@ -31,11 +31,11 @@ public extension NetURLSession {
         return dataObject
     }
 
-    public func upload(_ url: URL, data: Data, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
-        return try upload(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), data: data)
+    public func upload(_ url: URL, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+        return try upload(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), data: data)
     }
 
-    public func upload(_ urlString: String, data: Data, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func upload(_ urlString: String, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
@@ -65,11 +65,11 @@ public extension NetURLSession {
         return dataObject
     }
 
-    public func upload(_ url: URL, fileURL: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
-        return try upload(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), fileURL: fileURL)
+    public func upload(_ url: URL, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+        return try upload(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), fileURL: fileURL)
     }
 
-    public func upload(_ urlString: String, fileURL: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func upload(_ urlString: String, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

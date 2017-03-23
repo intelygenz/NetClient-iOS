@@ -31,11 +31,11 @@ public extension NetURLSession {
         return dataObject
     }
 
-    public func data(_ url: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
-        return try data(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval))
+    public func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+        return try data(netRequest(url, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    public func data(_ urlString: String, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

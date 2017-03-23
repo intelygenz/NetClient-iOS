@@ -19,11 +19,11 @@ public extension NetURLSession {
         return try json(data, options: options)
     }
 
-    public func json(_ url: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any? {
-        return try json(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), options: options)
+    public func json(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any? {
+        return try json(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), options: options)
     }
 
-    public func json(_ urlString: String, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any? {
+    public func json(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any? {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

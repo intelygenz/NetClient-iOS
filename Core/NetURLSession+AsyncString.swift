@@ -22,11 +22,11 @@ public extension NetURLSession {
         })
     }
 
-    public func string(_ url: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, encoding: String.Encoding = .utf8, completion: @escaping (String?, NetResponse?, NetError?) -> Swift.Void) -> URLSessionTask {
-        return string(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), encoding: encoding, completion: completion)
+    public func string(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, encoding: String.Encoding = .utf8, completion: @escaping (String?, NetResponse?, NetError?) -> Swift.Void) -> URLSessionTask {
+        return string(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), encoding: encoding, completion: completion)
     }
 
-    public func string(_ urlString: String, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, encoding: String.Encoding = .utf8, completion: @escaping (String?, NetResponse?, NetError?) -> Swift.Void) throws -> URLSessionTask {
+    public func string(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, encoding: String.Encoding = .utf8, completion: @escaping (String?, NetResponse?, NetError?) -> Swift.Void) throws -> URLSessionTask {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

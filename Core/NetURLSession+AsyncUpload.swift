@@ -19,11 +19,11 @@ public extension NetURLSession {
         return task
     }
 
-    public func upload(_ streamedURL: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> URLSessionTask {
-        return upload(urlRequest(streamedURL, cache: cachePolicy, timeout: timeoutInterval))
+    public func upload(_ streamedURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> URLSessionTask {
+        return upload(netRequest(streamedURL, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    public func upload(_ streamedURLString: String, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> URLSessionTask {
+    public func upload(_ streamedURLString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> URLSessionTask {
         guard let url = URL(string: streamedURLString) else {
             throw URLError(.badURL)
         }
@@ -49,11 +49,11 @@ public extension NetURLSession {
         return task
     }
 
-    public func upload(_ url: URL, data: Data, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
-        return upload(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), data: data, completion: completion)
+    public func upload(_ url: URL, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
+        return upload(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), data: data, completion: completion)
     }
 
-    public func upload(_ urlString: String, data: Data, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> URLSessionTask {
+    public func upload(_ urlString: String, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> URLSessionTask {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
@@ -79,11 +79,11 @@ public extension NetURLSession {
         return task
     }
 
-    public func upload(_ url: URL, fileURL: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
-        return upload(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), fileURL: fileURL, completion: completion)
+    public func upload(_ url: URL, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
+        return upload(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), fileURL: fileURL, completion: completion)
     }
 
-    public func upload(_ urlString: String, fileURL: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> URLSessionTask {
+    public func upload(_ urlString: String, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((Data?, NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> URLSessionTask {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

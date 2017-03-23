@@ -27,11 +27,11 @@ public extension NetURLSession {
         })
     }
 
-    public func json(_ url: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, options: JSONSerialization.ReadingOptions = .allowFragments, completion: @escaping (Any?, NetResponse?, NetError?) -> Swift.Void) -> URLSessionTask {
-        return json(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), options: options, completion: completion)
+    public func json(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, options: JSONSerialization.ReadingOptions = .allowFragments, completion: @escaping (Any?, NetResponse?, NetError?) -> Swift.Void) -> URLSessionTask {
+        return json(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), options: options, completion: completion)
     }
 
-    public func json(_ urlString: String, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, options: JSONSerialization.ReadingOptions = .allowFragments, completion: @escaping (Any?, NetResponse?, NetError?) -> Swift.Void) throws -> URLSessionTask {
+    public func json(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, options: JSONSerialization.ReadingOptions = .allowFragments, completion: @escaping (Any?, NetResponse?, NetError?) -> Swift.Void) throws -> URLSessionTask {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

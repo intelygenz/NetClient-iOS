@@ -42,11 +42,11 @@ public extension NetURLSession {
         return task
     }
 
-    public func download(_ url: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((URL?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
-        return download(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), completion: completion)
+    public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((URL?, NetResponse?, NetError?) -> Swift.Void)? = nil) -> URLSessionTask {
+        return download(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), completion: completion)
     }
 
-    public func download(_ urlString: String, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((URL?, NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> URLSessionTask {
+    public func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((URL?, NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> URLSessionTask {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

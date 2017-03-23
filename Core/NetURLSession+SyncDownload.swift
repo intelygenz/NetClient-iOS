@@ -50,11 +50,11 @@ public extension NetURLSession {
         return locationObject
     }
 
-    public func download(_ url: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> URL? {
-        return try download(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval))
+    public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> URL? {
+        return try download(netRequest(url, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    public func download(_ urlString: String, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> URL? {
+    public func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> URL? {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

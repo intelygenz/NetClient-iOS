@@ -19,11 +19,11 @@ public extension NetURLSession {
         return string(data, encoding: encoding)
     }
 
-    public func string(_ url: URL, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, encoding: String.Encoding = .utf8) throws -> String? {
-        return try string(urlRequest(url, cache: cachePolicy, timeout: timeoutInterval), encoding: encoding)
+    public func string(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, encoding: String.Encoding = .utf8) throws -> String? {
+        return try string(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), encoding: encoding)
     }
 
-    public func string(_ urlString: String, cachePolicy: URLRequest.CachePolicy? = nil, timeoutInterval: TimeInterval? = nil, encoding: String.Encoding = .utf8) throws -> String? {
+    public func string(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, encoding: String.Encoding = .utf8) throws -> String? {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

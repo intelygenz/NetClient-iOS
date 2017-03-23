@@ -35,9 +35,9 @@ extension NetRequest {
     }
 
     public var urlRequest: URLRequest {
-        var urlRequest = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy(rawValue: cache.rawValue)!, timeoutInterval: timeout)
+        var urlRequest = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy(rawValue: cache.rawValue) ?? .useProtocolCachePolicy, timeoutInterval: timeout)
         urlRequest.mainDocumentURL = mainDocumentURL
-        urlRequest.networkServiceType = URLRequest.NetworkServiceType(rawValue: serviceType.rawValue)!
+        urlRequest.networkServiceType = URLRequest.NetworkServiceType(rawValue: serviceType.rawValue) ?? .default
         urlRequest.allowsCellularAccess = allowsCellularAccess
         urlRequest.httpMethod = method.rawValue
         urlRequest.allHTTPHeaderFields = headers

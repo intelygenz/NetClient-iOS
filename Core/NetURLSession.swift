@@ -85,10 +85,10 @@ public extension NetURLSession {
 
 extension NetURLSession {
 
-    func urlRequest(_ url: URL, cache: URLRequest.CachePolicy? = nil, timeout: TimeInterval? = nil) -> URLRequest {
-        let cache = cache ?? session.configuration.requestCachePolicy
+    func netRequest(_ url: URL, cache: NetRequest.NetCachePolicy? = nil, timeout: TimeInterval? = nil) -> NetRequest {
+        let cache = cache ?? NetRequest.NetCachePolicy(rawValue: session.configuration.requestCachePolicy.rawValue) ?? .useProtocolCachePolicy
         let timeout = timeout ?? session.configuration.timeoutIntervalForRequest
-        return URLRequest(url: url, cachePolicy: cache, timeoutInterval: timeout)
+        return NetRequest(url, cache: cache, timeout: timeout)
     }
 
     func json(_ data: Data, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any {
