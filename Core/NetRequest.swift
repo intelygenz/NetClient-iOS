@@ -11,11 +11,11 @@ import Foundation
 public struct NetRequest {
 
     public enum NetCachePolicy: UInt {
-        case useProtocolCachePolicy = 0, reloadIgnoringLocalCacheData = 1, returnCacheDataElseLoad = 3, returnCacheDataDontLoad = 4
+        case useProtocolCachePolicy = 0, reloadIgnoringLocalCacheData = 1, returnCacheDataElseLoad = 2, returnCacheDataDontLoad = 3
     }
 
     public enum NetServiceType: UInt {
-        case `default`, voip, video, background, voice, callSignaling
+        case `default`, voip, video, background, voice, callSignaling = 11
     }
 
     public enum NetMethod: String {

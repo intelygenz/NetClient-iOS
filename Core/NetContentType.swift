@@ -9,7 +9,7 @@
 import Foundation
 
 public enum NetContentType {
-    case aac, avi, bin, bmp, csv, gif, html, ico, ics, jpeg, js, json, mpeg, mpkg, ogx, pdf, pkcs7, png, rar, rtf, svg, tar, tiff, ttf, txt, wav, weba, webm, webp, xhtml, xml, zip, custom(String)
+    case aac, avi, bin, bmp, csv, form, gif, html, ico, ics, jpeg, js, json, mpeg, mpkg, ogx, pdf, pkcs7, png, rar, rtf, svg, tar, tiff, ttf, txt, wav, weba, webm, webp, wildcard, xhtml, xml, zip, custom(String)
 }
 
 extension NetContentType: RawRepresentable {
@@ -20,6 +20,7 @@ extension NetContentType: RawRepresentable {
         static let bin = "application/octet-stream"
         static let bmp = "image/bmp"
         static let csv = "text/csv"
+        static let form = "multipart/form-data"
         static let gif = "image/gif"
         static let html = "text/html"
         static let ico = "image/x-icon"
@@ -44,6 +45,7 @@ extension NetContentType: RawRepresentable {
         static let weba = "audio/webm"
         static let webm = "video/webm"
         static let webp = "image/webp"
+        static let wildcard = "*/*"
         static let xhtml = "application/xhtml+xml"
         static let xml = "application/xml"
         static let zip = "application/zip"
@@ -58,6 +60,7 @@ extension NetContentType: RawRepresentable {
             case StringValue.bin: self = .bin
             case StringValue.bmp: self = .bmp
             case StringValue.csv: self = .csv
+            case StringValue.form: self = .form
             case StringValue.gif: self = .gif
             case StringValue.html: self = .html
             case StringValue.ico: self = .ico
@@ -82,6 +85,7 @@ extension NetContentType: RawRepresentable {
             case StringValue.weba: self = .weba
             case StringValue.webm: self = .webm
             case StringValue.webp: self = .webp
+            case StringValue.wildcard: self = .wildcard
             case StringValue.xhtml: self = .xhtml
             case StringValue.xml: self = .xml
             case StringValue.zip: self = .zip
@@ -96,6 +100,7 @@ extension NetContentType: RawRepresentable {
             case .bin: return StringValue.bin
             case .bmp: return StringValue.bmp
             case .csv: return StringValue.csv
+            case .form: return StringValue.form
             case .gif: return StringValue.gif
             case .html: return StringValue.html
             case .ico: return StringValue.ico
@@ -120,6 +125,7 @@ extension NetContentType: RawRepresentable {
             case .weba: return StringValue.weba
             case .webm: return StringValue.webm
             case .webp: return StringValue.webp
+            case .wildcard: return StringValue.wildcard
             case .xhtml: return StringValue.xhtml
             case .xml: return StringValue.xml
             case .zip: return StringValue.zip

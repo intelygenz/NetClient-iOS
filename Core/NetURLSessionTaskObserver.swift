@@ -67,7 +67,7 @@ class NetURLSessionTaskObserver: NSObject {
                     return
                 }
             } else {
-                if #available(iOSApplicationExtension 9.0, *) {
+                if #available(iOS 9.0, *) {
                     if taskProgress?.isPaused == true {
                         taskProgress?.resume()
                     }
@@ -103,7 +103,7 @@ fileprivate extension NetURLSessionTaskObserver {
                 task?.cancel()
             }
         }
-        if #available(iOSApplicationExtension 9.0, *) {
+        if #available(iOS 9.0, *) {
             taskProgress.resumingHandler = { [weak task] in
                 if task?.state != .running {
                     task?.resume()

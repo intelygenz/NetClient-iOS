@@ -33,7 +33,7 @@ open class NetURLSession: Net {
         return progress
     }
 
-    @available(iOSApplicationExtension 10.0, *)
+    @available(iOS 10.0, *)
     open var metrics: [NetURLSessionTaskIdentifier: URLSessionTaskMetrics] {
         guard let delegate = delegate as? NetURLSessionDelegate, let metrics = delegate.metrics as? [NetURLSessionTaskIdentifier: URLSessionTaskMetrics] else {
             return [:]
@@ -76,7 +76,7 @@ public extension NetURLSession {
         return progress[task.taskIdentifier]
     }
 
-    @available(iOSApplicationExtension 10.0, *)
+    @available(iOS 10.0, *)
     public func metrics(_ task: URLSessionTask) -> URLSessionTaskMetrics? {
         return metrics[task.taskIdentifier]
     }
@@ -93,6 +93,10 @@ extension NetURLSession {
 
     func json(_ data: Data, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any {
         return try JSONSerialization.jsonObject(with: data, options: options)
+    }
+
+    func propertyList(_ data: Data, options: PropertyListSerialization.ReadOptions = []) throws -> Any {
+        return try PropertyListSerialization.propertyList(from: data, options: options, format: nil)
     }
 
     func string(_ data: Data, encoding: String.Encoding = .utf8) -> String? {

@@ -40,7 +40,7 @@ extension NetURLSessionDelegate: URLSessionTaskDelegate {
         handle(challenge, completion: completionHandler)
     }
 
-    @available(iOSApplicationExtension 10.0, *)
+    @available(iOS 10.0, *)
     func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting taskMetrics: URLSessionTaskMetrics) {
         metrics[task.taskIdentifier] = taskMetrics
     }
@@ -56,7 +56,7 @@ extension NetURLSessionDelegate: URLSessionDownloadDelegate {
     
 }
 
-@available(iOSApplicationExtension 9.0, *)
+@available(iOS 9.0, *)
 extension NetURLSessionDelegate: URLSessionStreamDelegate {}
 
 fileprivate extension NetURLSessionDelegate {
