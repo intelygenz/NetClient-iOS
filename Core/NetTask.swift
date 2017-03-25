@@ -30,19 +30,19 @@ public class NetTask {
 
     public let request: NetRequest?
 
-    public var response: NetResponse?
+    public internal(set) var response: NetResponse?
 
-    public var description: String?
+    public let description: String?
 
-    public var state: NetState
+    public internal(set) var state: NetState
 
-    public var error: NetError?
+    public internal(set) var error: NetError?
 
-    public var priority: Float?
+    public let priority: Float?
 
-    public var progress: Progress?
+    public internal(set) var progress: Progress?
 
-    public var metrics: NetTaskMetrics?
+    public internal(set) var metrics: NetTaskMetrics?
 
     fileprivate let task: NetTaskProtocol?
 

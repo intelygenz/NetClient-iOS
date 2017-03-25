@@ -22,33 +22,33 @@ public struct NetRequest {
         case GET, POST, PUT, DELETE, PATCH, UPDATE, HEAD, TRACE, OPTIONS, CONNECT, SEARCH, COPY, MERGE, LABEL, LOCK, UNLOCK, MOVE, MKCOL, PROPFIND, PROPPATCH
     }
 
-    public var url: URL
+    public let url: URL
 
-    public var cache: NetCachePolicy
+    public let cache: NetCachePolicy
 
-    public var timeout: TimeInterval
+    public let timeout: TimeInterval
 
-    public var mainDocumentURL: URL?
+    public let mainDocumentURL: URL?
 
-    public var serviceType: NetServiceType
+    public let serviceType: NetServiceType
 
-    public var contentType: NetContentType?
+    public let contentType: NetContentType?
 
-    public var accept: NetContentType?
+    public let accept: NetContentType?
 
-    public var allowsCellularAccess: Bool
+    public let allowsCellularAccess: Bool
 
-    public var method: NetMethod
+    public let method: NetMethod
 
-    public var headers: [String : String]?
+    public let headers: [String : String]?
 
-    public var body: Data?
+    public let body: Data?
 
-    public var bodyStream: InputStream?
+    public let bodyStream: InputStream?
 
-    public var handleCookies: Bool
+    public let handleCookies: Bool
 
-    public var usePipelining: Bool
+    public let usePipelining: Bool
 
 }
 
