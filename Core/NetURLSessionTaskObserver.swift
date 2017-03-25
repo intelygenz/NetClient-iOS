@@ -49,6 +49,9 @@ class NetURLSessionTaskObserver: NSObject {
         }
         var taskProgress = tasks[task]?.progress
         if ObservedKeyPath(rawValue: keyPath) == .state, let intValue = newValue as? Int, let state = URLSessionTask.State(rawValue: intValue) {
+            if let netState = NetTask.NetState(rawValue: state.rawValue) {
+                tasks[task]?.state = netState
+            }
             if state != .running {
                 if taskProgress == Progress.current() {
                     taskProgress?.resignCurrent()

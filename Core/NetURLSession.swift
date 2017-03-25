@@ -68,7 +68,7 @@ extension NetURLSession {
         return NetRequest(url, cache: cache, timeout: timeout)
     }
 
-    func netTask(_ urlSessionTask: URLSessionTask, request: NetRequest? = nil) -> NetTask {
+    func netTask(_ urlSessionTask: URLSessionTask, _ request: NetRequest? = nil) -> NetTask {
         return NetTask(urlSessionTask, request: request)
     }
 

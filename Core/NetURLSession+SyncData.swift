@@ -9,10 +9,6 @@
 public extension NetURLSession {
 
     public func data(_ request: NetRequest) throws -> NetResponse {
-        return try data(request.urlRequest)
-    }
-
-    public func data(_ request: URLRequest) throws -> NetResponse {
         var dataResponse: NetResponse?
         var dataError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
@@ -29,6 +25,13 @@ public extension NetURLSession {
             throw URLError(.timedOut)
         }
         return dataResponse!
+    }
+
+    public func data(_ request: URLRequest) throws -> NetResponse {
+        guard let netRequest = NetRequest(request) else {
+            throw URLError(.badURL)
+        }
+        return try data(netRequest)
     }
 
     public func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {

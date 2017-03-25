@@ -28,10 +28,6 @@ public extension NetURLSession {
     }
 
     public func download(_ request: NetRequest) throws -> NetResponse {
-        return try download(request.urlRequest)
-    }
-
-    public func download(_ request: URLRequest) throws -> NetResponse {
         var downloadResponse: NetResponse?
         var downloadError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
@@ -48,6 +44,13 @@ public extension NetURLSession {
             throw URLError(.timedOut)
         }
         return downloadResponse!
+    }
+
+    public func download(_ request: URLRequest) throws -> NetResponse {
+        guard let netRequest = NetRequest(request) else {
+            throw URLError(.badURL)
+        }
+        return try download(netRequest)
     }
 
     public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {

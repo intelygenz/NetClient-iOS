@@ -30,13 +30,13 @@ public class NetTask {
 
     public let request: NetRequest?
 
-    public let response: NetResponse?
+    public var response: NetResponse?
 
     public var description: String?
 
     public var state: NetState
 
-    public let error: NetError?
+    public var error: NetError?
 
     public var priority: Float?
 
@@ -50,7 +50,7 @@ public class NetTask {
         self.request = request
         self.identifier = identifier ?? NetTaskIdentifier(arc4random())
         self.response = response
-        self.description = description
+        self.description = description ?? request?.description
         self.state = state
         self.error = error
         self.priority = priority
@@ -63,18 +63,18 @@ public class NetTask {
 extension NetTask: NetTaskProtocol {
 
     public func cancel() {
-        task?.cancel()
         state = .canceling
+        task?.cancel()
     }
 
     public func suspend() {
-        task?.suspend()
         state = .suspended
+        task?.suspend()
     }
 
     public func resume() {
-        task?.resume()
         state = .running
+        task?.resume()
     }
 
 }

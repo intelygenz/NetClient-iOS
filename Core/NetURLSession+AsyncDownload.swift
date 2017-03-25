@@ -16,34 +16,47 @@ public extension NetURLSession {
             task.resume()
             return netDownloadTask
         }
+        var netDownloadTask: NetTask!
         let task = session.downloadTask(withResumeData: resumeData) { (url, response, error) in
-            completion(self.netResponse(response, url), self.netError(error))
+            let netResponse = self.netResponse(response, url)
+            let netError = self.netError(error)
+            netDownloadTask.response = netResponse
+            netDownloadTask.error = netError
+            completion(netResponse, netError)
         }
-        let netDownloadTask = netTask(task)
+        netDownloadTask = netTask(task)
         observe(task, netDownloadTask)
         task.resume()
         return netDownloadTask
     }
 
     public func download(_ request: NetRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
-        return download(request.urlRequest, completion: completion)
-    }
-
-    public func download(_ request: URLRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
         guard let completion = completion else {
-            let task = session.downloadTask(with: request)
-            let netDownloadTask = netTask(task)
+            let task = session.downloadTask(with: request.urlRequest)
+            let netDownloadTask = netTask(task, request)
             observe(task, netDownloadTask)
             task.resume()
             return netDownloadTask
         }
-        let task = session.downloadTask(with: request) { (url, response, error) in
-            completion(self.netResponse(response, url), self.netError(error))
+        var netDownloadTask: NetTask!
+        let task = session.downloadTask(with: request.urlRequest) { (url, response, error) in
+            let netResponse = self.netResponse(response, url)
+            let netError = self.netError(error)
+            netDownloadTask.response = netResponse
+            netDownloadTask.error = netError
+            completion(netResponse, netError)
         }
-        let netDownloadTask = netTask(task)
+        netDownloadTask = netTask(task, request)
         observe(task, netDownloadTask)
         task.resume()
         return netDownloadTask
+    }
+
+    public func download(_ request: URLRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> NetTask {
+        guard let netRequest = NetRequest(request) else {
+            throw URLError(.badURL)
+        }
+        return download(netRequest, completion: completion)
     }
 
     public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {

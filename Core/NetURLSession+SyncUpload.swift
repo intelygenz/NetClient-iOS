@@ -9,10 +9,6 @@
 public extension NetURLSession {
 
     public func upload(_ request: NetRequest, data: Data) throws -> NetResponse {
-        return try upload(request.urlRequest, data: data)
-    }
-
-    public func upload(_ request: URLRequest, data: Data) throws -> NetResponse {
         var uploadResponse: NetResponse?
         var uploadError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
@@ -31,6 +27,13 @@ public extension NetURLSession {
         return uploadResponse!
     }
 
+    public func upload(_ request: URLRequest, data: Data) throws -> NetResponse {
+        guard let netRequest = NetRequest(request) else {
+            throw URLError(.badURL)
+        }
+        return try upload(netRequest, data: data)
+    }
+
     public func upload(_ url: URL, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         return try upload(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), data: data)
     }
@@ -43,10 +46,6 @@ public extension NetURLSession {
     }
 
     public func upload(_ request: NetRequest, fileURL: URL) throws -> NetResponse {
-        return try upload(request.urlRequest, fileURL: fileURL)
-    }
-
-    public func upload(_ request: URLRequest, fileURL: URL) throws -> NetResponse {
         var dataResponse: NetResponse?
         var dataError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
@@ -63,6 +62,13 @@ public extension NetURLSession {
             throw URLError(.timedOut)
         }
         return dataResponse!
+    }
+
+    public func upload(_ request: URLRequest, fileURL: URL) throws -> NetResponse {
+        guard let netRequest = NetRequest(request) else {
+            throw URLError(.badURL)
+        }
+        return try upload(netRequest, fileURL: fileURL)
     }
 
     public func upload(_ url: URL, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
