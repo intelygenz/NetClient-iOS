@@ -10,9 +10,9 @@ import Foundation
 
 class NetURLSessionDelegate: NSObject {
 
-    fileprivate weak var netURLSession: NetURLSession?
+    fileprivate weak final var netURLSession: NetURLSession?
 
-    var metrics = [NetURLSessionTaskIdentifier: Any]()
+    final var metrics = [NetURLSessionTaskIdentifier: Any]()
 
     init(_ urlSession: NetURLSession) {
         netURLSession = urlSession

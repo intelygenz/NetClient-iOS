@@ -10,8 +10,8 @@ import Foundation
 
 public extension NetResponse {
 
-    public init(_ response: URLResponse) {
-        self.init(response.url, mimeType: response.mimeType, contentLength: response.expectedContentLength, textEncoding: response.textEncodingName, filename: response.suggestedFilename)
+    public init(_ response: URLResponse, _ responseObject: Any? = nil) {
+        self.init(response.url, mimeType: response.mimeType, contentLength: response.expectedContentLength, textEncoding: response.textEncodingName, filename: response.suggestedFilename, responseObject: responseObject)
     }
     
 }

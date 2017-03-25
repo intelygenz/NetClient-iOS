@@ -17,10 +17,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         do {
             let date = Date()
-            _ = try net.json("http://www.alexruperez.com/home.json")
+            let object: [AnyHashable: Any] = try net.data("http://www.alexruperez.com/home.json").object()
+            print(type(of: object))
             print("Time: \(Date().timeIntervalSince(date))")
         } catch {
-            print("Error: \(error)")
+            print("Error: \((error as! NetError).localizedDescription)")
         }
     }
 

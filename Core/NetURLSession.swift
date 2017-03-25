@@ -41,7 +41,7 @@ open class NetURLSession: Net {
         return metrics
     }
 
-    fileprivate var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
+    fileprivate final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
     public convenience init() {
         self.init(.default)
@@ -85,42 +85,28 @@ public extension NetURLSession {
 
 extension NetURLSession {
 
+    func observe(_ task: URLSessionTask) {
+        taskObserver?.add(task)
+    }
+
     func netRequest(_ url: URL, cache: NetRequest.NetCachePolicy? = nil, timeout: TimeInterval? = nil) -> NetRequest {
         let cache = cache ?? NetRequest.NetCachePolicy(rawValue: session.configuration.requestCachePolicy.rawValue) ?? .useProtocolCachePolicy
         let timeout = timeout ?? session.configuration.timeoutIntervalForRequest
         return NetRequest(url, cache: cache, timeout: timeout)
     }
 
-    func json(_ data: Data, options: JSONSerialization.ReadingOptions = .allowFragments) throws -> Any {
-        return try JSONSerialization.jsonObject(with: data, options: options)
-    }
-
-    func propertyList(_ data: Data, options: PropertyListSerialization.ReadOptions = []) throws -> Any {
-        return try PropertyListSerialization.propertyList(from: data, options: options, format: nil)
-    }
-
-    func string(_ data: Data, encoding: String.Encoding = .utf8) -> String? {
-        return String(data: data, encoding: encoding)
-    }
-
-    func observe(_ task: URLSessionTask) {
-        taskObserver?.add(task)
-    }
-
-    func netResponse(_ response: URLResponse?) -> NetResponse? {
+    func netResponse(_ response: URLResponse?, _ responseObject: Any? = nil) -> NetResponse? {
         if let httpResponse = response as? HTTPURLResponse {
-            return NetResponse(httpResponse)
+            return NetResponse(httpResponse, responseObject)
         } else if let response = response {
-            return NetResponse(response)
+            return NetResponse(response, responseObject)
         }
         return nil
     }
 
     func netError(_ error: Error?) -> NetError? {
-        if let error = error as? NSError {
-            return NetError.error(code: error.code, message: error.localizedDescription, underlying: error)
-        } else if let error = error {
-            return NetError.error(code: nil, message: error.localizedDescription, underlying: error)
+        if let error = error {
+            return NetError.error(code: error._code, message: error.localizedDescription, underlying: error)
         }
         return nil
     }

@@ -8,53 +8,53 @@
 
 public extension NetURLSession {
 
-    public func download(_ resumeData: Data) throws -> URL? {
-        var locationObject: URL?
-        var locationError: Error?
+    public func download(_ resumeData: Data) throws -> NetResponse {
+        var downloadResponse: NetResponse?
+        var downloadError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
-        _ = download(resumeData, completion: { (location, response, error) in
-            locationObject = location
-            locationError = error
+        _ = download(resumeData, completion: { (response, error) in
+            downloadResponse = response
+            downloadError = error
             dispatchSemaphore.signal()
         })
         let dispatchTimeoutResult = dispatchSemaphore.wait(timeout: DispatchTime.distantFuture)
-        if let locationError = locationError {
-            throw locationError
+        if let downloadError = downloadError {
+            throw downloadError
         }
         if dispatchTimeoutResult == .timedOut {
             throw URLError(.timedOut)
         }
-        return locationObject
+        return downloadResponse!
     }
 
-    public func download(_ request: NetRequest) throws -> URL? {
+    public func download(_ request: NetRequest) throws -> NetResponse {
         return try download(request.urlRequest)
     }
 
-    public func download(_ request: URLRequest) throws -> URL? {
-        var locationObject: URL?
-        var locationError: Error?
+    public func download(_ request: URLRequest) throws -> NetResponse {
+        var downloadResponse: NetResponse?
+        var downloadError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
-        _ = download(request, completion: { (location, response, error) in
-            locationObject = location
-            locationError = error
+        _ = download(request, completion: { (response, error) in
+            downloadResponse = response
+            downloadError = error
             dispatchSemaphore.signal()
         })
         let dispatchTimeoutResult = dispatchSemaphore.wait(timeout: DispatchTime.distantFuture)
-        if let locationError = locationError {
-            throw locationError
+        if let downloadError = downloadError {
+            throw downloadError
         }
         if dispatchTimeoutResult == .timedOut {
             throw URLError(.timedOut)
         }
-        return locationObject
+        return downloadResponse!
     }
 
-    public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> URL? {
+    public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         return try download(netRequest(url, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    public func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> URL? {
+    public func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

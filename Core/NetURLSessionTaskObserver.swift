@@ -24,7 +24,7 @@ class NetURLSessionTaskObserver: NSObject {
                           state]
     }
 
-    var progress = [NetURLSessionTaskIdentifier: Progress]()
+    final var progress = [NetURLSessionTaskIdentifier: Progress]()
 
     func add(_ task: URLSessionTask) {
         for observedKeyPath in ObservedKeyPath.all {

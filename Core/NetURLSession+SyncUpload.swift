@@ -8,50 +8,50 @@
 
 public extension NetURLSession {
 
-    public func upload(_ request: NetRequest, data: Data) throws -> Data? {
+    public func upload(_ request: NetRequest, data: Data) throws -> NetResponse {
         return try upload(request.urlRequest, data: data)
     }
 
-    public func upload(_ request: URLRequest, data: Data) throws -> Data? {
-        var dataObject: Data?
-        var dataError: Error?
+    public func upload(_ request: URLRequest, data: Data) throws -> NetResponse {
+        var uploadResponse: NetResponse?
+        var uploadError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
-        _ = upload(request, data: data, completion: { (data, response, error) in
-            dataObject = data
-            dataError = error
+        _ = upload(request, data: data, completion: { (response, error) in
+            uploadResponse = response
+            uploadError = error
             dispatchSemaphore.signal()
         })
         let dispatchTimeoutResult = dispatchSemaphore.wait(timeout: DispatchTime.distantFuture)
-        if let dataError = dataError {
-            throw dataError
+        if let uploadError = uploadError {
+            throw uploadError
         }
         if dispatchTimeoutResult == .timedOut {
             throw URLError(.timedOut)
         }
-        return dataObject
+        return uploadResponse!
     }
 
-    public func upload(_ url: URL, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func upload(_ url: URL, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         return try upload(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), data: data)
     }
 
-    public func upload(_ urlString: String, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func upload(_ urlString: String, data: Data, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
         return try upload(url, data: data, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
     }
 
-    public func upload(_ request: NetRequest, fileURL: URL) throws -> Data? {
+    public func upload(_ request: NetRequest, fileURL: URL) throws -> NetResponse {
         return try upload(request.urlRequest, fileURL: fileURL)
     }
 
-    public func upload(_ request: URLRequest, fileURL: URL) throws -> Data? {
-        var dataObject: Data?
+    public func upload(_ request: URLRequest, fileURL: URL) throws -> NetResponse {
+        var dataResponse: NetResponse?
         var dataError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
-        _ = upload(request, fileURL: fileURL, completion: { (data, response, error) in
-            dataObject = data
+        _ = upload(request, fileURL: fileURL, completion: { (response, error) in
+            dataResponse = response
             dataError = error
             dispatchSemaphore.signal()
         })
@@ -62,14 +62,14 @@ public extension NetURLSession {
         if dispatchTimeoutResult == .timedOut {
             throw URLError(.timedOut)
         }
-        return dataObject
+        return dataResponse!
     }
 
-    public func upload(_ url: URL, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func upload(_ url: URL, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         return try upload(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), fileURL: fileURL)
     }
 
-    public func upload(_ urlString: String, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func upload(_ urlString: String, fileURL: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

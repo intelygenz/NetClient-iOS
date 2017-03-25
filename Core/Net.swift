@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol Net {
+public protocol Net: class {
 
 }

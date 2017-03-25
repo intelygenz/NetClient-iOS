@@ -8,16 +8,16 @@
 
 public extension NetURLSession {
 
-    public func data(_ request: NetRequest) throws -> Data? {
+    public func data(_ request: NetRequest) throws -> NetResponse {
         return try data(request.urlRequest)
     }
 
-    public func data(_ request: URLRequest) throws -> Data? {
-        var dataObject: Data?
+    public func data(_ request: URLRequest) throws -> NetResponse {
+        var dataResponse: NetResponse?
         var dataError: Error?
         let dispatchSemaphore = DispatchSemaphore(value: 0)
-        _ = data(request, completion: { (data, response, error) in
-            dataObject = data
+        _ = data(request, completion: { (response, error) in
+            dataResponse = response
             dataError = error
             dispatchSemaphore.signal()
         })
@@ -28,14 +28,14 @@ public extension NetURLSession {
         if dispatchTimeoutResult == .timedOut {
             throw URLError(.timedOut)
         }
-        return dataObject
+        return dataResponse!
     }
 
-    public func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         return try data(netRequest(url, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    public func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> Data? {
+    public func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetResponse {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
