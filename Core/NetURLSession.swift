@@ -8,8 +8,6 @@
 
 import Foundation
 
-public typealias NetURLSessionTaskIdentifier = Int
-
 open class NetURLSession: Net {
 
     open static let shared = NetURLSession(URLSession.shared)
@@ -25,21 +23,6 @@ open class NetURLSession: Net {
     open var sessionDescription: String? { return session.sessionDescription }
 
     open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void)?
-
-    open var progress: [NetURLSessionTaskIdentifier: Progress] {
-        guard let progress = taskObserver?.progress else {
-            return [:]
-        }
-        return progress
-    }
-
-    @available(iOS 10.0, *)
-    open var metrics: [NetURLSessionTaskIdentifier: URLSessionTaskMetrics] {
-        guard let delegate = delegate as? NetURLSessionDelegate, let metrics = delegate.metrics as? [NetURLSessionTaskIdentifier: URLSessionTaskMetrics] else {
-            return [:]
-        }
-        return metrics
-    }
 
     fileprivate final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
@@ -70,29 +53,23 @@ open class NetURLSession: Net {
     
 }
 
-public extension NetURLSession {
-
-    public func progress(_ task: URLSessionTask) -> Progress? {
-        return progress[task.taskIdentifier]
-    }
-
-    @available(iOS 10.0, *)
-    public func metrics(_ task: URLSessionTask) -> URLSessionTaskMetrics? {
-        return metrics[task.taskIdentifier]
-    }
-
-}
-
 extension NetURLSession {
 
-    func observe(_ task: URLSessionTask) {
-        taskObserver?.add(task)
+    func observe(_ task: URLSessionTask, _ netTask: NetTask) {
+        taskObserver?.add(task, netTask)
+        if let delegate = delegate as? NetURLSessionDelegate {
+            delegate.add(task, netTask)
+        }
     }
 
     func netRequest(_ url: URL, cache: NetRequest.NetCachePolicy? = nil, timeout: TimeInterval? = nil) -> NetRequest {
         let cache = cache ?? NetRequest.NetCachePolicy(rawValue: session.configuration.requestCachePolicy.rawValue) ?? .useProtocolCachePolicy
         let timeout = timeout ?? session.configuration.timeoutIntervalForRequest
         return NetRequest(url, cache: cache, timeout: timeout)
+    }
+
+    func netTask(_ urlSessionTask: URLSessionTask, request: NetRequest? = nil) -> NetTask {
+        return NetTask(urlSessionTask, request: request)
     }
 
     func netResponse(_ response: URLResponse?, _ responseObject: Any? = nil) -> NetResponse? {

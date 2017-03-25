@@ -115,11 +115,3 @@ extension NetRequest: Equatable {
     }
 
 }
-
-extension NetRequest: CustomReflectable {
-
-    public var customMirror: Mirror {
-        return Mirror(reflecting: self)
-    }
-
-}

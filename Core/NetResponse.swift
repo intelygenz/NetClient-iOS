@@ -84,11 +84,3 @@ extension NetResponse: Equatable {
     }
 
 }
-
-extension NetResponse: CustomReflectable {
-
-    public var customMirror: Mirror {
-        return Mirror(reflecting: self)
-    }
-    
-}

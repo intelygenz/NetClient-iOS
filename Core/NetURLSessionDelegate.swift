@@ -12,15 +12,19 @@ class NetURLSessionDelegate: NSObject {
 
     fileprivate weak final var netURLSession: NetURLSession?
 
-    final var metrics = [NetURLSessionTaskIdentifier: Any]()
+    final var tasks = [URLSessionTask: NetTask]()
 
     init(_ urlSession: NetURLSession) {
         netURLSession = urlSession
         super.init()
     }
 
+    func add(_ task: URLSessionTask, _ netTask: NetTask) {
+        tasks[task] = netTask
+    }
+
     deinit {
-        metrics.removeAll()
+        tasks.removeAll()
         netURLSession = nil
     }
 
@@ -42,7 +46,10 @@ extension NetURLSessionDelegate: URLSessionTaskDelegate {
 
     @available(iOS 10.0, *)
     func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting taskMetrics: URLSessionTaskMetrics) {
-        metrics[task.taskIdentifier] = taskMetrics
+        if let netTask = tasks[task] {
+            netTask.metrics = NetTaskMetrics(taskMetrics, request: netTask.request, response: netTask.response)
+        }
+        tasks[task] = nil
     }
 
 }

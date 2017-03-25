@@ -24,29 +24,30 @@ class NetURLSessionTaskObserver: NSObject {
                           state]
     }
 
-    final var progress = [NetURLSessionTaskIdentifier: Progress]()
+    final var tasks = [URLSessionTask: NetTask]()
 
-    func add(_ task: URLSessionTask) {
+    func add(_ task: URLSessionTask, _ netTask: NetTask) {
+        tasks[task] = netTask
         for observedKeyPath in ObservedKeyPath.all {
             task.addObserver(self, forKeyPath: observedKeyPath.rawValue, options: .new, context: nil)
         }
     }
 
     deinit {
-        for taskProgress in progress.values {
-            if taskProgress == Progress.current() {
-                taskProgress.resignCurrent()
+        for netTask in tasks.values {
+            if netTask.progress == Progress.current() {
+                netTask.progress?.resignCurrent()
             }
-            taskProgress.cancel()
+            netTask.progress?.cancel()
         }
-        progress.removeAll()
+        tasks.removeAll()
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let keyPath = keyPath, let task = object as? URLSessionTask, let newValue = change?[.newKey] else {
             return
         }
-        var taskProgress = progress[task.taskIdentifier]
+        var taskProgress = tasks[task]?.progress
         if ObservedKeyPath(rawValue: keyPath) == .state, let intValue = newValue as? Int, let state = URLSessionTask.State(rawValue: intValue) {
             if state != .running {
                 if taskProgress == Progress.current() {
@@ -63,7 +64,7 @@ class NetURLSessionTaskObserver: NSObject {
                             task.removeObserver(self, forKeyPath: observedValue.rawValue, context: context)
                         }
                     }
-                    progress[task.taskIdentifier] = nil
+                    tasks[task] = nil
                     return
                 }
             } else {
@@ -78,7 +79,7 @@ class NetURLSessionTaskObserver: NSObject {
         let totalUnitCount = max(task.countOfBytesExpectedToReceive, task.countOfBytesExpectedToSend)
         if taskProgress == nil {
             taskProgress = syncProgress(task, totalUnitCount: totalUnitCount)
-            progress[task.taskIdentifier] = taskProgress
+            tasks[task]?.progress = taskProgress
             taskProgress?.becomeCurrent(withPendingUnitCount: totalUnitCount)
         }
         taskProgress?.completedUnitCount = completedUnitCount
