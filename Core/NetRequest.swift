@@ -87,7 +87,7 @@ extension NetRequest {
 extension NetRequest: CustomStringConvertible {
 
     public var description: String {
-        return url.absoluteString
+        return method.rawValue + " " + url.absoluteString
     }
 
 }
@@ -95,7 +95,41 @@ extension NetRequest: CustomStringConvertible {
 extension NetRequest: CustomDebugStringConvertible {
 
     public var debugDescription: String {
-        return url.absoluteString
+        var components = ["$ curl -i"]
+
+        guard url.host != nil
+            else {
+                return "$ curl command could not be created"
+        }
+
+        if method != .GET {
+            components.append("-X \(method.rawValue)")
+        }
+
+        if let headers = headers {
+            for (field, value) in headers where field != "Cookie" && field != "Content-Type" && field != "Accept" {
+                components.append("-H \"\(field): \(value)\"")
+            }
+        }
+
+        if let contentType = contentType {
+            components.append("-H \"Content-Type: \(contentType.rawValue)\"")
+        }
+
+        if let accept = accept {
+            components.append("-H \"Accept: \(accept.rawValue)\"")
+        }
+
+        if let body = body, let bodyString = String(data: body, encoding: .utf8) {
+            var escapedBody = bodyString.replacingOccurrences(of: "\\\"", with: "\\\\\"")
+            escapedBody = escapedBody.replacingOccurrences(of: "\"", with: "\\\"")
+
+            components.append("-d \"\(escapedBody)\"")
+        }
+
+        components.append("\"\(url.absoluteString)\"")
+
+        return components.joined(separator: " \\\n\t")
     }
 
 }
@@ -103,7 +137,7 @@ extension NetRequest: CustomDebugStringConvertible {
 extension NetRequest: Hashable {
 
     public var hashValue: Int {
-        return url.hashValue
+        return url.hashValue + method.hashValue
     }
 
 }
@@ -111,7 +145,7 @@ extension NetRequest: Hashable {
 extension NetRequest: Equatable {
 
     public static func ==(lhs: NetRequest, rhs: NetRequest) -> Bool {
-        return lhs.url == rhs.url
+        return lhs.url == rhs.url && lhs.method == rhs.method
     }
 
 }
