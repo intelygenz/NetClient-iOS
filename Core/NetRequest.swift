@@ -50,11 +50,13 @@ public struct NetRequest {
 
     public let usePipelining: Bool
 
+    public let authorization: NetAuthorization
+
 }
 
 extension NetRequest {
 
-    public init(_ url: URL, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 30, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true) {
+    public init(_ url: URL, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 30, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
         self.url = url
         self.cache = cache
         self.timeout = timeout
@@ -69,17 +71,18 @@ extension NetRequest {
         self.bodyStream = bodyStream
         self.handleCookies = handleCookies
         self.usePipelining = usePipelining
+        self.authorization = authorization
     }
     
 }
 
 extension NetRequest {
 
-    public init?(_ urlString: String, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 30, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true) {
+    public init?(_ urlString: String, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 30, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
         guard let url = URL(string: urlString) else {
             return nil
         }
-        self.init(url, cache: cache, timeout: timeout, mainDocumentURL: mainDocumentURL, serviceType: serviceType, contentType: contentType, accept: accept, allowsCellularAccess: allowsCellularAccess, method: method, headers: headers, body: body, bodyStream: bodyStream, handleCookies: handleCookies, usePipelining: usePipelining)
+        self.init(url, cache: cache, timeout: timeout, mainDocumentURL: mainDocumentURL, serviceType: serviceType, contentType: contentType, accept: accept, allowsCellularAccess: allowsCellularAccess, method: method, headers: headers, body: body, bodyStream: bodyStream, handleCookies: handleCookies, usePipelining: usePipelining, authorization: authorization)
     }
 
 }
@@ -97,17 +100,12 @@ extension NetRequest: CustomDebugStringConvertible {
     public var debugDescription: String {
         var components = ["$ curl -i"]
 
-        guard url.host != nil
-            else {
-                return "$ curl command could not be created"
-        }
-
         if method != .GET {
             components.append("-X \(method.rawValue)")
         }
 
         if let headers = headers {
-            for (field, value) in headers where field != "Cookie" && field != "Content-Type" && field != "Accept" {
+            for (field, value) in headers where field != "Content-Type" && field != "Accept" {
                 components.append("-H \"\(field): \(value)\"")
             }
         }
@@ -118,6 +116,10 @@ extension NetRequest: CustomDebugStringConvertible {
 
         if let accept = accept {
             components.append("-H \"Accept: \(accept.rawValue)\"")
+        }
+
+        if authorization != .none {
+            components.append("-H \"Authorization: \(authorization.rawValue)\"")
         }
 
         if let body = body, let bodyString = String(data: body, encoding: .utf8) {

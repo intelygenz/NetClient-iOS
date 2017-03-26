@@ -33,6 +33,13 @@ class NetRequestTests: XCTestCase {
         }
     }
 
+    func testNetAuthorization() {
+        XCTAssertEqual(NetAuthorization.basic(user: "user", password: "password"), NetAuthorization(rawValue: "Basic dXNlcjpwYXNzd29yZA=="))
+        XCTAssertNotEqual(NetAuthorization.basic(user: "user", password: "wordpass"), NetAuthorization(rawValue: "Basic dXNlcjpwYXNzd29yZA=="))
+        XCTAssertEqual(NetAuthorization.bearer(token: "token"), NetAuthorization(rawValue: "Bearer token"))
+        XCTAssertNotEqual(NetAuthorization.bearer(token: "kento"), NetAuthorization(rawValue: "Bearer token"))
+    }
+
     override func tearDown() {
         super.tearDown()
     }

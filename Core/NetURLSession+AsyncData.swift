@@ -8,7 +8,7 @@
 
 extension NetURLSession {
 
-    public func data(_ request: NetRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
+    public func data(_ request: NetRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)?) -> NetTask {
         guard let completion = completion else {
             let task = session.dataTask(with: request.urlRequest)
             let netDataTask = netTask(task, request)
@@ -30,18 +30,18 @@ extension NetURLSession {
         return netDataTask
     }
 
-    public func data(_ request: URLRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> NetTask {
+    public func data(_ request: URLRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)?) throws -> NetTask {
         guard let netRequest = NetRequest(request) else {
             throw URLError(.badURL)
         }
         return data(netRequest, completion: completion)
     }
 
-    public func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
+    public func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)?) -> NetTask {
         return data(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), completion: completion)
     }
 
-    public func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> NetTask {
+    public func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)?) throws -> NetTask {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

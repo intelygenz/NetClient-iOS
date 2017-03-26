@@ -8,7 +8,7 @@
 
 extension NetURLSession {
 
-    public func download(_ resumeData: Data, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
+    public func download(_ resumeData: Data, completion: ((NetResponse?, NetError?) -> Swift.Void)?) -> NetTask {
         guard let completion = completion else {
             let task = session.downloadTask(withResumeData: resumeData)
             let netDownloadTask = netTask(task)
@@ -30,7 +30,7 @@ extension NetURLSession {
         return netDownloadTask
     }
 
-    public func download(_ request: NetRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
+    public func download(_ request: NetRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)?) -> NetTask {
         guard let completion = completion else {
             let task = session.downloadTask(with: request.urlRequest)
             let netDownloadTask = netTask(task, request)
@@ -52,18 +52,18 @@ extension NetURLSession {
         return netDownloadTask
     }
 
-    public func download(_ request: URLRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> NetTask {
+    public func download(_ request: URLRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)?) throws -> NetTask {
         guard let netRequest = NetRequest(request) else {
             throw URLError(.badURL)
         }
         return download(netRequest, completion: completion)
     }
 
-    public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
+    public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)?) -> NetTask {
         return download(netRequest(url, cache: cachePolicy, timeout: timeoutInterval), completion: completion)
     }
 
-    public func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) throws -> NetTask {
+    public func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil, completion: ((NetResponse?, NetError?) -> Swift.Void)?) throws -> NetTask {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

@@ -13,6 +13,7 @@ extension NetRequest {
     private struct HTTPHeader {
         static let contentType = "Content-Type"
         static let accept = "Accept"
+        static let authorization = "Authorization"
     }
 
     public init?(_ urlRequest: URLRequest) {
@@ -27,11 +28,15 @@ extension NetRequest {
         if let acceptValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.accept) {
             accept = NetContentType(rawValue: acceptValue)
         }
+        var authorization = NetAuthorization.none
+        if let authorizationValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.authorization) {
+            authorization = NetAuthorization(rawValue: authorizationValue)
+        }
         var method = NetMethod.GET
         if let methodString = urlRequest.httpMethod, let methodValue = NetMethod(rawValue: methodString) {
             method = methodValue
         }
-        self.init(url, cache: NetCachePolicy(rawValue: urlRequest.cachePolicy.rawValue) ?? .useProtocolCachePolicy, timeout: urlRequest.timeoutInterval, mainDocumentURL: urlRequest.mainDocumentURL, serviceType: NetServiceType(rawValue: urlRequest.networkServiceType.rawValue) ?? .default, contentType: contentType, accept: accept, allowsCellularAccess: urlRequest.allowsCellularAccess, method: method, headers: urlRequest.allHTTPHeaderFields, body: urlRequest.httpBody, bodyStream: urlRequest.httpBodyStream, handleCookies: urlRequest.httpShouldHandleCookies, usePipelining: urlRequest.httpShouldUsePipelining)
+        self.init(url, cache: NetCachePolicy(rawValue: urlRequest.cachePolicy.rawValue) ?? .useProtocolCachePolicy, timeout: urlRequest.timeoutInterval, mainDocumentURL: urlRequest.mainDocumentURL, serviceType: NetServiceType(rawValue: urlRequest.networkServiceType.rawValue) ?? .default, contentType: contentType, accept: accept, allowsCellularAccess: urlRequest.allowsCellularAccess, method: method, headers: urlRequest.allHTTPHeaderFields, body: urlRequest.httpBody, bodyStream: urlRequest.httpBodyStream, handleCookies: urlRequest.httpShouldHandleCookies, usePipelining: urlRequest.httpShouldUsePipelining, authorization: authorization)
     }
 
     public var urlRequest: URLRequest {
@@ -43,6 +48,9 @@ extension NetRequest {
         urlRequest.allHTTPHeaderFields = headers
         urlRequest.setValue(contentType?.rawValue, forHTTPHeaderField: HTTPHeader.contentType)
         urlRequest.setValue(accept?.rawValue, forHTTPHeaderField: HTTPHeader.accept)
+        if authorization != .none {
+            urlRequest.setValue(authorization.rawValue, forHTTPHeaderField: HTTPHeader.authorization)
+        }
         urlRequest.httpBody = body
         urlRequest.httpBodyStream = bodyStream
         urlRequest.httpShouldHandleCookies = handleCookies

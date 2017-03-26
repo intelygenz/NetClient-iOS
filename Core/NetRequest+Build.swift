@@ -10,9 +10,9 @@ import Foundation
 
 extension NetRequest {
 
-    public class Build {
+    public class Builder {
 
-        public typealias BuildClosure = (Build) -> ()
+        public typealias BuildClosure = (Builder) -> Swift.Void
 
         public private(set) var url: URL
 
@@ -42,16 +42,18 @@ extension NetRequest {
         
         public var usePipelining: Bool?
 
-        public init(_ url: URL, builder: BuildClosure? = nil) {
+        public var authorization: NetAuthorization?
+
+        public init(_ url: URL, buildClosure: BuildClosure? = nil) {
             self.url = url
-            builder?(self)
+            buildClosure?(self)
         }
 
-        public convenience init?(_ urlString: String, builder: BuildClosure? = nil) {
+        public convenience init?(_ urlString: String, buildClosure: BuildClosure? = nil) {
             guard let url = URL(string: urlString) else {
                 return nil
             }
-            self.init(url, builder: builder)
+            self.init(url, buildClosure: buildClosure)
         }
 
         public func setCache(_ cache: NetRequest.NetCachePolicy?) -> Self {
@@ -99,17 +101,38 @@ extension NetRequest {
             return self
         }
 
+        public func addHeader(_ key: String, value: String?) -> Self {
+            if headers == nil {
+                headers = [:]
+            }
+            headers?[key] = value
+            return self
+        }
+
         public func setBody(_ body: Data?) -> Self {
             self.body = body
             return self
         }
 
         public func setURLParameters(_ urlParameters: [String: Any]?, resolvingAgainstBaseURL: Bool = false) -> Self {
-            guard let urlParameters = urlParameters else {
+            if var components = URLComponents(url: url, resolvingAgainstBaseURL: resolvingAgainstBaseURL) {
+                components.percentEncodedQuery = nil
+                if let urlParameters = urlParameters, urlParameters.count > 0 {
+                    components.percentEncodedQuery = query(urlParameters)
+                }
+                if let url = components.url {
+                    self.url = url
+                }
+            }
+            return self
+        }
+
+        public func addURLParameter(_ key: String, value: Any?, resolvingAgainstBaseURL: Bool = false) -> Self {
+            guard let value = value else {
                 return self
             }
             if var components = URLComponents(url: url, resolvingAgainstBaseURL: resolvingAgainstBaseURL) {
-                let percentEncodedQuery = (components.percentEncodedQuery.map { $0 + "&" } ?? "") + query(urlParameters)
+                let percentEncodedQuery = (components.percentEncodedQuery.map { $0 + "&" } ?? "") + query([key: value])
                 components.percentEncodedQuery = percentEncodedQuery
                 if let url = components.url {
                     self.url = url
@@ -174,42 +197,60 @@ extension NetRequest {
             return self
         }
 
+        public func setBasicAuthorization(user: String, password: String) -> Self {
+            authorization = .basic(user: user, password: password)
+            return self
+        }
+
+        public func setBearerAuthorization(token: String) -> Self {
+            authorization = .bearer(token: token)
+            return self
+        }
+
         public func build() -> NetRequest {
             return NetRequest(self)
         }
 
     }
 
-    public init(_ builder: Build) {
-        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 30, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true)
+    public static func builder(_ url: URL, buildClosure: Builder.BuildClosure? = nil) -> Builder {
+        return Builder(url, buildClosure: buildClosure)
+    }
+
+    public static func builder(_ urlString: String, buildClosure: Builder.BuildClosure? = nil) -> Builder? {
+        return Builder(urlString, buildClosure: buildClosure)
+    }
+
+    public init(_ builder: Builder) {
+        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 30, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
     }
     
 }
 
-extension NetRequest.Build {
+extension NetRequest.Builder {
 
     fileprivate func query(_ parameters: [String: Any]) -> String {
         var components = [(String, String)]()
 
         for key in parameters.keys.sorted(by: <) {
             if let value = parameters[key] {
-                components += queryComponents(key: key, value: value)
+                components += queryComponents(key, value: value)
             }
         }
 
         return components.map { "\($0)=\($1)" }.joined(separator: "&")
     }
 
-    fileprivate func queryComponents(key: String, value: Any) -> [(String, String)] {
+    fileprivate func queryComponents(_ key: String, value: Any) -> [(String, String)] {
         var components: [(String, String)] = []
 
         if let dictionary = value as? [String: Any] {
             for (dictionaryKey, value) in dictionary {
-                components += queryComponents(key: "\(key)[\(dictionaryKey)]", value: value)
+                components += queryComponents("\(key)[\(dictionaryKey)]", value: value)
             }
         } else if let array = value as? [Any] {
             for value in array {
-                components += queryComponents(key: "\(key)[]", value: value)
+                components += queryComponents("\(key)[]", value: value)
             }
         } else if let value = value as? NSNumber {
             if CFBooleanGetTypeID() == CFGetTypeID(value) {

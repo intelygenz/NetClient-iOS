@@ -102,6 +102,10 @@
 		D523AB0F1E8710D30093D793 /* NetRequest+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB0D1E8710D30093D793 /* NetRequest+Build.swift */; };
 		D523AB101E8710D30093D793 /* NetRequest+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB0D1E8710D30093D793 /* NetRequest+Build.swift */; };
 		D523AB111E8710D30093D793 /* NetRequest+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB0D1E8710D30093D793 /* NetRequest+Build.swift */; };
+		D523AB131E88417E0093D793 /* NetAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB121E88417E0093D793 /* NetAuthorization.swift */; };
+		D523AB141E88417E0093D793 /* NetAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB121E88417E0093D793 /* NetAuthorization.swift */; };
+		D523AB151E88417E0093D793 /* NetAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB121E88417E0093D793 /* NetAuthorization.swift */; };
+		D523AB161E88417E0093D793 /* NetAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB121E88417E0093D793 /* NetAuthorization.swift */; };
 		D5A521741E7B342100406F0F /* Net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A5216A1E7B342100406F0F /* Net.framework */; };
 		D5A521CE1E7B348100406F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A521CD1E7B348100406F0F /* AppDelegate.swift */; };
 		D5A521D01E7B348100406F0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A521CF1E7B348100406F0F /* ViewController.swift */; };
@@ -218,6 +222,7 @@
 		D523AB031E867B480093D793 /* NetTaskMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetTaskMetrics.swift; sourceTree = "<group>"; };
 		D523AB081E867F050093D793 /* NetTaskMetrics+URLSessionTaskMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetTaskMetrics+URLSessionTaskMetrics.swift"; sourceTree = "<group>"; };
 		D523AB0D1E8710D30093D793 /* NetRequest+Build.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetRequest+Build.swift"; sourceTree = "<group>"; };
+		D523AB121E88417E0093D793 /* NetAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetAuthorization.swift; sourceTree = "<group>"; };
 		D5A5216A1E7B342100406F0F /* Net.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Net.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521731E7B342100406F0F /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521871E7B342F00406F0F /* Net.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Net.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -360,6 +365,7 @@
 				81ACB7DC1E83C64F006D05DD /* NetRequest.swift */,
 				81ACB7ED1E84075B006D05DD /* NetRequest+URLRequest.swift */,
 				D523AB0D1E8710D30093D793 /* NetRequest+Build.swift */,
+				D523AB121E88417E0093D793 /* NetAuthorization.swift */,
 				81ACB7E21E83D0C8006D05DD /* NetContentType.swift */,
 				D523AAF91E8673760093D793 /* NetTask.swift */,
 				D523AAFE1E8678620093D793 /* NetTask+URLSessionTask.swift */,
@@ -701,6 +707,7 @@
 				81F044001E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				D523AAFF1E8678620093D793 /* NetTask+URLSessionTask.swift in Sources */,
 				D523AB041E867B480093D793 /* NetTaskMetrics.swift in Sources */,
+				D523AB131E88417E0093D793 /* NetAuthorization.swift in Sources */,
 				817F748F1E7C0A6F0025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
 				81ACB7E41E84020C006D05DD /* NetContentType.swift in Sources */,
 				817F74731E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
@@ -739,6 +746,7 @@
 				81F044011E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				D523AB001E8678620093D793 /* NetTask+URLSessionTask.swift in Sources */,
 				D523AB051E867B480093D793 /* NetTaskMetrics.swift in Sources */,
+				D523AB141E88417E0093D793 /* NetAuthorization.swift in Sources */,
 				817F74951E7C0A700025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
 				81ACB7E51E84020E006D05DD /* NetContentType.swift in Sources */,
 				817F74741E7BFFDC0025B59D /* NetURLSession+SyncData.swift in Sources */,
@@ -769,6 +777,7 @@
 				81F044021E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				D523AB011E8678620093D793 /* NetTask+URLSessionTask.swift in Sources */,
 				D523AB061E867B480093D793 /* NetTaskMetrics.swift in Sources */,
+				D523AB151E88417E0093D793 /* NetAuthorization.swift in Sources */,
 				817F749B1E7C0A710025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
 				81ACB7E61E84020E006D05DD /* NetContentType.swift in Sources */,
 				817F74751E7BFFDD0025B59D /* NetURLSession+SyncData.swift in Sources */,
@@ -799,6 +808,7 @@
 				81F044031E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift in Sources */,
 				D523AB021E8678620093D793 /* NetTask+URLSessionTask.swift in Sources */,
 				D523AB071E867B480093D793 /* NetTaskMetrics.swift in Sources */,
+				D523AB161E88417E0093D793 /* NetAuthorization.swift in Sources */,
 				817F74A11E7C0A720025B59D /* NetURLSession+AsyncDownload.swift in Sources */,
 				81ACB7E71E84020F006D05DD /* NetContentType.swift in Sources */,
 				817F74761E7BFFDE0025B59D /* NetURLSession+SyncData.swift in Sources */,
