@@ -30,7 +30,7 @@ public struct NetResponse {
 
 }
 
-public extension NetResponse {
+extension NetResponse {
 
     public init(_ url: URL? = nil, mimeType: String? = nil, contentLength: Int64 = -1, textEncoding: String? = nil, filename: String? = nil, statusCode: Int? = nil, headers: [AnyHashable : Any]? = nil, localizedDescription: String? = nil, responseObject: Any? = nil) {
         self.url = url
@@ -46,7 +46,7 @@ public extension NetResponse {
 
 }
 
-public extension NetResponse {
+extension NetResponse {
 
     public func object<T>() throws -> T {
         if let responseObject = responseObject as? T {

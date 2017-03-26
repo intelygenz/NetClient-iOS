@@ -12,7 +12,7 @@ public enum NetError: Error {
     case error(code: Int?, message: String, underlying: Error?)
 }
 
-public extension NetError {
+extension NetError {
 
     public var localizedDescription: String {
         switch self {

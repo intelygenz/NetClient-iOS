@@ -7,7 +7,7 @@
 //
 
 @available(iOS 9.0, *)
-public extension NetURLSession {
+extension NetURLSession {
 
     public func stream(_ netService: NetService) -> NetTask {
         let task = session.streamTask(with: netService)

@@ -6,7 +6,7 @@
 //
 //
 
-public extension NetURLSession {
+extension NetURLSession {
 
     public func download(_ resumeData: Data) throws -> NetResponse {
         var downloadResponse: NetResponse?

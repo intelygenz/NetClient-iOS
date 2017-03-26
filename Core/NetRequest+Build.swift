@@ -8,13 +8,13 @@
 
 import Foundation
 
-public extension NetRequest {
+extension NetRequest {
 
     public class Build {
 
         public typealias BuildClosure = (Build) -> ()
 
-        public let url: URL
+        public private(set) var url: URL
 
         public var cache: NetRequest.NetCachePolicy?
 
@@ -104,6 +104,61 @@ public extension NetRequest {
             return self
         }
 
+        public func setURLParameters(_ urlParameters: [String: Any]?, resolvingAgainstBaseURL: Bool = false) -> Self {
+            guard let urlParameters = urlParameters else {
+                return self
+            }
+            if var components = URLComponents(url: url, resolvingAgainstBaseURL: resolvingAgainstBaseURL) {
+                let percentEncodedQuery = (components.percentEncodedQuery.map { $0 + "&" } ?? "") + query(urlParameters)
+                components.percentEncodedQuery = percentEncodedQuery
+                if let url = components.url {
+                    self.url = url
+                }
+            }
+            return self
+        }
+
+        public func setFormParameters(_ formParameters: [String: Any]?, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) -> Self {
+            guard let formParameters = formParameters else {
+                return self
+            }
+            body = query(formParameters).data(using: encoding, allowLossyConversion: allowLossyConversion)
+            if contentType == nil {
+                contentType = .formURL
+            }
+            return self
+        }
+
+        public func setStringBody(_ stringBody: String?, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) -> Self {
+            guard let stringBody = stringBody else {
+                return self
+            }
+            body = stringBody.data(using: encoding, allowLossyConversion: allowLossyConversion)
+            return self
+        }
+
+        public func setJSONBody(_ jsonBody: Any?, options: JSONSerialization.WritingOptions = .prettyPrinted) throws -> Self {
+            guard let jsonBody = jsonBody else {
+                return self
+            }
+            body = try JSONSerialization.data(withJSONObject: jsonBody, options: options)
+            if contentType == nil {
+                contentType = .json
+            }
+            return self
+        }
+
+        public func setPListBody(_ pListBody: Any?, format: PropertyListSerialization.PropertyListFormat = .xml, options: PropertyListSerialization.WriteOptions = 0) throws -> Self {
+            guard let pListBody = pListBody else {
+                return self
+            }
+            body = try PropertyListSerialization.data(fromPropertyList: pListBody, format: format, options: options)
+            if contentType == nil {
+                contentType = .plist
+            }
+            return self
+        }
+
         public func setBodyStream(_ bodyStream: InputStream?) -> Self {
             self.bodyStream = bodyStream
             return self
@@ -129,4 +184,56 @@ public extension NetRequest {
         self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 30, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true)
     }
     
+}
+
+extension NetRequest.Build {
+
+    fileprivate func query(_ parameters: [String: Any]) -> String {
+        var components = [(String, String)]()
+
+        for key in parameters.keys.sorted(by: <) {
+            if let value = parameters[key] {
+                components += queryComponents(key: key, value: value)
+            }
+        }
+
+        return components.map { "\($0)=\($1)" }.joined(separator: "&")
+    }
+
+    fileprivate func queryComponents(key: String, value: Any) -> [(String, String)] {
+        var components: [(String, String)] = []
+
+        if let dictionary = value as? [String: Any] {
+            for (dictionaryKey, value) in dictionary {
+                components += queryComponents(key: "\(key)[\(dictionaryKey)]", value: value)
+            }
+        } else if let array = value as? [Any] {
+            for value in array {
+                components += queryComponents(key: "\(key)[]", value: value)
+            }
+        } else if let value = value as? NSNumber {
+            if CFBooleanGetTypeID() == CFGetTypeID(value) {
+                components.append((escape(key), escape((value.boolValue ? "1" : "0"))))
+            } else {
+                components.append((escape(key), escape("\(value)")))
+            }
+        } else if let bool = value as? Bool {
+            components.append((escape(key), escape((bool ? "1" : "0"))))
+        } else {
+            components.append((escape(key), escape("\(value)")))
+        }
+
+        return components
+    }
+
+    fileprivate func escape(_ string: String) -> String {
+        let generalDelimitersToEncode = ":#[]@"
+        let subDelimitersToEncode = "!$&'()*+,;="
+
+        var allowedCharacterSet = CharacterSet.urlQueryAllowed
+        allowedCharacterSet.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
+
+        return string.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? string
+    }
+
 }

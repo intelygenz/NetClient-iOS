@@ -8,9 +8,9 @@
 
 import Foundation
 
-public extension NetTask {
+extension NetTask {
 
-    convenience init(_ urlSessionTask: URLSessionTask, request: NetRequest? = nil, response: NetResponse? = nil, error: NetError? = nil) {
+    public convenience init(_ urlSessionTask: URLSessionTask, request: NetRequest? = nil, response: NetResponse? = nil, error: NetError? = nil) {
         self.init(urlSessionTask.taskIdentifier, request: request, response: response, description: urlSessionTask.taskDescription, state: NetState(rawValue: urlSessionTask.state.rawValue) ?? .suspended, error: error, priority: urlSessionTask.priority, task: urlSessionTask)
     }
     

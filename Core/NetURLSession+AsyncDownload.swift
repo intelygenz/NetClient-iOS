@@ -6,7 +6,7 @@
 //
 //
 
-public extension NetURLSession {
+extension NetURLSession {
 
     public func download(_ resumeData: Data, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
         guard let completion = completion else {

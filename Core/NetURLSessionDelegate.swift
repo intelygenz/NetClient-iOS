@@ -66,9 +66,9 @@ extension NetURLSessionDelegate: URLSessionDownloadDelegate {
 @available(iOS 9.0, *)
 extension NetURLSessionDelegate: URLSessionStreamDelegate {}
 
-fileprivate extension NetURLSessionDelegate {
+extension NetURLSessionDelegate {
 
-    func handle(_ challenge: URLAuthenticationChallenge, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    fileprivate func handle(_ challenge: URLAuthenticationChallenge, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard let authChallenge = netURLSession?.authChallenge else {
             if let realm = challenge.protectionSpace.realm {
                 print(realm)

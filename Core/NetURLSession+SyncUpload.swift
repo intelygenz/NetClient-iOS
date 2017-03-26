@@ -6,7 +6,7 @@
 //
 //
 
-public extension NetURLSession {
+extension NetURLSession {
 
     public func upload(_ request: NetRequest, data: Data) throws -> NetResponse {
         var uploadResponse: NetResponse?

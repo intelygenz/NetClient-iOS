@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension NetResponse {
+extension NetResponse {
 
     public init(_ httpResponse: HTTPURLResponse, _ responseObject: Any? = nil) {
         self.init(httpResponse.url, mimeType: httpResponse.mimeType, contentLength: httpResponse.expectedContentLength, textEncoding: httpResponse.textEncodingName, filename: httpResponse.suggestedFilename, statusCode: httpResponse.statusCode, headers: httpResponse.allHeaderFields, localizedDescription: HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode), responseObject: responseObject)

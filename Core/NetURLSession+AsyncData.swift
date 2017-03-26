@@ -6,7 +6,7 @@
 //
 //
 
-public extension NetURLSession {
+extension NetURLSession {
 
     public func data(_ request: NetRequest, completion: ((NetResponse?, NetError?) -> Swift.Void)? = nil) -> NetTask {
         guard let completion = completion else {

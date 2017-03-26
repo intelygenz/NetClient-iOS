@@ -6,7 +6,7 @@
 //
 //
 
-public extension NetURLSession {
+extension NetURLSession {
 
     public func upload(_ streamedRequest: NetRequest) -> NetTask {
         let task = session.uploadTask(withStreamedRequest: streamedRequest.urlRequest)

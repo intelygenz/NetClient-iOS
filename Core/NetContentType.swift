@@ -9,7 +9,7 @@
 import Foundation
 
 public enum NetContentType {
-    case aac, avi, bin, bmp, csv, form, formURL, gif, html, ico, ics, jpeg, js, json, mpeg, mpkg, ogx, pdf, pkcs7, png, rar, rtf, svg, tar, tiff, ttf, txt, wav, weba, webm, webp, wildcard, xhtml, xml, zip, custom(String)
+    case aac, avi, bin, bmp, csv, form, formURL, gif, html, ico, ics, jpeg, js, json, mpeg, mpkg, ogx, pdf, pkcs7, plist, png, rar, rtf, svg, tar, tiff, ttf, txt, wav, weba, webm, webp, wildcard, xhtml, xml, zip, custom(String)
 }
 
 extension NetContentType: RawRepresentable {
@@ -34,6 +34,7 @@ extension NetContentType: RawRepresentable {
         static let ogx = "application/ogg"
         static let pdf = "application/pdf"
         static let pkcs7 = "application/pkcs7-mime"
+        static let plist = "application/x-plist"
         static let png = "image/png"
         static let rar = "application/x-rar-compressed"
         static let rtf = "application/rtf"
@@ -75,6 +76,7 @@ extension NetContentType: RawRepresentable {
             case StringValue.ogx: self = .ogx
             case StringValue.pdf: self = .pdf
             case StringValue.pkcs7: self = .pkcs7
+            case StringValue.plist: self = .plist
             case StringValue.png: self = .png
             case StringValue.rar: self = .rar
             case StringValue.rtf: self = .rtf
@@ -116,6 +118,7 @@ extension NetContentType: RawRepresentable {
             case .ogx: return StringValue.ogx
             case .pdf: return StringValue.pdf
             case .pkcs7: return StringValue.pkcs7
+            case .plist: return StringValue.plist
             case .png: return StringValue.png
             case .rar: return StringValue.rar
             case .rtf: return StringValue.rtf
