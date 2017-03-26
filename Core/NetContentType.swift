@@ -9,7 +9,7 @@
 import Foundation
 
 public enum NetContentType {
-    case aac, avi, bin, bmp, csv, form, gif, html, ico, ics, jpeg, js, json, mpeg, mpkg, ogx, pdf, pkcs7, png, rar, rtf, svg, tar, tiff, ttf, txt, wav, weba, webm, webp, wildcard, xhtml, xml, zip, custom(String)
+    case aac, avi, bin, bmp, csv, form, formURL, gif, html, ico, ics, jpeg, js, json, mpeg, mpkg, ogx, pdf, pkcs7, png, rar, rtf, svg, tar, tiff, ttf, txt, wav, weba, webm, webp, wildcard, xhtml, xml, zip, custom(String)
 }
 
 extension NetContentType: RawRepresentable {
@@ -21,6 +21,7 @@ extension NetContentType: RawRepresentable {
         static let bmp = "image/bmp"
         static let csv = "text/csv"
         static let form = "multipart/form-data"
+        static let formURL = "application/x-www-form-urlencoded"
         static let gif = "image/gif"
         static let html = "text/html"
         static let ico = "image/x-icon"
@@ -61,6 +62,7 @@ extension NetContentType: RawRepresentable {
             case StringValue.bmp: self = .bmp
             case StringValue.csv: self = .csv
             case StringValue.form: self = .form
+            case StringValue.formURL: self = .formURL
             case StringValue.gif: self = .gif
             case StringValue.html: self = .html
             case StringValue.ico: self = .ico
@@ -101,6 +103,7 @@ extension NetContentType: RawRepresentable {
             case .bmp: return StringValue.bmp
             case .csv: return StringValue.csv
             case .form: return StringValue.form
+            case .formURL: return StringValue.formURL
             case .gif: return StringValue.gif
             case .html: return StringValue.html
             case .ico: return StringValue.ico
