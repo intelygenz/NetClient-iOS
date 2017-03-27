@@ -46,6 +46,10 @@ public class NetTask {
 
     fileprivate let task: NetTaskProtocol?
 
+    fileprivate(set) var dispatchSemaphore: DispatchSemaphore?
+
+    fileprivate(set) var completionClosure: CompletionClosure?
+
     public init(_ identifier: NetTaskIdentifier? = nil, request: NetRequest? = nil , response: NetResponse? = nil, description: String? = nil, state: NetState = .suspended, error: NetError? = nil, priority: Float? = nil, progress: Progress? = nil, metrics: NetTaskMetrics? = nil, task: NetTaskProtocol? = nil) {
         self.request = request
         self.identifier = identifier ?? NetTaskIdentifier(arc4random())
@@ -56,6 +60,32 @@ public class NetTask {
         self.priority = priority
         self.progress = progress
         self.task = task
+    }
+
+}
+
+extension NetTask {
+
+    public typealias CompletionClosure = (NetResponse?, NetError?) -> Swift.Void
+
+    public func async(_ completion: CompletionClosure? = nil) -> Self {
+        completionClosure = completion
+        resume()
+        return self
+    }
+
+    public func sync() throws -> NetResponse {
+        dispatchSemaphore = DispatchSemaphore(value: 0)
+        resume()
+        let dispatchTimeoutResult = dispatchSemaphore?.wait(timeout: DispatchTime.distantFuture)
+        if dispatchTimeoutResult == .timedOut {
+            let urlError = URLError(.timedOut)
+            error = NetError.error(code: urlError._code, message: urlError.localizedDescription, underlying: urlError)
+        }
+        if let error = error {
+            throw error
+        }
+        return response!
     }
 
 }

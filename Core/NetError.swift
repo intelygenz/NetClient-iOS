@@ -17,7 +17,7 @@ extension NetError {
     public var localizedDescription: String {
         switch self {
         case .error(_, let message, let underlying):
-            if let localizedDescription = underlying?.localizedDescription {
+            if let localizedDescription = underlying?.localizedDescription, localizedDescription != message {
                 return message + " " + localizedDescription
             }
             return message

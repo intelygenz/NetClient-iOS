@@ -1,5 +1,5 @@
 //
-//  NetURLSession+AsyncStream.swift
+//  NetURLSession+Stream.swift
 //  Net
 //
 //  Created by Alex Rupérez on 17/3/17.
@@ -13,7 +13,6 @@ extension NetURLSession {
         let task = session.streamTask(with: netService)
         let netStreamTask = netTask(task)
         observe(task, netStreamTask)
-        task.resume()
         return netStreamTask
     }
 
@@ -28,7 +27,6 @@ extension NetURLSession {
         let task = session.streamTask(withHostName: hostName, port: port)
         let netStreamTask = netTask(task)
         observe(task, netStreamTask)
-        task.resume()
         return netStreamTask
     }
 

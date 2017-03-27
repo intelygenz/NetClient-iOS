@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         do {
             let date = Date()
-            let object: [AnyHashable: Any] = try net.data("http://www.alexruperez.com/home.json").object()
+            let object: [AnyHashable: Any] = try net.data("http://www.alexruperez.com/home.json").sync().object()
             print(type(of: object))
             print("Time: \(Date().timeIntervalSince(date))")
         } catch {
