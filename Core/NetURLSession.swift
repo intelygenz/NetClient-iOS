@@ -69,6 +69,11 @@ extension NetURLSession {
     }
 
     func netTask(_ urlSessionTask: URLSessionTask, _ request: NetRequest? = nil) -> NetTask {
+        if let currentRequest = urlSessionTask.currentRequest {
+            return NetTask(urlSessionTask, request: NetRequest(currentRequest))
+        } else if let originalRequest = urlSessionTask.originalRequest {
+            return NetTask(urlSessionTask, request: NetRequest(originalRequest))
+        }
         return NetTask(urlSessionTask, request: request)
     }
 
