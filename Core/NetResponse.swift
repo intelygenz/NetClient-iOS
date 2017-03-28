@@ -84,3 +84,35 @@ extension NetResponse: Equatable {
     }
 
 }
+
+extension NetResponse: CustomStringConvertible {
+
+    public var description: String {
+        var description = ""
+        if let statusCode = statusCode?.description {
+            description = description + statusCode
+        }
+        if let url = url?.description {
+            if description.characters.count > 0 {
+                description = description + " "
+            }
+            description = description + url
+        }
+        if let localizedDescription = localizedDescription?.description {
+            if description.characters.count > 0 {
+                description = description + " "
+            }
+            description = description + "(\(localizedDescription))"
+        }
+        return description
+    }
+
+}
+
+extension NetResponse: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return description
+    }
+    
+}

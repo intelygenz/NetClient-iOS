@@ -32,7 +32,7 @@ public class NetTask {
 
     public internal(set) var response: NetResponse?
 
-    public let description: String?
+    public let taskDescription: String?
 
     public internal(set) var state: NetState
 
@@ -50,11 +50,11 @@ public class NetTask {
 
     fileprivate(set) var completionClosure: CompletionClosure?
 
-    public init(_ identifier: NetTaskIdentifier? = nil, request: NetRequest? = nil , response: NetResponse? = nil, description: String? = nil, state: NetState = .suspended, error: NetError? = nil, priority: Float? = nil, progress: Progress? = nil, metrics: NetTaskMetrics? = nil, task: NetTaskProtocol? = nil) {
+    public init(_ identifier: NetTaskIdentifier? = nil, request: NetRequest? = nil , response: NetResponse? = nil, taskDescription: String? = nil, state: NetState = .suspended, error: NetError? = nil, priority: Float? = nil, progress: Progress? = nil, metrics: NetTaskMetrics? = nil, task: NetTaskProtocol? = nil) {
         self.request = request
         self.identifier = identifier ?? NetTaskIdentifier(arc4random())
         self.response = response
-        self.description = description ?? request?.description
+        self.taskDescription = taskDescription ?? request?.description
         self.state = state
         self.error = error
         self.priority = priority
@@ -123,4 +123,24 @@ extension NetTask: Equatable {
         return lhs.identifier == rhs.identifier
     }
 
+}
+
+extension NetTask: CustomStringConvertible {
+
+    public var description: String {
+        var description = String(describing: NetTask.self) + " " + identifier.description + " (" + String(describing: state) + ")"
+        if let taskDescription = taskDescription {
+            description = description + " " + taskDescription
+        }
+        return description
+    }
+
+}
+
+extension NetTask: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return description
+    }
+    
 }

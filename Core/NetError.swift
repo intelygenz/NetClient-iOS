@@ -25,3 +25,25 @@ extension NetError {
     }
 
 }
+
+extension NetError: CustomStringConvertible {
+
+    public var description: String {
+        return localizedDescription
+    }
+
+}
+
+extension NetError: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        switch self {
+        case .error(let code, _, _):
+            if let code = code?.description {
+                return code + " " + localizedDescription
+            }
+            return localizedDescription
+        }
+    }
+    
+}

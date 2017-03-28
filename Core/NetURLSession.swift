@@ -24,7 +24,14 @@ open class NetURLSession: Net {
 
     open var configuration: URLSessionConfiguration { return session.configuration }
 
-    open var sessionDescription: String? { return session.sessionDescription }
+    open var sessionDescription: String? {
+        get {
+            return session.sessionDescription
+        }
+        set {
+            session.sessionDescription = newValue
+        }
+    }
 
     open var requestInterceptors = [RequestInterceptor]()
 
@@ -50,6 +57,14 @@ open class NetURLSession: Net {
     public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = nil, authenticationChallenge: @escaping (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void) {
         session = URLSession(configuration: configuration, delegate: NetURLSessionDelegate(self), delegateQueue: challengeQueue)
         authChallenge = authenticationChallenge
+    }
+
+    public func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) {
+        requestInterceptors.append(interceptor)
+    }
+
+    public func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) {
+        responseInterceptors.append(interceptor)
     }
 
     deinit {
