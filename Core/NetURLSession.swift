@@ -10,6 +10,10 @@ import Foundation
 
 open class NetURLSession: Net {
 
+    public typealias RequestInterceptor = (NetRequest.Builder) -> NetRequest.Builder
+
+    public typealias ResponseInterceptor = (NetResponse.Builder) -> NetResponse.Builder
+
     open static let shared = NetURLSession(URLSession.shared)
 
     open private(set) var session: URLSession!
@@ -21,6 +25,10 @@ open class NetURLSession: Net {
     open var configuration: URLSessionConfiguration { return session.configuration }
 
     open var sessionDescription: String? { return session.sessionDescription }
+
+    open var requestInterceptors = [RequestInterceptor]()
+
+    open var responseInterceptors = [ResponseInterceptor]()
 
     open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void)?
 
@@ -62,6 +70,14 @@ extension NetURLSession {
         }
     }
 
+    func urlRequest(_ netRequest: NetRequest) -> URLRequest {
+        var builder = netRequest.builder()
+        requestInterceptors.forEach({ interceptor in
+            builder = interceptor(builder)
+        })
+        return builder.build().urlRequest
+    }
+
     func netRequest(_ url: URL, cache: NetRequest.NetCachePolicy? = nil, timeout: TimeInterval? = nil) -> NetRequest {
         let cache = cache ?? NetRequest.NetCachePolicy(rawValue: session.configuration.requestCachePolicy.rawValue) ?? .useProtocolCachePolicy
         let timeout = timeout ?? session.configuration.timeoutIntervalForRequest
@@ -70,20 +86,28 @@ extension NetURLSession {
 
     func netTask(_ urlSessionTask: URLSessionTask, _ request: NetRequest? = nil) -> NetTask {
         if let currentRequest = urlSessionTask.currentRequest {
-            return NetTask(urlSessionTask, request: NetRequest(currentRequest))
+            return NetTask(urlSessionTask, request: currentRequest.netRequest)
         } else if let originalRequest = urlSessionTask.originalRequest {
-            return NetTask(urlSessionTask, request: NetRequest(originalRequest))
+            return NetTask(urlSessionTask, request: originalRequest.netRequest)
         }
         return NetTask(urlSessionTask, request: request)
     }
 
     func netResponse(_ response: URLResponse?, _ responseObject: Any? = nil) -> NetResponse? {
+        var netResponse: NetResponse?
         if let httpResponse = response as? HTTPURLResponse {
-            return NetResponse(httpResponse, responseObject)
+            netResponse = NetResponse(httpResponse, responseObject)
         } else if let response = response {
-            return NetResponse(response, responseObject)
+            netResponse = NetResponse(response, responseObject)
         }
-        return nil
+        guard let response = netResponse else {
+            return nil
+        }
+        var builder = response.builder()
+        responseInterceptors.forEach({ interceptor in
+            builder = interceptor(builder)
+        })
+        return builder.build()
     }
 
     func netError(_ error: Error?) -> NetError? {

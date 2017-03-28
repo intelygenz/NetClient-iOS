@@ -59,3 +59,11 @@ extension NetRequest {
     }
     
 }
+
+extension URLRequest {
+
+    public var netRequest: NetRequest? {
+        return NetRequest(self)
+    }
+
+}

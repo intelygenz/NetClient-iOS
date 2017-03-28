@@ -20,6 +20,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		817967BA1E8A69D400D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
+		817967BB1E8A69D500D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
+		817967BC1E8A69D600D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
+		817967BD1E8A69D700D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
 		817F74791E7C00FF0025B59D /* NetURLSession+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74771E7C00D10025B59D /* NetURLSession+Data.swift */; };
 		817F747A1E7C01000025B59D /* NetURLSession+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74771E7C00D10025B59D /* NetURLSession+Data.swift */; };
 		817F747B1E7C01010025B59D /* NetURLSession+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74771E7C00D10025B59D /* NetURLSession+Data.swift */; };
@@ -188,6 +192,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		817967B81E8A69C800D036AE /* NetResponse+Build.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetResponse+Build.swift"; sourceTree = "<group>"; };
 		817F74771E7C00D10025B59D /* NetURLSession+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+Data.swift"; sourceTree = "<group>"; };
 		817F74891E7C0A680025B59D /* NetURLSession+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+Download.swift"; sourceTree = "<group>"; };
 		817F748A1E7C0A680025B59D /* NetURLSession+Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+Upload.swift"; sourceTree = "<group>"; };
@@ -359,6 +364,7 @@
 				818FC9321E82C22000FEC5A3 /* NetResponse.swift */,
 				818FC9381E82C60B00FEC5A3 /* NetResponse+URLResponse.swift */,
 				81F043FF1E82C78000B6DC0E /* NetResponse+HTTPURLResponse.swift */,
+				817967B81E8A69C800D036AE /* NetResponse+Build.swift */,
 				818FC92C1E82BFD800FEC5A3 /* NetError.swift */,
 				D5A5220D1E7B5DBD00406F0F /* NetURLSession.swift */,
 				817F74771E7C00D10025B59D /* NetURLSession+Data.swift */,
@@ -701,6 +707,7 @@
 				81ACB7EE1E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */,
 				D523AB0E1E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				81ACB7DE1E83C656006D05DD /* NetRequest.swift in Sources */,
+				817967BA1E8A69D400D036AE /* NetResponse+Build.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +744,7 @@
 				81ACB7EF1E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */,
 				D523AB0F1E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				81ACB7DF1E83C657006D05DD /* NetRequest.swift in Sources */,
+				817967BB1E8A69D500D036AE /* NetResponse+Build.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +773,7 @@
 				81ACB7F01E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */,
 				D523AB101E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				81ACB7E01E83C658006D05DD /* NetRequest.swift in Sources */,
+				817967BC1E8A69D600D036AE /* NetResponse+Build.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +802,7 @@
 				81ACB7F11E84075B006D05DD /* NetRequest+URLRequest.swift in Sources */,
 				D523AB111E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				81ACB7E11E83C659006D05DD /* NetRequest.swift in Sources */,
+				817967BD1E8A69D700D036AE /* NetResponse+Build.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

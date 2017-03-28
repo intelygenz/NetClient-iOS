@@ -9,14 +9,14 @@
 extension NetURLSession {
 
     public func upload(_ streamedRequest: NetRequest) -> NetTask {
-        let task = session.uploadTask(withStreamedRequest: streamedRequest.urlRequest)
+        let task = session.uploadTask(withStreamedRequest: urlRequest(streamedRequest))
         let netUploadTask = netTask(task, streamedRequest)
         observe(task, netUploadTask)
         return netUploadTask
     }
 
     public func upload(_ streamedRequest: URLRequest) throws -> NetTask {
-        guard let netRequest = NetRequest(streamedRequest) else {
+        guard let netRequest = streamedRequest.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return upload(netRequest)
@@ -35,7 +35,7 @@ extension NetURLSession {
 
     public func upload(_ request: NetRequest, data: Data) -> NetTask {
         var netUploadTask: NetTask!
-        let task = session.uploadTask(with: request.urlRequest, from: data) { (data, response, error) in
+        let task = session.uploadTask(with: urlRequest(request), from: data) { (data, response, error) in
             let netResponse = self.netResponse(response, data)
             let netError = self.netError(error)
             netUploadTask.response = netResponse
@@ -49,7 +49,7 @@ extension NetURLSession {
     }
 
     public func upload(_ request: URLRequest, data: Data) throws -> NetTask {
-        guard let netRequest = NetRequest(request) else {
+        guard let netRequest = request.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return upload(netRequest, data: data)
@@ -68,7 +68,7 @@ extension NetURLSession {
 
     public func upload(_ request: NetRequest, fileURL: URL) -> NetTask {
         var netUploadTask: NetTask!
-        let task = session.uploadTask(with: request.urlRequest, fromFile: fileURL) { (data, response, error) in
+        let task = session.uploadTask(with: urlRequest(request), fromFile: fileURL) { (data, response, error) in
             let netResponse = self.netResponse(response, data)
             let netError = self.netError(error)
             netUploadTask.response = netResponse
@@ -82,7 +82,7 @@ extension NetURLSession {
     }
 
     public func upload(_ request: URLRequest, fileURL: URL) throws -> NetTask {
-        guard let netRequest = NetRequest(request) else {
+        guard let netRequest = request.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return upload(netRequest, fileURL: fileURL)

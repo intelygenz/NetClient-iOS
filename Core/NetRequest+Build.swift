@@ -44,6 +44,32 @@ extension NetRequest {
 
         public var authorization: NetAuthorization?
 
+        public init(_ netRequest: NetRequest, buildClosure: BuildClosure? = nil) {
+            url = netRequest.url
+            cache = netRequest.cache
+            timeout = netRequest.timeout
+            mainDocumentURL = netRequest.mainDocumentURL
+            serviceType = netRequest.serviceType
+            contentType = netRequest.contentType
+            accept = netRequest.accept
+            allowsCellularAccess = netRequest.allowsCellularAccess
+            method = netRequest.method
+            headers = netRequest.headers
+            body = netRequest.body
+            bodyStream = netRequest.bodyStream
+            handleCookies = netRequest.handleCookies
+            usePipelining = netRequest.usePipelining
+            authorization = netRequest.authorization
+            buildClosure?(self)
+        }
+
+        public convenience init?(_ urlRequest: URLRequest, buildClosure: BuildClosure? = nil) {
+            guard let netRequest = urlRequest.netRequest else {
+                return nil
+            }
+            self.init(netRequest, buildClosure: buildClosure)
+        }
+
         public init(_ url: URL, buildClosure: BuildClosure? = nil) {
             self.url = url
             buildClosure?(self)
@@ -213,6 +239,14 @@ extension NetRequest {
 
     }
 
+    public static func builder(_ netRequest: NetRequest, buildClosure: Builder.BuildClosure? = nil) -> Builder {
+        return Builder(netRequest, buildClosure: buildClosure)
+    }
+
+    public static func builder(_ urlRequest: URLRequest, buildClosure: Builder.BuildClosure? = nil) -> Builder? {
+        return Builder(urlRequest, buildClosure: buildClosure)
+    }
+
     public static func builder(_ url: URL, buildClosure: Builder.BuildClosure? = nil) -> Builder {
         return Builder(url, buildClosure: buildClosure)
     }
@@ -224,7 +258,11 @@ extension NetRequest {
     public init(_ builder: Builder) {
         self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
     }
-    
+
+    public func builder(buildClosure: Builder.BuildClosure? = nil) -> Builder {
+        return NetRequest.builder(self, buildClosure: buildClosure)
+    }
+
 }
 
 extension NetRequest.Builder {

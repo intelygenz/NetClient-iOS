@@ -10,7 +10,7 @@ extension NetURLSession {
 
     public func data(_ request: NetRequest) -> NetTask {
         var netDataTask: NetTask!
-        let task = session.dataTask(with: request.urlRequest) { (data, response, error) in
+        let task = session.dataTask(with: urlRequest(request)) { (data, response, error) in
             let netResponse = self.netResponse(response, data)
             let netError = self.netError(error)
             netDataTask.response = netResponse
@@ -24,7 +24,7 @@ extension NetURLSession {
     }
 
     public func data(_ request: URLRequest) throws -> NetTask {
-        guard let netRequest = NetRequest(request) else {
+        guard let netRequest = request.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return data(netRequest)

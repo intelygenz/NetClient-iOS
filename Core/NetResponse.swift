@@ -26,7 +26,7 @@ public struct NetResponse {
 
     public let localizedDescription: String?
 
-    fileprivate let responseObject: Any?
+    let responseObject: Any?
 
 }
 

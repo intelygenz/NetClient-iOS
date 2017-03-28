@@ -25,7 +25,7 @@ extension NetURLSession {
 
     public func download(_ request: NetRequest) -> NetTask {
         var netDownloadTask: NetTask!
-        let task = session.downloadTask(with: request.urlRequest) { (url, response, error) in
+        let task = session.downloadTask(with: urlRequest(request)) { (url, response, error) in
             let netResponse = self.netResponse(response, url)
             let netError = self.netError(error)
             netDownloadTask.response = netResponse
@@ -39,7 +39,7 @@ extension NetURLSession {
     }
 
     public func download(_ request: URLRequest) throws -> NetTask {
-        guard let netRequest = NetRequest(request) else {
+        guard let netRequest = request.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return download(netRequest)
