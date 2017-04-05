@@ -44,7 +44,7 @@ extension NetURLSessionDelegate: URLSessionTaskDelegate {
         handle(challenge, completion: completionHandler)
     }
 
-    @available(iOS 10.0, *)
+    @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
     func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting taskMetrics: URLSessionTaskMetrics) {
         if let netTask = tasks[task] {
             netTask.metrics = NetTaskMetrics(taskMetrics, request: netTask.request, response: netTask.response)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@available(iOS 10.0, *)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 extension NetTaskMetrics {
 
     public init(_ urlSessionTaskMetrics: URLSessionTaskMetrics, request: NetRequest?, response: NetResponse?) {

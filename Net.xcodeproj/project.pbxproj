@@ -33,7 +33,6 @@
 		817F74931E7C0A6F0025B59D /* NetURLSession+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F748D1E7C0A680025B59D /* NetURLSession+Stream.swift */; };
 		817F74951E7C0A700025B59D /* NetURLSession+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74891E7C0A680025B59D /* NetURLSession+Download.swift */; };
 		817F74961E7C0A700025B59D /* NetURLSession+Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F748A1E7C0A680025B59D /* NetURLSession+Upload.swift */; };
-		817F74991E7C0A700025B59D /* NetURLSession+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F748D1E7C0A680025B59D /* NetURLSession+Stream.swift */; };
 		817F749B1E7C0A710025B59D /* NetURLSession+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F74891E7C0A680025B59D /* NetURLSession+Download.swift */; };
 		817F749C1E7C0A710025B59D /* NetURLSession+Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F748A1E7C0A680025B59D /* NetURLSession+Upload.swift */; };
 		817F749F1E7C0A710025B59D /* NetURLSession+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F748D1E7C0A680025B59D /* NetURLSession+Stream.swift */; };
@@ -734,7 +733,6 @@
 				D523AB141E88417E0093D793 /* NetAuthorization.swift in Sources */,
 				817F74951E7C0A700025B59D /* NetURLSession+Download.swift in Sources */,
 				81ACB7E51E84020E006D05DD /* NetContentType.swift in Sources */,
-				817F74991E7C0A700025B59D /* NetURLSession+Stream.swift in Sources */,
 				D5A5220F1E7B5DC500406F0F /* NetURLSession.swift in Sources */,
 				D5A5221B1E7CC34100406F0F /* NetURLSessionTaskObserver.swift in Sources */,
 				818FC93B1E82C61200FEC5A3 /* NetResponse+URLResponse.swift in Sources */,
@@ -1042,7 +1040,6 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1085,7 +1082,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1220,7 +1216,6 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Debug;
@@ -1262,7 +1257,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1311,7 +1305,6 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -1353,7 +1346,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1404,7 +1396,6 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1446,7 +1437,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
