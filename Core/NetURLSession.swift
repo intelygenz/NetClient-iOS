@@ -127,7 +127,7 @@ extension NetURLSession {
 
     func netError(_ error: Error?) -> NetError? {
         if let error = error {
-            return NetError.error(code: error._code, message: error.localizedDescription, underlying: error)
+            return NetError.error(code: error._code, message: error.localizedDescription, headers: session.configuration.httpAdditionalHeaders, underlying: error)
         }
         return nil
     }

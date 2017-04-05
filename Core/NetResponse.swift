@@ -69,7 +69,7 @@ extension NetResponse {
             }
             catch {}
         }
-        throw NetError.error(code: nil, message: "The data couldn’t be transformed into \(T.self).", underlying: nil)
+        throw NetError.error(code: statusCode, message: "The data couldn’t be transformed into \(T.self).", headers: headers, underlying: nil)
     }
 
 }

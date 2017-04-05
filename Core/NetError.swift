@@ -9,14 +9,14 @@
 import Foundation
 
 public enum NetError: Error {
-    case error(code: Int?, message: String, underlying: Error?)
+    case error(code: Int?, message: String, headers: [AnyHashable : Any]?, underlying: Error?)
 }
 
 extension NetError {
 
     public var localizedDescription: String {
         switch self {
-        case .error(_, let message, let underlying):
+        case .error(_, let message, _, let underlying):
             if let localizedDescription = underlying?.localizedDescription, localizedDescription != message {
                 return message + " " + localizedDescription
             }
@@ -38,7 +38,7 @@ extension NetError: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         switch self {
-        case .error(let code, _, _):
+        case .error(let code, _, _, _):
             if let code = code?.description {
                 return code + " " + localizedDescription
             }

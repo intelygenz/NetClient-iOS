@@ -80,7 +80,7 @@ extension NetTask {
         let dispatchTimeoutResult = dispatchSemaphore?.wait(timeout: DispatchTime.distantFuture)
         if dispatchTimeoutResult == .timedOut {
             let urlError = URLError(.timedOut)
-            error = NetError.error(code: urlError._code, message: urlError.localizedDescription, underlying: urlError)
+            error = NetError.error(code: urlError._code, message: urlError.localizedDescription, headers: response?.headers, underlying: urlError)
         }
         if let error = error {
             throw error
