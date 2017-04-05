@@ -12,27 +12,25 @@ extension NetResponse {
 
     public class Builder {
 
-        public typealias BuildClosure = (Builder) -> Swift.Void
+        public private(set) var url: URL?
 
-        public var url: URL?
+        public private(set) var mimeType: String?
 
-        public var mimeType: String?
+        public private(set) var contentLength: Int64
 
-        public var contentLength: Int64
+        public private(set) var textEncoding: String?
 
-        public var textEncoding: String?
+        public private(set) var filename: String?
 
-        public var filename: String?
+        public private(set) var statusCode: Int?
 
-        public var statusCode: Int?
+        public private(set) var headers: [AnyHashable : Any]?
 
-        public var headers: [AnyHashable : Any]?
-
-        public var localizedDescription: String?
+        public private(set) var localizedDescription: String?
         
-        public var responseObject: Any?
+        public private(set) var responseObject: Any?
 
-        public init(_ netResponse: NetResponse? = nil, buildClosure: BuildClosure? = nil) {
+        public init(_ netResponse: NetResponse? = nil) {
             url = netResponse?.url
             mimeType = netResponse?.mimeType
             contentLength = netResponse?.contentLength ?? -1
@@ -42,7 +40,6 @@ extension NetResponse {
             headers = netResponse?.headers
             localizedDescription = netResponse?.localizedDescription
             responseObject = netResponse?.responseObject
-            buildClosure?(self)
         }
 
         @discardableResult public func setURL(_ url: URL?) -> Self {
@@ -96,16 +93,16 @@ extension NetResponse {
 
     }
 
-    public static func builder(_ netResponse: NetResponse?, buildClosure: Builder.BuildClosure? = nil) -> Builder {
-        return Builder(netResponse, buildClosure: buildClosure)
+    public static func builder(_ netResponse: NetResponse?) -> Builder {
+        return Builder(netResponse)
     }
 
     public init(_ builder: Builder) {
         self.init(builder.url, mimeType: builder.mimeType, contentLength: builder.contentLength, textEncoding: builder.textEncoding, filename: builder.filename, statusCode: builder.statusCode, headers: builder.headers, localizedDescription: builder.localizedDescription, responseObject: builder.responseObject)
     }
 
-    public func builder(buildClosure: Builder.BuildClosure? = nil) -> Builder {
-        return NetResponse.builder(self, buildClosure: buildClosure)
+    public func builder() -> Builder {
+        return NetResponse.builder(self)
     }
 
 }

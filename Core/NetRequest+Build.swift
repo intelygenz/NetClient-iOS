@@ -12,39 +12,37 @@ extension NetRequest {
 
     public class Builder {
 
-        public typealias BuildClosure = (Builder) -> Swift.Void
-
         public private(set) var url: URL
 
-        public var cache: NetRequest.NetCachePolicy?
+        public private(set) var cache: NetRequest.NetCachePolicy?
 
-        public var timeout: TimeInterval?
+        public private(set) var timeout: TimeInterval?
 
-        public var mainDocumentURL: URL?
+        public private(set) var mainDocumentURL: URL?
 
-        public var serviceType: NetRequest.NetServiceType?
+        public private(set) var serviceType: NetRequest.NetServiceType?
 
-        public var contentType: NetContentType?
+        public private(set) var contentType: NetContentType?
 
-        public var accept: NetContentType?
+        public private(set) var accept: NetContentType?
 
-        public var allowsCellularAccess: Bool?
+        public private(set) var allowsCellularAccess: Bool?
 
-        public var method: NetRequest.NetMethod?
+        public private(set) var method: NetRequest.NetMethod?
 
-        public var headers: [String : String]?
+        public private(set) var headers: [String : String]?
 
-        public var body: Data?
+        public private(set) var body: Data?
 
-        public var bodyStream: InputStream?
+        public private(set) var bodyStream: InputStream?
 
-        public var handleCookies: Bool?
-        
-        public var usePipelining: Bool?
+        public private(set) var handleCookies: Bool?
 
-        public var authorization: NetAuthorization?
+        public private(set) var usePipelining: Bool?
 
-        public init(_ netRequest: NetRequest, buildClosure: BuildClosure? = nil) {
+        public private(set) var authorization: NetAuthorization?
+
+        public init(_ netRequest: NetRequest) {
             url = netRequest.url
             cache = netRequest.cache
             timeout = netRequest.timeout
@@ -60,26 +58,24 @@ extension NetRequest {
             handleCookies = netRequest.handleCookies
             usePipelining = netRequest.usePipelining
             authorization = netRequest.authorization
-            buildClosure?(self)
         }
 
-        public convenience init?(_ urlRequest: URLRequest, buildClosure: BuildClosure? = nil) {
+        public convenience init?(_ urlRequest: URLRequest) {
             guard let netRequest = urlRequest.netRequest else {
                 return nil
             }
-            self.init(netRequest, buildClosure: buildClosure)
+            self.init(netRequest)
         }
 
-        public init(_ url: URL, buildClosure: BuildClosure? = nil) {
+        public init(_ url: URL) {
             self.url = url
-            buildClosure?(self)
         }
 
-        public convenience init?(_ urlString: String, buildClosure: BuildClosure? = nil) {
+        public convenience init?(_ urlString: String) {
             guard let url = URL(string: urlString) else {
                 return nil
             }
-            self.init(url, buildClosure: buildClosure)
+            self.init(url)
         }
 
         @discardableResult public func setCache(_ cache: NetRequest.NetCachePolicy?) -> Self {
@@ -197,11 +193,11 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult public func setPListBody(_ pListBody: Any?, format: PropertyListSerialization.PropertyListFormat = .xml, options: PropertyListSerialization.WriteOptions = 0) throws -> Self {
-            guard let pListBody = pListBody else {
+        @discardableResult public func setPlistBody(_ plistBody: Any?, format: PropertyListSerialization.PropertyListFormat = .xml, options: PropertyListSerialization.WriteOptions = 0) throws -> Self {
+            guard let plistBody = plistBody else {
                 return self
             }
-            body = try PropertyListSerialization.data(fromPropertyList: pListBody, format: format, options: options)
+            body = try PropertyListSerialization.data(fromPropertyList: plistBody, format: format, options: options)
             if contentType == nil {
                 contentType = .plist
             }
@@ -239,28 +235,28 @@ extension NetRequest {
 
     }
 
-    public static func builder(_ netRequest: NetRequest, buildClosure: Builder.BuildClosure? = nil) -> Builder {
-        return Builder(netRequest, buildClosure: buildClosure)
+    public static func builder(_ netRequest: NetRequest) -> Builder {
+        return Builder(netRequest)
     }
 
-    public static func builder(_ urlRequest: URLRequest, buildClosure: Builder.BuildClosure? = nil) -> Builder? {
-        return Builder(urlRequest, buildClosure: buildClosure)
+    public static func builder(_ urlRequest: URLRequest) -> Builder? {
+        return Builder(urlRequest)
     }
 
-    public static func builder(_ url: URL, buildClosure: Builder.BuildClosure? = nil) -> Builder {
-        return Builder(url, buildClosure: buildClosure)
+    public static func builder(_ url: URL) -> Builder {
+        return Builder(url)
     }
 
-    public static func builder(_ urlString: String, buildClosure: Builder.BuildClosure? = nil) -> Builder? {
-        return Builder(urlString, buildClosure: buildClosure)
+    public static func builder(_ urlString: String) -> Builder? {
+        return Builder(urlString)
     }
 
     public init(_ builder: Builder) {
         self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
     }
 
-    public func builder(buildClosure: Builder.BuildClosure? = nil) -> Builder {
-        return NetRequest.builder(self, buildClosure: buildClosure)
+    public func builder() -> Builder {
+        return NetRequest.builder(self)
     }
 
 }
