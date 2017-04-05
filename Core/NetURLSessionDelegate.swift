@@ -32,7 +32,7 @@ class NetURLSessionDelegate: NSObject {
 
 extension NetURLSessionDelegate: URLSessionDelegate {
 
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         handle(challenge, completion: completionHandler)
     }
 
@@ -68,7 +68,7 @@ extension NetURLSessionDelegate: URLSessionStreamDelegate {}
 
 extension NetURLSessionDelegate {
 
-    fileprivate func handle(_ challenge: URLAuthenticationChallenge, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    fileprivate func handle(_ challenge: URLAuthenticationChallenge, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let authChallenge = netURLSession?.authChallenge else {
             if let realm = challenge.protectionSpace.realm {
                 print(realm)

@@ -68,7 +68,7 @@ extension NetTask {
 
     public typealias CompletionClosure = (NetResponse?, NetError?) -> Swift.Void
 
-    public func async(_ completion: CompletionClosure? = nil) -> Self {
+    @discardableResult public func async(_ completion: CompletionClosure? = nil) -> Self {
         completionClosure = completion
         resume()
         return self

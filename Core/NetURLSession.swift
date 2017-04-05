@@ -37,7 +37,7 @@ open class NetURLSession: Net {
 
     open var responseInterceptors = [ResponseInterceptor]()
 
-    open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void)?
+    open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)?
 
     fileprivate final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
@@ -54,7 +54,7 @@ open class NetURLSession: Net {
         session = URLSession(configuration: configuration, delegate: sessionDelegate, delegateQueue: delegateQueue)
     }
 
-    public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = nil, authenticationChallenge: @escaping (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> Void) {
+    public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = nil, authenticationChallenge: @escaping @autoclosure (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void) {
         session = URLSession(configuration: configuration, delegate: NetURLSessionDelegate(self), delegateQueue: challengeQueue)
         authChallenge = authenticationChallenge
     }

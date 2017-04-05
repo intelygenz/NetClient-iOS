@@ -45,47 +45,47 @@ extension NetResponse {
             buildClosure?(self)
         }
 
-        public func setURL(_ url: URL?) -> Self {
+        @discardableResult public func setURL(_ url: URL?) -> Self {
             self.url = url
             return self
         }
 
-        public func setMimeType(_ mimeType: String?) -> Self {
+        @discardableResult public func setMimeType(_ mimeType: String?) -> Self {
             self.mimeType = mimeType
             return self
         }
 
-        public func setContentLength(_ contentLength: Int64) -> Self {
+        @discardableResult public func setContentLength(_ contentLength: Int64) -> Self {
             self.contentLength = contentLength
             return self
         }
 
-        public func setTextEncoding(_ textEncoding: String?) -> Self {
+        @discardableResult public func setTextEncoding(_ textEncoding: String?) -> Self {
             self.textEncoding = textEncoding
             return self
         }
 
-        public func setFilename(_ filename: String?) -> Self {
+        @discardableResult public func setFilename(_ filename: String?) -> Self {
             self.filename = filename
             return self
         }
 
-        public func setStatusCode(_ statusCode: Int?) -> Self {
+        @discardableResult public func setStatusCode(_ statusCode: Int?) -> Self {
             self.statusCode = statusCode
             return self
         }
 
-        public func setHeaders(_ headers: [AnyHashable : Any]?) -> Self {
+        @discardableResult public func setHeaders(_ headers: [AnyHashable : Any]?) -> Self {
             self.headers = headers
             return self
         }
 
-        public func setDescription(_ localizedDescription: String?) -> Self {
+        @discardableResult public func setDescription(_ localizedDescription: String?) -> Self {
             self.localizedDescription = localizedDescription
             return self
         }
 
-        public func setObject(_ responseObject: Any?) -> Self {
+        @discardableResult public func setObject(_ responseObject: Any?) -> Self {
             self.responseObject = responseObject
             return self
         }
