@@ -12,7 +12,7 @@ extension NetURLSession {
         var netDownloadTask: NetTask!
         let task = session.downloadTask(withResumeData: resumeData) { (url, response, error) in
             let netResponse = self.netResponse(response, url)
-            let netError = self.netError(error)
+            let netError = self.netError(error, url)
             netDownloadTask.response = netResponse
             netDownloadTask.error = netError
             netDownloadTask.dispatchSemaphore?.signal()
@@ -27,7 +27,7 @@ extension NetURLSession {
         var netDownloadTask: NetTask!
         let task = session.downloadTask(with: urlRequest(request)) { (url, response, error) in
             let netResponse = self.netResponse(response, url)
-            let netError = self.netError(error)
+            let netError = self.netError(error, url)
             netDownloadTask.response = netResponse
             netDownloadTask.error = netError
             netDownloadTask.dispatchSemaphore?.signal()

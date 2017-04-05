@@ -49,27 +49,14 @@ extension NetResponse {
 extension NetResponse {
 
     public func object<T>() throws -> T {
-        if let responseObject = responseObject as? T {
-            return responseObject
+        do {
+            return try NetTransformer.object(object: responseObject)
+        } catch {
+            switch error as! NetError {
+            case .error(let transformCode, let message, _, let object, let transformUnderlying):
+                throw NetError.error(code: transformCode ?? statusCode, message: message, headers: headers, object: object ?? responseObject, underlying: transformUnderlying)
+            }
         }
-        if let data = responseObject as? Data {
-            if T.self == String.self, let stringObject = String(data: data, encoding: .utf8) as? T {
-                return stringObject
-            }
-            do {
-                if let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? T {
-                    return jsonObject
-                }
-            }
-            catch {}
-            do {
-                if let propertyListObject = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? T {
-                    return propertyListObject
-                }
-            }
-            catch {}
-        }
-        throw NetError.error(code: statusCode, message: "The data couldn’t be transformed into \(T.self).", headers: headers, underlying: nil)
     }
 
 }

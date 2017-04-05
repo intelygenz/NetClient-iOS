@@ -37,7 +37,7 @@ extension NetURLSession {
         var netUploadTask: NetTask!
         let task = session.uploadTask(with: urlRequest(request), from: data) { (data, response, error) in
             let netResponse = self.netResponse(response, data)
-            let netError = self.netError(error)
+            let netError = self.netError(error, data)
             netUploadTask.response = netResponse
             netUploadTask.error = netError
             netUploadTask.dispatchSemaphore?.signal()
@@ -70,7 +70,7 @@ extension NetURLSession {
         var netUploadTask: NetTask!
         let task = session.uploadTask(with: urlRequest(request), fromFile: fileURL) { (data, response, error) in
             let netResponse = self.netResponse(response, data)
-            let netError = self.netError(error)
+            let netError = self.netError(error, data)
             netUploadTask.response = netResponse
             netUploadTask.error = netError
             netUploadTask.dispatchSemaphore?.signal()

@@ -125,9 +125,9 @@ extension NetURLSession {
         return builder.build()
     }
 
-    func netError(_ error: Error?) -> NetError? {
+    func netError(_ error: Error?, _ responseObject: Any? = nil) -> NetError? {
         if let error = error {
-            return NetError.error(code: error._code, message: error.localizedDescription, headers: session.configuration.httpAdditionalHeaders, underlying: error)
+            return NetError.error(code: error._code, message: error.localizedDescription, headers: session.configuration.httpAdditionalHeaders, object: responseObject, underlying: error)
         }
         return nil
     }
