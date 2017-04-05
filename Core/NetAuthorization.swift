@@ -9,7 +9,7 @@
 import Foundation
 
 public enum NetAuthorization {
-    case none, basic(user: String, password: String), bearer(token: String)
+    case none, basic(user: String, password: String), bearer(token: String), custom(String)
 }
 
 extension NetAuthorization: Equatable {}
@@ -35,6 +35,8 @@ extension NetAuthorization: RawRepresentable {
             }
         } else if rawValue.hasPrefix(StringValue.bearer) {
             self = .bearer(token: rawValue.substring(from: StringValue.bearer.endIndex))
+        } else {
+            self = .custom(rawValue)
         }
     }
 
@@ -47,6 +49,8 @@ extension NetAuthorization: RawRepresentable {
                 return "\(StringValue.basic)\(data.base64EncodedString())"
             case .bearer(let token):
                 return "\(StringValue.bearer)\(token)"
+            case .custom(let authorization):
+                return authorization
             default:
                 return ""
         }

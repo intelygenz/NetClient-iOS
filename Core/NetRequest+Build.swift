@@ -229,6 +229,11 @@ extension NetRequest {
             return self
         }
 
+        @discardableResult public func setCustomAuthorization(_ authorization: String) -> Self {
+            self.authorization = .custom(authorization)
+            return self
+        }
+
         public func build() -> NetRequest {
             return NetRequest(self)
         }

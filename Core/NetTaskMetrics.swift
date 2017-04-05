@@ -13,9 +13,7 @@ public struct NetTaskMetrics {
     public struct NetTransactionMetrics {
 
         public enum NetResourceFetchType : Int {
-
             case unknown, networkLoad, serverPush, localCache
-
         }
 
         public let request: NetRequest?
