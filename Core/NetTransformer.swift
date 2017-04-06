@@ -36,7 +36,7 @@ class NetTransformer {
                 underlying = error
             }
         }
-        throw NetError.error(code: underlying?._code, message: "The data couldn’t be transformed into \(T.self).", headers: nil, object: object, underlying: underlying)
+        throw NetError.parse(code: underlying?._code, message: "The data couldn’t be transformed into \(T.self).", object: object, underlying: underlying)
     }
 
 }

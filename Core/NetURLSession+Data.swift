@@ -12,7 +12,7 @@ extension NetURLSession {
         var netDataTask: NetTask!
         let task = session.dataTask(with: urlRequest(request)) { (data, response, error) in
             let netResponse = self.netResponse(response, data)
-            let netError = self.netError(error, data)
+            let netError = self.netError(error, data, response)
             netDataTask.response = netResponse
             netDataTask.error = netError
             netDataTask.dispatchSemaphore?.signal()

@@ -9,21 +9,30 @@
 import Foundation
 
 public enum NetError: Error {
-    case error(code: Int?, message: String, headers: [AnyHashable : Any]?, object: Any?, underlying: Error?)
+    case net(code: Int?, message: String, headers: [AnyHashable : Any]?, object: Any?, underlying: Error?),
+    parse(code: Int?, message: String, object: Any?, underlying: Error?)
 }
 
 extension NetError {
 
     public func object<T>() throws -> T {
         switch self {
-        case .error(let code, _, let headers, let object, let underlying):
-            do {
-                return try NetTransformer.object(object: object)
-            } catch {
-                switch error as! NetError {
-                case .error(let transformCode, let message, _, let object, let transformUnderlying):
-                    throw NetError.error(code: transformCode ?? code, message: message, headers: headers, object: object, underlying: transformUnderlying ?? underlying)
-                }
+        case .net(let code, _, _, let object, let underlying):
+            return try transform(code, object, underlying)
+        case .parse(let code, _, let object, let underlying):
+            return try transform(code, object, underlying)
+        }
+    }
+
+    private func transform<T>(_ code: Int?, _ object: Any?, _ underlying: Error?) throws -> T {
+        do {
+            return try NetTransformer.object(object: object)
+        } catch {
+            switch error as! NetError {
+            case .parse(let transformCode, let message, let object, let transformUnderlying):
+                throw NetError.parse(code: transformCode ?? code, message: message, object: object, underlying: transformUnderlying ?? underlying)
+            default:
+                throw error
             }
         }
     }
@@ -34,7 +43,7 @@ extension NetError {
 
     public var localizedDescription: String {
         switch self {
-        case .error(_, let message, _, _, let underlying):
+        case .net(_, let message, _, _, let underlying), .parse(_, let message, _, let underlying):
             if let localizedDescription = underlying?.localizedDescription, localizedDescription != message {
                 return message + " " + localizedDescription
             }
@@ -56,7 +65,7 @@ extension NetError: CustomDebugStringConvertible {
 
     public var debugDescription: String {
         switch self {
-        case .error(let code, _, _, _, _):
+        case .net(let code, _, _, _, _), .parse(let code, _, _, _):
             if let code = code?.description {
                 return code + " " + localizedDescription
             }

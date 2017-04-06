@@ -53,8 +53,10 @@ extension NetResponse {
             return try NetTransformer.object(object: responseObject)
         } catch {
             switch error as! NetError {
-            case .error(let transformCode, let message, _, let object, let transformUnderlying):
-                throw NetError.error(code: transformCode ?? statusCode, message: message, headers: headers, object: object ?? responseObject, underlying: transformUnderlying)
+            case .parse(let transformCode, let message, let object, let underlying):
+                throw NetError.parse(code: transformCode ?? statusCode, message: message, object: object ?? responseObject, underlying: underlying)
+            default:
+                throw error
             }
         }
     }
