@@ -26,6 +26,8 @@ extension NetRequest {
 
         public private(set) var accept: NetContentType?
 
+        public private(set) var acceptEncoding: [NetContentEncoding]?
+
         public private(set) var allowsCellularAccess: Bool?
 
         public private(set) var method: NetRequest.NetMethod?
@@ -50,6 +52,7 @@ extension NetRequest {
             serviceType = netRequest.serviceType
             contentType = netRequest.contentType
             accept = netRequest.accept
+            acceptEncoding = netRequest.acceptEncoding
             allowsCellularAccess = netRequest.allowsCellularAccess
             method = netRequest.method
             headers = netRequest.headers
@@ -105,6 +108,22 @@ extension NetRequest {
 
         @discardableResult public func setAccept(_ accept: NetContentType?) -> Self {
             self.accept = accept
+            return self
+        }
+
+        @discardableResult public func setAcceptEncodings(_ acceptEncodings: [NetContentEncoding]?) -> Self {
+            self.acceptEncoding = acceptEncodings
+            return self
+        }
+
+        @discardableResult public func addAcceptEncoding(_ acceptEncoding: NetContentEncoding?) -> Self {
+            if self.acceptEncoding == nil {
+                self.acceptEncoding = []
+            }
+            if let acceptEncoding = acceptEncoding, var acceptEncodings = self.acceptEncoding {
+                acceptEncodings.append(acceptEncoding)
+                self.acceptEncoding = acceptEncodings
+            }
             return self
         }
 
@@ -257,7 +276,7 @@ extension NetRequest {
     }
 
     public init(_ builder: Builder) {
-        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
+        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, acceptEncoding: builder.acceptEncoding, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
     }
 
     public func builder() -> Builder {

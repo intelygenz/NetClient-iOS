@@ -79,7 +79,10 @@ class NetURLSessionTaskObserver: NSObject {
             }
         }
         let completedUnitCount = max(task.countOfBytesReceived, task.countOfBytesSent)
-        let totalUnitCount = max(task.countOfBytesExpectedToReceive, task.countOfBytesExpectedToSend)
+        var totalUnitCount = max(task.countOfBytesExpectedToReceive, task.countOfBytesExpectedToSend)
+        if let response = task.response as? HTTPURLResponse, let contentLengthString = response.allHeaderFields["X-Uncompressed-Content-Length"] as? String, let contentLength = Int64(contentLengthString) {
+            totalUnitCount = contentLength
+        }
         if taskProgress == nil {
             taskProgress = syncProgress(task, totalUnitCount: totalUnitCount)
             tasks[task]?.progress = taskProgress

@@ -22,6 +22,10 @@ public struct NetRequest {
         case GET, POST, PUT, DELETE, PATCH, UPDATE, HEAD, TRACE, OPTIONS, CONNECT, SEARCH, COPY, MERGE, LABEL, LOCK, UNLOCK, MOVE, MKCOL, PROPFIND, PROPPATCH
     }
 
+    public enum NetContentEncoding: String {
+        case gzip, compress, deflate, identity, br
+    }
+
     public let url: URL
 
     public let cache: NetCachePolicy
@@ -35,6 +39,8 @@ public struct NetRequest {
     public let contentType: NetContentType?
 
     public let accept: NetContentType?
+
+    public let acceptEncoding: [NetContentEncoding]?
 
     public let allowsCellularAccess: Bool
 
@@ -56,7 +62,7 @@ public struct NetRequest {
 
 extension NetRequest {
 
-    public init(_ url: URL, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 60, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
+    public init(_ url: URL, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 60, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, acceptEncoding: [NetContentEncoding]? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
         self.url = url
         self.cache = cache
         self.timeout = timeout
@@ -64,6 +70,7 @@ extension NetRequest {
         self.serviceType = serviceType
         self.contentType = contentType
         self.accept = accept
+        self.acceptEncoding = acceptEncoding
         self.allowsCellularAccess = allowsCellularAccess
         self.method = method
         self.headers = headers
@@ -78,11 +85,11 @@ extension NetRequest {
 
 extension NetRequest {
 
-    public init?(_ urlString: String, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 60, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
+    public init?(_ urlString: String, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 60, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, acceptEncoding: [NetContentEncoding]? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
         guard let url = URL(string: urlString) else {
             return nil
         }
-        self.init(url, cache: cache, timeout: timeout, mainDocumentURL: mainDocumentURL, serviceType: serviceType, contentType: contentType, accept: accept, allowsCellularAccess: allowsCellularAccess, method: method, headers: headers, body: body, bodyStream: bodyStream, handleCookies: handleCookies, usePipelining: usePipelining, authorization: authorization)
+        self.init(url, cache: cache, timeout: timeout, mainDocumentURL: mainDocumentURL, serviceType: serviceType, contentType: contentType, accept: accept, acceptEncoding: acceptEncoding, allowsCellularAccess: allowsCellularAccess, method: method, headers: headers, body: body, bodyStream: bodyStream, handleCookies: handleCookies, usePipelining: usePipelining, authorization: authorization)
     }
 
 }
@@ -105,7 +112,7 @@ extension NetRequest: CustomDebugStringConvertible {
         }
 
         if let headers = headers {
-            for (field, value) in headers where field != "Content-Type" && field != "Accept" {
+            for (field, value) in headers where field != "Content-Type" && field != "Accept" && field != "Accept-Encoding" {
                 components.append("-H \"\(field): \(value)\"")
             }
         }
@@ -116,6 +123,10 @@ extension NetRequest: CustomDebugStringConvertible {
 
         if let accept = accept {
             components.append("-H \"Accept: \(accept.rawValue)\"")
+        }
+
+        if let acceptEncoding = acceptEncoding {
+            components.append("-H \"Accept-Encoding: \(acceptEncoding.flatMap({$0.rawValue}).joined(separator: ", "))\"")
         }
 
         if authorization != .none {
