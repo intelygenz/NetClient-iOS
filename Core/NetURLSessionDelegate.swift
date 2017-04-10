@@ -70,10 +70,6 @@ extension NetURLSessionDelegate {
 
     fileprivate func handle(_ challenge: URLAuthenticationChallenge, _ task: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let authChallenge = netURLSession?.authChallenge else {
-            if let realm = challenge.protectionSpace.realm {
-                print(realm)
-                print(challenge.protectionSpace.authenticationMethod)
-            }
             var credential: URLCredential? = challenge.proposedCredential
             if credential?.hasPassword != true, let request = task?.request {
                 switch request.authorization {
@@ -85,6 +81,10 @@ extension NetURLSessionDelegate {
             }
             if credential?.hasPassword != true, let serverTrust = challenge.protectionSpace.serverTrust {
                 credential = URLCredential(trust: serverTrust)
+            }
+            if credential == nil, let realm = challenge.protectionSpace.realm {
+                print(realm)
+                print(challenge.protectionSpace.authenticationMethod)
             }
             completion(.useCredential, credential)
             return
