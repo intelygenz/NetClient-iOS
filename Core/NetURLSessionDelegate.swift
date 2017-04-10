@@ -30,13 +30,7 @@ class NetURLSessionDelegate: NSObject {
 
 }
 
-extension NetURLSessionDelegate: URLSessionDelegate {
-
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
-        handle(challenge, completion: completionHandler)
-    }
-
-}
+extension NetURLSessionDelegate: URLSessionDelegate {}
 
 extension NetURLSessionDelegate: URLSessionTaskDelegate {
 
@@ -70,8 +64,19 @@ extension NetURLSessionDelegate {
 
     fileprivate func handle(_ challenge: URLAuthenticationChallenge, _ task: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let authChallenge = netURLSession?.authChallenge else {
+            guard challenge.previousFailureCount == 0 else {
+                challenge.sender?.cancel(challenge)
+                if let realm = challenge.protectionSpace.realm {
+                    print(realm)
+                    print(challenge.protectionSpace.authenticationMethod)
+                }
+                completion(.cancelAuthenticationChallenge, nil)
+                return
+            }
+
             var credential: URLCredential? = challenge.proposedCredential
-            if credential?.hasPassword != true, let request = task?.request {
+
+            if credential?.hasPassword != true, challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic || challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPDigest, let request = task?.request {
                 switch request.authorization {
                 case .basic(let user, let password):
                     credential = URLCredential(user: user, password: password, persistence: .forSession)
@@ -79,13 +84,11 @@ extension NetURLSessionDelegate {
                     break
                 }
             }
-            if credential?.hasPassword != true, let serverTrust = challenge.protectionSpace.serverTrust {
+
+            if credential == nil, challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust, let serverTrust = challenge.protectionSpace.serverTrust {
                 credential = URLCredential(trust: serverTrust)
             }
-            if credential == nil, let realm = challenge.protectionSpace.realm {
-                print(realm)
-                print(challenge.protectionSpace.authenticationMethod)
-            }
+
             completion(.useCredential, credential)
             return
         }
