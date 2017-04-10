@@ -41,7 +41,7 @@ extension NetURLSessionDelegate: URLSessionDelegate {
 extension NetURLSessionDelegate: URLSessionTaskDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
-        handle(challenge, completion: completionHandler)
+        handle(challenge, tasks[task], completion: completionHandler)
     }
 
     @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
@@ -68,13 +68,25 @@ extension NetURLSessionDelegate: URLSessionStreamDelegate {}
 
 extension NetURLSessionDelegate {
 
-    fileprivate func handle(_ challenge: URLAuthenticationChallenge, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
+    fileprivate func handle(_ challenge: URLAuthenticationChallenge, _ task: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let authChallenge = netURLSession?.authChallenge else {
             if let realm = challenge.protectionSpace.realm {
                 print(realm)
                 print(challenge.protectionSpace.authenticationMethod)
             }
-            completion(.useCredential, nil)
+            var credential: URLCredential? = challenge.proposedCredential
+            if credential?.hasPassword != true, let request = task?.request {
+                switch request.authorization {
+                case .basic(let user, let password):
+                    credential = URLCredential(user: user, password: password, persistence: .forSession)
+                default:
+                    break
+                }
+            }
+            if credential?.hasPassword != true, let serverTrust = challenge.protectionSpace.serverTrust {
+                credential = URLCredential(trust: serverTrust)
+            }
+            completion(.useCredential, credential)
             return
         }
         authChallenge(challenge, completion)
