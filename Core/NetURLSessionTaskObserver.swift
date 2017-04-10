@@ -90,6 +90,9 @@ class NetURLSessionTaskObserver: NSObject {
         }
         taskProgress?.completedUnitCount = completedUnitCount
         taskProgress?.totalUnitCount = totalUnitCount
+        if let task = tasks[task], let progress = taskProgress {
+            task.progressClosure?(progress)
+        }
     }
 
 }

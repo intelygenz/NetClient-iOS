@@ -50,6 +50,8 @@ public class NetTask {
 
     fileprivate(set) var completionClosure: CompletionClosure?
 
+    fileprivate(set) var progressClosure: ProgressClosure?
+
     public init(_ identifier: NetTaskIdentifier? = nil, request: NetRequest? = nil , response: NetResponse? = nil, taskDescription: String? = nil, state: NetState = .suspended, error: NetError? = nil, priority: Float? = nil, progress: Progress? = nil, metrics: NetTaskMetrics? = nil, task: NetTaskProtocol? = nil) {
         self.request = request
         self.identifier = identifier ?? NetTaskIdentifier(arc4random())
@@ -86,6 +88,17 @@ extension NetTask {
             throw error
         }
         return response!
+    }
+
+}
+
+extension NetTask {
+
+    public typealias ProgressClosure = (Progress) -> Swift.Void
+
+    @discardableResult public func progress(_ progressClosure: ProgressClosure?) -> Self {
+        self.progressClosure = progressClosure
+        return self
     }
 
 }
