@@ -28,6 +28,8 @@ extension NetRequest {
 
         public private(set) var acceptEncoding: [NetContentEncoding]?
 
+        public private(set) var cacheControl: [NetCacheControl]?
+
         public private(set) var allowsCellularAccess: Bool?
 
         public private(set) var method: NetRequest.NetMethod?
@@ -53,6 +55,7 @@ extension NetRequest {
             contentType = netRequest.contentType
             accept = netRequest.accept
             acceptEncoding = netRequest.acceptEncoding
+            cacheControl = netRequest.cacheControl
             allowsCellularAccess = netRequest.allowsCellularAccess
             method = netRequest.method
             headers = netRequest.headers
@@ -121,8 +124,30 @@ extension NetRequest {
                 self.acceptEncoding = []
             }
             if let acceptEncoding = acceptEncoding, var acceptEncodings = self.acceptEncoding {
+                if acceptEncodings.contains(acceptEncoding), let index = acceptEncodings.index(of: acceptEncoding) {
+                    acceptEncodings.remove(at: index)
+                }
                 acceptEncodings.append(acceptEncoding)
                 self.acceptEncoding = acceptEncodings
+            }
+            return self
+        }
+
+        @discardableResult public func setCacheControls(_ cacheControls: [NetCacheControl]?) -> Self {
+            self.cacheControl = cacheControls
+            return self
+        }
+
+        @discardableResult public func addCacheControl(_ cacheControl: NetCacheControl?) -> Self {
+            if self.cacheControl == nil {
+                self.cacheControl = []
+            }
+            if let cacheControl = cacheControl, var cacheControls = self.cacheControl {
+                if cacheControls.contains(cacheControl), let index = cacheControls.index(of: cacheControl) {
+                    cacheControls.remove(at: index)
+                }
+                cacheControls.append(cacheControl)
+                self.cacheControl = cacheControls
             }
             return self
         }
@@ -276,7 +301,7 @@ extension NetRequest {
     }
 
     public init(_ builder: Builder) {
-        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, acceptEncoding: builder.acceptEncoding, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
+        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, acceptEncoding: builder.acceptEncoding, cacheControl: builder.cacheControl, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
     }
 
     public func builder() -> Builder {

@@ -27,6 +27,8 @@ extension NetResponse {
         public private(set) var headers: [AnyHashable : Any]?
 
         public private(set) var localizedDescription: String?
+
+        public private(set) var userInfo: [AnyHashable : Any]?
         
         public private(set) var responseObject: Any?
 
@@ -39,6 +41,7 @@ extension NetResponse {
             statusCode = netResponse?.statusCode
             headers = netResponse?.headers
             localizedDescription = netResponse?.localizedDescription
+            userInfo = netResponse?.userInfo
             responseObject = netResponse?.responseObject
         }
 
@@ -82,6 +85,11 @@ extension NetResponse {
             return self
         }
 
+        @discardableResult public func setUserInfo(_ userInfo: [AnyHashable : Any]?) -> Self {
+            self.userInfo = userInfo
+            return self
+        }
+
         @discardableResult public func setObject(_ responseObject: Any?) -> Self {
             self.responseObject = responseObject
             return self
@@ -98,7 +106,7 @@ extension NetResponse {
     }
 
     public init(_ builder: Builder) {
-        self.init(builder.url, mimeType: builder.mimeType, contentLength: builder.contentLength, textEncoding: builder.textEncoding, filename: builder.filename, statusCode: builder.statusCode, headers: builder.headers, localizedDescription: builder.localizedDescription, responseObject: builder.responseObject)
+        self.init(builder.url, mimeType: builder.mimeType, contentLength: builder.contentLength, textEncoding: builder.textEncoding, filename: builder.filename, statusCode: builder.statusCode, headers: builder.headers, localizedDescription: builder.localizedDescription, userInfo: builder.userInfo, responseObject: builder.responseObject)
     }
 
     public func builder() -> Builder {

@@ -90,6 +90,30 @@ extension NetTask {
         return response!
     }
 
+    public func cached() throws -> NetResponse {
+        if let response = response {
+            return response
+        }
+        guard let urlRequest = request?.urlRequest else {
+            guard let taskError = error else {
+                let error = URLError(.resourceUnavailable)
+                throw NetError.net(code: error._code, message: "Request not found.", headers: response?.headers, object: response?.responseObject, underlying: error)
+            }
+            throw taskError
+        }
+        if let cachedResponse = NetURLSession.defaultCache.cachedResponse(for: urlRequest) {
+            return NetResponse(cachedResponse)
+        }
+        if let cachedResponse = URLCache.shared.cachedResponse(for: urlRequest) {
+            return NetResponse(cachedResponse)
+        }
+        guard let taskError = error else {
+            let error = URLError(.resourceUnavailable)
+            throw NetError.net(code: error._code, message: "Cached response not found.", headers: response?.headers, object: response?.responseObject, underlying: error)
+        }
+        throw taskError
+    }
+
 }
 
 extension NetTask {

@@ -16,6 +16,12 @@ open class NetURLSession: Net {
 
     open static let shared = NetURLSession(URLSession.shared)
 
+    open static let defaultCache: URLCache = {
+        let defaultMemoryCapacity = 4 * 1024 * 1024
+        let defaultDiskCapacity = 5 * defaultMemoryCapacity
+        return URLCache(memoryCapacity: defaultMemoryCapacity, diskCapacity: defaultDiskCapacity, diskPath: nil)
+    }()
+
     open private(set) var session: URLSession!
 
     open var delegate: URLSessionDelegate? { return session.delegate }
@@ -42,7 +48,9 @@ open class NetURLSession: Net {
     fileprivate final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
     public convenience init() {
-        self.init(.default)
+        let defaultConfiguration = URLSessionConfiguration.default
+        defaultConfiguration.urlCache = NetURLSession.defaultCache
+        self.init(defaultConfiguration)
     }
 
     public init(_ urlSession: URLSession) {
