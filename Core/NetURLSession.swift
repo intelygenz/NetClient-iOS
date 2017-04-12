@@ -19,7 +19,13 @@ open class NetURLSession: Net {
     open static let defaultCache: URLCache = {
         let defaultMemoryCapacity = 4 * 1024 * 1024
         let defaultDiskCapacity = 5 * defaultMemoryCapacity
-        return URLCache(memoryCapacity: defaultMemoryCapacity, diskCapacity: defaultDiskCapacity, diskPath: nil)
+        let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+        let cacheURL = cachesDirectoryURL?.appendingPathComponent(String(describing: NetURLSession.self))
+        var defaultDiskPath = cacheURL?.path
+        #if os(OSX)
+            defaultDiskPath = cacheURL.absoluteString
+        #endif
+        return URLCache(memoryCapacity: defaultMemoryCapacity, diskCapacity: defaultDiskCapacity, diskPath: defaultDiskPath)
     }()
 
     open private(set) var session: URLSession!
