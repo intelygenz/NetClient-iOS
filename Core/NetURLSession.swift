@@ -122,12 +122,12 @@ extension NetURLSession {
         return NetTask(urlSessionTask, request: request)
     }
 
-    func netResponse(_ response: URLResponse?, _ responseObject: Any? = nil) -> NetResponse? {
+    func netResponse(_ response: URLResponse?, _ netTask: NetTask? = nil, _ responseObject: Any? = nil) -> NetResponse? {
         var netResponse: NetResponse?
         if let httpResponse = response as? HTTPURLResponse {
-            netResponse = NetResponse(httpResponse, responseObject)
+            netResponse = NetResponse(httpResponse, netTask, responseObject)
         } else if let response = response {
-            netResponse = NetResponse(response, responseObject)
+            netResponse = NetResponse(response, netTask, responseObject)
         }
         guard let response = netResponse else {
             return nil

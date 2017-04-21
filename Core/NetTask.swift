@@ -30,13 +30,21 @@ public class NetTask {
 
     public let request: NetRequest?
 
-    public internal(set) var response: NetResponse?
+    public internal(set) var response: NetResponse? {
+        didSet {
+            state = .completed
+        }
+    }
 
     public let taskDescription: String?
 
     public internal(set) var state: NetState
 
-    public internal(set) var error: NetError?
+    public internal(set) var error: NetError? {
+        didSet {
+            state = .completed
+        }
+    }
 
     public let priority: Float?
 
@@ -102,10 +110,10 @@ extension NetTask {
             throw taskError
         }
         if let cachedResponse = NetURLSession.defaultCache.cachedResponse(for: urlRequest) {
-            return NetResponse(cachedResponse)
+            return NetResponse(cachedResponse, self)
         }
         if let cachedResponse = URLCache.shared.cachedResponse(for: urlRequest) {
-            return NetResponse(cachedResponse)
+            return NetResponse(cachedResponse, self)
         }
         guard let taskError = error else {
             let error = URLError(.resourceUnavailable)

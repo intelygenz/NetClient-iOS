@@ -62,7 +62,7 @@ extension NetURLSessionDelegate: URLSessionStreamDelegate {}
 
 extension NetURLSessionDelegate {
 
-    fileprivate func handle(_ challenge: URLAuthenticationChallenge, _ task: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
+    fileprivate func handle(_ challenge: URLAuthenticationChallenge, _ netTask: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let authChallenge = netURLSession?.authChallenge else {
             guard challenge.previousFailureCount == 0 else {
                 challenge.sender?.cancel(challenge)
@@ -76,7 +76,7 @@ extension NetURLSessionDelegate {
 
             var credential: URLCredential? = challenge.proposedCredential
 
-            if credential?.hasPassword != true, challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic || challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPDigest, let request = task?.request {
+            if credential?.hasPassword != true, challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic || challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPDigest, let request = netTask?.request {
                 switch request.authorization {
                 case .basic(let user, let password):
                     credential = URLCredential(user: user, password: password, persistence: .forSession)

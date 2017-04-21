@@ -29,6 +29,8 @@ extension NetResponse {
         public private(set) var localizedDescription: String?
 
         public private(set) var userInfo: [AnyHashable : Any]?
+
+        public private(set) weak var netTask: NetTask?
         
         public private(set) var responseObject: Any?
 
@@ -42,6 +44,7 @@ extension NetResponse {
             headers = netResponse?.headers
             localizedDescription = netResponse?.localizedDescription
             userInfo = netResponse?.userInfo
+            netTask = netResponse?.netTask
             responseObject = netResponse?.responseObject
         }
 
@@ -90,6 +93,11 @@ extension NetResponse {
             return self
         }
 
+        @discardableResult public func setNetTask(_ netTask: NetTask?) -> Self {
+            self.netTask = netTask
+            return self
+        }
+
         @discardableResult public func setObject(_ responseObject: Any?) -> Self {
             self.responseObject = responseObject
             return self
@@ -106,7 +114,7 @@ extension NetResponse {
     }
 
     public init(_ builder: Builder) {
-        self.init(builder.url, mimeType: builder.mimeType, contentLength: builder.contentLength, textEncoding: builder.textEncoding, filename: builder.filename, statusCode: builder.statusCode, headers: builder.headers, localizedDescription: builder.localizedDescription, userInfo: builder.userInfo, responseObject: builder.responseObject)
+        self.init(builder.url, mimeType: builder.mimeType, contentLength: builder.contentLength, textEncoding: builder.textEncoding, filename: builder.filename, statusCode: builder.statusCode, headers: builder.headers, localizedDescription: builder.localizedDescription, userInfo: builder.userInfo, netTask: builder.netTask, responseObject: builder.responseObject)
     }
 
     public func builder() -> Builder {

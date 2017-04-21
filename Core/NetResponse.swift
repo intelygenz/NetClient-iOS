@@ -28,13 +28,15 @@ public struct NetResponse {
 
     public let userInfo: [AnyHashable : Any]?
 
+    public fileprivate(set) weak var netTask: NetTask?
+
     let responseObject: Any?
 
 }
 
 extension NetResponse {
 
-    public init(_ url: URL? = nil, mimeType: String? = nil, contentLength: Int64 = -1, textEncoding: String? = nil, filename: String? = nil, statusCode: Int? = nil, headers: [AnyHashable : Any]? = nil, localizedDescription: String? = nil, userInfo: [AnyHashable : Any]? = nil, responseObject: Any? = nil) {
+    public init(_ url: URL? = nil, mimeType: String? = nil, contentLength: Int64 = -1, textEncoding: String? = nil, filename: String? = nil, statusCode: Int? = nil, headers: [AnyHashable : Any]? = nil, localizedDescription: String? = nil, userInfo: [AnyHashable : Any]? = nil, netTask: NetTask?, responseObject: Any? = nil) {
         self.url = url
         self.mimeType = mimeType
         self.contentLength = contentLength != -1 ? contentLength : nil
@@ -44,6 +46,7 @@ extension NetResponse {
         self.headers = headers
         self.localizedDescription = localizedDescription
         self.userInfo = userInfo
+        self.netTask = netTask
         self.responseObject = responseObject
     }
 

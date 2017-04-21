@@ -11,7 +11,7 @@ extension NetURLSession {
     public func download(_ resumeData: Data) -> NetTask {
         var netDownloadTask: NetTask!
         let task = session.downloadTask(withResumeData: resumeData) { (url, response, error) in
-            let netResponse = self.netResponse(response, url)
+            let netResponse = self.netResponse(response, netDownloadTask, url)
             let netError = self.netError(error, url, response)
             netDownloadTask.response = netResponse
             netDownloadTask.error = netError
@@ -26,7 +26,7 @@ extension NetURLSession {
     public func download(_ request: NetRequest) -> NetTask {
         var netDownloadTask: NetTask!
         let task = session.downloadTask(with: urlRequest(request)) { (url, response, error) in
-            let netResponse = self.netResponse(response, url)
+            let netResponse = self.netResponse(response, netDownloadTask, url)
             let netError = self.netError(error, url, response)
             netDownloadTask.response = netResponse
             netDownloadTask.error = netError
