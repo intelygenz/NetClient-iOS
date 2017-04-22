@@ -8,11 +8,11 @@
 
 import Foundation
 
+public typealias RequestInterceptor = (NetRequest.Builder) -> NetRequest.Builder
+
+public typealias ResponseInterceptor = (NetResponse.Builder) -> NetResponse.Builder
+
 public protocol Net: class {
-
-    typealias RequestInterceptor = (NetRequest.Builder) -> NetRequest.Builder
-
-    typealias ResponseInterceptor = (NetResponse.Builder) -> NetResponse.Builder
 
     static var shared: Net { get }
 

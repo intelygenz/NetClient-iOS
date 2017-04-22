@@ -10,10 +10,6 @@ import Foundation
 
 public class NetURLSession: Net {
 
-    public typealias RequestInterceptor = (NetRequest.Builder) -> NetRequest.Builder
-
-    public typealias ResponseInterceptor = (NetResponse.Builder) -> NetResponse.Builder
-
     open static let shared: Net = NetURLSession(URLSession.shared)
 
     open static let defaultCache: URLCache = {
