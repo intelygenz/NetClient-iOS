@@ -8,7 +8,7 @@
 
 extension NetURLSession {
 
-    public func data(_ request: NetRequest) -> NetTask {
+    open func data(_ request: NetRequest) -> NetTask {
         var netDataTask: NetTask!
         let task = session.dataTask(with: urlRequest(request)) { (data, response, error) in
             let netResponse = self.netResponse(response, netDataTask, data)
@@ -23,18 +23,18 @@ extension NetURLSession {
         return netDataTask
     }
 
-    public func data(_ request: URLRequest) throws -> NetTask {
+    open func data(_ request: URLRequest) throws -> NetTask {
         guard let netRequest = request.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return data(netRequest)
     }
 
-    public func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> NetTask {
+    open func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> NetTask {
         return data(netRequest(url, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    public func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetTask {
+    open func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetTask {
         guard let url = URL(string: urlString) else {
             throw netError(URLError(.badURL))!
         }

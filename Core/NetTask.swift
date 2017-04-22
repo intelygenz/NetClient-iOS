@@ -20,37 +20,37 @@ public protocol NetTaskProtocol: class {
 
 }
 
-public class NetTask {
+open class NetTask {
 
     public enum NetState : Int {
         case running, suspended, canceling, completed
     }
 
-    public let identifier: NetTaskIdentifier
+    open let identifier: NetTaskIdentifier
 
-    public let request: NetRequest?
+    open let request: NetRequest?
 
-    public internal(set) var response: NetResponse? {
+    open internal(set) var response: NetResponse? {
         didSet {
             state = .completed
         }
     }
 
-    public let taskDescription: String?
+    open let taskDescription: String?
 
-    public internal(set) var state: NetState
+    open internal(set) var state: NetState
 
-    public internal(set) var error: NetError? {
+    open internal(set) var error: NetError? {
         didSet {
             state = .completed
         }
     }
 
-    public let priority: Float?
+    open let priority: Float?
 
-    public internal(set) var progress: Progress?
+    open internal(set) var progress: Progress?
 
-    public internal(set) var metrics: NetTaskMetrics?
+    open internal(set) var metrics: NetTaskMetrics?
 
     fileprivate let task: NetTaskProtocol?
 
@@ -78,13 +78,13 @@ extension NetTask {
 
     public typealias CompletionClosure = (NetResponse?, NetError?) -> Swift.Void
 
-    @discardableResult public func async(_ completion: CompletionClosure? = nil) -> Self {
+    @discardableResult open func async(_ completion: CompletionClosure? = nil) -> Self {
         completionClosure = completion
         resume()
         return self
     }
 
-    public func sync() throws -> NetResponse {
+    open func sync() throws -> NetResponse {
         dispatchSemaphore = DispatchSemaphore(value: 0)
         resume()
         let dispatchTimeoutResult = dispatchSemaphore?.wait(timeout: DispatchTime.distantFuture)
@@ -98,7 +98,7 @@ extension NetTask {
         return response!
     }
 
-    public func cached() throws -> NetResponse {
+    open func cached() throws -> NetResponse {
         if let response = response {
             return response
         }
@@ -128,7 +128,7 @@ extension NetTask {
 
     public typealias ProgressClosure = (Progress) -> Swift.Void
 
-    @discardableResult public func progress(_ progressClosure: ProgressClosure?) -> Self {
+    @discardableResult open func progress(_ progressClosure: ProgressClosure?) -> Self {
         self.progressClosure = progressClosure
         return self
     }
@@ -137,17 +137,17 @@ extension NetTask {
 
 extension NetTask: NetTaskProtocol {
 
-    public func cancel() {
+    open func cancel() {
         state = .canceling
         task?.cancel()
     }
 
-    public func suspend() {
+    open func suspend() {
         state = .suspended
         task?.suspend()
     }
 
-    public func resume() {
+    open func resume() {
         state = .running
         task?.resume()
     }
@@ -156,7 +156,7 @@ extension NetTask: NetTaskProtocol {
 
 extension NetTask: Hashable {
 
-    public var hashValue: Int {
+    open var hashValue: Int {
         return identifier.hashValue
     }
     
@@ -164,7 +164,7 @@ extension NetTask: Hashable {
 
 extension NetTask: Equatable {
 
-    public static func ==(lhs: NetTask, rhs: NetTask) -> Bool {
+    open static func ==(lhs: NetTask, rhs: NetTask) -> Bool {
         return lhs.identifier == rhs.identifier
     }
 
@@ -172,7 +172,7 @@ extension NetTask: Equatable {
 
 extension NetTask: CustomStringConvertible {
 
-    public var description: String {
+    open var description: String {
         var description = String(describing: NetTask.self) + " " + identifier.description + " (" + String(describing: state) + ")"
         if let taskDescription = taskDescription {
             description = description + " " + taskDescription
@@ -184,7 +184,7 @@ extension NetTask: CustomStringConvertible {
 
 extension NetTask: CustomDebugStringConvertible {
 
-    public var debugDescription: String {
+    open var debugDescription: String {
         return description
     }
     

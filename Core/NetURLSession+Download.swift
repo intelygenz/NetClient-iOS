@@ -8,7 +8,7 @@
 
 extension NetURLSession {
 
-    public func download(_ resumeData: Data) -> NetTask {
+    open func download(_ resumeData: Data) -> NetTask {
         var netDownloadTask: NetTask!
         let task = session.downloadTask(withResumeData: resumeData) { (url, response, error) in
             let netResponse = self.netResponse(response, netDownloadTask, url)
@@ -23,7 +23,7 @@ extension NetURLSession {
         return netDownloadTask
     }
 
-    public func download(_ request: NetRequest) -> NetTask {
+    open func download(_ request: NetRequest) -> NetTask {
         var netDownloadTask: NetTask!
         let task = session.downloadTask(with: urlRequest(request)) { (url, response, error) in
             let netResponse = self.netResponse(response, netDownloadTask, url)
@@ -38,18 +38,18 @@ extension NetURLSession {
         return netDownloadTask
     }
 
-    public func download(_ request: URLRequest) throws -> NetTask {
+    open func download(_ request: URLRequest) throws -> NetTask {
         guard let netRequest = request.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return download(netRequest)
     }
 
-    public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> NetTask {
+    open func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> NetTask {
         return download(netRequest(url, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    public func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetTask {
+    open func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetTask {
         guard let url = URL(string: urlString) else {
             throw netError(URLError(.badURL))!
         }

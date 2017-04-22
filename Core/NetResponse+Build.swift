@@ -10,29 +10,29 @@ import Foundation
 
 extension NetResponse {
 
-    public class Builder {
+    open class Builder {
 
-        public private(set) var url: URL?
+        open private(set) var url: URL?
 
-        public private(set) var mimeType: String?
+        open private(set) var mimeType: String?
 
-        public private(set) var contentLength: Int64
+        open private(set) var contentLength: Int64
 
-        public private(set) var textEncoding: String?
+        open private(set) var textEncoding: String?
 
-        public private(set) var filename: String?
+        open private(set) var filename: String?
 
-        public private(set) var statusCode: Int?
+        open private(set) var statusCode: Int?
 
-        public private(set) var headers: [AnyHashable : Any]?
+        open private(set) var headers: [AnyHashable : Any]?
 
-        public private(set) var localizedDescription: String?
+        open private(set) var localizedDescription: String?
 
-        public private(set) var userInfo: [AnyHashable : Any]?
+        open private(set) var userInfo: [AnyHashable : Any]?
 
-        public private(set) weak var netTask: NetTask?
+        open private(set) weak var netTask: NetTask?
         
-        public private(set) var responseObject: Any?
+        open private(set) var responseObject: Any?
 
         public init(_ netResponse: NetResponse? = nil) {
             url = netResponse?.url
@@ -48,57 +48,57 @@ extension NetResponse {
             responseObject = netResponse?.responseObject
         }
 
-        @discardableResult public func setURL(_ url: URL?) -> Self {
+        @discardableResult open func setURL(_ url: URL?) -> Self {
             self.url = url
             return self
         }
 
-        @discardableResult public func setMimeType(_ mimeType: String?) -> Self {
+        @discardableResult open func setMimeType(_ mimeType: String?) -> Self {
             self.mimeType = mimeType
             return self
         }
 
-        @discardableResult public func setContentLength(_ contentLength: Int64) -> Self {
+        @discardableResult open func setContentLength(_ contentLength: Int64) -> Self {
             self.contentLength = contentLength
             return self
         }
 
-        @discardableResult public func setTextEncoding(_ textEncoding: String?) -> Self {
+        @discardableResult open func setTextEncoding(_ textEncoding: String?) -> Self {
             self.textEncoding = textEncoding
             return self
         }
 
-        @discardableResult public func setFilename(_ filename: String?) -> Self {
+        @discardableResult open func setFilename(_ filename: String?) -> Self {
             self.filename = filename
             return self
         }
 
-        @discardableResult public func setStatusCode(_ statusCode: Int?) -> Self {
+        @discardableResult open func setStatusCode(_ statusCode: Int?) -> Self {
             self.statusCode = statusCode
             return self
         }
 
-        @discardableResult public func setHeaders(_ headers: [AnyHashable : Any]?) -> Self {
+        @discardableResult open func setHeaders(_ headers: [AnyHashable : Any]?) -> Self {
             self.headers = headers
             return self
         }
 
-        @discardableResult public func setDescription(_ localizedDescription: String?) -> Self {
+        @discardableResult open func setDescription(_ localizedDescription: String?) -> Self {
             self.localizedDescription = localizedDescription
             return self
         }
 
-        @discardableResult public func setUserInfo(_ userInfo: [AnyHashable : Any]?) -> Self {
+        @discardableResult open func setUserInfo(_ userInfo: [AnyHashable : Any]?) -> Self {
             self.userInfo = userInfo
             return self
         }
 
-        @discardableResult public func setNetTask(_ netTask: NetTask?) -> Self {
+        @discardableResult open func setNetTask(_ netTask: NetTask?) -> Self {
             self.netTask = netTask
             return self
         }
 
-        @discardableResult public func setObject(_ responseObject: Any?) -> Self {
+        @discardableResult open func setObject(_ responseObject: Any?) -> Self {
             self.responseObject = responseObject
             return self
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class NetURLSession: Net {
+public class NetURLSession: Net {
 
     public typealias RequestInterceptor = (NetRequest.Builder) -> NetRequest.Builder
 
@@ -73,11 +73,11 @@ open class NetURLSession: Net {
         authChallenge = authenticationChallenge
     }
 
-    public func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) {
+    open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) {
         requestInterceptors.append(interceptor)
     }
 
-    public func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) {
+    open func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) {
         responseInterceptors.append(interceptor)
     }
 
