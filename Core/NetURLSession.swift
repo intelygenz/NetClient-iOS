@@ -14,7 +14,7 @@ open class NetURLSession: Net {
 
     public typealias ResponseInterceptor = (NetResponse.Builder) -> NetResponse.Builder
 
-    open static let shared = NetURLSession(URLSession.shared)
+    open static let shared: Net = NetURLSession(URLSession.shared)
 
     open static let defaultCache: URLCache = {
         let defaultMemoryCapacity = 4 * 1024 * 1024
@@ -68,7 +68,7 @@ open class NetURLSession: Net {
         session = URLSession(configuration: configuration, delegate: sessionDelegate, delegateQueue: delegateQueue)
     }
 
-    public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = nil, authenticationChallenge: @escaping @autoclosure (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void) {
+    public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = nil, authenticationChallenge: @escaping (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void) {
         session = URLSession(configuration: configuration, delegate: NetURLSessionDelegate(self), delegateQueue: challengeQueue)
         authChallenge = authenticationChallenge
     }

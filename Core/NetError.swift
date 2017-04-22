@@ -24,7 +24,7 @@ extension NetError {
         }
     }
 
-    private func transform<T>(_ code: Int?, _ object: Any?, _ underlying: Error?) throws -> T {
+    private func transform<T>(_ code: Int? = nil, _ object: Any? = nil, _ underlying: Error? = nil) throws -> T {
         do {
             return try NetTransformer.object(object: object)
         } catch {

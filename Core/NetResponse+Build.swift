@@ -109,7 +109,7 @@ extension NetResponse {
 
     }
 
-    public static func builder(_ netResponse: NetResponse?) -> Builder {
+    public static func builder(_ netResponse: NetResponse? = nil) -> Builder {
         return Builder(netResponse)
     }
 
