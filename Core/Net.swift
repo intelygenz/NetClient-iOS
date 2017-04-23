@@ -36,6 +36,7 @@ public protocol Net: class {
 
     func upload(_ request: NetRequest, fileURL: URL) -> NetTask
 
+    #if !os(watchOS)
     @available(iOS 9.0, OSX 10.11, *)
     func stream(_ netService: NetService) -> NetTask
 
@@ -44,5 +45,6 @@ public protocol Net: class {
 
     @available(iOS 9.0, OSX 10.11, *)
     func stream(_ hostName: String, port: Int) -> NetTask
+    #endif
 
 }

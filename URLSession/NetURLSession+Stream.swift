@@ -6,6 +6,7 @@
 //
 //
 
+#if !os(watchOS)
 @available(iOS 9.0, OSX 10.11, *)
 extension NetURLSession {
 
@@ -31,3 +32,4 @@ extension NetURLSession {
     }
 
 }
+#endif

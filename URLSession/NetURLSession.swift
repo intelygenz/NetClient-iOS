@@ -19,7 +19,7 @@ public class NetURLSession: Net {
         let cacheURL = cachesDirectoryURL?.appendingPathComponent(String(describing: NetURLSession.self))
         var defaultDiskPath = cacheURL?.path
         #if os(OSX)
-            defaultDiskPath = cacheURL.absoluteString
+        defaultDiskPath = cacheURL?.absoluteString
         #endif
         return URLCache(memoryCapacity: defaultMemoryCapacity, diskCapacity: defaultDiskCapacity, diskPath: defaultDiskPath)
     }()
