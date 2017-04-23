@@ -88,7 +88,7 @@ public class NetURLSession: Net {
 
 extension NetURLSession {
 
-    func observe(_ task: URLSessionTask, _ netTask: NetTask) {
+    func observe(_ task: URLSessionTask, _ netTask: NetTask?) {
         taskObserver?.add(task, netTask)
         if let delegate = delegate as? NetURLSessionDelegate {
             delegate.add(task, netTask)

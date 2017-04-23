@@ -26,7 +26,7 @@ class NetURLSessionTaskObserver: NSObject {
 
     final var tasks = [URLSessionTask: NetTask]()
 
-    func add(_ task: URLSessionTask, _ netTask: NetTask) {
+    func add(_ task: URLSessionTask, _ netTask: NetTask?) {
         tasks[task] = netTask
         for observedKeyPath in ObservedKeyPath.all {
             task.addObserver(self, forKeyPath: observedKeyPath.rawValue, options: .new, context: nil)

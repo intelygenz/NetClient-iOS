@@ -34,18 +34,18 @@ extension NetURLSession {
     }
 
     open func upload(_ request: NetRequest, data: Data) -> NetTask {
-        var netUploadTask: NetTask!
-        let task = session.uploadTask(with: urlRequest(request), from: data) { (data, response, error) in
-            let netResponse = self.netResponse(response, netUploadTask, data)
-            let netError = self.netError(error, data, response)
-            netUploadTask.response = netResponse
-            netUploadTask.error = netError
-            netUploadTask.dispatchSemaphore?.signal()
-            netUploadTask.completionClosure?(netResponse, netError)
+        var netUploadTask: NetTask?
+        let task = session.uploadTask(with: urlRequest(request), from: data) { [weak self] (data, response, error) in
+            let netResponse = self?.netResponse(response, netUploadTask, data)
+            let netError = self?.netError(error, data, response)
+            netUploadTask?.response = netResponse
+            netUploadTask?.error = netError
+            netUploadTask?.dispatchSemaphore?.signal()
+            netUploadTask?.completionClosure?(netResponse, netError)
         }
         netUploadTask = netTask(task, request)
         observe(task, netUploadTask)
-        return netUploadTask
+        return netUploadTask!
     }
 
     open func upload(_ request: URLRequest, data: Data) throws -> NetTask {
@@ -67,18 +67,18 @@ extension NetURLSession {
     }
 
     open func upload(_ request: NetRequest, fileURL: URL) -> NetTask {
-        var netUploadTask: NetTask!
-        let task = session.uploadTask(with: urlRequest(request), fromFile: fileURL) { (data, response, error) in
-            let netResponse = self.netResponse(response, netUploadTask, data)
-            let netError = self.netError(error, data, response)
-            netUploadTask.response = netResponse
-            netUploadTask.error = netError
-            netUploadTask.dispatchSemaphore?.signal()
-            netUploadTask.completionClosure?(netResponse, netError)
+        var netUploadTask: NetTask?
+        let task = session.uploadTask(with: urlRequest(request), fromFile: fileURL) { [weak self] (data, response, error) in
+            let netResponse = self?.netResponse(response, netUploadTask, data)
+            let netError = self?.netError(error, data, response)
+            netUploadTask?.response = netResponse
+            netUploadTask?.error = netError
+            netUploadTask?.dispatchSemaphore?.signal()
+            netUploadTask?.completionClosure?(netResponse, netError)
         }
         netUploadTask = netTask(task, request)
         observe(task, netUploadTask)
-        return netUploadTask
+        return netUploadTask!
     }
 
     open func upload(_ request: URLRequest, fileURL: URL) throws -> NetTask {

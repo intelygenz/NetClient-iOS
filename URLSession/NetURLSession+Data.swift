@@ -9,18 +9,18 @@
 extension NetURLSession {
 
     open func data(_ request: NetRequest) -> NetTask {
-        var netDataTask: NetTask!
-        let task = session.dataTask(with: urlRequest(request)) { (data, response, error) in
-            let netResponse = self.netResponse(response, netDataTask, data)
-            let netError = self.netError(error, data, response)
-            netDataTask.response = netResponse
-            netDataTask.error = netError
-            netDataTask.dispatchSemaphore?.signal()
-            netDataTask.completionClosure?(netResponse, netError)
+        var netDataTask: NetTask?
+        let task = session.dataTask(with: urlRequest(request)) { [weak self] (data, response, error) in
+            let netResponse = self?.netResponse(response, netDataTask, data)
+            let netError = self?.netError(error, data, response)
+            netDataTask?.response = netResponse
+            netDataTask?.error = netError
+            netDataTask?.dispatchSemaphore?.signal()
+            netDataTask?.completionClosure?(netResponse, netError)
         }
         netDataTask = netTask(task, request)
         observe(task, netDataTask)
-        return netDataTask
+        return netDataTask!
     }
 
     open func data(_ request: URLRequest) throws -> NetTask {

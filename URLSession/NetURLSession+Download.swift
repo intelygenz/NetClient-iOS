@@ -9,33 +9,33 @@
 extension NetURLSession {
 
     open func download(_ resumeData: Data) -> NetTask {
-        var netDownloadTask: NetTask!
-        let task = session.downloadTask(withResumeData: resumeData) { (url, response, error) in
-            let netResponse = self.netResponse(response, netDownloadTask, url)
-            let netError = self.netError(error, url, response)
-            netDownloadTask.response = netResponse
-            netDownloadTask.error = netError
-            netDownloadTask.dispatchSemaphore?.signal()
-            netDownloadTask.completionClosure?(netResponse, netError)
+        var netDownloadTask: NetTask?
+        let task = session.downloadTask(withResumeData: resumeData) { [weak self] (url, response, error) in
+            let netResponse = self?.netResponse(response, netDownloadTask, url)
+            let netError = self?.netError(error, url, response)
+            netDownloadTask?.response = netResponse
+            netDownloadTask?.error = netError
+            netDownloadTask?.dispatchSemaphore?.signal()
+            netDownloadTask?.completionClosure?(netResponse, netError)
         }
         netDownloadTask = netTask(task)
         observe(task, netDownloadTask)
-        return netDownloadTask
+        return netDownloadTask!
     }
 
     open func download(_ request: NetRequest) -> NetTask {
-        var netDownloadTask: NetTask!
-        let task = session.downloadTask(with: urlRequest(request)) { (url, response, error) in
-            let netResponse = self.netResponse(response, netDownloadTask, url)
-            let netError = self.netError(error, url, response)
-            netDownloadTask.response = netResponse
-            netDownloadTask.error = netError
-            netDownloadTask.dispatchSemaphore?.signal()
-            netDownloadTask.completionClosure?(netResponse, netError)
+        var netDownloadTask: NetTask?
+        let task = session.downloadTask(with: urlRequest(request)) { [weak self] (url, response, error) in
+            let netResponse = self?.netResponse(response, netDownloadTask, url)
+            let netError = self?.netError(error, url, response)
+            netDownloadTask?.response = netResponse
+            netDownloadTask?.error = netError
+            netDownloadTask?.dispatchSemaphore?.signal()
+            netDownloadTask?.completionClosure?(netResponse, netError)
         }
         netDownloadTask = netTask(task, request)
         observe(task, netDownloadTask)
-        return netDownloadTask
+        return netDownloadTask!
     }
 
     open func download(_ request: URLRequest) throws -> NetTask {

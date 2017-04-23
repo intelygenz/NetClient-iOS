@@ -19,7 +19,7 @@ class NetURLSessionDelegate: NSObject {
         super.init()
     }
 
-    func add(_ task: URLSessionTask, _ netTask: NetTask) {
+    func add(_ task: URLSessionTask, _ netTask: NetTask?) {
         tasks[task] = netTask
     }
 
