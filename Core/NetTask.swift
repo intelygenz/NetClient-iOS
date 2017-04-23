@@ -79,12 +79,24 @@ extension NetTask {
     public typealias CompletionClosure = (NetResponse?, NetError?) -> Swift.Void
 
     @discardableResult open func async(_ completion: CompletionClosure? = nil) -> Self {
+        guard state == .suspended else {
+            return self
+        }
         completionClosure = completion
         resume()
         return self
     }
 
     open func sync() throws -> NetResponse {
+        guard state == .suspended else {
+            if let response = response {
+                return response
+            } else if let error = error {
+                throw error
+            } else {
+                throw NetError.net(code: error?._code, message: error?.localizedDescription ?? "", headers: response?.headers, object: response?.responseObject, underlying: error)
+            }
+        }
         dispatchSemaphore = DispatchSemaphore(value: 0)
         resume()
         let dispatchTimeoutResult = dispatchSemaphore?.wait(timeout: DispatchTime.distantFuture)
