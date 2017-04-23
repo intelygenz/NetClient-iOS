@@ -121,9 +121,6 @@ extension NetTask {
             }
             throw taskError
         }
-        if let cachedResponse = NetURLSession.defaultCache.cachedResponse(for: urlRequest) {
-            return NetResponse(cachedResponse, self)
-        }
         if let cachedResponse = URLCache.shared.cachedResponse(for: urlRequest) {
             return NetResponse(cachedResponse, self)
         }
