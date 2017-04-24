@@ -11,13 +11,31 @@
 
 ![Net](https://raw.githubusercontent.com/intelygenz/NetClient-iOS/master/Net.png)
 
-**Net** is a Swift library.
+**Net** is a versatile HTTP networking library written in Swift 3.
 
 ## Features
 
-- [x] watchOS compatible
-- [x] tvOS compatible
-- [x] macOS compatible
+- [x] URL / JSON / Property List Parameter Encoding
+- [x] Upload File / Data / Stream / MultipartFormData
+- [x] Download File using Request or Resume Data
+- [x] Authentication with URLCredential
+- [x] Basic, Bearer and Custom Authorization Handling
+- [x] Default and Custom Cache Controls
+- [x] Default and Custom Content Types
+- [x] Upload and Download Progress Closures with Progress
+- [x] cURL Command Debug Output
+- [x] Request and Response Interceptors
+- [x] Asynchronous and synchronous task execution
+- [x] Inference of desired response object
+- [x] watchOS Compatible
+- [x] tvOS Compatible
+- [x] macOS Compatible
+
+## Requirements
+
+- iOS 8.0+ / macOS 10.9+ / tvOS 9.0+ / watchOS 2.0+
+- Xcode 8.1+
+- Swift 3.0+
 
 ## Installation
 
@@ -44,8 +62,39 @@ dependencies: [
 
 ## Usage
 
-```swift
+Asynchronous:
 
+```swift
+import Net
+
+let net = NetURLSession()
+
+net.data(URL(string: "YOUR_URL")!).async { (response, error) in
+    do {
+        if let object: [AnyHashable: Any] = try response?.object() {
+            print("Response dictionary: \(object)")
+        } else if let error = error {
+            print("Net error: \(error)")
+        }
+    } catch {
+        print("Parse error: \(error)")
+    }
+}
+```
+
+Synchronous:
+
+```swift
+import Net
+
+let net = NetURLSession()
+
+do {
+    let object: [AnyHashable: Any] = try net.data("YOUR_URL").sync().object()
+	print("Response dictionary: \(object)")
+} catch {
+    print("Error: \(error)")
+}
 ```
 
 ## Etc.

@@ -15,6 +15,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Asynchronous
+        net.data(URL(string: "http://www.alexruperez.com/home.json")!).async { (response, error) in
+            do {
+                if let object: [AnyHashable: Any] = try response?.object() {
+                    print(type(of: object))
+                } else if let error = error {
+                    print("Net error: \(error)")
+                }
+            } catch {
+                print("Parse error: \((error as! NetError).localizedDescription)")
+            }
+        }
+
+        // Synchronous
         do {
             let date = Date()
             let object: [AnyHashable: Any] = try net.data("http://www.alexruperez.com/home.json").sync().object()
