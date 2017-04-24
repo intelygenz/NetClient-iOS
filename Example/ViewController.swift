@@ -8,16 +8,19 @@
 
 import UIKit
 import Net
+import Moya
 
 class ViewController: UIViewController {
 
-    let net = NetURLSession()
+    let net: Net = NetURLSession()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let request = NetRequest("http://www.alexruperez.com/home.json")!
+
         // Asynchronous
-        net.data(URL(string: "http://www.alexruperez.com/home.json")!).async { (response, error) in
+        net.data(request).async { (response, error) in
             do {
                 if let object: [AnyHashable: Any] = try response?.object() {
                     print(type(of: object))
@@ -32,11 +35,22 @@ class ViewController: UIViewController {
         // Synchronous
         do {
             let date = Date()
-            let object: [AnyHashable: Any] = try net.data("http://www.alexruperez.com/home.json").sync().object()
+            let object: [AnyHashable: Any] = try net.data(request).sync().object()
             print(type(of: object))
             print("Time: \(Date().timeIntervalSince(date))")
         } catch {
             print("Error: \((error as! NetError).localizedDescription)")
+        }
+
+        // Moya
+        let provider = MoyaProvider<NetRequest>()
+        provider.request(request) { result in
+            switch result {
+            case let .success(response):
+                print(response)
+            case let .failure(error):
+                print(error)
+            }
         }
     }
 

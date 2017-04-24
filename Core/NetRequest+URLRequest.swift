@@ -54,7 +54,7 @@ extension NetRequest {
         urlRequest.mainDocumentURL = mainDocumentURL
         urlRequest.networkServiceType = URLRequest.NetworkServiceType(rawValue: serviceType.rawValue) ?? .default
         urlRequest.allowsCellularAccess = allowsCellularAccess
-        urlRequest.httpMethod = method.rawValue
+        urlRequest.httpMethod = httpMethod.rawValue
         urlRequest.allHTTPHeaderFields = headers
         urlRequest.setValue(contentType?.rawValue, forHTTPHeaderField: HTTPHeader.contentType)
         urlRequest.setValue(accept?.rawValue, forHTTPHeaderField: HTTPHeader.accept)

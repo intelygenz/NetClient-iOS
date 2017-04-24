@@ -57,7 +57,7 @@ extension NetRequest {
             acceptEncoding = netRequest.acceptEncoding
             cacheControl = netRequest.cacheControl
             allowsCellularAccess = netRequest.allowsCellularAccess
-            method = netRequest.method
+            method = netRequest.httpMethod
             headers = netRequest.headers
             body = netRequest.body
             bodyStream = netRequest.bodyStream

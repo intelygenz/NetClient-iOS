@@ -13,10 +13,11 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.watchos.deployment_target = '2.0'
   s.tvos.deployment_target = '9.0'
-  s.osx.deployment_target = '10.9'
+  s.osx.deployment_target = '10.10'
 
   s.framework        = 'Foundation'
   s.module_name      = 'Net'
+  s.default_subspecs = 'Core', 'URLSession'
   
   s.subspec 'Core' do |ss|
     ss.source_files = "Core/*.{h,swift}"
@@ -25,5 +26,17 @@ Pod::Spec.new do |s|
   s.subspec 'URLSession' do |ss|
     ss.dependency 'NetClient/Core'
     ss.source_files = "URLSession/*.{h,swift}"
+  end
+  
+  s.subspec 'Alamofire' do |ss|
+    ss.dependency 'NetClient/Core'
+	ss.dependency 'Alamofire', '~> 4.1'
+    ss.source_files = "Alamofire/*.{h,swift}"
+  end
+  
+  s.subspec 'Moya' do |ss|
+    ss.dependency 'NetClient/Core'
+	ss.dependency 'Moya', '~> 8.0'
+    ss.source_files = "Moya/*.{h,swift}"
   end
 end

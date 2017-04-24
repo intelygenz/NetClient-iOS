@@ -52,7 +52,7 @@ open class NetTask {
 
     open internal(set) var metrics: NetTaskMetrics?
 
-    fileprivate let task: NetTaskProtocol?
+    fileprivate let netTask: NetTaskProtocol?
 
     fileprivate(set) var dispatchSemaphore: DispatchSemaphore?
 
@@ -69,7 +69,7 @@ open class NetTask {
         self.error = error
         self.priority = priority
         self.progress = progress
-        self.task = task
+        self.netTask = task
     }
 
 }
@@ -148,17 +148,17 @@ extension NetTask: NetTaskProtocol {
 
     open func cancel() {
         state = .canceling
-        task?.cancel()
+        netTask?.cancel()
     }
 
     open func suspend() {
         state = .suspended
-        task?.suspend()
+        netTask?.suspend()
     }
 
     open func resume() {
         state = .running
-        task?.resume()
+        netTask?.resume()
     }
 
 }

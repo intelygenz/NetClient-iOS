@@ -46,7 +46,7 @@ public struct NetRequest {
 
     public let allowsCellularAccess: Bool
 
-    public let method: NetMethod
+    public let httpMethod: NetMethod
 
     public let headers: [String : String]?
 
@@ -75,7 +75,7 @@ extension NetRequest {
         self.acceptEncoding = acceptEncoding
         self.cacheControl = cacheControl
         self.allowsCellularAccess = allowsCellularAccess
-        self.method = method
+        self.httpMethod = method
         self.headers = headers
         self.body = body
         self.bodyStream = bodyStream
@@ -100,7 +100,7 @@ extension NetRequest {
 extension NetRequest: CustomStringConvertible {
 
     public var description: String {
-        return method.rawValue + " " + url.absoluteString
+        return httpMethod.rawValue + " " + url.absoluteString
     }
 
 }
@@ -110,8 +110,8 @@ extension NetRequest: CustomDebugStringConvertible {
     public var debugDescription: String {
         var components = ["$ curl -i"]
 
-        if method != .GET {
-            components.append("-X \(method.rawValue)")
+        if httpMethod != .GET {
+            components.append("-X \(httpMethod.rawValue)")
         }
 
         if let headers = headers {
@@ -157,7 +157,7 @@ extension NetRequest: CustomDebugStringConvertible {
 extension NetRequest: Hashable {
 
     public var hashValue: Int {
-        return url.hashValue + method.hashValue
+        return url.hashValue + httpMethod.hashValue
     }
 
 }
@@ -165,7 +165,7 @@ extension NetRequest: Hashable {
 extension NetRequest: Equatable {
 
     public static func ==(lhs: NetRequest, rhs: NetRequest) -> Bool {
-        return lhs.url == rhs.url && lhs.method == rhs.method
+        return lhs.url == rhs.url && lhs.httpMethod == rhs.httpMethod
     }
 
 }
