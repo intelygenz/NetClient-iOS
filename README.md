@@ -28,6 +28,8 @@
 - [x] watchOS Compatible
 - [x] tvOS Compatible
 - [x] macOS Compatible
+- [x] [Alamofire](https://github.com/Alamofire/Alamofire) Implementation
+- [x] [Moya](https://github.com/Moya/Moya)Provider Compatible
 
 ## Requirements
 
@@ -89,7 +91,7 @@ let net = NetURLSession()
 
 do {
     let object: [AnyHashable: Any] = try net.data("YOUR_URL").sync().object()
-	print("Response dictionary: \(object)")
+    print("Response dictionary: \(object)")
 } catch {
     print("Error: \(error)")
 }
@@ -119,7 +121,6 @@ pod 'NetClient/Moya'
 import Net
 import Moya
 
-let net = NetURLSession()
 let request = NetRequest("YOUR_URL")!
 let provider = MoyaProvider<NetRequest>()
 provider.request(request) { result in
