@@ -7,6 +7,7 @@
 //
 
 import Moya
+import Alamofire
 
 extension NetRequest: TargetType {
     public var baseURL: URL {
@@ -20,25 +21,25 @@ extension NetRequest: TargetType {
     public var method: Moya.Method {
         switch httpMethod {
         case .GET:
-            return .get
+            return Alamofire.HTTPMethod.get
         case .POST:
-            return .post
+            return Alamofire.HTTPMethod.post
         case .PUT:
-            return .put
+            return Alamofire.HTTPMethod.put
         case .DELETE:
-            return .delete
+            return Alamofire.HTTPMethod.delete
         case .PATCH:
-            return .patch
+            return Alamofire.HTTPMethod.patch
         case .HEAD:
-            return .head
+            return Alamofire.HTTPMethod.head
         case .TRACE:
-            return .trace
+            return Alamofire.HTTPMethod.trace
         case .OPTIONS:
-            return .options
+            return Alamofire.HTTPMethod.options
         case .CONNECT:
-            return .connect
+            return Alamofire.HTTPMethod.connect
         default:
-            return .get
+            return Alamofire.HTTPMethod.get
         }
     }
 
@@ -50,17 +51,17 @@ extension NetRequest: TargetType {
         }
     }
 
-    public var parameterEncoding: ParameterEncoding {
+    public var parameterEncoding: Moya.ParameterEncoding {
         guard let parameterEncoding = contentType else {
-            return URLEncoding.default
+            return Alamofire.URLEncoding.default
         }
         switch parameterEncoding {
         case .json:
-            return JSONEncoding.default
+            return Alamofire.JSONEncoding.default
         case .plist:
-            return PropertyListEncoding.default
+            return Alamofire.PropertyListEncoding.default
         default:
-            return URLEncoding.default
+            return Alamofire.URLEncoding.default
         }
     }
 
@@ -69,6 +70,6 @@ extension NetRequest: TargetType {
     }
 
     public var task: Task {
-        return .request
+        return Moya.Task.request
     }
 }
