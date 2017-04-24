@@ -36,6 +36,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'Moya' do |ss|
     ss.dependency 'NetClient/Core'
+	ss.dependency 'Alamofire', '~> 4.1'
 	ss.dependency 'Moya', '~> 8.0'
     ss.source_files = "Moya/*.{h,swift}"
   end
