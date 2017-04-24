@@ -15,7 +15,7 @@
 ## Features
 
 - [x] URL / JSON / Property List Parameter Encoding
-- [x] Upload File / Data / Stream / MultipartFormData
+- [x] Upload File / Data / Stream / Multipart Form Data
 - [x] Download File using Request or Resume Data
 - [x] Authentication with URLCredential
 - [x] Basic, Bearer and Custom Authorization Handling
