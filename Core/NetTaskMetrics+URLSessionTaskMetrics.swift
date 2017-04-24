@@ -11,7 +11,7 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 extension NetTaskMetrics {
 
-    public init(_ urlSessionTaskMetrics: URLSessionTaskMetrics, request: NetRequest?, response: NetResponse?) {
+    public init(_ urlSessionTaskMetrics: URLSessionTaskMetrics, request: NetRequest? = nil, response: NetResponse? = nil) {
         var transactionMetrics = [NetTransactionMetrics]()
         #if !os(watchOS)
         transactionMetrics = urlSessionTaskMetrics.transactionMetrics.flatMap { transactionMetrics -> NetTransactionMetrics in

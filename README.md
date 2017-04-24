@@ -95,6 +95,20 @@ do {
 }
 ```
 
+[Alamofire](https://github.com/Alamofire/Alamofire):
+
+```ruby
+pod 'NetClient/Alamofire'
+```
+
+```swift
+import Net
+
+let net = NetAlamofire()
+
+...
+```
+
 [Moya](https://github.com/Moya/Moya):
 
 ```ruby
