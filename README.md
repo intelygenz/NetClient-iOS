@@ -6,7 +6,6 @@
 [![Platform](https://img.shields.io/cocoapods/p/NetClient.svg?style=flat)](http://cocoapods.org/pods/NetClient)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager Compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
-[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/NetClient.svg)](http://cocoadocs.org/docsets/NetClient)
 [![Build Status](https://travis-ci.org/intelygenz/NetClient-iOS.svg?branch=master)](https://travis-ci.org/intelygenz/NetClient-iOS)
 
 ![Net](https://raw.githubusercontent.com/intelygenz/NetClient-iOS/master/Net.png)
