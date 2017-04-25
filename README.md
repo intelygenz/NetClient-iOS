@@ -24,7 +24,7 @@
 - [x] cURL Command Debug Output
 - [x] Request and Response Interceptors
 - [x] Asynchronous and synchronous task execution
-- [x] Inference of desired response object
+- [x] Inference of response object type
 - [x] watchOS Compatible
 - [x] tvOS Compatible
 - [x] macOS Compatible
@@ -62,7 +62,26 @@ dependencies: [
 
 ## Usage
 
-Asynchronous:
+### Build a NetRequest
+
+```swift
+let request = NetRequest.builder("YOUR_URL")!
+            .setAccept(.json)
+            .setCache(.reloadIgnoringLocalCacheData)
+            .setMethod(.PATCH)
+            .setTimeout(20)
+            .setStringBody("body")
+            .setContentType(.json)
+            .setServiceType(.background)
+            .setCacheControls([.maxAge(500)])
+            .setURLParameters(["foo": "bar"])
+            .setAcceptEncodings([.gzip])
+            .setBasicAuthorization(user: "user", password: "password")
+            .setHeaders(["foo": "bar"])
+            .build()
+```
+
+### Request asynchronously
 
 ```swift
 import Net
@@ -82,7 +101,7 @@ net.data(URL(string: "YOUR_URL")!).async { (response, error) in
 }
 ```
 
-Synchronous:
+### Request synchronously
 
 ```swift
 import Net
@@ -97,7 +116,52 @@ do {
 }
 ```
 
-[Alamofire](https://github.com/Alamofire/Alamofire):
+### Request from cache
+
+```swift
+import Net
+
+let net = NetURLSession()
+
+do {
+    let object: [AnyHashable: Any] = try net.data("YOUR_URL").cached().object()
+    print("Response dictionary: \(object)")
+} catch {
+    print("Error: \(error)")
+}
+```
+
+### Track progress
+
+```swift
+import Net
+
+let net = NetURLSession()
+
+do {
+    let task = try net.data("YOUR_URL").progress({ progress in
+        print(progress)
+    }).sync()
+} catch {
+    print("Error: \(error)")
+}
+```
+
+### Add interceptors for all requests
+
+```swift
+import Net
+
+let net = NetURLSession()
+
+net.addRequestInterceptor { request in
+    request.addHeader("foo", value: "bar")
+    request.setBearerAuthorization(token: "token")
+    return request
+}
+```
+
+### Love [Alamofire](https://github.com/Alamofire/Alamofire)?
 
 ```ruby
 pod 'NetClient/Alamofire'
@@ -111,7 +175,7 @@ let net = NetAlamofire()
 ...
 ```
 
-[Moya](https://github.com/Moya/Moya):
+### Love [Moya](https://github.com/Moya/Moya)?
 
 ```ruby
 pod 'NetClient/Moya'
