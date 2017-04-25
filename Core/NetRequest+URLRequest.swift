@@ -63,8 +63,11 @@ extension NetRequest {
         if authorization != .none {
             urlRequest.setValue(authorization.rawValue, forHTTPHeaderField: HTTPHeader.authorization)
         }
-        urlRequest.httpBody = body
-        urlRequest.httpBodyStream = bodyStream
+        if let body = body {
+            urlRequest.httpBody = body
+        } else if let bodyStream = bodyStream {
+            urlRequest.httpBodyStream = bodyStream
+        }
         urlRequest.httpShouldHandleCookies = handleCookies
         urlRequest.httpShouldUsePipelining = usePipelining
         return urlRequest

@@ -121,14 +121,14 @@ extension NetRequest {
 
         @discardableResult open func addAcceptEncoding(_ acceptEncoding: NetContentEncoding?) -> Self {
             if self.acceptEncoding == nil {
-                self.acceptEncoding = []
+                setAcceptEncodings([])
             }
             if let acceptEncoding = acceptEncoding, var acceptEncodings = self.acceptEncoding {
                 if acceptEncodings.contains(acceptEncoding), let index = acceptEncodings.index(of: acceptEncoding) {
                     acceptEncodings.remove(at: index)
                 }
                 acceptEncodings.append(acceptEncoding)
-                self.acceptEncoding = acceptEncodings
+                setAcceptEncodings(acceptEncodings)
             }
             return self
         }
@@ -140,14 +140,14 @@ extension NetRequest {
 
         @discardableResult open func addCacheControl(_ cacheControl: NetCacheControl?) -> Self {
             if self.cacheControl == nil {
-                self.cacheControl = []
+                setCacheControls([])
             }
             if let cacheControl = cacheControl, var cacheControls = self.cacheControl {
                 if cacheControls.contains(cacheControl), let index = cacheControls.index(of: cacheControl) {
                     cacheControls.remove(at: index)
                 }
                 cacheControls.append(cacheControl)
-                self.cacheControl = cacheControls
+                setCacheControls(cacheControls)
             }
             return self
         }
@@ -168,14 +168,23 @@ extension NetRequest {
         }
 
         @discardableResult open func addHeader(_ key: String, value: String?) -> Self {
-            if headers == nil {
-                headers = [:]
+            if self.headers == nil {
+                setHeaders([:])
             }
-            headers?[key] = value
+            self.headers?[key] = value
             return self
         }
 
         @discardableResult open func setBody(_ body: Data?) -> Self {
+            if body != nil {
+                setBodyStream(nil)
+                if contentType == nil {
+                    setContentType(.bin)
+                }
+                if method == nil {
+                    setMethod(.POST)
+                }
+            }
             self.body = body
             return self
         }
@@ -211,9 +220,12 @@ extension NetRequest {
             guard let formParameters = formParameters else {
                 return self
             }
-            body = query(formParameters).data(using: encoding, allowLossyConversion: allowLossyConversion)
+            setBody(query(formParameters).data(using: encoding, allowLossyConversion: allowLossyConversion))
             if contentType == nil {
-                contentType = .formURL
+                setContentType(.formURL)
+            }
+            if method == nil {
+                setMethod(.POST)
             }
             return self
         }
@@ -222,7 +234,13 @@ extension NetRequest {
             guard let stringBody = stringBody else {
                 return self
             }
-            body = stringBody.data(using: encoding, allowLossyConversion: allowLossyConversion)
+            setBody(stringBody.data(using: encoding, allowLossyConversion: allowLossyConversion))
+            if contentType == nil {
+                setContentType(.txt)
+            }
+            if method == nil {
+                setMethod(.POST)
+            }
             return self
         }
 
@@ -230,9 +248,12 @@ extension NetRequest {
             guard let jsonBody = jsonBody else {
                 return self
             }
-            body = try JSONSerialization.data(withJSONObject: jsonBody, options: options)
+            setBody(try JSONSerialization.data(withJSONObject: jsonBody, options: options))
             if contentType == nil {
-                contentType = .json
+                setContentType(.json)
+            }
+            if method == nil {
+                setMethod(.POST)
             }
             return self
         }
@@ -241,14 +262,26 @@ extension NetRequest {
             guard let plistBody = plistBody else {
                 return self
             }
-            body = try PropertyListSerialization.data(fromPropertyList: plistBody, format: format, options: options)
+            setBody(try PropertyListSerialization.data(fromPropertyList: plistBody, format: format, options: options))
             if contentType == nil {
-                contentType = .plist
+                setContentType(.plist)
+            }
+            if method == nil {
+                setMethod(.POST)
             }
             return self
         }
 
         @discardableResult open func setBodyStream(_ bodyStream: InputStream?) -> Self {
+            if bodyStream != nil {
+                setBody(nil)
+                if contentType == nil {
+                    setContentType(.bin)
+                }
+                if method == nil {
+                    setMethod(.POST)
+                }
+            }
             self.bodyStream = bodyStream
             return self
         }
@@ -264,12 +297,12 @@ extension NetRequest {
         }
 
         @discardableResult open func setBasicAuthorization(user: String, password: String) -> Self {
-            authorization = .basic(user: user, password: password)
+            self.authorization = .basic(user: user, password: password)
             return self
         }
 
         @discardableResult open func setBearerAuthorization(token: String) -> Self {
-            authorization = .bearer(token: token)
+            self.authorization = .bearer(token: token)
             return self
         }
 
