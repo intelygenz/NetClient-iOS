@@ -52,6 +52,10 @@
 		81ACB7E71E84020F006D05DD /* NetContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB7E21E83D0C8006D05DD /* NetContentType.swift */; };
 		81ACB8041E85443F006D05DD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81ACB8021E85443F006D05DD /* Info.plist */; };
 		81ACB8061E854565006D05DD /* NetRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACB8031E85443F006D05DD /* NetRequestTests.swift */; };
+		81D1C30E1EAF965C008DB282 /* NetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1C30D1EAF965C008DB282 /* NetReachability.swift */; };
+		81D1C30F1EAF965C008DB282 /* NetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1C30D1EAF965C008DB282 /* NetReachability.swift */; };
+		81D1C3101EAF965C008DB282 /* NetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1C30D1EAF965C008DB282 /* NetReachability.swift */; };
+		81D1C3111EAF965C008DB282 /* NetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D1C30D1EAF965C008DB282 /* NetReachability.swift */; };
 		C588218FED700E8243A6592A /* Pods_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F272790255D2800FEC64E9AC /* Pods_macOS.framework */; };
 		D51B42421E9D74AE0029620C /* NetCacheControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B42411E9D74AE0029620C /* NetCacheControl.swift */; };
 		D51B42431E9D74AE0029620C /* NetCacheControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B42411E9D74AE0029620C /* NetCacheControl.swift */; };
@@ -254,6 +258,7 @@
 		81ACB7E21E83D0C8006D05DD /* NetContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetContentType.swift; sourceTree = "<group>"; };
 		81ACB8021E85443F006D05DD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81ACB8031E85443F006D05DD /* NetRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequestTests.swift; sourceTree = "<group>"; };
+		81D1C30D1EAF965C008DB282 /* NetReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetReachability.swift; sourceTree = "<group>"; };
 		9F7D88A9A8889F4F28FF0F2E /* Pods_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE96E101962D64F0C19898 /* Pods-watchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchOS/Pods-watchOS.release.xcconfig"; sourceTree = "<group>"; };
 		BDEBF5187C4616AAB70C6601 /* Pods-watchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watchOS/Pods-watchOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -513,6 +518,7 @@
 				D5468BE91EAD3CAF00E1354D /* NetResponse+Cached​URLResponse.swift */,
 				D579EE681EAE813A00A2F311 /* NetResponse+HTTPURLResponse.swift */,
 				818FC92C1E82BFD800FEC5A3 /* NetError.swift */,
+				81D1C30D1EAF965C008DB282 /* NetReachability.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1007,6 +1013,7 @@
 			files = (
 				D579EE111EAE3AF500A2F311 /* NetAlamofire.swift in Sources */,
 				818FC9341E82C26200FEC5A3 /* NetResponse.swift in Sources */,
+				81D1C30E1EAF965C008DB282 /* NetReachability.swift in Sources */,
 				D579EE301EAE7E3200A2F311 /* NetAlamofire+Download.swift in Sources */,
 				D5468BE51EAD3C5E00E1354D /* NetRequest+URLRequest.swift in Sources */,
 				D579EE7B1EAE8E1C00A2F311 /* NetURLSession+Upload.swift in Sources */,
@@ -1054,6 +1061,7 @@
 			files = (
 				D579EE121EAE3AF500A2F311 /* NetAlamofire.swift in Sources */,
 				818FC9351E82C26300FEC5A3 /* NetResponse.swift in Sources */,
+				81D1C30F1EAF965C008DB282 /* NetReachability.swift in Sources */,
 				D579EE311EAE7E3200A2F311 /* NetAlamofire+Download.swift in Sources */,
 				D5468BE61EAD3C5E00E1354D /* NetRequest+URLRequest.swift in Sources */,
 				D579EE831EAE8E1D00A2F311 /* NetURLSession+Upload.swift in Sources */,
@@ -1093,6 +1101,7 @@
 			files = (
 				D579EE131EAE3AF500A2F311 /* NetAlamofire.swift in Sources */,
 				818FC9361E82C26400FEC5A3 /* NetResponse.swift in Sources */,
+				81D1C3101EAF965C008DB282 /* NetReachability.swift in Sources */,
 				D579EE321EAE7E3200A2F311 /* NetAlamofire+Download.swift in Sources */,
 				D5468BE71EAD3C5E00E1354D /* NetRequest+URLRequest.swift in Sources */,
 				D579EE8B1EAE8E1E00A2F311 /* NetURLSession+Upload.swift in Sources */,
@@ -1132,6 +1141,7 @@
 			files = (
 				D579EE141EAE3AF500A2F311 /* NetAlamofire.swift in Sources */,
 				818FC9371E82C26400FEC5A3 /* NetResponse.swift in Sources */,
+				81D1C3111EAF965C008DB282 /* NetReachability.swift in Sources */,
 				D579EE331EAE7E3200A2F311 /* NetAlamofire+Download.swift in Sources */,
 				D5468BE81EAD3C5E00E1354D /* NetRequest+URLRequest.swift in Sources */,
 				D579EE931EAE8E1E00A2F311 /* NetURLSession+Upload.swift in Sources */,
@@ -1260,8 +1270,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
-				DYLIB_COMPATIBILITY_VERSION = 0.1.0;
-				DYLIB_CURRENT_VERSION = 0.1.1;
+				DYLIB_COMPATIBILITY_VERSION = 0.1.2;
+				DYLIB_CURRENT_VERSION = 0.1.2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1306,8 +1316,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
-				DYLIB_COMPATIBILITY_VERSION = 0.1.0;
-				DYLIB_CURRENT_VERSION = 0.1.1;
+				DYLIB_COMPATIBILITY_VERSION = 0.1.2;
+				DYLIB_CURRENT_VERSION = 0.1.2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;

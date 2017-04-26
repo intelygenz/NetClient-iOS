@@ -1,3 +1,8 @@
+# Release 0.1.2
+
+- [x] Network reachability
+- [x] HTTP body bug fixed
+
 # Release 0.1.1
 
 - [x] [Alamofire](https://github.com/Alamofire/Alamofire) Implementation
@@ -5,4 +10,4 @@
 
 # Release 0.1.0
 
-- [x] First public release.
+- [x] First public release

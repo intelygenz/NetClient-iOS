@@ -25,6 +25,7 @@
 - [x] Request and Response Interceptors
 - [x] Asynchronous and synchronous task execution
 - [x] Inference of response object type
+- [x] Network reachability
 - [x] watchOS Compatible
 - [x] tvOS Compatible
 - [x] macOS Compatible
@@ -70,12 +71,12 @@ let request = NetRequest.builder("YOUR_URL")!
             .setCache(.reloadIgnoringLocalCacheData)
             .setMethod(.PATCH)
             .setTimeout(20)
-            .setStringBody("body")
+            .setJSONBody(["foo", "bar"])
             .setContentType(.json)
             .setServiceType(.background)
             .setCacheControls([.maxAge(500)])
             .setURLParameters(["foo": "bar"])
-            .setAcceptEncodings([.gzip])
+            .setAcceptEncodings([.gzip, .deflate])
             .setBasicAuthorization(user: "user", password: "password")
             .setHeaders(["foo": "bar"])
             .build()
