@@ -57,7 +57,7 @@ extension NetRequest {
             acceptEncoding = netRequest.acceptEncoding
             cacheControl = netRequest.cacheControl
             allowsCellularAccess = netRequest.allowsCellularAccess
-            method = netRequest.httpMethod
+            method = netRequest.httpMethod != .GET ? netRequest.httpMethod : nil
             headers = netRequest.headers
             body = netRequest.body
             bodyStream = netRequest.bodyStream
@@ -220,7 +220,7 @@ extension NetRequest {
             guard let formParameters = formParameters else {
                 return self
             }
-            setBody(query(formParameters).data(using: encoding, allowLossyConversion: allowLossyConversion))
+            body = query(formParameters).data(using: encoding, allowLossyConversion: allowLossyConversion)
             if contentType == nil {
                 setContentType(.formURL)
             }
@@ -234,7 +234,7 @@ extension NetRequest {
             guard let stringBody = stringBody else {
                 return self
             }
-            setBody(stringBody.data(using: encoding, allowLossyConversion: allowLossyConversion))
+            body = stringBody.data(using: encoding, allowLossyConversion: allowLossyConversion)
             if contentType == nil {
                 setContentType(.txt)
             }
@@ -248,7 +248,7 @@ extension NetRequest {
             guard let jsonBody = jsonBody else {
                 return self
             }
-            setBody(try JSONSerialization.data(withJSONObject: jsonBody, options: options))
+            body = try JSONSerialization.data(withJSONObject: jsonBody, options: options)
             if contentType == nil {
                 setContentType(.json)
             }
@@ -262,7 +262,7 @@ extension NetRequest {
             guard let plistBody = plistBody else {
                 return self
             }
-            setBody(try PropertyListSerialization.data(fromPropertyList: plistBody, format: format, options: options))
+            body = try PropertyListSerialization.data(fromPropertyList: plistBody, format: format, options: options)
             if contentType == nil {
                 setContentType(.plist)
             }
