@@ -12,6 +12,10 @@ extension NetRequest {
 
     open class Builder {
 
+        private struct HTTPHeader {
+            static let contentLength = "Content-Length"
+        }
+
         open private(set) var url: URL
 
         open private(set) var cache: NetRequest.NetCachePolicy?
@@ -184,6 +188,9 @@ extension NetRequest {
                 if method == nil {
                     setMethod(.POST)
                 }
+                if let length = body?.count {
+                    addHeader(HTTPHeader.contentLength, value: "\(length)")
+                }
             }
             self.body = body
             return self
@@ -227,6 +234,9 @@ extension NetRequest {
             if method == nil {
                 setMethod(.POST)
             }
+            if let length = body?.count {
+                addHeader(HTTPHeader.contentLength, value: "\(length)")
+            }
             return self
         }
 
@@ -240,6 +250,9 @@ extension NetRequest {
             }
             if method == nil {
                 setMethod(.POST)
+            }
+            if let length = body?.count {
+                addHeader(HTTPHeader.contentLength, value: "\(length)")
             }
             return self
         }
@@ -255,6 +268,9 @@ extension NetRequest {
             if method == nil {
                 setMethod(.POST)
             }
+            if let length = body?.count {
+                addHeader(HTTPHeader.contentLength, value: "\(length)")
+            }
             return self
         }
 
@@ -268,6 +284,9 @@ extension NetRequest {
             }
             if method == nil {
                 setMethod(.POST)
+            }
+            if let length = body?.count {
+                addHeader(HTTPHeader.contentLength, value: "\(length)")
             }
             return self
         }
