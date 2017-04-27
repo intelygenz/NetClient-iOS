@@ -10,6 +10,8 @@ import Foundation
 
 public struct NetRequest {
 
+    public typealias NetContentLength = UInt64
+
     public enum NetCachePolicy: UInt {
         case useProtocolCachePolicy = 0, reloadIgnoringLocalCacheData = 1, returnCacheDataElseLoad = 2, returnCacheDataDontLoad = 3
     }
@@ -38,6 +40,8 @@ public struct NetRequest {
 
     public let contentType: NetContentType?
 
+    public let contentLength: NetContentLength?
+
     public let accept: NetContentType?
 
     public let acceptEncoding: [NetContentEncoding]?
@@ -64,13 +68,14 @@ public struct NetRequest {
 
 extension NetRequest {
 
-    public init(_ url: URL, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 60, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, acceptEncoding: [NetContentEncoding]? = nil, cacheControl: [NetCacheControl]? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
+    public init(_ url: URL, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 60, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, contentLength: NetContentLength? = nil, accept: NetContentType? = nil, acceptEncoding: [NetContentEncoding]? = nil, cacheControl: [NetCacheControl]? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
         self.url = url
         self.cache = cache
         self.timeout = timeout
         self.mainDocumentURL = mainDocumentURL
         self.serviceType = serviceType
         self.contentType = contentType
+        self.contentLength = contentLength
         self.accept = accept
         self.acceptEncoding = acceptEncoding
         self.cacheControl = cacheControl
@@ -88,11 +93,11 @@ extension NetRequest {
 
 extension NetRequest {
 
-    public init?(_ urlString: String, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 60, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, accept: NetContentType? = nil, acceptEncoding: [NetContentEncoding]? = nil, cacheControl: [NetCacheControl]? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
+    public init?(_ urlString: String, cache: NetCachePolicy = .useProtocolCachePolicy, timeout: TimeInterval = 60, mainDocumentURL: URL? = nil, serviceType: NetServiceType = .default, contentType: NetContentType? = nil, contentLength: NetContentLength? = nil, accept: NetContentType? = nil, acceptEncoding: [NetContentEncoding]? = nil, cacheControl: [NetCacheControl]? = nil, allowsCellularAccess: Bool = true, method: NetMethod = .GET, headers: [String : String]? = nil, body: Data? = nil, bodyStream: InputStream? = nil, handleCookies: Bool = true, usePipelining: Bool = true, authorization: NetAuthorization = .none) {
         guard let url = URL(string: urlString) else {
             return nil
         }
-        self.init(url, cache: cache, timeout: timeout, mainDocumentURL: mainDocumentURL, serviceType: serviceType, contentType: contentType, accept: accept, acceptEncoding: acceptEncoding, cacheControl: cacheControl, allowsCellularAccess: allowsCellularAccess, method: method, headers: headers, body: body, bodyStream: bodyStream, handleCookies: handleCookies, usePipelining: usePipelining, authorization: authorization)
+        self.init(url, cache: cache, timeout: timeout, mainDocumentURL: mainDocumentURL, serviceType: serviceType, contentType: contentType, contentLength: contentLength, accept: accept, acceptEncoding: acceptEncoding, cacheControl: cacheControl, allowsCellularAccess: allowsCellularAccess, method: method, headers: headers, body: body, bodyStream: bodyStream, handleCookies: handleCookies, usePipelining: usePipelining, authorization: authorization)
     }
 
 }
@@ -115,13 +120,17 @@ extension NetRequest: CustomDebugStringConvertible {
         }
 
         if let headers = headers {
-            for (field, value) in headers where field != "Content-Type" && field != "Accept" && field != "Accept-Encoding" && field != "Cache-Control" {
+            for (field, value) in headers where field != "Content-Type" && field != "Accept" && field != "Accept-Encoding" && field != "Cache-Control" && field != "Content-Length" {
                 components.append("-H \"\(field): \(value)\"")
             }
         }
 
         if let contentType = contentType {
             components.append("-H \"Content-Type: \(contentType.rawValue)\"")
+        }
+
+        if let contentLength = contentLength {
+            components.append("-H \"Content-Length: \(contentLength)\"")
         }
 
         if let accept = accept {

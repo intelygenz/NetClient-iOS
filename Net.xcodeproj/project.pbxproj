@@ -22,6 +22,10 @@
 /* Begin PBXBuildFile section */
 		321A45B1B6F98A12849AA46C /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B562CAA680DD7A1F4B4925C /* Pods_iOS.framework */; };
 		7ABB2B9ABDC41FA061F9EC90 /* Pods_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F7D88A9A8889F4F28FF0F2E /* Pods_tvOS.framework */; };
+		813AE7661EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */; };
+		813AE7671EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */; };
+		813AE7681EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */; };
+		813AE7691EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */; };
 		817967BA1E8A69D400D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
 		817967BB1E8A69D500D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
 		817967BC1E8A69D600D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
@@ -249,6 +253,7 @@
 		3E428BC1E5DD430611E60A8A /* Pods-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-macOS/Pods-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		5D2E648D8AD8E1FDF836F100 /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		6D9668686D14C354B7E31BA0 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetMultipartFormData.swift; sourceTree = "<group>"; };
 		817967B81E8A69C800D036AE /* NetResponse+Build.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetResponse+Build.swift"; sourceTree = "<group>"; };
 		818FC9261E82BF3200FEC5A3 /* Net.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
 		818FC92C1E82BFD800FEC5A3 /* NetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetError.swift; sourceTree = "<group>"; };
@@ -511,6 +516,7 @@
 				D523AAF91E8673760093D793 /* NetTask.swift */,
 				D523AB031E867B480093D793 /* NetTaskMetrics.swift */,
 				D579EE6A1EAE813A00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift */,
+				813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */,
 				81A50A1C1E9563DC00582D15 /* NetTransformer.swift */,
 				818FC9321E82C22000FEC5A3 /* NetResponse.swift */,
 				817967B81E8A69C800D036AE /* NetResponse+Build.swift */,
@@ -1024,6 +1030,7 @@
 				D579EE1A1EAE56C500A2F311 /* NetRequest+Moya.swift in Sources */,
 				81ACB7E41E84020C006D05DD /* NetContentType.swift in Sources */,
 				D523AAFA1E8673760093D793 /* NetTask.swift in Sources */,
+				813AE7661EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */,
 				818FC92E1E82BFDE00FEC5A3 /* NetError.swift in Sources */,
 				D579EE7A1EAE8E1C00A2F311 /* NetURLSession+Download.swift in Sources */,
 				D51B42421E9D74AE0029620C /* NetCacheControl.swift in Sources */,
@@ -1072,6 +1079,7 @@
 				D579EE1B1EAE56C600A2F311 /* NetRequest+Moya.swift in Sources */,
 				D523AB141E88417E0093D793 /* NetAuthorization.swift in Sources */,
 				81ACB7E51E84020E006D05DD /* NetContentType.swift in Sources */,
+				813AE7671EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */,
 				81A50A201E9563E100582D15 /* NetTransformer.swift in Sources */,
 				D579EE821EAE8E1D00A2F311 /* NetURLSession+Download.swift in Sources */,
 				D523AAFB1E8673760093D793 /* NetTask.swift in Sources */,
@@ -1112,6 +1120,7 @@
 				D579EE1C1EAE56C700A2F311 /* NetRequest+Moya.swift in Sources */,
 				81ACB7E61E84020E006D05DD /* NetContentType.swift in Sources */,
 				D523AAFC1E8673760093D793 /* NetTask.swift in Sources */,
+				813AE7681EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */,
 				818FC9301E82BFE000FEC5A3 /* NetError.swift in Sources */,
 				D579EE8A1EAE8E1E00A2F311 /* NetURLSession+Download.swift in Sources */,
 				D51B42441E9D74AE0029620C /* NetCacheControl.swift in Sources */,
@@ -1152,6 +1161,7 @@
 				D579EE1D1EAE56C800A2F311 /* NetRequest+Moya.swift in Sources */,
 				81ACB7E71E84020F006D05DD /* NetContentType.swift in Sources */,
 				D523AAFD1E8673760093D793 /* NetTask.swift in Sources */,
+				813AE7691EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */,
 				818FC9311E82BFE100FEC5A3 /* NetError.swift in Sources */,
 				D579EE921EAE8E1E00A2F311 /* NetURLSession+Download.swift in Sources */,
 				D51B42451E9D74AE0029620C /* NetCacheControl.swift in Sources */,
@@ -1271,7 +1281,7 @@
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
 				DYLIB_COMPATIBILITY_VERSION = 0.1.2;
-				DYLIB_CURRENT_VERSION = 0.1.2;
+				DYLIB_CURRENT_VERSION = 0.1.3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1317,7 +1327,7 @@
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
 				DYLIB_COMPATIBILITY_VERSION = 0.1.2;
-				DYLIB_CURRENT_VERSION = 0.1.2;
+				DYLIB_CURRENT_VERSION = 0.1.3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;

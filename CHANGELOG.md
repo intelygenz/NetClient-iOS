@@ -1,3 +1,8 @@
+# Release 0.1.3
+
+- [x] Multipart form data encoder
+- [x] Content length
+
 # Release 0.1.2
 
 - [x] Network reachability

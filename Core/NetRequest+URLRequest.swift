@@ -11,6 +11,7 @@ import Foundation
 extension NetRequest {
 
     private struct HTTPHeader {
+        static let contentLength = "Content-Length"
         static let contentType = "Content-Type"
         static let accept = "Accept"
         static let acceptEncoding = "Accept-Encoding"
@@ -46,7 +47,11 @@ extension NetRequest {
         if let methodString = urlRequest.httpMethod, let methodValue = NetMethod(rawValue: methodString) {
             method = methodValue
         }
-        self.init(url, cache: NetCachePolicy(rawValue: urlRequest.cachePolicy.rawValue) ?? .useProtocolCachePolicy, timeout: urlRequest.timeoutInterval, mainDocumentURL: urlRequest.mainDocumentURL, serviceType: NetServiceType(rawValue: urlRequest.networkServiceType.rawValue) ?? .default, contentType: contentType, accept: accept, acceptEncoding: acceptEncoding, cacheControl: cacheControl, allowsCellularAccess: urlRequest.allowsCellularAccess, method: method, headers: urlRequest.allHTTPHeaderFields, body: urlRequest.httpBody, bodyStream: urlRequest.httpBodyStream, handleCookies: urlRequest.httpShouldHandleCookies, usePipelining: urlRequest.httpShouldUsePipelining, authorization: authorization)
+        var contentLength: NetContentLength? = nil
+        if let contentLengthValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.contentLength), let contentLengthInt64 = NetContentLength(contentLengthValue) {
+            contentLength = contentLengthInt64
+        }
+        self.init(url, cache: NetCachePolicy(rawValue: urlRequest.cachePolicy.rawValue) ?? .useProtocolCachePolicy, timeout: urlRequest.timeoutInterval, mainDocumentURL: urlRequest.mainDocumentURL, serviceType: NetServiceType(rawValue: urlRequest.networkServiceType.rawValue) ?? .default, contentType: contentType, contentLength: contentLength, accept: accept, acceptEncoding: acceptEncoding, cacheControl: cacheControl, allowsCellularAccess: urlRequest.allowsCellularAccess, method: method, headers: urlRequest.allHTTPHeaderFields, body: urlRequest.httpBody, bodyStream: urlRequest.httpBodyStream, handleCookies: urlRequest.httpShouldHandleCookies, usePipelining: urlRequest.httpShouldUsePipelining, authorization: authorization)
     }
 
     public var urlRequest: URLRequest {
@@ -57,6 +62,9 @@ extension NetRequest {
         urlRequest.httpMethod = httpMethod.rawValue
         urlRequest.allHTTPHeaderFields = headers
         urlRequest.setValue(contentType?.rawValue, forHTTPHeaderField: HTTPHeader.contentType)
+        if let contentLength = contentLength {
+            urlRequest.setValue("\(contentLength)", forHTTPHeaderField: HTTPHeader.contentLength)
+        }
         urlRequest.setValue(accept?.rawValue, forHTTPHeaderField: HTTPHeader.accept)
         urlRequest.setValue(acceptEncoding?.flatMap({$0.rawValue}).joined(separator: ", "), forHTTPHeaderField: HTTPHeader.acceptEncoding)
         urlRequest.setValue(cacheControl?.flatMap({$0.rawValue}).joined(separator: ", "), forHTTPHeaderField: HTTPHeader.cacheControl)

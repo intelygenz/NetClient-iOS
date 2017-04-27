@@ -12,10 +12,6 @@ extension NetRequest {
 
     open class Builder {
 
-        private struct HTTPHeader {
-            static let contentLength = "Content-Length"
-        }
-
         open private(set) var url: URL
 
         open private(set) var cache: NetRequest.NetCachePolicy?
@@ -27,6 +23,8 @@ extension NetRequest {
         open private(set) var serviceType: NetRequest.NetServiceType?
 
         open private(set) var contentType: NetContentType?
+
+        open private(set) var contentLength: NetContentLength?
 
         open private(set) var accept: NetContentType?
 
@@ -57,6 +55,7 @@ extension NetRequest {
             mainDocumentURL = netRequest.mainDocumentURL
             serviceType = netRequest.serviceType
             contentType = netRequest.contentType
+            contentLength = netRequest.contentLength
             accept = netRequest.accept
             acceptEncoding = netRequest.acceptEncoding
             cacheControl = netRequest.cacheControl
@@ -110,6 +109,11 @@ extension NetRequest {
 
         @discardableResult open func setContentType(_ contentType: NetContentType?) -> Self {
             self.contentType = contentType
+            return self
+        }
+
+        @discardableResult open func setContentLength(_ contentLength: NetContentLength?) -> Self {
+            self.contentLength = contentLength
             return self
         }
 
@@ -188,8 +192,8 @@ extension NetRequest {
                 if method == nil {
                     setMethod(.POST)
                 }
-                if let length = body?.count {
-                    addHeader(HTTPHeader.contentLength, value: "\(length)")
+                if contentLength == nil, let length = body?.count {
+                    setContentLength(NetContentLength(length))
                 }
             }
             self.body = body
@@ -234,8 +238,8 @@ extension NetRequest {
             if method == nil {
                 setMethod(.POST)
             }
-            if let length = body?.count {
-                addHeader(HTTPHeader.contentLength, value: "\(length)")
+            if contentLength == nil, let length = body?.count {
+                setContentLength(NetContentLength(length))
             }
             return self
         }
@@ -251,8 +255,8 @@ extension NetRequest {
             if method == nil {
                 setMethod(.POST)
             }
-            if let length = body?.count {
-                addHeader(HTTPHeader.contentLength, value: "\(length)")
+            if contentLength == nil, let length = body?.count {
+                setContentLength(NetContentLength(length))
             }
             return self
         }
@@ -268,8 +272,8 @@ extension NetRequest {
             if method == nil {
                 setMethod(.POST)
             }
-            if let length = body?.count {
-                addHeader(HTTPHeader.contentLength, value: "\(length)")
+            if contentLength == nil, let length = body?.count {
+                setContentLength(NetContentLength(length))
             }
             return self
         }
@@ -285,8 +289,8 @@ extension NetRequest {
             if method == nil {
                 setMethod(.POST)
             }
-            if let length = body?.count {
-                addHeader(HTTPHeader.contentLength, value: "\(length)")
+            if contentLength == nil, let length = body?.count {
+                setContentLength(NetContentLength(length))
             }
             return self
         }
@@ -302,6 +306,19 @@ extension NetRequest {
                 }
             }
             self.bodyStream = bodyStream
+            return self
+        }
+
+        @discardableResult open func setMultipartFormData(_ multipartFormData: NetMultipartFormData?) throws -> Self {
+            guard let multipartFormData = multipartFormData else {
+                return self
+            }
+            body = try multipartFormData.encode()
+            setContentType(.custom(multipartFormData.contentType))
+            setContentLength(multipartFormData.contentLength)
+            if method == nil {
+                setMethod(.POST)
+            }
             return self
         }
 
@@ -353,7 +370,7 @@ extension NetRequest {
     }
 
     public init(_ builder: Builder) {
-        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, accept: builder.accept, acceptEncoding: builder.acceptEncoding, cacheControl: builder.cacheControl, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
+        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, contentLength: builder.contentLength, accept: builder.accept, acceptEncoding: builder.acceptEncoding, cacheControl: builder.cacheControl, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
     }
 
     public func builder() -> Builder {
