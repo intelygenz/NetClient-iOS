@@ -55,7 +55,7 @@ extension NetCacheControl: RawRepresentable {
     public var rawValue: RawValue {
         switch self {
         case .maxAge(let timeInterval):
-            guard let intValue = Int(exactly: timeInterval) else {
+            guard let intValue = Int(exactly: Double(timeInterval)) else {
                 return "\(StringValue.maxAge)=\(timeInterval)"
             }
             return "\(StringValue.maxAge)=\(intValue)"
@@ -63,12 +63,12 @@ extension NetCacheControl: RawRepresentable {
             guard let timeInterval = timeInterval else {
                 return StringValue.maxStale
             }
-            guard let intValue = Int(exactly: timeInterval) else {
+            guard let intValue = Int(exactly: Double(timeInterval)) else {
                 return "\(StringValue.maxStale)=\(timeInterval)"
             }
             return "\(StringValue.maxStale)=\(intValue)"
         case .minFresh(let timeInterval):
-            guard let intValue = Int(exactly: timeInterval) else {
+            guard let intValue = Int(exactly: Double(timeInterval)) else {
                 return "\(StringValue.minFresh)=\(timeInterval)"
             }
             return "\(StringValue.minFresh)=\(intValue)"
