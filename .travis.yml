@@ -6,3 +6,6 @@ xcode_sdk: iphonesimulator10.3
 
 script:
 - xcodebuild -workspace Net.xcworkspace -scheme Example -sdk iphonesimulator10.3 -destination "platform=iOS Simulator,name=iPhone 7,OS=10.3" -configuration Debug -enableCodeCoverage YES clean build test
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
