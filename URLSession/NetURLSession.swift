@@ -45,6 +45,8 @@ public class NetURLSession: Net {
 
     open var responseInterceptors = [ResponseInterceptor]()
 
+    open var retryClosure: NetTask.RetryClosure?
+
     open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)?
 
     fileprivate final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
@@ -140,6 +142,30 @@ extension NetURLSession {
             return NetError.net(code: error._code, message: error.localizedDescription, headers: (response as? HTTPURLResponse)?.allHeaderFields, object: responseObject, underlying: error)
         }
         return nil
+    }
+
+    func process(_ netTask: NetTask?, _ netResponse: NetResponse?, _ netError: NetError?) {
+        netTask?.response = netResponse
+        netTask?.error = netError
+        if let request = netTask?.request, let retryCount = netTask?.retryCount, netTask?.retryClosure?(netResponse, netError, retryCount) == true || retryClosure?(netResponse, netError, retryCount) == true {
+            let retryTask = self.data(request)
+            netTask?.netTask = retryTask.netTask
+            netTask?.state = .suspended
+            netTask?.retryCount += 1
+            retryTask.request = nil
+            retryTask.progressClosure = { progress in
+                netTask?.progress = progress
+                netTask?.progressClosure?(progress)
+            }
+            retryTask.completionClosure = { response, error in
+                netTask?.metrics = retryTask.metrics
+                self.process(netTask, response, error)
+            }
+            netTask?.resume()
+        } else {
+            netTask?.dispatchSemaphore?.signal()
+            netTask?.completionClosure?(netResponse, netError)
+        }
     }
 
 }

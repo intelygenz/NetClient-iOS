@@ -20,6 +20,8 @@ public protocol Net: class {
 
     var responseInterceptors: [ResponseInterceptor] { get set }
 
+    var retryClosure: NetTask.RetryClosure? { get set }
+
     func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor)
 
     func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor)

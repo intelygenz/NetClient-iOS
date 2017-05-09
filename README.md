@@ -27,6 +27,7 @@
 - [x] Asynchronous and synchronous task execution
 - [x] Inference of response object type
 - [x] Network reachability
+- [x] Retry requests
 - [x] watchOS Compatible
 - [x] tvOS Compatible
 - [x] macOS Compatible
@@ -160,6 +161,24 @@ net.addRequestInterceptor { request in
     request.addHeader("foo", value: "bar")
     request.setBearerAuthorization(token: "token")
     return request
+}
+```
+
+### Retry requests
+
+```swift
+import Net
+
+let net = NetURLSession()
+
+net.retryClosure = { response, _, _ in response?.statusCode == XXX }
+
+do {
+    let task = try net.data("YOUR_URL").retry({ response, error, retryCount in
+        return retryCount < 2
+    }).sync()
+} catch {
+    print("Error: \(error)")
 }
 ```
 

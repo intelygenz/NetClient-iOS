@@ -1,3 +1,7 @@
+# Release 0.2.0
+
+- [x] Retry requests
+
 # Release 0.1.3
 
 - [x] Multipart form data encoder

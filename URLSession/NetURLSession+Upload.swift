@@ -38,10 +38,7 @@ extension NetURLSession {
         let task = session.uploadTask(with: urlRequest(request), from: data) { [weak self] (data, response, error) in
             let netResponse = self?.netResponse(response, netUploadTask, data)
             let netError = self?.netError(error, data, response)
-            netUploadTask?.response = netResponse
-            netUploadTask?.error = netError
-            netUploadTask?.dispatchSemaphore?.signal()
-            netUploadTask?.completionClosure?(netResponse, netError)
+            self?.process(netUploadTask, netResponse, netError)
         }
         netUploadTask = netTask(task, request)
         observe(task, netUploadTask)
@@ -71,10 +68,7 @@ extension NetURLSession {
         let task = session.uploadTask(with: urlRequest(request), fromFile: fileURL) { [weak self] (data, response, error) in
             let netResponse = self?.netResponse(response, netUploadTask, data)
             let netError = self?.netError(error, data, response)
-            netUploadTask?.response = netResponse
-            netUploadTask?.error = netError
-            netUploadTask?.dispatchSemaphore?.signal()
-            netUploadTask?.completionClosure?(netResponse, netError)
+            self?.process(netUploadTask, netResponse, netError)
         }
         netUploadTask = netTask(task, request)
         observe(task, netUploadTask)

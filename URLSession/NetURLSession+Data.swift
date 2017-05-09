@@ -13,10 +13,7 @@ extension NetURLSession {
         let task = session.dataTask(with: urlRequest(request)) { [weak self] (data, response, error) in
             let netResponse = self?.netResponse(response, netDataTask, data)
             let netError = self?.netError(error, data, response)
-            netDataTask?.response = netResponse
-            netDataTask?.error = netError
-            netDataTask?.dispatchSemaphore?.signal()
-            netDataTask?.completionClosure?(netResponse, netError)
+            self?.process(netDataTask, netResponse, netError)
         }
         netDataTask = netTask(task, request)
         observe(task, netDataTask)

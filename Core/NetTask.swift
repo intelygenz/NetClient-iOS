@@ -28,7 +28,7 @@ open class NetTask {
 
     open let identifier: NetTaskIdentifier
 
-    open let request: NetRequest?
+    open internal(set) var request: NetRequest?
 
     open internal(set) var response: NetResponse? {
         didSet {
@@ -52,13 +52,17 @@ open class NetTask {
 
     open internal(set) var metrics: NetTaskMetrics?
 
-    fileprivate let netTask: NetTaskProtocol?
+    var netTask: NetTaskProtocol?
+
+    open internal(set) var retryCount: UInt = 0
 
     fileprivate(set) var dispatchSemaphore: DispatchSemaphore?
 
-    fileprivate(set) var completionClosure: CompletionClosure?
+    var completionClosure: CompletionClosure?
 
-    fileprivate(set) var progressClosure: ProgressClosure?
+    fileprivate(set) var retryClosure: RetryClosure?
+
+    var progressClosure: ProgressClosure?
 
     public init(_ identifier: NetTaskIdentifier? = nil, request: NetRequest? = nil , response: NetResponse? = nil, taskDescription: String? = nil, state: NetState = .suspended, error: NetError? = nil, priority: Float? = nil, progress: Progress? = nil, metrics: NetTaskMetrics? = nil, task: NetTaskProtocol? = nil) {
         self.request = request
@@ -77,6 +81,7 @@ open class NetTask {
 extension NetTask {
 
     public typealias CompletionClosure = (NetResponse?, NetError?) -> Swift.Void
+    public typealias RetryClosure = (NetResponse?, NetError?, UInt) -> Bool
 
     @discardableResult open func async(_ completion: CompletionClosure? = nil) -> Self {
         guard state == .suspended else {
@@ -129,6 +134,11 @@ extension NetTask {
             throw NetError.net(code: error._code, message: "Cached response not found.", headers: response?.headers, object: response?.responseObject, underlying: error)
         }
         throw taskError
+    }
+
+    @discardableResult open func retry(_ retry: @escaping RetryClosure) -> Self {
+        retryClosure = retry
+        return self
     }
 
 }

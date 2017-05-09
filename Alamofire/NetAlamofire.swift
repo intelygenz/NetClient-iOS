@@ -28,6 +28,12 @@ public class NetAlamofire: Net {
 
     open var responseInterceptors = [ResponseInterceptor]()
 
+    open var retryClosure: NetTask.RetryClosure? {
+        didSet {
+            sessionManager.retrier = self
+        }
+    }
+
     open private(set) var sessionManager: Alamofire.SessionManager!
 
     open var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)? {
@@ -113,4 +119,12 @@ extension NetAlamofire {
         return nil
     }
     
+}
+
+extension NetAlamofire: RequestRetrier {
+
+    public func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
+        completion(retryClosure?(netResponse(request.response), netError(error), request.retryCount) == true, 0)
+    }
+
 }

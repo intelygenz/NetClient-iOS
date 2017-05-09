@@ -13,10 +13,7 @@ extension NetURLSession {
         let task = session.downloadTask(withResumeData: resumeData) { [weak self] (url, response, error) in
             let netResponse = self?.netResponse(response, netDownloadTask, url)
             let netError = self?.netError(error, url, response)
-            netDownloadTask?.response = netResponse
-            netDownloadTask?.error = netError
-            netDownloadTask?.dispatchSemaphore?.signal()
-            netDownloadTask?.completionClosure?(netResponse, netError)
+            self?.process(netDownloadTask, netResponse, netError)
         }
         netDownloadTask = netTask(task)
         observe(task, netDownloadTask)
@@ -28,10 +25,7 @@ extension NetURLSession {
         let task = session.downloadTask(with: urlRequest(request)) { [weak self] (url, response, error) in
             let netResponse = self?.netResponse(response, netDownloadTask, url)
             let netError = self?.netError(error, url, response)
-            netDownloadTask?.response = netResponse
-            netDownloadTask?.error = netError
-            netDownloadTask?.dispatchSemaphore?.signal()
-            netDownloadTask?.completionClosure?(netResponse, netError)
+            self?.process(netDownloadTask, netResponse, netError)
         }
         netDownloadTask = netTask(task, request)
         observe(task, netDownloadTask)
