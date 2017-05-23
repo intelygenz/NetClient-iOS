@@ -1,9 +1,9 @@
 language: swift
-
 osx_image: xcode8.3
-
 script:
-- xcodebuild -workspace Net.xcworkspace -scheme Example -destination "platform=iOS Simulator,name=iPhone 7,OS=10.3" -configuration Debug -enableCodeCoverage YES clean build test
-
+- xcodebuild -workspace Net.xcworkspace -scheme Example -destination "platform=iOS
+  Simulator,name=iPhone 7,OS=10.3" -configuration Debug -enableCodeCoverage YES clean
+  build test
 after_success:
 - bash <(curl -s https://codecov.io/bash) -J 'Example'
+- sh Scripts/gnscharts.sh Net Example IG27 none Testing
