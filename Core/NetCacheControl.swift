@@ -33,7 +33,7 @@ extension NetCacheControl: RawRepresentable {
             self = .maxAge(timeInterval)
         } else if rawValue.hasPrefix(StringValue.maxStale) {
             if rawValue.characters.count > StringValue.maxStale.characters.count + 1 {
-                self = .maxStale(TimeInterval(rawValue.substring(from: rawValue.index(StringValue.maxStale.endIndex, offsetBy: 1))))
+                self = .maxStale(TimeInterval(rawValue.substring(from: rawValue.index(StringValue.maxStale.endIndex, offsetBy: 2))))
             } else {
                 self = .maxStale(nil)
             }
