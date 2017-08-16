@@ -49,6 +49,8 @@ public class NetURLSession: Net {
 
     open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)?
 
+    open private(set) var serverTrust = [String: NetServerTrust]()
+
     fileprivate final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
     public convenience init() {
@@ -69,6 +71,11 @@ public class NetURLSession: Net {
     public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = nil, authenticationChallenge: @escaping (URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void) {
         session = URLSession(configuration: configuration, delegate: NetURLSessionDelegate(self), delegateQueue: challengeQueue)
         authChallenge = authenticationChallenge
+    }
+
+    public init(_ configuration: URLSessionConfiguration, challengeQueue: OperationQueue? = nil, serverTrustPolicies: [String: NetServerTrust]) {
+        session = URLSession(configuration: configuration, delegate: NetURLSessionDelegate(self), delegateQueue: challengeQueue)
+        serverTrust = serverTrustPolicies
     }
 
     open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) {

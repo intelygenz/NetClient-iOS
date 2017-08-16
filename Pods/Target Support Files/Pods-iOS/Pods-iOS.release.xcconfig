@@ -1,7 +1,7 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-iOS" "$PODS_CONFIGURATION_BUILD_DIR/Moya-iOS" "$PODS_CONFIGURATION_BUILD_DIR/Result-iOS"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-iOS8.0" "$PODS_CONFIGURATION_BUILD_DIR/Moya-iOS8.0" "$PODS_CONFIGURATION_BUILD_DIR/Result-iOS8.0"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks' '@executable_path/../../Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-iOS/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Moya-iOS/Moya.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Result-iOS/Result.framework/Headers"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-iOS8.0/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Moya-iOS8.0/Moya.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Result-iOS8.0/Result.framework/Headers"
 OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "Moya" -framework "Result"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR

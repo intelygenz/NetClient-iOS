@@ -1,3 +1,8 @@
+# Release 0.2.1
+
+- [x] TLS Certificate and Public Key Pinning
+- [x] NetCacheControl fix
+
 # Release 0.2.0
 
 - [x] Retry requests

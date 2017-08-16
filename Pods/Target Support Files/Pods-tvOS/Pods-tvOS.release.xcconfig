@@ -1,7 +1,7 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-tvOS" "$PODS_CONFIGURATION_BUILD_DIR/Moya-tvOS" "$PODS_CONFIGURATION_BUILD_DIR/Result-tvOS"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-tvOS9.0" "$PODS_CONFIGURATION_BUILD_DIR/Moya-tvOS9.0" "$PODS_CONFIGURATION_BUILD_DIR/Result-tvOS9.0"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks' '@executable_path/../../Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-tvOS/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Moya-tvOS/Moya.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Result-tvOS/Result.framework/Headers"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-tvOS9.0/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Moya-tvOS9.0/Moya.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Result-tvOS9.0/Result.framework/Headers"
 OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "Moya" -framework "Result"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR

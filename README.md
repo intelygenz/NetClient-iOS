@@ -27,6 +27,7 @@
 - [x] Asynchronous and synchronous task execution
 - [x] Inference of response object type
 - [x] Network reachability
+- [x] TLS Certificate and Public Key Pinning
 - [x] Retry requests
 - [x] watchOS Compatible
 - [x] tvOS Compatible

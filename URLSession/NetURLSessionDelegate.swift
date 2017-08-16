@@ -86,10 +86,19 @@ extension NetURLSessionDelegate {
             }
 
             if credential == nil, challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust, let serverTrust = challenge.protectionSpace.serverTrust {
-                credential = URLCredential(trust: serverTrust)
+                let host = challenge.protectionSpace.host
+                if let policy = netURLSession?.serverTrust[host] {
+                    if policy.evaluate(serverTrust, host: host) {
+                        credential = URLCredential(trust: serverTrust)
+                    } else {
+                        credential = nil
+                    }
+                } else {
+                    credential = URLCredential(trust: serverTrust)
+                }
             }
 
-            completion(.useCredential, credential)
+            completion(credential != nil ? .useCredential : .cancelAuthenticationChallenge, credential)
             return
         }
         authChallenge(challenge, completion)
