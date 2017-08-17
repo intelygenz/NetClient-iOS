@@ -103,11 +103,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS8.0/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Kommander-iOS8.0/Kommander.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS8.0/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result-iOS8.0/Result.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS8.0/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Kommander-iOS8.0/Kommander.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS8.0/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result-iOS8.0/Result.framework"
 fi

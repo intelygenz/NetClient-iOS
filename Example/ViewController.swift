@@ -9,10 +9,12 @@
 import UIKit
 import Net
 import Moya
+import Kommander
 
 class ViewController: UIViewController {
 
     let net: Net = NetURLSession()
+    let kommander = Kommander()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,13 @@ class ViewController: UIViewController {
             case let .failure(error):
                 print(error)
             }
+        }
+
+        // Kommander
+        net.data(request).execute(by: kommander, onSuccess: { object in
+            print(object)
+        }) { error in
+            print("Error: \((error as! NetError).localizedDescription)")
         }
     }
 

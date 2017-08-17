@@ -1,3 +1,7 @@
+# Release 0.2.2
+
+- [x] [Kommander](https://github.com/intelygenz/Kommander-iOS) Compatible
+
 # Release 0.2.1
 
 - [x] TLS Certificate and Public Key Pinning

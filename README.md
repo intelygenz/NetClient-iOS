@@ -34,6 +34,7 @@
 - [x] macOS Compatible
 - [x] [Alamofire](https://github.com/Alamofire/Alamofire) Implementation
 - [x] [Moya](https://github.com/Moya/Moya)Provider Compatible
+- [x] [Kommander](https://github.com/intelygenz/Kommander-iOS) Compatible
 
 ## Requirements
 
@@ -216,6 +217,26 @@ provider.request(request) { result in
     case let .failure(error):
         print("Error: \(error)")
     }
+}
+```
+
+### Love [Kommander](https://github.com/intelygenz/Kommander-iOS)?
+
+```ruby
+pod 'NetClient/Kommander'
+```
+
+```swift
+import Net
+import Kommander
+
+let net = NetURLSession()
+let kommander = Kommander()
+
+net.data(URL(string: "YOUR_URL")!).execute(by: kommander, onSuccess: { object in
+    print("Response dictionary: \(object as [AnyHashable: Any])")
+}) { error in
+    print("Error: \((error as! NetError).localizedDescription)")
 }
 ```
 

@@ -1,0 +1,6 @@
+framework module Kommander {
+  umbrella header "Kommander-watchOS2.0-umbrella.h"
+
+  export *
+  module * { export * }
+}
