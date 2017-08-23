@@ -52,6 +52,12 @@ it, simply add the following line to your Podfile:
 pod 'NetClient'
 ```
 
+For Swift 3 compatibility use:
+
+```ruby
+pod 'NetClient', '~> 0.2'
+```
+
 #### Or you can install it with [Carthage](https://github.com/Carthage/Carthage):
 
 ```ogdl
