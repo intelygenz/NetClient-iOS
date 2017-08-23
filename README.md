@@ -191,7 +191,7 @@ do {
 
 ```swift
 let request = NetRequest.builder("YOUR_URL")!
-            .setJSONObject(Codable)
+            .setJSONObject(Encodable)
             .build()
 ```
 
