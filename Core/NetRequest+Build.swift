@@ -261,6 +261,23 @@ extension NetRequest {
             return self
         }
 
+        @discardableResult open func setJSONObject<T: Encodable>(_ jsonObject: T?) throws -> Self {
+            guard let jsonObject = jsonObject else {
+                return self
+            }
+            body = try JSONEncoder().encode(jsonObject)
+            if contentType == nil {
+                setContentType(.json)
+            }
+            if method == nil {
+                setMethod(.POST)
+            }
+            if contentLength == nil, let length = body?.count {
+                setContentLength(NetContentLength(length))
+            }
+            return self
+        }
+
         @discardableResult open func setJSONBody(_ jsonBody: Any?, options: JSONSerialization.WritingOptions = .prettyPrinted) throws -> Self {
             guard let jsonBody = jsonBody else {
                 return self

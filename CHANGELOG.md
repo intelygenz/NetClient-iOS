@@ -1,3 +1,8 @@
+# Release 0.3.0
+
+- [x] Swift 4.0
+- [x] Codable/Decodable/Encodable protocols compatible
+
 # Release 0.2.2
 
 - [x] [Kommander](https://github.com/intelygenz/Kommander-iOS) Compatible

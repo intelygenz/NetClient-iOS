@@ -30,6 +30,7 @@
 		813AE7671EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */; };
 		813AE7681EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */; };
 		813AE7691EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */; };
+		8173E28F1F4D86B700C184E1 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8173E28E1F4D86B700C184E1 /* Article.swift */; };
 		817967BA1E8A69D400D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
 		817967BB1E8A69D500D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
 		817967BC1E8A69D600D036AE /* NetResponse+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817967B81E8A69C800D036AE /* NetResponse+Build.swift */; };
@@ -275,6 +276,7 @@
 		7D1C35DCDF8122B731EE2C0A /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		811842311F4441A200240CC4 /* NetServerTrust.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetServerTrust.swift; sourceTree = "<group>"; };
 		813AE7651EB1DC00002609E1 /* NetMultipartFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetMultipartFormData.swift; sourceTree = "<group>"; };
+		8173E28E1F4D86B700C184E1 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		817967B81E8A69C800D036AE /* NetResponse+Build.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetResponse+Build.swift"; sourceTree = "<group>"; };
 		818FC9261E82BF3200FEC5A3 /* Net.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
 		818FC92C1E82BFD800FEC5A3 /* NetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetError.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 			children = (
 				D5A521CD1E7B348100406F0F /* AppDelegate.swift */,
 				D5A521CF1E7B348100406F0F /* ViewController.swift */,
+				8173E28E1F4D86B700C184E1 /* Article.swift */,
 				D5A521D11E7B348100406F0F /* Main.storyboard */,
 				D5A521D41E7B348100406F0F /* Assets.xcassets */,
 				D5A521D61E7B348100406F0F /* LaunchScreen.storyboard */,
@@ -771,19 +774,19 @@
 					D5A521611E7B340D00406F0F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3VW789WSMP;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					D5A521691E7B342100406F0F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3VW789WSMP;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					D5A521721E7B342100406F0F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3VW789WSMP;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					D5A521861E7B342F00406F0F = {
@@ -804,13 +807,13 @@
 					D5A521CA1E7B348100406F0F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3VW789WSMP;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					D5A521DD1E7B348100406F0F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3VW789WSMP;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 						TestTargetID = D5A521CA1E7B348100406F0F;
 					};
@@ -1390,6 +1393,7 @@
 			files = (
 				D5A521D01E7B348100406F0F /* ViewController.swift in Sources */,
 				D5A521CE1E7B348100406F0F /* AppDelegate.swift in Sources */,
+				8173E28F1F4D86B700C184E1 /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1490,8 +1494,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
-				DYLIB_COMPATIBILITY_VERSION = 0.2.0;
-				DYLIB_CURRENT_VERSION = 0.2.2;
+				DYLIB_COMPATIBILITY_VERSION = 0.3.0;
+				DYLIB_CURRENT_VERSION = 0.3.0;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1543,8 +1547,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
-				DYLIB_COMPATIBILITY_VERSION = 0.2.0;
-				DYLIB_CURRENT_VERSION = 0.2.2;
+				DYLIB_COMPATIBILITY_VERSION = 0.3.0;
+				DYLIB_CURRENT_VERSION = 0.3.0;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1578,7 +1582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.2;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1589,7 +1593,7 @@
 				DEFINES_MODULE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.2;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1638,6 +1642,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1681,6 +1686,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1728,6 +1734,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1767,6 +1774,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.intelygenz.Net.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2082,6 +2090,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2123,6 +2132,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.intelygenz.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2171,6 +2181,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Example;
 			};
 			name = Debug;
@@ -2212,6 +2223,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.intelygenz.ExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Example;
 				VALIDATE_PRODUCT = YES;
 			};

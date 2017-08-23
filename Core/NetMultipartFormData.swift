@@ -216,8 +216,7 @@ public class NetMultipartFormData {
             }
 
             bodyContentLength = fileSize.uint64Value
-        }
-        catch {
+        } catch {
             setBodyPartError("Body part file size query failed.", object: fileURL, underlying: error)
             return
         }

@@ -10,7 +10,7 @@
 
 ![Net](https://raw.githubusercontent.com/intelygenz/NetClient-iOS/master/Net.png)
 
-**Net** is a versatile HTTP networking library written in Swift 3.
+**Net** is a versatile HTTP networking library written in Swift 4.
 
 ## Features
 
@@ -29,6 +29,7 @@
 - [x] Network reachability
 - [x] TLS Certificate and Public Key Pinning
 - [x] Retry requests
+- [x] Codable/Decodable/Encodable protocols compatible
 - [x] watchOS Compatible
 - [x] tvOS Compatible
 - [x] macOS Compatible
@@ -39,8 +40,8 @@
 ## Requirements
 
 - iOS 8.0+ / macOS 10.9+ / tvOS 9.0+ / watchOS 2.0+
-- Xcode 8.1+
-- Swift 3.0+
+- Xcode 9.0+
+- Swift 4.0+
 
 ## Installation
 
@@ -183,6 +184,33 @@ do {
     print("Error: \(error)")
 }
 ```
+
+## Codable
+
+### Encodable
+
+```swift
+let request = NetRequest.builder("YOUR_URL")!
+            .setJSONObject(Codable)
+            .build()
+```
+
+### Decodable
+
+```swift
+import Net
+
+let net = NetURLSession()
+
+do {
+    let object: Decodable = try net.data("YOUR_URL").sync().decode()
+    print("Response object: \(object)")
+} catch {
+    print("Error: \(error)")
+}
+```
+
+## Integrations
 
 ### Love [Alamofire](https://github.com/Alamofire/Alamofire)?
 

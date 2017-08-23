@@ -18,22 +18,43 @@ extension NetError {
     public func object<T>() throws -> T {
         switch self {
         case .net(let code, _, _, let object, let underlying):
-            return try transform(code, object, underlying)
+            return try objectTransformation(code, object, underlying)
         case .parse(let code, _, let object, let underlying):
-            return try transform(code, object, underlying)
+            return try objectTransformation(code, object, underlying)
         }
     }
 
-    private func transform<T>(_ code: Int? = nil, _ object: Any? = nil, _ underlying: Error? = nil) throws -> T {
+    public func decode<T: Decodable>() throws -> T {
+        switch self {
+        case .net(let code, _, _, let object, let underlying):
+            return try decodeTransformation(code, object, underlying)
+        case .parse(let code, _, let object, let underlying):
+            return try decodeTransformation(code, object, underlying)
+        }
+    }
+
+    private func objectTransformation<T>(_ code: Int? = nil, _ object: Any? = nil, _ underlying: Error? = nil) throws -> T {
         do {
             return try NetTransformer.object(object: object)
         } catch {
-            switch error as! NetError {
-            case .parse(let transformCode, let message, let object, let transformUnderlying):
-                throw NetError.parse(code: transformCode ?? code, message: message, object: object, underlying: transformUnderlying ?? underlying)
-            default:
-                throw error
-            }
+            throw handle(error, code, underlying)
+        }
+    }
+
+    private func decodeTransformation<T: Decodable>(_ code: Int? = nil, _ object: Any? = nil, _ underlying: Error? = nil) throws -> T {
+        do {
+            return try NetTransformer.decode(object: object)
+        } catch {
+            throw handle(error, code, underlying)
+        }
+    }
+
+    private func handle(_ error: Error, _ code: Int? = nil, _ underlying: Error? = nil) -> Error {
+        switch error as! NetError {
+        case .parse(let transformCode, let message, let object, let transformUnderlying):
+            return NetError.parse(code: transformCode ?? code, message: message, object: object, underlying: transformUnderlying ?? underlying)
+        default:
+            return error
         }
     }
     

@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let request = NetRequest("http://www.alexruperez.com/home.json")!
+        let request = NetRequest("http://www.alexruperez.com/entries/3491-intelygenz-netclient-ios.json")!
 
         // Asynchronous
         net.data(request).async { (response, error) in
@@ -61,6 +61,22 @@ class ViewController: UIViewController {
         }) { error in
             print("Error: \((error as! NetError).localizedDescription)")
         }
+
+        // Decode
+        net.data(request).async { (response, error) in
+            do {
+                if let article: Article = try response?.decode() {
+                    print(article)
+                    // Encode
+                    try request.builder().setJSONObject(article)
+                } else if let error = error {
+                    print("Net error: \(error)")
+                }
+            } catch {
+                print("Parse error: \((error as! NetError).localizedDescription)")
+            }
+        }
+
     }
 
 }

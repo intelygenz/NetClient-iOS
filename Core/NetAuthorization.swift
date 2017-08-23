@@ -26,7 +26,7 @@ extension NetAuthorization: RawRepresentable {
     public init(rawValue: RawValue) {
         self = .none
         if rawValue.hasPrefix(StringValue.basic) {
-            let base64EncodedString = rawValue.substring(from: StringValue.basic.endIndex)
+            let base64EncodedString = "\(rawValue[StringValue.basic.endIndex...])"
             if let authorizationData = Data(base64Encoded: base64EncodedString) {
                 let authorizationComponents = String(data: authorizationData, encoding: .utf8)?.components(separatedBy: ":")
                 if let user: String = authorizationComponents?.first, let password: String = authorizationComponents?.last, user != password {
@@ -34,7 +34,7 @@ extension NetAuthorization: RawRepresentable {
                 }
             }
         } else if rawValue.hasPrefix(StringValue.bearer) {
-            self = .bearer(token: rawValue.substring(from: StringValue.bearer.endIndex))
+            self = .bearer(token: "\(rawValue[StringValue.bearer.endIndex...])")
         } else {
             self = .custom(rawValue)
         }

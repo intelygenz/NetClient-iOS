@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
-  - Kommander (0.7.0)
+  - Kommander (0.8.0)
   - Moya (8.0.5):
     - Moya/Core (= 8.0.5)
   - Moya/Core (8.0.5):
@@ -10,15 +10,25 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Kommander
+  - Kommander (from `https://github.com/intelygenz/Kommander-iOS.git`, branch `feature/Swift-4`)
   - Moya
+
+EXTERNAL SOURCES:
+  Kommander:
+    :branch: feature/Swift-4
+    :git: https://github.com/intelygenz/Kommander-iOS.git
+
+CHECKOUT OPTIONS:
+  Kommander:
+    :commit: 9aabaaa9f47e03fb28f26242263031d1555d112b
+    :git: https://github.com/intelygenz/Kommander-iOS.git
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  Kommander: 92d901e805c5d820d13e690d95e28bfb168a7c9a
+  Kommander: 264108dea00041064719a519b3cf8627ac7a3249
   Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
 
-PODFILE CHECKSUM: bf3c3cac92f7f281ea819a99ccae13f53203a80d
+PODFILE CHECKSUM: db34696039c1bddef86974281d0023ec86dc8c08
 
 COCOAPODS: 1.3.1

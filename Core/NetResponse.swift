@@ -58,12 +58,24 @@ extension NetResponse {
         do {
             return try NetTransformer.object(object: responseObject)
         } catch {
-            switch error as! NetError {
-            case .parse(let transformCode, let message, let object, let underlying):
-                throw NetError.parse(code: transformCode ?? statusCode, message: message, object: object ?? responseObject, underlying: underlying)
-            default:
-                throw error
-            }
+            throw handle(error)
+        }
+    }
+
+    public func decode<T: Decodable>() throws -> T {
+        do {
+            return try NetTransformer.decode(object: responseObject)
+        } catch {
+            throw handle(error)
+        }
+    }
+
+    private func handle(_ error: Error) -> Error {
+        switch error as! NetError {
+        case .parse(let transformCode, let message, let object, let underlying):
+            return NetError.parse(code: transformCode ?? statusCode, message: message, object: object ?? responseObject, underlying: underlying)
+        default:
+            return error
         }
     }
 
