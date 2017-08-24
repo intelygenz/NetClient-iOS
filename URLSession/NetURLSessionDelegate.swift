@@ -46,6 +46,11 @@ extension NetURLSessionDelegate: URLSessionTaskDelegate {
         tasks[task] = nil
     }
 
+    @available(iOS 11.0, *)
+    func urlSession(_ session: URLSession, task: URLSessionTask, willBeginDelayedRequest request: URLRequest, completionHandler: @escaping (URLSession.DelayedRequestDisposition, URLRequest?) -> Void) {
+        completionHandler(.continueLoading, nil)
+    }
+
 }
 
 extension NetURLSessionDelegate: URLSessionDataDelegate {}

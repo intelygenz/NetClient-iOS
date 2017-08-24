@@ -36,9 +36,9 @@ class NetURLSessionTaskObserver: NSObject {
     deinit {
         for netTask in tasks.values {
             if netTask.progress == Progress.current() {
-                netTask.progress?.resignCurrent()
+                netTask.progress.resignCurrent()
             }
-            netTask.progress?.cancel()
+            netTask.progress.cancel()
         }
         tasks.removeAll()
     }
@@ -84,9 +84,10 @@ class NetURLSessionTaskObserver: NSObject {
             totalUnitCount = contentLength
         }
         if taskProgress == nil {
-            taskProgress = syncProgress(task, totalUnitCount: totalUnitCount)
-            tasks[task]?.progress = taskProgress
-            taskProgress?.becomeCurrent(withPendingUnitCount: totalUnitCount)
+            let progress = syncProgress(task, totalUnitCount: totalUnitCount)
+            tasks[task]?.progress = progress
+            progress.becomeCurrent(withPendingUnitCount: totalUnitCount)
+            taskProgress = progress
         }
         taskProgress?.completedUnitCount = completedUnitCount
         taskProgress?.totalUnitCount = totalUnitCount

@@ -12,6 +12,9 @@ public typealias NetTaskIdentifier = Int
 
 public protocol NetTaskProtocol: class {
 
+    @available(iOS 11.0, *)
+    var progress: Progress { get }
+
     func cancel()
 
     func suspend()
@@ -48,7 +51,7 @@ open class NetTask {
 
     open let priority: Float?
 
-    open internal(set) var progress: Progress?
+    open internal(set) var progress: Progress
 
     open internal(set) var metrics: NetTaskMetrics?
 
@@ -72,7 +75,13 @@ open class NetTask {
         self.state = state
         self.error = error
         self.priority = priority
-        self.progress = progress
+        if let progress = progress {
+            self.progress = progress
+        } else if #available(iOS 11.0, *), let progress = task?.progress {
+            self.progress = progress
+        } else {
+            self.progress = Progress.current() ?? Progress(totalUnitCount: Int64(request?.contentLength ?? 0))
+        }
         self.netTask = task
     }
 

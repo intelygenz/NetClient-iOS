@@ -14,9 +14,11 @@ extension NetTask {
         guard let task = alamofireRequest.task else {
             return nil
         }
-        self.init(task.taskIdentifier, request: request, response: response, taskDescription: task.taskDescription, state: NetState(rawValue: task.state.rawValue) ?? .suspended, error: error, priority: task.priority, task: alamofireRequest)
+        self.init(task.taskIdentifier, request: request, response: response, taskDescription: task.taskDescription, state: NetState(rawValue: task.state.rawValue) ?? .suspended, error: error, priority: task.priority, task: alamofireRequest as? NetTaskProtocol)
     }
 
 }
 
-extension Alamofire.Request: NetTaskProtocol {}
+extension Alamofire.DataRequest: NetTaskProtocol {}
+
+extension Alamofire.DownloadRequest: NetTaskProtocol {}
