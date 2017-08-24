@@ -23,6 +23,10 @@ class NetTransformer {
                 if let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? T {
                     return jsonObject
                 }
+            } catch {
+                underlying = error
+            }
+            do {
                 if let propertyListObject = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? T {
                     return propertyListObject
                 }

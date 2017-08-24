@@ -29,7 +29,7 @@ extension NetCacheControl: RawRepresentable {
     public typealias RawValue = String
 
     public init(rawValue: RawValue) {
-        if rawValue.hasPrefix(StringValue.maxAge), let timeInterval = TimeInterval(rawValue[StringValue.maxAge.endIndex...]) {
+        if rawValue.hasPrefix(StringValue.maxAge), let timeInterval = TimeInterval(rawValue[rawValue.index(StringValue.maxAge.endIndex, offsetBy: 1)...]) {
             self = .maxAge(timeInterval)
         } else if rawValue.hasPrefix(StringValue.maxStale) {
             if rawValue.characters.count > StringValue.maxStale.characters.count + 1 {
@@ -37,7 +37,7 @@ extension NetCacheControl: RawRepresentable {
             } else {
                 self = .maxStale(nil)
             }
-        } else if rawValue.hasPrefix(StringValue.minFresh), let timeInterval = TimeInterval(rawValue[StringValue.minFresh.endIndex...]) {
+        } else if rawValue.hasPrefix(StringValue.minFresh), let timeInterval = TimeInterval(rawValue[rawValue.index(StringValue.minFresh.endIndex, offsetBy: 1)...]) {
             self = .minFresh(timeInterval)
         } else if rawValue == StringValue.noCache {
             self = .noCache
