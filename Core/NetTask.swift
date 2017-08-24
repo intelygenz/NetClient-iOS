@@ -80,7 +80,7 @@ open class NetTask {
         } else if #available(iOS 11.0, *), let progress = task?.progress {
             self.progress = progress
         } else {
-            self.progress = Progress.current() ?? Progress(totalUnitCount: Int64(request?.contentLength ?? 0))
+            self.progress = Progress(totalUnitCount: Int64(request?.contentLength ?? 0))
         }
         self.netTask = task
     }
