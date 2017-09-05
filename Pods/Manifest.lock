@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (4.5.0)
   - Kommander (0.8.0)
-  - Moya (8.0.5):
-    - Moya/Core (= 8.0.5)
-  - Moya/Core (8.0.5):
+  - Moya (9.0.0):
+    - Moya/Core (= 9.0.0)
+  - Moya/Core (9.0.0):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
   - Result (3.2.3)
@@ -20,13 +20,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Kommander:
-    :commit: 9aabaaa9f47e03fb28f26242263031d1555d112b
+    :commit: 0985b1f6a2ad0288e4e33a0833db9bc001ba8e71
     :git: https://github.com/intelygenz/Kommander-iOS.git
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Kommander: 264108dea00041064719a519b3cf8627ac7a3249
-  Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
+  Moya: cf5e6ee93af526532f92614004b8ad2ea60fd845
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
 
 PODFILE CHECKSUM: db34696039c1bddef86974281d0023ec86dc8c08

@@ -70,6 +70,6 @@ extension NetRequest: TargetType {
     }
 
     public var task: Task {
-        return Moya.Task.request
+        return Moya.Task.requestPlain
     }
 }
