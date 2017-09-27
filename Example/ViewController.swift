@@ -62,6 +62,12 @@ class ViewController: UIViewController {
             print("Error: \((error as! NetError).localizedDescription)")
         }
 
+        net.data(request).executeDecoding(by: kommander, onSuccess: { object in
+            print(object as Article)
+        }) { error in
+            print("Error: \((error as! NetError).localizedDescription)")
+        }
+
         // Decode
         net.data(request).async { (response, error) in
             do {

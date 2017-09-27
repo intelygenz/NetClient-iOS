@@ -27,4 +27,21 @@ extension NetTask {
         return kommand
     }
 
+    /// Execute NetTask decoding the result
+    @discardableResult open func executeDecoding<T: Decodable>(by kommander: Kommander, after delay: DispatchTimeInterval? = nil, onSuccess: ((_ result: T) -> Void)?, onError: ((_ error: Error?) -> Void)?) -> Kommand<T> {
+        let kommand = kommander.makeKommand {
+            return try self.sync().decode()
+            }.onSuccess { result in
+                onSuccess?(result)
+            }.onError { error in
+                onError?(error)
+        }
+        if let delay = delay {
+            kommand.execute(after: delay)
+        } else {
+            kommand.execute()
+        }
+        return kommand
+    }
+
 }

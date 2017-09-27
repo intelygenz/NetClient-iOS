@@ -1,3 +1,7 @@
+# Release 0.3.1
+
+- [x] Codable/Decodable/Encodable protocols compatible with Kommander extension
+
 # Release 0.3.0
 
 - [x] Swift 4.0

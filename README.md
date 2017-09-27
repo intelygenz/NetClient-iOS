@@ -272,6 +272,12 @@ net.data(URL(string: "YOUR_URL")!).execute(by: kommander, onSuccess: { object in
 }) { error in
     print("Error: \((error as! NetError).localizedDescription)")
 }
+
+net.data(URL(string: "YOUR_URL")!).executeDecoding(by: kommander, onSuccess: { object in
+	print("Response object: \(object as Decodable)")
+}) { error in
+    print("Error: \((error as! NetError).localizedDescription)")
+}
 ```
 
 ## Etc.
