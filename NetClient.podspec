@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'NetClient'
   s.version          = '0.3.0'
-  s.summary          = 'Versatile HTTP networking library written in Swift 4.'
+  s.summary          = 'Versatile HTTP networking library written in Swift.'
 
   s.homepage         = 'https://github.com/intelygenz/NetClient-iOS'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -30,14 +30,14 @@ Pod::Spec.new do |s|
   
   s.subspec 'Alamofire' do |ss|
     ss.dependency 'NetClient/Core'
-	ss.dependency 'Alamofire', '~> 4.1'
+	ss.dependency 'Alamofire', '~> 4.5'
     ss.source_files = "Alamofire/*.{h,swift}"
   end
   
   s.subspec 'Moya' do |ss|
     ss.dependency 'NetClient/Core'
 	ss.dependency 'Alamofire', '~> 4.1'
-	ss.dependency 'Moya', '~> 8.0'
+	ss.dependency 'Moya', '~> 9.0'
     ss.source_files = "Moya/*.{h,swift}"
   end
   

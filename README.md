@@ -10,7 +10,7 @@
 
 ![Net](https://raw.githubusercontent.com/intelygenz/NetClient-iOS/master/Net.png)
 
-**Net** is a versatile HTTP networking library written in Swift 4.
+**Net** is a versatile HTTP networking library written in Swift.
 
 ## Features
 
