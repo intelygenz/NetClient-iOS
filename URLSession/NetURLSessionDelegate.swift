@@ -46,7 +46,7 @@ extension NetURLSessionDelegate: URLSessionTaskDelegate {
         tasks[task] = nil
     }
 
-    @available(iOS 11.0, *)
+    @available(iOS 11.0, tvOS 11.0, watchOS 4.0, OSX 10.13, *)
     func urlSession(_ session: URLSession, task: URLSessionTask, willBeginDelayedRequest request: URLRequest, completionHandler: @escaping (URLSession.DelayedRequestDisposition, URLRequest?) -> Void) {
         completionHandler(.continueLoading, nil)
     }
