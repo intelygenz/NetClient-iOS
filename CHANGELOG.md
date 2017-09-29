@@ -1,3 +1,7 @@
+# Release 0.3.2
+
+- [x] Codable / Decodable / Encodable protocols also compatible with Property List
+
 # Release 0.3.1
 
 - [x] Codable/Decodable/Encodable protocols compatible with Kommander extension
@@ -5,7 +9,7 @@
 # Release 0.3.0
 
 - [x] Swift 4.0
-- [x] Codable/Decodable/Encodable protocols compatible
+- [x] Codable/Decodable/Encodable protocols compatible with JSON
 
 # Release 0.2.2
 

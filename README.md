@@ -29,13 +29,13 @@
 - [x] Network reachability
 - [x] TLS Certificate and Public Key Pinning
 - [x] Retry requests
-- [x] Codable/Decodable/Encodable protocols compatible
+- [x] Codable / Decodable / Encodable protocols compatible (JSON / Property List)
 - [x] watchOS Compatible
 - [x] tvOS Compatible
 - [x] macOS Compatible
 - [x] [Alamofire](https://github.com/Alamofire/Alamofire) Implementation
-- [x] [Moya](https://github.com/Moya/Moya)Provider Compatible
-- [x] [Kommander](https://github.com/intelygenz/Kommander-iOS) Compatible
+- [x] [Moya](https://github.com/Moya/Moya)Provider Extension
+- [x] [Kommander](https://github.com/intelygenz/Kommander-iOS) Extension
 
 ## Requirements
 

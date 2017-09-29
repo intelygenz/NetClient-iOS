@@ -45,6 +45,11 @@ class NetTransformer {
             } catch {
                 underlying = error
             }
+            do {
+                return try PropertyListDecoder().decode(T.self, from: data)
+            } catch {
+                underlying = error
+            }
         }
         throw NetError.parse(code: underlying?._code, message: "The data couldn’t be transformed into \(T.self).", object: object, underlying: underlying)
     }

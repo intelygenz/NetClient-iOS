@@ -295,6 +295,23 @@ extension NetRequest {
             return self
         }
 
+        @discardableResult open func setPlistObject<T: Encodable>(_ plistObject: T?) throws -> Self {
+            guard let plistObject = plistObject else {
+                return self
+            }
+            body = try PropertyListEncoder().encode(plistObject)
+            if contentType == nil {
+                setContentType(.plist)
+            }
+            if method == nil {
+                setMethod(.POST)
+            }
+            if contentLength == nil, let length = body?.count {
+                setContentLength(NetContentLength(length))
+            }
+            return self
+        }
+
         @discardableResult open func setPlistBody(_ plistBody: Any?, format: PropertyListSerialization.PropertyListFormat = .xml, options: PropertyListSerialization.WriteOptions = 0) throws -> Self {
             guard let plistBody = plistBody else {
                 return self
