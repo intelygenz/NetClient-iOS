@@ -325,7 +325,7 @@
 		D5A521871E7B342F00406F0F /* Net.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Net.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521941E7B343D00406F0F /* Net.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Net.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521B01E7B345000406F0F /* Net.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Net.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5A521CB1E7B348100406F0F /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5A521CB1E7B348100406F0F /* NetClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A521CD1E7B348100406F0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5A521CF1E7B348100406F0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D5A521D21E7B348100406F0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 				D5A521871E7B342F00406F0F /* Net.framework */,
 				D5A521941E7B343D00406F0F /* Net.framework */,
 				D5A521B01E7B345000406F0F /* Net.framework */,
-				D5A521CB1E7B348100406F0F /* Example.app */,
+				D5A521CB1E7B348100406F0F /* NetClient.app */,
 				D5A521DE1E7B348100406F0F /* ExampleUITests.xctest */,
 			);
 			name = Products;
@@ -738,7 +738,7 @@
 			);
 			name = Example;
 			productName = Example;
-			productReference = D5A521CB1E7B348100406F0F /* Example.app */;
+			productReference = D5A521CB1E7B348100406F0F /* NetClient.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D5A521DD1E7B348100406F0F /* ExampleUITests */ = {
@@ -1495,7 +1495,7 @@
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
 				DYLIB_COMPATIBILITY_VERSION = 0.3.0;
-				DYLIB_CURRENT_VERSION = 0.3.2;
+				DYLIB_CURRENT_VERSION = 0.3.3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1548,7 +1548,7 @@
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
 				DYLIB_COMPATIBILITY_VERSION = 0.3.0;
-				DYLIB_CURRENT_VERSION = 0.3.2;
+				DYLIB_CURRENT_VERSION = 0.3.3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2083,7 +2083,7 @@
 				INFOPLIST_FILE = Example/Info.plist;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intelygenz.Example;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NetClient;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2125,7 +2125,7 @@
 				INFOPLIST_FILE = Example/Info.plist;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intelygenz.Example;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NetClient;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

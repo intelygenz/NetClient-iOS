@@ -1,3 +1,7 @@
+# Release 0.3.3
+
+- [x] NetError now conforms [CustomNSError](https://github.com/apple/swift-evolution/blob/master/proposals/0112-nserror-bridging.md#new-protocols) protocol
+
 # Release 0.3.2
 
 - [x] Codable / Decodable / Encodable protocols also compatible with Property List
