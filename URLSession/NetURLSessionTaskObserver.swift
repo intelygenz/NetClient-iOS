@@ -70,12 +70,8 @@ class NetURLSessionTaskObserver: NSObject {
                     tasks[task] = nil
                     return
                 }
-            } else {
-                if #available(iOS 9.0, OSX 10.11, *) {
-                    if taskProgress?.isPaused == true {
-                        taskProgress?.resume()
-                    }
-                }
+            } else if #available(iOS 9.0, OSX 10.11, *), taskProgress?.isPaused == true {
+                taskProgress?.resume()
             }
         }
         let completedUnitCount = max(task.countOfBytesReceived, task.countOfBytesSent)

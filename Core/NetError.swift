@@ -95,3 +95,26 @@ extension NetError: CustomDebugStringConvertible {
     }
     
 }
+
+extension NetError: CustomNSError {
+
+    public var errorCode: Int {
+        switch self {
+        case .net(let code, _, _, _, _):
+            return code ?? 0
+        case .parse(let code, _, _, _):
+            return code ?? 1
+        }
+    }
+
+    public var errorUserInfo: [String : Any] {
+        switch self {
+        case .net(_, let message, _, _, let underlying), .parse(_, let message, _, let underlying):
+            guard let underlying = underlying else {
+                return [NSLocalizedDescriptionKey: localizedDescription, NSLocalizedFailureReasonErrorKey: message]
+            }
+            return [NSLocalizedDescriptionKey: localizedDescription, NSLocalizedFailureReasonErrorKey: message, NSUnderlyingErrorKey: underlying]
+        }
+    }
+
+}
