@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D5A521CA1E7B348100406F0F"
-               BuildableName = "Example.app"
+               BuildableName = "NetClient.app"
                BlueprintName = "Example"
                ReferencedContainer = "container:Net.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D5A521CA1E7B348100406F0F"
-            BuildableName = "Example.app"
+            BuildableName = "NetClient.app"
             BlueprintName = "Example"
             ReferencedContainer = "container:Net.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D5A521CA1E7B348100406F0F"
-            BuildableName = "Example.app"
+            BuildableName = "NetClient.app"
             BlueprintName = "Example"
             ReferencedContainer = "container:Net.xcodeproj">
          </BuildableReference>
@@ -98,7 +98,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D5A521CA1E7B348100406F0F"
-            BuildableName = "Example.app"
+            BuildableName = "NetClient.app"
             BlueprintName = "Example"
             ReferencedContainer = "container:Net.xcodeproj">
          </BuildableReference>
