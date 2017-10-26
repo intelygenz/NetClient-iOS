@@ -1,3 +1,7 @@
+# Release 0.3.4
+
+- [x] Now using Kommander 0.9 on NetClient/Kommander subspec
+
 # Release 0.3.3
 
 - [x] NetError now conforms [CustomNSError](https://github.com/apple/swift-evolution/blob/master/proposals/0112-nserror-bridging.md#new-protocols) protocol

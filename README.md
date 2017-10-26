@@ -77,6 +77,8 @@ dependencies: [
 ### Build a NetRequest
 
 ```swift
+import Net
+
 let request = NetRequest.builder("YOUR_URL")!
             .setAccept(.json)
             .setCache(.reloadIgnoringLocalCacheData)
@@ -196,6 +198,8 @@ do {
 ### Encodable
 
 ```swift
+import Net
+
 let request = NetRequest.builder("YOUR_URL")!
             .setJSONObject(Encodable)
             .build()
@@ -262,18 +266,16 @@ pod 'NetClient/Kommander'
 
 ```swift
 import Net
-import Kommander
 
 let net = NetURLSession()
-let kommander = Kommander()
 
-net.data(URL(string: "YOUR_URL")!).execute(by: kommander, onSuccess: { object in
+net.data(URL(string: "YOUR_URL")!).execute(onSuccess: { object in
     print("Response dictionary: \(object as [AnyHashable: Any])")
 }) { error in
     print("Error: \((error as! NetError).localizedDescription)")
 }
 
-net.data(URL(string: "YOUR_URL")!).executeDecoding(by: kommander, onSuccess: { object in
+net.data(URL(string: "YOUR_URL")!).executeDecoding(onSuccess: { object in
 	print("Response object: \(object as Decodable)")
 }) { error in
     print("Error: \((error as! NetError).localizedDescription)")

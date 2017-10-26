@@ -6,7 +6,6 @@
 [![Platform](https://img.shields.io/cocoapods/p/Kommander.svg?style=flat)](http://cocoapods.org/pods/Kommander)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager Compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
-[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Kommander.svg)](http://cocoadocs.org/docsets/Kommander)
 [![Build Status](https://travis-ci.org/intelygenz/Kommander-iOS.svg?branch=master)](https://travis-ci.org/intelygenz/Kommander-iOS)
 [![Downloads](https://img.shields.io/cocoapods/dt/Kommander.svg)](http://cocoapods.org/pods/Kommander)
 
@@ -27,7 +26,6 @@ Inspired on the Java library [**Kommander**](https://github.com/Wokdsem/Kommande
 - [x] Main thread dispatcher
 - [x] Current thread dispatcher
 - [x] Custom OperationQueue dispatcher
-- [x] Custom DispatchQueue dispatcher
 - [x] Execute single or multiple Operation
 - [x] Execute sequential or concurrent blocks
 - [x] Execute DispatchWorkItem
@@ -81,6 +79,8 @@ dependencies: [
 
 ## Usage
 
+#### Making, executing and cancelling Kommands:
+
 ```swift
 Kommander().makeKommand {
     // Your code here
@@ -88,7 +88,13 @@ Kommander().makeKommand {
 ```
 
 ```swift
-Kommander().makeKommand { () -> String in
+Kommander().makeKommand {
+    // Your code here
+}.execute(after: .seconds(2))
+```
+
+```swift
+Kommander().makeKommand {
     return "Your string"
 }.onSuccess { yourString in
     print(yourString)
@@ -113,6 +119,56 @@ let kommand = Kommander().makeKommand { () -> Any? in
 }).execute()
 
 kommand.cancel()
+```
+
+#### Creating Kommanders:
+
+```swift
+Kommander(deliverer: Dispatcher = .current, executor: Dispatcher = .default)
+
+Kommander(deliverer: Dispatcher = .current, name: String, qos: QualityOfService = .default, maxConcurrentOperationCount: Int = .default)
+```
+
+```swift
+Kommander.main
+
+Kommander.current
+
+Kommander.default
+
+Kommander.userInteractive
+
+Kommander.userInitiated
+
+Kommander.utility
+
+Kommander.background
+```
+
+#### Creating Dispatchers:
+
+```swift
+CurrentDispatcher()
+
+MainDispatcher()
+
+Dispatcher(name: String, qos: QualityOfService = .default, maxConcurrentOperationCount: Int = .default)
+```
+
+```swift
+Dispatcher.main
+
+Dispatcher.current
+
+Dispatcher.default
+
+Dispatcher.userInteractive
+
+Dispatcher.userInitiated
+
+Dispatcher.utility
+
+Dispatcher.background
 ```
 
 ## Etc.
