@@ -35,7 +35,7 @@ extension NetAuthorization: RawRepresentable {
             }
         } else if rawValue.hasPrefix(StringValue.bearer) {
             self = .bearer(token: "\(rawValue[StringValue.bearer.endIndex...])")
-        } else if rawValue.characters.count > 0 {
+        } else if rawValue.count > 0 {
             self = .custom(rawValue)
         }
     }

@@ -66,41 +66,12 @@ open class Kommander {
 
     /// Execute [Kommand<Result>] instances collection concurrently or sequentially
     open func execute<Result>(_ kommands: [Kommand<Result>], concurrent: Bool = true, waitUntilFinished: Bool = false) {
-        let blocks = kommands.map { kommand -> () -> Void in
-            {
-                guard kommand.state == .ready else {
-                    return
-                }
-                do {
-                    if let actionBlock = kommand.actionBlock {
-                        kommand.state = .running
-                        let result = try actionBlock()
-                        guard kommand.state == .running else {
-                            return
-                        }
-                        self.deliverer.execute {
-                            kommand.state = .finished
-                            kommand.successBlock?(result)
-                        }
-                    }
-                } catch {
-                    guard kommand.state == .running else {
-                        return
-                    }
-                    self.deliverer.execute {
-                        kommand.state = .finished
-                        kommand.errorBlock?(error)
-                    }
-                }
-            }
+        let executionBlocks = kommands.map { kommand in
+            executionBlock(kommand)
         }
-        let actions = executor.execute(blocks, concurrent: concurrent, waitUntilFinished: waitUntilFinished)
+        let operations = executor.execute(executionBlocks, concurrent: concurrent, waitUntilFinished: waitUntilFinished)
         for (index, kommand) in kommands.enumerated() {
-            if let operationAction = actions[index] as? Operation {
-                kommand.operation = operationAction
-            } else if let workAction = actions[index] as? DispatchWorkItem {
-                kommand.work = workAction
-            }
+            kommand.operation = operations[index]
         }
     }
 
@@ -115,6 +86,53 @@ open class Kommander {
     open func cancel<Result>(_ kommands: [Kommand<Result>], throwingError: Bool = false) {
         for kommand in kommands {
             kommand.cancel(throwingError)
+        }
+    }
+
+    /// Retry [Kommand<Result>] instances collection after delay
+    open func retry<Result>(_ kommands: [Kommand<Result>], after delay: DispatchTimeInterval) {
+        executor.execute(after: delay) {
+            self.retry(kommands)
+        }
+    }
+
+    /// Retry [Kommand<Result>] instances collection
+    open func retry<Result>(_ kommands: [Kommand<Result>]) {
+        for kommand in kommands {
+            kommand.retry()
+        }
+    }
+
+}
+
+private extension Kommander {
+
+    final func executionBlock<Result>(_ kommand: Kommand<Result>) -> () -> Void {
+        return {
+            guard kommand.state == .ready else {
+                return
+            }
+            do {
+                if let actionBlock = kommand.actionBlock {
+                    kommand.state = .running
+                    let result = try actionBlock()
+                    guard kommand.state == .running else {
+                        return
+                    }
+                    self.deliverer.execute {
+                        kommand.state = .finished
+                        kommand.successBlock?(result)
+                    }
+                }
+            } catch {
+                guard kommand.state == .running else {
+                    return
+                }
+                self.deliverer.execute {
+                    kommand.state = .finished
+                    kommand.errorBlock?(error)
+                }
+            }
         }
     }
 

@@ -10,7 +10,7 @@ import Alamofire
 
 public class NetAlamofire: Net {
 
-    open static let shared: Net = NetAlamofire()
+    open static let shared: Net = NetAlamofire(URLSession.shared)!
 
     open static let defaultCache: URLCache = {
         let defaultMemoryCapacity = 4 * 1024 * 1024

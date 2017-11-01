@@ -100,13 +100,13 @@ extension NetResponse: CustomStringConvertible {
             description = description + statusCode
         }
         if let url = url?.description {
-            if description.characters.count > 0 {
+            if description.count > 0 {
                 description = description + " "
             }
             description = description + url
         }
         if let localizedDescription = localizedDescription?.description {
-            if description.characters.count > 0 {
+            if description.count > 0 {
                 description = description + " "
             }
             description = description + "(\(localizedDescription))"

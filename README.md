@@ -100,7 +100,7 @@ let request = NetRequest.builder("YOUR_URL")!
 ```swift
 import Net
 
-let net = NetURLSession()
+let net = NetURLSession.shared
 
 net.data(URL(string: "YOUR_URL")!).async { (response, error) in
     do {
@@ -120,7 +120,7 @@ net.data(URL(string: "YOUR_URL")!).async { (response, error) in
 ```swift
 import Net
 
-let net = NetURLSession()
+let net = NetURLSession.shared
 
 do {
     let object: [AnyHashable: Any] = try net.data("YOUR_URL").sync().object()
@@ -135,7 +135,7 @@ do {
 ```swift
 import Net
 
-let net = NetURLSession()
+let net = NetURLSession.shared
 
 do {
     let object: [AnyHashable: Any] = try net.data("YOUR_URL").cached().object()
@@ -150,7 +150,7 @@ do {
 ```swift
 import Net
 
-let net = NetURLSession()
+let net = NetURLSession.shared
 
 do {
     let task = try net.data("YOUR_URL").progress({ progress in
@@ -166,7 +166,7 @@ do {
 ```swift
 import Net
 
-let net = NetURLSession()
+let net = NetURLSession.shared
 
 net.addRequestInterceptor { request in
     request.addHeader("foo", value: "bar")
@@ -180,7 +180,7 @@ net.addRequestInterceptor { request in
 ```swift
 import Net
 
-let net = NetURLSession()
+let net = NetURLSession.shared
 
 net.retryClosure = { response, _, _ in response?.statusCode == XXX }
 
@@ -210,7 +210,7 @@ let request = NetRequest.builder("YOUR_URL")!
 ```swift
 import Net
 
-let net = NetURLSession()
+let net = NetURLSession.shared
 
 do {
     let object: Decodable = try net.data("YOUR_URL").sync().decode()
@@ -231,7 +231,7 @@ pod 'NetClient/Alamofire'
 ```swift
 import Net
 
-let net = NetAlamofire()
+let net = NetAlamofire.shared
 
 ...
 ```
@@ -266,19 +266,21 @@ pod 'NetClient/Kommander'
 
 ```swift
 import Net
+import Kommander
 
-let net = NetURLSession()
+let net = NetURLSession.shared
+let kommander = Kommander.default
 
-net.data(URL(string: "YOUR_URL")!).execute(onSuccess: { object in
+net.data(URL(string: "YOUR_URL")!).execute(by: kommander, onSuccess: { object in
     print("Response dictionary: \(object as [AnyHashable: Any])")
 }) { error in
-    print("Error: \((error as! NetError).localizedDescription)")
+    print("Error: \(String(describing: error?.localizedDescription))")
 }
 
-net.data(URL(string: "YOUR_URL")!).executeDecoding(onSuccess: { object in
+net.data(URL(string: "YOUR_URL")!).executeDecoding(by: kommander, onSuccess: { object in
 	print("Response object: \(object as Decodable)")
 }) { error in
-    print("Error: \((error as! NetError).localizedDescription)")
+    print("Error: \(String(describing: error?.localizedDescription))")
 }
 ```
 
