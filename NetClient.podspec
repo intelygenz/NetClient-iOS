@@ -30,20 +30,20 @@ Pod::Spec.new do |s|
   
   s.subspec 'Alamofire' do |ss|
     ss.dependency 'NetClient/Core'
-	ss.dependency 'Alamofire', '~> 4.5'
+    ss.dependency 'Alamofire', '~> 4.5'
     ss.source_files = "Alamofire/*.{h,swift}"
   end
   
   s.subspec 'Moya' do |ss|
     ss.dependency 'NetClient/Core'
-	ss.dependency 'Alamofire', '~> 4.1'
-	ss.dependency 'Moya', '~> 9.0'
+    ss.dependency 'Alamofire', '~> 4.1'
+    ss.dependency 'Moya', '~> 9.0'
     ss.source_files = "Moya/*.{h,swift}"
   end
   
   s.subspec 'Kommander' do |ss|
     ss.dependency 'NetClient/URLSession'
-	ss.dependency 'Kommander', '~> 0.9'
+    ss.dependency 'Kommander', '~> 0.9'
     ss.source_files = "Kommander/*.{h,swift}"
   end
 end

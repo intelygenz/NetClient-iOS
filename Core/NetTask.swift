@@ -49,7 +49,7 @@ open class NetTask {
         }
     }
 
-    open let priority: Float?
+    open internal(set) var priority: Float?
 
     open internal(set) var progress: Progress
 
