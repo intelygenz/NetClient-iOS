@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/intelygenz/NetClient-iOS/raw/develop/Logo.png">
+</p>
+
 # Net
 
 [![Twitter](https://img.shields.io/badge/contact-@intelygenz-0FABFF.svg?style=flat)](http://twitter.com/intelygenz)
@@ -8,8 +12,6 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager Compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
 [![Build Status](https://travis-ci.org/intelygenz/NetClient-iOS.svg?branch=master)](https://travis-ci.org/intelygenz/NetClient-iOS)
-
-![Net](https://raw.githubusercontent.com/intelygenz/NetClient-iOS/master/Net.png)
 
 **Net** is a versatile HTTP networking library written in Swift.
 
