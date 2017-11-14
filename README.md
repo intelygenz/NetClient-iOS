@@ -2,8 +2,6 @@
   <img src="https://github.com/intelygenz/NetClient-iOS/raw/develop/Logo.png">
 </p>
 
-# Net
-
 [![Twitter](https://img.shields.io/badge/contact-@intelygenz-0FABFF.svg?style=flat)](http://twitter.com/intelygenz)
 [![Version](https://img.shields.io/cocoapods/v/NetClient.svg?style=flat)](http://cocoapods.org/pods/NetClient)
 [![License](https://img.shields.io/cocoapods/l/NetClient.svg?style=flat)](http://cocoapods.org/pods/NetClient)
@@ -15,7 +13,7 @@
 
 **Net** is a versatile HTTP networking library written in Swift.
 
-## Features
+## 🌟 Features
 
 - [x] URL / JSON / Property List Parameter Encoding
 - [x] Upload File / Data / Stream / Multipart Form Data
@@ -40,13 +38,13 @@
 - [x] [Moya](https://github.com/Moya/Moya)Provider Extension
 - [x] [Kommander](https://github.com/intelygenz/Kommander-iOS) Extension
 
-## Requirements
+## 📋 Requirements
 
 - iOS 8.0+ / macOS 10.9+ / tvOS 9.0+ / watchOS 2.0+
 - Xcode 9.0+
 - Swift 4.0+
 
-## Installation
+## 📲 Installation
 
 Net is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -75,7 +73,7 @@ dependencies: [
 ]
 ```
 
-## Usage
+## 🐒 Usage
 
 ### Build a NetRequest
 
@@ -196,7 +194,7 @@ do {
 }
 ```
 
-## Codable
+## 🧙‍♂️ Codable
 
 ### Encodable
 
@@ -223,7 +221,7 @@ do {
 }
 ```
 
-## Integrations
+## 🤝 Integrations
 
 ### Love [Alamofire](https://github.com/Alamofire/Alamofire)?
 
@@ -287,15 +285,15 @@ net.data(URL(string: "YOUR_URL")!).executeDecoding(by: kommander, onSuccess: { o
 }
 ```
 
-## Etc.
+## ❤️ Etc.
 
 * Contributions are very welcome.
 * Attribution is appreciated (let's spread the word!), but not mandatory.
 
-## Authors
+## 👨‍💻 Authors
 
 [alexruperez](https://github.com/alexruperez), alejandro.ruperez@intelygenz.com
 
-## License
+## 👮‍♂️ License
 
 Net is available under the MIT license. See the LICENSE file for more info.
