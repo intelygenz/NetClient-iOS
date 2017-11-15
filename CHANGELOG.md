@@ -1,3 +1,7 @@
+# Release 0.3.5
+
+- [x] Transformer underlying JSON error by default
+
 # Release 0.3.4
 
 - [x] Now using Kommander 0.9 on NetClient/Kommander subspec

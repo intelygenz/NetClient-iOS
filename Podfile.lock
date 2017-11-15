@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.5.1)
-  - Kommander (0.9.2)
+  - Kommander (0.9.3)
   - Moya (10.0.0):
     - Moya/Core (= 10.0.0)
   - Moya/Core (10.0.0):
@@ -15,7 +15,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Kommander: 4f8f4459a3297ab8cdfbcc38060eb5e9b7763def
+  Kommander: 34bf09d910308fbfd584234896e6e25931b752ff
   Moya: adb58b0f4e58430db43cc6e2f6ebab1836501186
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
 
