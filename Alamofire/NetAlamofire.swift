@@ -65,6 +65,12 @@ public class NetAlamofire: Net {
         self.queue = queue
     }
 
+    deinit {
+        authChallenge = nil
+        retryClosure = nil
+        sessionManager = nil
+    }
+
     open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) {
         requestInterceptors.append(interceptor)
     }

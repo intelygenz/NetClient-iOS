@@ -1,3 +1,8 @@
+# Release 0.3.6
+
+- [x] Added earliestBeginDate delay to NetURLSession background tasks
+- [x] Added waitingForConnectivity state to NetTask
+
 # Release 0.3.5
 
 - [x] Transformer underlying JSON error by default
