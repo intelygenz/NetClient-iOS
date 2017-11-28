@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.authors          = { 'Alex Rupérez' => 'alejandro.ruperez@intelygenz.com' }
   s.source           = { :git => 'https://github.com/intelygenz/NetClient-iOS.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/intelygenz'
-  s.screenshot       = 'https://raw.githubusercontent.com/intelygenz/NetClient-iOS/master/Net.png'
+  s.screenshot       = 'https://github.com/intelygenz/NetClient-iOS/raw/master/Logo.png'
 
   s.ios.deployment_target = '8.0'
   s.watchos.deployment_target = '2.0'
