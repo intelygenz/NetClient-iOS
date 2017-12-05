@@ -93,7 +93,7 @@ let request = NetRequest.builder("YOUR_URL")!
             .setAcceptEncodings([.gzip, .deflate])
             .setBasicAuthorization(user: "user", password: "password")
             .setHeaders(["foo": "bar"])
-            .build()
+            .build
 ```
 
 ### Request asynchronously
@@ -203,7 +203,7 @@ import Net
 
 let request = NetRequest.builder("YOUR_URL")!
             .setJSONObject(Encodable)
-            .build()
+            .build
 ```
 
 ### Decodable

@@ -12,6 +12,10 @@ extension NetResponse {
 
     open class Builder {
 
+        public var build: NetResponse {
+            return NetResponse(self)
+        }
+
         open private(set) var url: URL?
 
         open private(set) var mimeType: String?
@@ -103,10 +107,10 @@ extension NetResponse {
             return self
         }
 
-        public func build() -> NetResponse {
-            return NetResponse(self)
-        }
+    }
 
+    public var builder: Builder {
+        return NetResponse.builder(self)
     }
 
     public static func builder(_ netResponse: NetResponse? = nil) -> Builder {
@@ -115,10 +119,6 @@ extension NetResponse {
 
     public init(_ builder: Builder) {
         self.init(builder.url, mimeType: builder.mimeType, contentLength: builder.contentLength, textEncoding: builder.textEncoding, filename: builder.filename, statusCode: builder.statusCode, headers: builder.headers, localizedDescription: builder.localizedDescription, userInfo: builder.userInfo, netTask: builder.netTask, responseObject: builder.responseObject)
-    }
-
-    public func builder() -> Builder {
-        return NetResponse.builder(self)
     }
 
 }

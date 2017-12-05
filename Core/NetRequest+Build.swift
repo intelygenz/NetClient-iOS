@@ -12,6 +12,10 @@ extension NetRequest {
 
     open class Builder {
 
+        public var build: NetRequest {
+            return NetRequest(self)
+        }
+
         open private(set) var url: URL
 
         open private(set) var cache: NetRequest.NetCachePolicy?
@@ -381,10 +385,10 @@ extension NetRequest {
             return self
         }
 
-        public func build() -> NetRequest {
-            return NetRequest(self)
-        }
+    }
 
+    public var builder: Builder {
+        return NetRequest.builder(self)
     }
 
     public static func builder(_ netRequest: NetRequest) -> Builder {
@@ -405,10 +409,6 @@ extension NetRequest {
 
     public init(_ builder: Builder) {
         self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, contentLength: builder.contentLength, accept: builder.accept, acceptEncoding: builder.acceptEncoding, cacheControl: builder.cacheControl, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
-    }
-
-    public func builder() -> Builder {
-        return NetRequest.builder(self)
     }
 
 }

@@ -33,6 +33,15 @@ class NetRequestTests: XCTestCase {
         }
     }
 
+    func testNetMultipathServiceType() {
+        if #available(iOS 11.0, *) {
+            XCTAssertEqual(URLSessionConfiguration.Builder.NetMultipathServiceType.none.rawValue, URLSessionConfiguration.MultipathServiceType.none.rawValue)
+            XCTAssertEqual(URLSessionConfiguration.Builder.NetMultipathServiceType.handover.rawValue, URLSessionConfiguration.MultipathServiceType.handover.rawValue)
+            XCTAssertEqual(URLSessionConfiguration.Builder.NetMultipathServiceType.interactive.rawValue, URLSessionConfiguration.MultipathServiceType.interactive.rawValue)
+            XCTAssertEqual(URLSessionConfiguration.Builder.NetMultipathServiceType.aggregate.rawValue, URLSessionConfiguration.MultipathServiceType.aggregate.rawValue)
+        }
+    }
+
     func testNetAuthorization() {
         XCTAssertEqual(NetAuthorization.basic(user: "user", password: "password"), NetAuthorization(rawValue: "Basic dXNlcjpwYXNzd29yZA=="))
         XCTAssertNotEqual(NetAuthorization.basic(user: "user", password: "wordpass"), NetAuthorization(rawValue: "Basic dXNlcjpwYXNzd29yZA=="))
@@ -68,18 +77,18 @@ class NetRequestTests: XCTestCase {
 
     func testNetRequestBuilder() {
         let url = URL(string: "http://www.alexruperez.com/entries/3491-intelygenz-netclient-ios.json")!
-        let builder = NetRequest(url).builder()
+        let builder = NetRequest(url).builder
         let body = "body".data(using: .utf8)
         builder.addAcceptEncoding(NetRequest.NetContentEncoding.gzip).addAcceptEncoding(NetRequest.NetContentEncoding.deflate).setBody(body).setURLParameters(["foo": "bar", "igz": "rules"])
-        var urlRequest = builder.build().urlRequest
+        var urlRequest = builder.build.urlRequest
         XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Accept-Encoding"), "gzip, deflate")
         XCTAssertEqual(urlRequest.httpBody, body)
         XCTAssertEqual(urlRequest.url?.absoluteString, url.absoluteString + "?foo=bar&igz=rules")
         builder.addURLParameter("intelygenz", value: "cool")
-        urlRequest = builder.build().urlRequest
+        urlRequest = builder.build.urlRequest
         XCTAssertEqual(urlRequest.url?.absoluteString, url.absoluteString + "?foo=bar&igz=rules&intelygenz=cool")
         builder.setURLParameters(nil)
-        urlRequest = builder.build().urlRequest
+        urlRequest = builder.build.urlRequest
         XCTAssertEqual(urlRequest.url?.absoluteString, url.absoluteString)
     }
 

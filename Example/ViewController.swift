@@ -74,7 +74,7 @@ class ViewController: UIViewController {
                 if let article: Article = try response?.decode() {
                     print(article)
                     // Encode
-                    try request.builder().setJSONObject(article)
+                    try request.builder.setJSONObject(article)
                 } else if let error = error {
                     print("Net error: \(error)")
                 }
