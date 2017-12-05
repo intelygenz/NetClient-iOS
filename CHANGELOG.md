@@ -1,7 +1,6 @@
 # Release 0.4.0
 
 - [x] Added URLSessionConfiguration builder
-- [x] Other builders refactor
 
 # Release 0.3.6
 

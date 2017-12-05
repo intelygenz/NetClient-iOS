@@ -106,11 +106,11 @@ extension NetURLSession {
     }
 
     func urlRequest(_ netRequest: NetRequest) -> URLRequest {
-        var builder = netRequest.builder
+        var builder = netRequest.builder()
         requestInterceptors.forEach({ interceptor in
             builder = interceptor(builder)
         })
-        return builder.build.urlRequest
+        return builder.build().urlRequest
     }
 
     func netRequest(_ url: URL, cache: NetRequest.NetCachePolicy? = nil, timeout: TimeInterval? = nil) -> NetRequest {
@@ -138,11 +138,11 @@ extension NetURLSession {
         guard let response = netResponse else {
             return nil
         }
-        var builder = response.builder
+        var builder = response.builder()
         responseInterceptors.forEach({ interceptor in
             builder = interceptor(builder)
         })
-        return builder.build
+        return builder.build()
     }
 
     func netError(_ error: Error?, _ responseObject: Any? = nil, _ response: URLResponse? = nil) -> NetError? {

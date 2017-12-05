@@ -9,57 +9,57 @@ import Foundation
 
 extension URLSessionConfiguration {
 
-    open class Builder {
+    public class Builder {
 
         public enum NetMultipathServiceType: Int {
             case none, handover, interactive, aggregate
         }
 
-        open private(set) var cache: NetRequest.NetCachePolicy?
+        public private(set) var cache: NetRequest.NetCachePolicy?
 
-        open private(set) var requestTimeout: TimeInterval?
+        public private(set) var requestTimeout: TimeInterval?
 
-        open private(set) var resourceTimeout: TimeInterval?
+        public private(set) var resourceTimeout: TimeInterval?
 
-        open private(set) var serviceType: NetRequest.NetServiceType?
+        public private(set) var serviceType: NetRequest.NetServiceType?
 
-        open private(set) var allowsCellularAccess: Bool?
+        public private(set) var allowsCellularAccess: Bool?
 
-        open private(set) var waitsForConnectivity: Bool?
+        public private(set) var waitsForConnectivity: Bool?
 
-        open private(set) var discretionary: Bool?
+        public private(set) var discretionary: Bool?
 
-        open private(set) var containerIdentifier: String?
+        public private(set) var containerIdentifier: String?
 
-        open private(set) var sendsLaunchEvents: Bool?
+        public private(set) var sendsLaunchEvents: Bool?
 
-        open private(set) var proxyDictionary: [AnyHashable : Any]?
+        public private(set) var proxyDictionary: [AnyHashable : Any]?
 
-        open private(set) var minimumTLSSupported: SSLProtocol?
+        public private(set) var minimumTLSSupported: SSLProtocol?
 
-        open private(set) var maximumTLSSupported: SSLProtocol?
+        public private(set) var maximumTLSSupported: SSLProtocol?
 
-        open private(set) var usePipelining: Bool?
+        public private(set) var usePipelining: Bool?
 
-        open private(set) var handleCookies: Bool?
+        public private(set) var handleCookies: Bool?
 
-        open private(set) var acceptPolicy: HTTPCookie.AcceptPolicy?
+        public private(set) var acceptPolicy: HTTPCookie.AcceptPolicy?
 
-        open private(set) var headers: [String : String]?
+        public private(set) var headers: [String : String]?
 
-        open private(set) var maximumConnections: Int?
+        public private(set) var maximumConnections: Int?
 
-        open private(set) var cookieStorage: HTTPCookieStorage?
+        public private(set) var cookieStorage: HTTPCookieStorage?
 
-        open private(set) var credentialStorage: URLCredentialStorage?
+        public private(set) var credentialStorage: URLCredentialStorage?
 
-        open private(set) var urlCache: URLCache?
+        public private(set) var urlCache: URLCache?
 
-        open private(set) var extendedBackgroundIdle: Bool?
+        public private(set) var extendedBackgroundIdle: Bool?
 
-        open private(set) var protocolClasses: [Swift.AnyClass]?
+        public private(set) var protocolClasses: [Swift.AnyClass]?
 
-        open private(set) var multipathServiceType: NetMultipathServiceType?
+        public private(set) var multipathServiceType: NetMultipathServiceType?
 
         public init(_ configuration: URLSessionConfiguration? = nil) {
 
@@ -245,25 +245,25 @@ extension URLSessionConfiguration {
             return self
         }
 
-        open func `default`() -> URLSessionConfiguration {
+        public func `default`() -> URLSessionConfiguration {
             return .default(self)
         }
 
-        open func ephemeral() -> URLSessionConfiguration {
+        public func ephemeral() -> URLSessionConfiguration {
             return .ephemeral(self)
         }
 
-        open func background(_ identifier: String) -> URLSessionConfiguration {
+        public func background(_ identifier: String) -> URLSessionConfiguration {
             return .background(self, identifier: identifier)
         }
 
     }
 
-    open var builder: Builder {
+    public func builder() -> Builder {
         return URLSessionConfiguration.builder(self)
     }
 
-    open static func builder(_ configuration: URLSessionConfiguration? = nil) -> Builder {
+    public static func builder(_ configuration: URLSessionConfiguration? = nil) -> Builder {
         return Builder(configuration)
     }
 

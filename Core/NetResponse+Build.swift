@@ -10,33 +10,29 @@ import Foundation
 
 extension NetResponse {
 
-    open class Builder {
+    public class Builder {
 
-        public var build: NetResponse {
-            return NetResponse(self)
-        }
+        public private(set) var url: URL?
 
-        open private(set) var url: URL?
+        public private(set) var mimeType: String?
 
-        open private(set) var mimeType: String?
+        public private(set) var contentLength: Int64
 
-        open private(set) var contentLength: Int64
+        public private(set) var textEncoding: String?
 
-        open private(set) var textEncoding: String?
+        public private(set) var filename: String?
 
-        open private(set) var filename: String?
+        public private(set) var statusCode: Int?
 
-        open private(set) var statusCode: Int?
+        public private(set) var headers: [AnyHashable : Any]?
 
-        open private(set) var headers: [AnyHashable : Any]?
+        public private(set) var localizedDescription: String?
 
-        open private(set) var localizedDescription: String?
+        public private(set) var userInfo: [AnyHashable : Any]?
 
-        open private(set) var userInfo: [AnyHashable : Any]?
-
-        open private(set) weak var netTask: NetTask?
+        public private(set) weak var netTask: NetTask?
         
-        open private(set) var responseObject: Any?
+        public private(set) var responseObject: Any?
 
         public init(_ netResponse: NetResponse? = nil) {
             url = netResponse?.url
@@ -107,9 +103,13 @@ extension NetResponse {
             return self
         }
 
+        public func build() -> NetResponse {
+            return NetResponse(self)
+        }
+
     }
 
-    public var builder: Builder {
+    public func builder() -> Builder {
         return NetResponse.builder(self)
     }
 
