@@ -185,6 +185,10 @@
 		D5A521F21E7B351100406F0F /* Net.h in Headers */ = {isa = PBXBuildFile; fileRef = D5A521EE1E7B351100406F0F /* Net.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D5A522021E7B3C8600406F0F /* Net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A5216A1E7B342100406F0F /* Net.framework */; };
 		D5A522031E7B3C8600406F0F /* Net.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5A5216A1E7B342100406F0F /* Net.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D5B29EF91FD5A32900C3FE46 /* URLSessionConfiguration+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */; };
+		D5B29EFA1FD5A32A00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */; };
+		D5B29EFB1FD5A32B00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */; };
+		D5B29EFC1FD5A32B00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */; };
 		E68DE6BC3150E03A91344632 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208150099C9C7D15FEB39DE2 /* Pods_Example.framework */; };
 		ED1BEF4B6F0398F03A2813FA /* Pods_watchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D96CC0C10C1FD76A8D17EE7 /* Pods_watchOS.framework */; };
 /* End PBXBuildFile section */
@@ -337,6 +341,7 @@
 		D5A521E41E7B348200406F0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5A521EE1E7B351100406F0F /* Net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
 		D5A521F31E7B35B400406F0F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+Build.swift"; sourceTree = "<group>"; };
 		E0FEF50EE81D6352C88954A4 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E1A6962073F47253CBA73140 /* Pods-ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleUITests/Pods-ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F272790255D2800FEC64E9AC /* Pods_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -571,6 +576,7 @@
 				818FC92C1E82BFD800FEC5A3 /* NetError.swift */,
 				81D1C30D1EAF965C008DB282 /* NetReachability.swift */,
 				811842311F4441A200240CC4 /* NetServerTrust.swift */,
+				D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -774,7 +780,7 @@
 					D5A521611E7B340D00406F0F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3VW789WSMP;
-						LastSwiftMigration = "";
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					D5A521691E7B342100406F0F = {
@@ -1237,6 +1243,7 @@
 				D579EE241EAE633E00A2F311 /* NetTask+AlamofireRequest.swift in Sources */,
 				81ACB7DE1E83C656006D05DD /* NetRequest.swift in Sources */,
 				D579EE6B1EAE818D00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
+				D5B29EF91FD5A32900C3FE46 /* URLSessionConfiguration+Build.swift in Sources */,
 				811842321F4441B200240CC4 /* NetServerTrust.swift in Sources */,
 				D579EE781EAE8E1C00A2F311 /* NetURLSession.swift in Sources */,
 				D579EE791EAE8E1C00A2F311 /* NetURLSession+Data.swift in Sources */,
@@ -1288,6 +1295,7 @@
 				D579EE251EAE633E00A2F311 /* NetTask+AlamofireRequest.swift in Sources */,
 				D523AB0F1E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				D579EE6E1EAE818E00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
+				D5B29EFA1FD5A32A00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */,
 				811842331F4441B200240CC4 /* NetServerTrust.swift in Sources */,
 				D579EE801EAE8E1D00A2F311 /* NetURLSession.swift in Sources */,
 				D579EE811EAE8E1D00A2F311 /* NetURLSession+Data.swift in Sources */,
@@ -1331,6 +1339,7 @@
 				D579EE261EAE633E00A2F311 /* NetTask+AlamofireRequest.swift in Sources */,
 				81ACB7E01E83C658006D05DD /* NetRequest.swift in Sources */,
 				D579EE711EAE818F00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
+				D5B29EFB1FD5A32B00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */,
 				811842341F4441B300240CC4 /* NetServerTrust.swift in Sources */,
 				D579EE881EAE8E1E00A2F311 /* NetURLSession.swift in Sources */,
 				D579EE891EAE8E1E00A2F311 /* NetURLSession+Data.swift in Sources */,
@@ -1374,6 +1383,7 @@
 				D579EE271EAE633E00A2F311 /* NetTask+AlamofireRequest.swift in Sources */,
 				81ACB7E11E83C659006D05DD /* NetRequest.swift in Sources */,
 				D579EE741EAE818F00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
+				D5B29EFC1FD5A32B00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */,
 				811842351F4441B400240CC4 /* NetServerTrust.swift in Sources */,
 				D579EE901EAE8E1E00A2F311 /* NetURLSession.swift in Sources */,
 				D579EE911EAE8E1E00A2F311 /* NetURLSession+Data.swift in Sources */,
@@ -1494,8 +1504,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
-				DYLIB_COMPATIBILITY_VERSION = 0.3.0;
-				DYLIB_CURRENT_VERSION = 0.3.6;
+				DYLIB_COMPATIBILITY_VERSION = 0.4.0;
+				DYLIB_CURRENT_VERSION = 0.4.0;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1548,8 +1558,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
-				DYLIB_COMPATIBILITY_VERSION = 0.3.0;
-				DYLIB_CURRENT_VERSION = 0.3.6;
+				DYLIB_COMPATIBILITY_VERSION = 0.4.0;
+				DYLIB_CURRENT_VERSION = 0.4.0;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;

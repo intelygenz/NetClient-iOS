@@ -1,3 +1,7 @@
+# Release 0.4.0
+
+- [x] Added URLSessionConfiguration builder
+
 # Release 0.3.6
 
 - [x] Added earliestBeginDate delay to NetURLSession background tasks

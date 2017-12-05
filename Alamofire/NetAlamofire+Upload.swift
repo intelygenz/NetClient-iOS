@@ -24,7 +24,7 @@ extension NetAlamofire {
             netUploadTask?.response = netResponse
             netUploadTask?.error = netError
             #if !os(watchOS)
-            if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *), let metrics = response.metrics {
+            if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, macOS 10.12, *), let metrics = response.metrics {
                 netUploadTask?.metrics = NetTaskMetrics(metrics, request: streamedRequest, response: netResponse)
             }
             #endif
@@ -67,7 +67,7 @@ extension NetAlamofire {
             netUploadTask?.response = netResponse
             netUploadTask?.error = netError
             #if !os(watchOS)
-            if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *), let metrics = response.metrics {
+            if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, macOS 10.12, *), let metrics = response.metrics {
                 netUploadTask?.metrics = NetTaskMetrics(metrics, request: request, response: netResponse)
             }
             #endif
@@ -110,7 +110,7 @@ extension NetAlamofire {
             netUploadTask?.response = netResponse
             netUploadTask?.error = netError
             #if !os(watchOS)
-            if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *), let metrics = response.metrics {
+            if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, macOS 10.12, *), let metrics = response.metrics {
                 netUploadTask?.metrics = NetTaskMetrics(metrics, request: request, response: netResponse)
             }
             #endif

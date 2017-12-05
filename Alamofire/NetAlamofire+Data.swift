@@ -24,7 +24,7 @@ extension NetAlamofire {
             netDataTask?.response = netResponse
             netDataTask?.error = netError
             #if !os(watchOS)
-            if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *), let metrics = response.metrics {
+            if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, macOS 10.12, *), let metrics = response.metrics {
                 netDataTask?.metrics = NetTaskMetrics(metrics, request: request, response: netResponse)
             }
             #endif

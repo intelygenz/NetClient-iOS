@@ -33,6 +33,15 @@ class NetRequestTests: XCTestCase {
         }
     }
 
+    func testNetMultipathServiceType() {
+        if #available(iOS 11.0, *) {
+            XCTAssertEqual(URLSessionConfiguration.Builder.NetMultipathServiceType.none.rawValue, URLSessionConfiguration.MultipathServiceType.none.rawValue)
+            XCTAssertEqual(URLSessionConfiguration.Builder.NetMultipathServiceType.handover.rawValue, URLSessionConfiguration.MultipathServiceType.handover.rawValue)
+            XCTAssertEqual(URLSessionConfiguration.Builder.NetMultipathServiceType.interactive.rawValue, URLSessionConfiguration.MultipathServiceType.interactive.rawValue)
+            XCTAssertEqual(URLSessionConfiguration.Builder.NetMultipathServiceType.aggregate.rawValue, URLSessionConfiguration.MultipathServiceType.aggregate.rawValue)
+        }
+    }
+
     func testNetAuthorization() {
         XCTAssertEqual(NetAuthorization.basic(user: "user", password: "password"), NetAuthorization(rawValue: "Basic dXNlcjpwYXNzd29yZA=="))
         XCTAssertNotEqual(NetAuthorization.basic(user: "user", password: "wordpass"), NetAuthorization(rawValue: "Basic dXNlcjpwYXNzd29yZA=="))
