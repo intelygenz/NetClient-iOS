@@ -80,20 +80,24 @@ dependencies: [
 ```swift
 import Net
 
-let request = NetRequest.builder("YOUR_URL")!
-            .setAccept(.json)
-            .setCache(.reloadIgnoringLocalCacheData)
-            .setMethod(.PATCH)
-            .setTimeout(20)
-            .setJSONBody(["foo", "bar"])
-            .setContentType(.json)
-            .setServiceType(.background)
-            .setCacheControls([.maxAge(500)])
-            .setURLParameters(["foo": "bar"])
-            .setAcceptEncodings([.gzip, .deflate])
-            .setBasicAuthorization(user: "user", password: "password")
-            .setHeaders(["foo": "bar"])
-            .build()
+do {
+    let request = try NetRequest.builder("YOUR_URL")!
+                .setAccept(.json)
+                .setCache(.reloadIgnoringLocalCacheData)
+                .setMethod(.PATCH)
+                .setTimeout(20)
+                .setJSONBody(["foo", "bar"])
+                .setContentType(.json)
+                .setServiceType(.background)
+                .setCacheControls([.maxAge(500)])
+                .setURLParameters(["foo": "bar"])
+                .setAcceptEncodings([.gzip, .deflate])
+                .setBasicAuthorization(user: "user", password: "password")
+                .setHeaders(["foo": "bar"])
+                .build()
+} catch {
+    print("Request error: \(error)")
+}
 ```
 
 ### Request asynchronously
@@ -101,7 +105,7 @@ let request = NetRequest.builder("YOUR_URL")!
 ```swift
 import Net
 
-let net = NetURLSession.shared
+let net = NetURLSession()
 
 net.data(URL(string: "YOUR_URL")!).async { (response, error) in
     do {
@@ -121,7 +125,7 @@ net.data(URL(string: "YOUR_URL")!).async { (response, error) in
 ```swift
 import Net
 
-let net = NetURLSession.shared
+let net = NetURLSession()
 
 do {
     let object: [AnyHashable: Any] = try net.data("YOUR_URL").sync().object()
@@ -136,7 +140,7 @@ do {
 ```swift
 import Net
 
-let net = NetURLSession.shared
+let net = NetURLSession()
 
 do {
     let object: [AnyHashable: Any] = try net.data("YOUR_URL").cached().object()
@@ -151,7 +155,7 @@ do {
 ```swift
 import Net
 
-let net = NetURLSession.shared
+let net = NetURLSession()
 
 do {
     let task = try net.data("YOUR_URL").progress({ progress in
@@ -167,7 +171,7 @@ do {
 ```swift
 import Net
 
-let net = NetURLSession.shared
+let net = NetURLSession()
 
 net.addRequestInterceptor { request in
     request.addHeader("foo", value: "bar")
@@ -181,7 +185,7 @@ net.addRequestInterceptor { request in
 ```swift
 import Net
 
-let net = NetURLSession.shared
+let net = NetURLSession()
 
 net.retryClosure = { response, _, _ in response?.statusCode == XXX }
 
@@ -202,7 +206,7 @@ do {
 import Net
 
 let request = NetRequest.builder("YOUR_URL")!
-            .setJSONObject(Encodable)
+            .setJSONObject(Encodable())
             .build()
 ```
 
@@ -211,7 +215,7 @@ let request = NetRequest.builder("YOUR_URL")!
 ```swift
 import Net
 
-let net = NetURLSession.shared
+let net = NetURLSession()
 
 do {
     let object: Decodable = try net.data("YOUR_URL").sync().decode()
@@ -232,7 +236,7 @@ pod 'NetClient/Alamofire'
 ```swift
 import Net
 
-let net = NetAlamofire.shared
+let net = NetAlamofire()
 
 ...
 ```
@@ -269,7 +273,7 @@ pod 'NetClient/Kommander'
 import Net
 import Kommander
 
-let net = NetURLSession.shared
+let net = NetURLSession()
 let kommander = Kommander.default
 
 net.data(URL(string: "YOUR_URL")!).execute(by: kommander, onSuccess: { object in
