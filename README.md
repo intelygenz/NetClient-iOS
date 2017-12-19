@@ -37,6 +37,7 @@
 - [x] [Alamofire](https://github.com/Alamofire/Alamofire) Implementation
 - [x] [Moya](https://github.com/Moya/Moya)Provider Extension
 - [x] [Kommander](https://github.com/intelygenz/Kommander-iOS) Extension
+- [x] [RxSwift](https://github.com/ReactiveX/RxSwift) Extension
 
 ## 📋 Requirements
 
