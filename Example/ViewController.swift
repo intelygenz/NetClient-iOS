@@ -10,6 +10,7 @@ import UIKit
 import Net
 import Moya
 import Kommander
+import RxSwift
 
 class ViewController: UIViewController {
 
@@ -82,6 +83,9 @@ class ViewController: UIViewController {
                 print("Parse error: \(error.localizedDescription)")
             }
         }
+
+        // RxSwift
+        _ = net.data(request).rx.response().observeOn(MainScheduler.instance).subscribe { print($0) }
 
     }
 

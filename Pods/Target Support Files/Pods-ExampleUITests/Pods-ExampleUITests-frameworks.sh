@@ -106,12 +106,14 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Kommander-iOS9.0/Kommander.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS9.0/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result-iOS9.0/Result.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxSwift-iOS9.0/RxSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS9.0/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kommander-iOS9.0/Kommander.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS9.0/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result-iOS9.0/Result.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxSwift-iOS9.0/RxSwift.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

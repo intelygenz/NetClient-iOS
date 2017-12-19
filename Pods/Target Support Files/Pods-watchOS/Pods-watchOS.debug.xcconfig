@@ -1,8 +1,8 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-watchOS2.0" "$PODS_CONFIGURATION_BUILD_DIR/Kommander-watchOS2.0" "$PODS_CONFIGURATION_BUILD_DIR/Moya-watchOS2.0" "$PODS_CONFIGURATION_BUILD_DIR/Result-watchOS2.0"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-watchOS2.0" "$PODS_CONFIGURATION_BUILD_DIR/Kommander-watchOS2.0" "$PODS_CONFIGURATION_BUILD_DIR/Moya-watchOS2.0" "$PODS_CONFIGURATION_BUILD_DIR/Result-watchOS2.0" "$PODS_CONFIGURATION_BUILD_DIR/RxSwift-watchOS2.0"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks' '@executable_path/../../Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-watchOS2.0/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Kommander-watchOS2.0/Kommander.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Moya-watchOS2.0/Moya.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Result-watchOS2.0/Result.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "Kommander" -framework "Moya" -framework "Result"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire-watchOS2.0/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Kommander-watchOS2.0/Kommander.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Moya-watchOS2.0/Moya.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Result-watchOS2.0/Result.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/RxSwift-watchOS2.0/RxSwift.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "Kommander" -framework "Moya" -framework "Result" -framework "RxSwift"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

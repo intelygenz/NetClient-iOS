@@ -1,3 +1,7 @@
+# Release 0.4.1
+
+- [x] Added RxSwift extension
+
 # Release 0.4.0
 
 - [x] Added URLSessionConfiguration builder

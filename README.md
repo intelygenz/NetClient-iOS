@@ -69,7 +69,7 @@ github "intelygenz/NetClient-iOS"
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/intelygenz/NetClient-iOS.git")
+    .package(url: "https://github.com/intelygenz/NetClient-iOS.git")
 ]
 ```
 
@@ -287,6 +287,20 @@ net.data(URL(string: "YOUR_URL")!).executeDecoding(by: kommander, onSuccess: { o
 }) { error in
     print("Error: \(String(describing: error?.localizedDescription))")
 }
+```
+
+### Love [RxSwift](https://github.com/ReactiveX/RxSwift)?
+
+```ruby
+pod 'NetClient/RxSwift'
+```
+
+```swift
+import Net
+import RxSwift
+
+let request = NetRequest("YOUR_URL")!
+_ = net.data(request).rx.response().observeOn(MainScheduler.instance).subscribe { print($0) }
 ```
 
 ## ❤️ Etc.

@@ -88,6 +88,10 @@
 		D523AB141E88417E0093D793 /* NetAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB121E88417E0093D793 /* NetAuthorization.swift */; };
 		D523AB151E88417E0093D793 /* NetAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB121E88417E0093D793 /* NetAuthorization.swift */; };
 		D523AB161E88417E0093D793 /* NetAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523AB121E88417E0093D793 /* NetAuthorization.swift */; };
+		D5266BB11FE933EE00048B59 /* NetTask+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5266BB01FE933EE00048B59 /* NetTask+RxSwift.swift */; };
+		D5266BB21FE933EE00048B59 /* NetTask+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5266BB01FE933EE00048B59 /* NetTask+RxSwift.swift */; };
+		D5266BB31FE933EE00048B59 /* NetTask+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5266BB01FE933EE00048B59 /* NetTask+RxSwift.swift */; };
+		D5266BB41FE933EE00048B59 /* NetTask+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5266BB01FE933EE00048B59 /* NetTask+RxSwift.swift */; };
 		D52FB2671F4583CA00BEE37C /* NetTask+Kommander.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52FB2661F4583CA00BEE37C /* NetTask+Kommander.swift */; };
 		D52FB2681F4583CA00BEE37C /* NetTask+Kommander.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52FB2661F4583CA00BEE37C /* NetTask+Kommander.swift */; };
 		D52FB2691F4583CA00BEE37C /* NetTask+Kommander.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52FB2661F4583CA00BEE37C /* NetTask+Kommander.swift */; };
@@ -303,6 +307,7 @@
 		D523AB031E867B480093D793 /* NetTaskMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetTaskMetrics.swift; sourceTree = "<group>"; };
 		D523AB0D1E8710D30093D793 /* NetRequest+Build.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetRequest+Build.swift"; sourceTree = "<group>"; };
 		D523AB121E88417E0093D793 /* NetAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetAuthorization.swift; sourceTree = "<group>"; };
+		D5266BB01FE933EE00048B59 /* NetTask+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetTask+RxSwift.swift"; sourceTree = "<group>"; };
 		D52FB2661F4583CA00BEE37C /* NetTask+Kommander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetTask+Kommander.swift"; sourceTree = "<group>"; };
 		D5468BE41EAD3C5E00E1354D /* NetRequest+URLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetRequest+URLRequest.swift"; sourceTree = "<group>"; };
 		D5468BE91EAD3CAF00E1354D /* NetResponse+Cached​URLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetResponse+Cached​URLResponse.swift"; sourceTree = "<group>"; };
@@ -453,6 +458,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D5266BAF1FE933C700048B59 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				D5266BB01FE933EE00048B59 /* NetTask+RxSwift.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
 		D52FB2651F45833C00BEE37C /* Kommander */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +518,7 @@
 				D579EE0E1EAE3AC800A2F311 /* Alamofire */,
 				D579EE0F1EAE3AC800A2F311 /* Moya */,
 				D52FB2651F45833C00BEE37C /* Kommander */,
+				D5266BAF1FE933C700048B59 /* RxSwift */,
 				81ACB8011E85443F006D05DD /* Tests */,
 				D5A521CC1E7B348100406F0F /* Example */,
 				D5A521E11E7B348100406F0F /* ExampleUITests */,
@@ -775,12 +789,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0920;
 				TargetAttributes = {
 					D5A521611E7B340D00406F0F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3VW789WSMP;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					D5A521691E7B342100406F0F = {
@@ -936,6 +950,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kommander-iOS8.0/Kommander.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-iOS8.0/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS8.0/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS8.0/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -943,6 +958,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kommander.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1041,6 +1057,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kommander-iOS8.0/Kommander.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-iOS8.0/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS8.0/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS8.0/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1048,6 +1065,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kommander.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1080,6 +1098,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kommander-iOS9.0/Kommander.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-iOS9.0/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS9.0/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS9.0/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1087,6 +1106,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kommander.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1233,6 +1253,7 @@
 				D523AAFA1E8673760093D793 /* NetTask.swift in Sources */,
 				813AE7661EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */,
 				818FC92E1E82BFDE00FEC5A3 /* NetError.swift in Sources */,
+				D5266BB11FE933EE00048B59 /* NetTask+RxSwift.swift in Sources */,
 				D579EE7A1EAE8E1C00A2F311 /* NetURLSession+Download.swift in Sources */,
 				D51B42421E9D74AE0029620C /* NetCacheControl.swift in Sources */,
 				D5468BEA1EAD3CAF00E1354D /* NetResponse+Cached​URLResponse.swift in Sources */,
@@ -1285,6 +1306,7 @@
 				81ACB7E51E84020E006D05DD /* NetContentType.swift in Sources */,
 				813AE7671EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */,
 				81A50A201E9563E100582D15 /* NetTransformer.swift in Sources */,
+				D5266BB21FE933EE00048B59 /* NetTask+RxSwift.swift in Sources */,
 				D579EE821EAE8E1D00A2F311 /* NetURLSession+Download.swift in Sources */,
 				D523AAFB1E8673760093D793 /* NetTask.swift in Sources */,
 				D5468BEB1EAD3CAF00E1354D /* NetResponse+Cached​URLResponse.swift in Sources */,
@@ -1329,6 +1351,7 @@
 				D523AAFC1E8673760093D793 /* NetTask.swift in Sources */,
 				813AE7681EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */,
 				818FC9301E82BFE000FEC5A3 /* NetError.swift in Sources */,
+				D5266BB31FE933EE00048B59 /* NetTask+RxSwift.swift in Sources */,
 				D579EE8A1EAE8E1E00A2F311 /* NetURLSession+Download.swift in Sources */,
 				D51B42441E9D74AE0029620C /* NetCacheControl.swift in Sources */,
 				D5468BEC1EAD3CAF00E1354D /* NetResponse+Cached​URLResponse.swift in Sources */,
@@ -1373,6 +1396,7 @@
 				D523AAFD1E8673760093D793 /* NetTask.swift in Sources */,
 				813AE7691EB1DC00002609E1 /* NetMultipartFormData.swift in Sources */,
 				818FC9311E82BFE100FEC5A3 /* NetError.swift in Sources */,
+				D5266BB41FE933EE00048B59 /* NetTask+RxSwift.swift in Sources */,
 				D579EE921EAE8E1E00A2F311 /* NetURLSession+Download.swift in Sources */,
 				D51B42451E9D74AE0029620C /* NetCacheControl.swift in Sources */,
 				D5468BED1EAD3CB000E1354D /* NetResponse+Cached​URLResponse.swift in Sources */,
@@ -1505,7 +1529,7 @@
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
 				DYLIB_COMPATIBILITY_VERSION = 0.4.0;
-				DYLIB_CURRENT_VERSION = 0.4.0;
+				DYLIB_CURRENT_VERSION = 0.4.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1559,7 +1583,7 @@
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
 				DYLIB_COMPATIBILITY_VERSION = 0.4.0;
-				DYLIB_CURRENT_VERSION = 0.4.0;
+				DYLIB_CURRENT_VERSION = 0.4.1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
