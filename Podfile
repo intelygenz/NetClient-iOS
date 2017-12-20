@@ -6,6 +6,7 @@ target 'Example' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'Kommander'
+  pod 'RxSwift'
 end
 
 target 'ExampleUITests' do
@@ -13,6 +14,7 @@ target 'ExampleUITests' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'Kommander'
+  pod 'RxSwift'
 end
 
 target 'Tests' do
@@ -20,6 +22,7 @@ target 'Tests' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'Kommander'
+  pod 'RxSwift'
 end
 
 target 'iOS' do
@@ -27,6 +30,7 @@ target 'iOS' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'Kommander'
+  pod 'RxSwift'
 end
 
 target 'watchOS' do
@@ -34,6 +38,7 @@ target 'watchOS' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'Kommander'
+  pod 'RxSwift'
 end
 
 target 'tvOS' do
@@ -41,6 +46,7 @@ target 'tvOS' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'Kommander'
+  pod 'RxSwift'
 end
 
 target 'macOS' do
@@ -48,4 +54,5 @@ target 'macOS' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'Kommander'
+  pod 'RxSwift'
 end

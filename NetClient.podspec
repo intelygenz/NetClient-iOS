@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'NetClient'
-  s.version          = '0.4.0'
+  s.version          = '0.4.1'
   s.summary          = 'Versatile HTTP networking library written in Swift.'
 
   s.homepage         = 'https://github.com/intelygenz/NetClient-iOS'
@@ -30,14 +30,14 @@ Pod::Spec.new do |s|
   
   s.subspec 'Alamofire' do |ss|
     ss.dependency 'NetClient/Core'
-    ss.dependency 'Alamofire', '~> 4.5'
+    ss.dependency 'Alamofire', '~> 4.6'
     ss.source_files = "Alamofire/*.{h,swift}"
   end
   
   s.subspec 'Moya' do |ss|
     ss.dependency 'NetClient/Core'
     ss.dependency 'Alamofire', '~> 4.1'
-    ss.dependency 'Moya', '~> 9.0'
+    ss.dependency 'Moya', '~> 10.0'
     ss.source_files = "Moya/*.{h,swift}"
   end
   
@@ -45,5 +45,11 @@ Pod::Spec.new do |s|
     ss.dependency 'NetClient/URLSession'
     ss.dependency 'Kommander', '~> 0.9'
     ss.source_files = "Kommander/*.{h,swift}"
+  end
+  
+  s.subspec 'RxSwift' do |ss|
+    ss.dependency 'NetClient/URLSession'
+    ss.dependency 'RxSwift', '~> 4.0'
+    ss.source_files = "RxSwift/*.{h,swift}"
   end
 end
