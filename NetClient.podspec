@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'NetClient'
-  s.version          = '0.4.1'
+  s.version          = '0.4.2'
   s.summary          = 'Versatile HTTP networking library written in Swift.'
 
   s.homepage         = 'https://github.com/intelygenz/NetClient-iOS'

@@ -9,7 +9,7 @@ let package = Package(
     .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "4.6")),
     .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "10.0")),
     .package(url: "https://github.com/intelygenz/Kommander-iOS.git", upToNextMajor: "0.9"),
-    .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "4.0"))
+    .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "4.1"))
   ],
   exclude: ["Example", "ExampleUITests", "Pods", "Tests"],
   targets: [

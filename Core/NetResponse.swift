@@ -28,7 +28,7 @@ public struct NetResponse {
 
     public let userInfo: [AnyHashable : Any]?
 
-    public fileprivate(set) weak var netTask: NetTask?
+    public weak var netTask: NetTask?
 
     let responseObject: Any?
 

@@ -34,7 +34,7 @@ open class NetTask {
 
     open let identifier: NetTaskIdentifier
 
-    open internal(set) var request: NetRequest?
+    open var request: NetRequest?
 
     open internal(set) var response: NetResponse? {
         didSet {
