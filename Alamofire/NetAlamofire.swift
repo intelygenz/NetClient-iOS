@@ -8,7 +8,7 @@
 
 import Alamofire
 
-public class NetAlamofire: Net {
+open class NetAlamofire: Net {
 
     open static let shared: Net = NetAlamofire(URLSession.shared)!
 

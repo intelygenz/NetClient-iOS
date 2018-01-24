@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class NetURLSession: Net {
+open class NetURLSession: Net {
 
     open static let shared: Net = NetURLSession(URLSession.shared)
 

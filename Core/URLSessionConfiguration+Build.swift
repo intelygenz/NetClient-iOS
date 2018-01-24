@@ -122,87 +122,87 @@ extension URLSessionConfiguration {
             #endif
         }
 
-        @discardableResult open func setCache(_ cachePolicy: NetRequest.NetCachePolicy?) -> Self {
+        @discardableResult public func setCache(_ cachePolicy: NetRequest.NetCachePolicy?) -> Self {
             self.cache = cache
             return self
         }
 
-        @discardableResult open func setRequestTimeout(_ requestTimeout: TimeInterval?) -> Self {
+        @discardableResult public func setRequestTimeout(_ requestTimeout: TimeInterval?) -> Self {
             self.requestTimeout = requestTimeout
             return self
         }
 
-        @discardableResult open func setResourceTimeout(_ resourceTimeout: TimeInterval?) -> Self {
+        @discardableResult public func setResourceTimeout(_ resourceTimeout: TimeInterval?) -> Self {
             self.resourceTimeout = resourceTimeout
             return self
         }
 
-        @discardableResult open func setServiceType(_ serviceType: NetRequest.NetServiceType?) -> Self {
+        @discardableResult public func setServiceType(_ serviceType: NetRequest.NetServiceType?) -> Self {
             self.serviceType = serviceType
             return self
         }
 
-        @discardableResult open func setAllowsCellularAccess(_ allowsCellularAccess: Bool?) -> Self {
+        @discardableResult public func setAllowsCellularAccess(_ allowsCellularAccess: Bool?) -> Self {
             self.allowsCellularAccess = allowsCellularAccess
             return self
         }
 
-        @discardableResult open func setWaitsForConnectivity(_ waitsForConnectivity: Bool?) -> Self {
+        @discardableResult public func setWaitsForConnectivity(_ waitsForConnectivity: Bool?) -> Self {
             self.waitsForConnectivity = waitsForConnectivity
             return self
         }
 
-        @discardableResult open func setDiscretionary(_ discretionary: Bool?) -> Self {
+        @discardableResult public func setDiscretionary(_ discretionary: Bool?) -> Self {
             self.discretionary = discretionary
             return self
         }
 
-        @discardableResult open func setContainerIdentifier(_ containerIdentifier: String?) -> Self {
+        @discardableResult public func setContainerIdentifier(_ containerIdentifier: String?) -> Self {
             self.containerIdentifier = containerIdentifier
             return self
         }
 
-        @discardableResult open func setSendsLaunchEvents(_ sendsLaunchEvents: Bool?) -> Self {
+        @discardableResult public func setSendsLaunchEvents(_ sendsLaunchEvents: Bool?) -> Self {
             self.sendsLaunchEvents = sendsLaunchEvents
             return self
         }
 
-        @discardableResult open func setProxyDictionary(_ proxyDictionary: [AnyHashable : Any]?) -> Self {
+        @discardableResult public func setProxyDictionary(_ proxyDictionary: [AnyHashable : Any]?) -> Self {
             self.proxyDictionary = proxyDictionary
             return self
         }
 
-        @discardableResult open func setMinimumTLSSupported(_ minimumTLSSupported: SSLProtocol?) -> Self {
+        @discardableResult public func setMinimumTLSSupported(_ minimumTLSSupported: SSLProtocol?) -> Self {
             self.minimumTLSSupported = minimumTLSSupported
             return self
         }
 
-        @discardableResult open func setMaximumTLSSupported(_ maximumTLSSupported: SSLProtocol?) -> Self {
+        @discardableResult public func setMaximumTLSSupported(_ maximumTLSSupported: SSLProtocol?) -> Self {
             self.maximumTLSSupported = maximumTLSSupported
             return self
         }
 
-        @discardableResult open func setUsePipelining(_ usePipelining: Bool?) -> Self {
+        @discardableResult public func setUsePipelining(_ usePipelining: Bool?) -> Self {
             self.usePipelining = usePipelining
             return self
         }
 
-        @discardableResult open func setHandleCookies(_ handleCookies: Bool?) -> Self {
+        @discardableResult public func setHandleCookies(_ handleCookies: Bool?) -> Self {
             self.handleCookies = handleCookies
             return self
         }
 
-        @discardableResult open func setAcceptPolicy(_ acceptPolicy: HTTPCookie.AcceptPolicy?) -> Self {
+        @discardableResult public func setAcceptPolicy(_ acceptPolicy: HTTPCookie.AcceptPolicy?) -> Self {
             self.acceptPolicy = acceptPolicy
             return self
         }
 
-        @discardableResult open func setHeaders(_ headers: [String : String]?) -> Self {
+        @discardableResult public func setHeaders(_ headers: [String : String]?) -> Self {
             self.headers = headers
             return self
         }
 
-        @discardableResult open func addHeader(_ key: String, value: String?) -> Self {
+        @discardableResult public func addHeader(_ key: String, value: String?) -> Self {
             if self.headers == nil {
                 setHeaders([:])
             }
@@ -210,37 +210,37 @@ extension URLSessionConfiguration {
             return self
         }
 
-        @discardableResult open func setMaximumConnections(_ maximumConnections: Int?) -> Self {
+        @discardableResult public func setMaximumConnections(_ maximumConnections: Int?) -> Self {
             self.maximumConnections = maximumConnections
             return self
         }
 
-        @discardableResult open func setCookieStorage(_ cookieStorage: HTTPCookieStorage?) -> Self {
+        @discardableResult public func setCookieStorage(_ cookieStorage: HTTPCookieStorage?) -> Self {
             self.cookieStorage = cookieStorage
             return self
         }
 
-        @discardableResult open func setCredentialStorage(_ credentialStorage: URLCredentialStorage?) -> Self {
+        @discardableResult public func setCredentialStorage(_ credentialStorage: URLCredentialStorage?) -> Self {
             self.credentialStorage = credentialStorage
             return self
         }
 
-        @discardableResult open func setURLCache(_ urlCache: URLCache?) -> Self {
+        @discardableResult public func setURLCache(_ urlCache: URLCache?) -> Self {
             self.urlCache = urlCache
             return self
         }
 
-        @discardableResult open func setExtendedBackgroundIdle(_ extendedBackgroundIdle: Bool?) -> Self {
+        @discardableResult public func setExtendedBackgroundIdle(_ extendedBackgroundIdle: Bool?) -> Self {
             self.extendedBackgroundIdle = extendedBackgroundIdle
             return self
         }
 
-        @discardableResult open func setProtocolClasses(_ protocolClasses: [Swift.AnyClass]?) -> Self {
+        @discardableResult public func setProtocolClasses(_ protocolClasses: [Swift.AnyClass]?) -> Self {
             self.protocolClasses = protocolClasses
             return self
         }
 
-        @discardableResult open func setMultipathServiceType(_ multipathServiceType: NetMultipathServiceType?) -> Self {
+        @discardableResult public func setMultipathServiceType(_ multipathServiceType: NetMultipathServiceType?) -> Self {
             self.multipathServiceType = multipathServiceType
             return self
         }
