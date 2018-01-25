@@ -39,6 +39,7 @@
 - [x] [Moya](https://github.com/Moya/Moya)Provider Extension
 - [x] [Kommander](https://github.com/intelygenz/Kommander-iOS) Extension
 - [x] [RxSwift](https://github.com/ReactiveX/RxSwift) Extension
+- [x] [Stub](https://en.wikipedia.org/wiki/Method_stub) Implementation
 
 ## 📋 Requirements
 
@@ -303,6 +304,26 @@ import RxSwift
 
 let request = NetRequest("YOUR_URL")!
 _ = net.data(request).rx.response().observeOn(MainScheduler.instance).subscribe { print($0) }
+```
+
+### [Stub](https://en.wikipedia.org/wiki/Method_stub) Implementation
+
+```ruby
+pod 'NetClient/Stub'
+```
+
+```swift
+import Net
+
+let net = NetStub()
+
+net.nextResult = .response(NetResponse.builder()....build())
+
+// Your test request here
+
+net.nextResult = .error(.net(code: 500, message: "Your network error.", headers: ..., object: ..., underlying: ...))
+
+// Your test request here
 ```
 
 ## ❤️ Etc.

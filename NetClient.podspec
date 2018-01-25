@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'NetClient'
-  s.version          = '0.4.2'
+  s.version          = '0.4.3'
   s.summary          = 'Versatile HTTP networking library written in Swift.'
 
   s.homepage         = 'https://github.com/intelygenz/NetClient-iOS'
@@ -51,5 +51,10 @@ Pod::Spec.new do |s|
     ss.dependency 'NetClient/URLSession'
     ss.dependency 'RxSwift', '~> 4.0'
     ss.source_files = "RxSwift/*.{h,swift}"
+  end
+  
+  s.subspec 'Stub' do |ss|
+    ss.dependency 'NetClient/Core'
+    ss.source_files = "Stub/*.{h,swift}"
   end
 end
