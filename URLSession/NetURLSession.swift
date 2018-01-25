@@ -107,9 +107,9 @@ extension NetURLSession {
 
     func urlRequest(_ netRequest: NetRequest) -> URLRequest {
         var builder = netRequest.builder()
-        requestInterceptors.forEach({ interceptor in
+        requestInterceptors.forEach { interceptor in
             builder = interceptor(builder)
-        })
+        }
         return builder.build().urlRequest
     }
 
@@ -139,9 +139,9 @@ extension NetURLSession {
             return nil
         }
         var builder = response.builder()
-        responseInterceptors.forEach({ interceptor in
+        responseInterceptors.forEach { interceptor in
             builder = interceptor(builder)
-        })
+        }
         return builder.build()
     }
 

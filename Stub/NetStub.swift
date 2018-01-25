@@ -38,9 +38,9 @@ open class NetStub: Net {
     private func stub(_ request: NetRequest? = nil) -> NetTask {
         var requestBuilder = request?.builder()
         if let builder = requestBuilder {
-            requestInterceptors.forEach({ interceptor in
+            requestInterceptors.forEach { interceptor in
                 requestBuilder = interceptor(builder)
-            })
+            }
         }
         guard let nextResult = nextResult else {
             return NetTaskStub(request: requestBuilder?.build())
@@ -48,9 +48,9 @@ open class NetStub: Net {
         switch nextResult {
         case .response(let response):
             var responseBuilder = response.builder()
-            responseInterceptors.forEach({ interceptor in
+            responseInterceptors.forEach { interceptor in
                 responseBuilder = interceptor(responseBuilder)
-            })
+            }
             return NetTaskStub(request: requestBuilder?.build(), response: responseBuilder.build())
         case .error(let error):
             var retryCount: UInt = 0
