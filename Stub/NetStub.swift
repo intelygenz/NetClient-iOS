@@ -87,4 +87,21 @@ open class NetStub: Net {
         return stub(request)
     }
 
+    #if !os(watchOS)
+    @available(iOS 9.0, macOS 10.11, *)
+    open func stream(_ netService: NetService) -> NetTask {
+        return stub()
+    }
+
+    @available(iOS 9.0, macOS 10.11, *)
+    open func stream(_ domain: String, type: String, name: String, port: Int32?) -> NetTask {
+        return stub()
+    }
+
+    @available(iOS 9.0, macOS 10.11, *)
+    open func stream(_ hostName: String, port: Int) -> NetTask {
+        return stub()
+    }
+    #endif
+
 }
