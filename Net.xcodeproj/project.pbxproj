@@ -197,6 +197,14 @@
 		D5B29EFA1FD5A32A00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */; };
 		D5B29EFB1FD5A32B00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */; };
 		D5B29EFC1FD5A32B00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */; };
+		D5E89ECA20191753006D2BD3 /* NetStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89EC920191753006D2BD3 /* NetStub.swift */; };
+		D5E89ECB20191753006D2BD3 /* NetStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89EC920191753006D2BD3 /* NetStub.swift */; };
+		D5E89ECC20191753006D2BD3 /* NetStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89EC920191753006D2BD3 /* NetStub.swift */; };
+		D5E89ECD20191753006D2BD3 /* NetStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89EC920191753006D2BD3 /* NetStub.swift */; };
+		D5E89ECF201917E1006D2BD3 /* NetTaskStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89ECE201917E1006D2BD3 /* NetTaskStub.swift */; };
+		D5E89ED0201917E1006D2BD3 /* NetTaskStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89ECE201917E1006D2BD3 /* NetTaskStub.swift */; };
+		D5E89ED1201917E1006D2BD3 /* NetTaskStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89ECE201917E1006D2BD3 /* NetTaskStub.swift */; };
+		D5E89ED2201917E1006D2BD3 /* NetTaskStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89ECE201917E1006D2BD3 /* NetTaskStub.swift */; };
 		E68DE6BC3150E03A91344632 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208150099C9C7D15FEB39DE2 /* Pods_Example.framework */; };
 		ED1BEF4B6F0398F03A2813FA /* Pods_watchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D96CC0C10C1FD76A8D17EE7 /* Pods_watchOS.framework */; };
 /* End PBXBuildFile section */
@@ -352,6 +360,8 @@
 		D5A521EE1E7B351100406F0F /* Net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
 		D5A521F31E7B35B400406F0F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+Build.swift"; sourceTree = "<group>"; };
+		D5E89EC920191753006D2BD3 /* NetStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetStub.swift; sourceTree = "<group>"; };
+		D5E89ECE201917E1006D2BD3 /* NetTaskStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTaskStub.swift; sourceTree = "<group>"; };
 		E0FEF50EE81D6352C88954A4 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E1A6962073F47253CBA73140 /* Pods-ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleUITests/Pods-ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F272790255D2800FEC64E9AC /* Pods_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -525,6 +535,7 @@
 				D579EE0F1EAE3AC800A2F311 /* Moya */,
 				D52FB2651F45833C00BEE37C /* Kommander */,
 				D5266BAF1FE933C700048B59 /* RxSwift */,
+				D5E89EC820191728006D2BD3 /* Stub */,
 				81ACB8011E85443F006D05DD /* Tests */,
 				D5A521CC1E7B348100406F0F /* Example */,
 				D5A521E11E7B348100406F0F /* ExampleUITests */,
@@ -599,6 +610,15 @@
 				D5B29EF81FD5A21300C3FE46 /* URLSessionConfiguration+Build.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		D5E89EC820191728006D2BD3 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				D5E89EC920191753006D2BD3 /* NetStub.swift */,
+				D5E89ECE201917E1006D2BD3 /* NetTaskStub.swift */,
+			);
+			path = Stub;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1272,9 +1292,11 @@
 				81ACB7DE1E83C656006D05DD /* NetRequest.swift in Sources */,
 				D579EE6B1EAE818D00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
 				D5B29EF91FD5A32900C3FE46 /* URLSessionConfiguration+Build.swift in Sources */,
+				D5E89ECA20191753006D2BD3 /* NetStub.swift in Sources */,
 				811842321F4441B200240CC4 /* NetServerTrust.swift in Sources */,
 				D579EE781EAE8E1C00A2F311 /* NetURLSession.swift in Sources */,
 				D579EE791EAE8E1C00A2F311 /* NetURLSession+Data.swift in Sources */,
+				D5E89ECF201917E1006D2BD3 /* NetTaskStub.swift in Sources */,
 				D579EE7C1EAE8E1C00A2F311 /* NetURLSession+Stream.swift in Sources */,
 				D579EE7D1EAE8E1C00A2F311 /* NetURLSessionDelegate.swift in Sources */,
 				D579EE341EAE7E3200A2F311 /* NetAlamofire+Stream.swift in Sources */,
@@ -1326,9 +1348,11 @@
 				D523AB0F1E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				D579EE6E1EAE818E00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
 				D5B29EFA1FD5A32A00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */,
+				D5E89ECB20191753006D2BD3 /* NetStub.swift in Sources */,
 				811842331F4441B200240CC4 /* NetServerTrust.swift in Sources */,
 				D579EE801EAE8E1D00A2F311 /* NetURLSession.swift in Sources */,
 				D579EE811EAE8E1D00A2F311 /* NetURLSession+Data.swift in Sources */,
+				D5E89ED0201917E1006D2BD3 /* NetTaskStub.swift in Sources */,
 				D579EE841EAE8E1D00A2F311 /* NetURLSession+Stream.swift in Sources */,
 				D579EE851EAE8E1D00A2F311 /* NetURLSessionDelegate.swift in Sources */,
 				D579EE351EAE7E3200A2F311 /* NetAlamofire+Stream.swift in Sources */,
@@ -1372,9 +1396,11 @@
 				81ACB7E01E83C658006D05DD /* NetRequest.swift in Sources */,
 				D579EE711EAE818F00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
 				D5B29EFB1FD5A32B00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */,
+				D5E89ECC20191753006D2BD3 /* NetStub.swift in Sources */,
 				811842341F4441B300240CC4 /* NetServerTrust.swift in Sources */,
 				D579EE881EAE8E1E00A2F311 /* NetURLSession.swift in Sources */,
 				D579EE891EAE8E1E00A2F311 /* NetURLSession+Data.swift in Sources */,
+				D5E89ED1201917E1006D2BD3 /* NetTaskStub.swift in Sources */,
 				D579EE8C1EAE8E1E00A2F311 /* NetURLSession+Stream.swift in Sources */,
 				D579EE8D1EAE8E1E00A2F311 /* NetURLSessionDelegate.swift in Sources */,
 				D579EE361EAE7E3200A2F311 /* NetAlamofire+Stream.swift in Sources */,
@@ -1418,9 +1444,11 @@
 				81ACB7E11E83C659006D05DD /* NetRequest.swift in Sources */,
 				D579EE741EAE818F00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
 				D5B29EFC1FD5A32B00C3FE46 /* URLSessionConfiguration+Build.swift in Sources */,
+				D5E89ECD20191753006D2BD3 /* NetStub.swift in Sources */,
 				811842351F4441B400240CC4 /* NetServerTrust.swift in Sources */,
 				D579EE901EAE8E1E00A2F311 /* NetURLSession.swift in Sources */,
 				D579EE911EAE8E1E00A2F311 /* NetURLSession+Data.swift in Sources */,
+				D5E89ED2201917E1006D2BD3 /* NetTaskStub.swift in Sources */,
 				D579EE941EAE8E1E00A2F311 /* NetURLSession+Stream.swift in Sources */,
 				D579EE951EAE8E1E00A2F311 /* NetURLSessionDelegate.swift in Sources */,
 				D579EE371EAE7E3200A2F311 /* NetAlamofire+Stream.swift in Sources */,

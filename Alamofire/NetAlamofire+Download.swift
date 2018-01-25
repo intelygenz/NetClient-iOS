@@ -10,7 +10,7 @@ import Alamofire
 
 extension NetAlamofire {
 
-    open func download(_ resumeData: Data) -> NetTask {
+    public func download(_ resumeData: Data) -> NetTask {
         let downloadRequest = sessionManager.download(resumingWith: resumeData)
         downloadRequest.suspend()
         var netDownloadTask: NetTask?
@@ -35,7 +35,7 @@ extension NetAlamofire {
         return netDownloadTask!
     }
 
-    open func download(_ request: NetRequest) -> NetTask {
+    public func download(_ request: NetRequest) -> NetTask {
         let downloadRequest = sessionManager.download(urlRequest(request))
         downloadRequest.suspend()
         var netDownloadTask: NetTask?
@@ -60,18 +60,18 @@ extension NetAlamofire {
         return netDownloadTask!
     }
 
-    open func download(_ request: URLRequest) throws -> NetTask {
+    public func download(_ request: URLRequest) throws -> NetTask {
         guard let netRequest = request.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return download(netRequest)
     }
 
-    open func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> NetTask {
+    public func download(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> NetTask {
         return download(netRequest(url, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    open func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetTask {
+    public func download(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetTask {
         guard let url = URL(string: urlString) else {
             throw netError(URLError(.badURL))!
         }

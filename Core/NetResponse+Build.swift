@@ -48,57 +48,57 @@ extension NetResponse {
             responseObject = netResponse?.responseObject
         }
 
-        @discardableResult open func setURL(_ url: URL?) -> Self {
+        @discardableResult public func setURL(_ url: URL?) -> Self {
             self.url = url
             return self
         }
 
-        @discardableResult open func setMimeType(_ mimeType: String?) -> Self {
+        @discardableResult public func setMimeType(_ mimeType: String?) -> Self {
             self.mimeType = mimeType
             return self
         }
 
-        @discardableResult open func setContentLength(_ contentLength: Int64) -> Self {
+        @discardableResult public func setContentLength(_ contentLength: Int64) -> Self {
             self.contentLength = contentLength
             return self
         }
 
-        @discardableResult open func setTextEncoding(_ textEncoding: String?) -> Self {
+        @discardableResult public func setTextEncoding(_ textEncoding: String?) -> Self {
             self.textEncoding = textEncoding
             return self
         }
 
-        @discardableResult open func setFilename(_ filename: String?) -> Self {
+        @discardableResult public func setFilename(_ filename: String?) -> Self {
             self.filename = filename
             return self
         }
 
-        @discardableResult open func setStatusCode(_ statusCode: Int?) -> Self {
+        @discardableResult public func setStatusCode(_ statusCode: Int?) -> Self {
             self.statusCode = statusCode
             return self
         }
 
-        @discardableResult open func setHeaders(_ headers: [AnyHashable : Any]?) -> Self {
+        @discardableResult public func setHeaders(_ headers: [AnyHashable : Any]?) -> Self {
             self.headers = headers
             return self
         }
 
-        @discardableResult open func setDescription(_ localizedDescription: String?) -> Self {
+        @discardableResult public func setDescription(_ localizedDescription: String?) -> Self {
             self.localizedDescription = localizedDescription
             return self
         }
 
-        @discardableResult open func setUserInfo(_ userInfo: [AnyHashable : Any]?) -> Self {
+        @discardableResult public func setUserInfo(_ userInfo: [AnyHashable : Any]?) -> Self {
             self.userInfo = userInfo
             return self
         }
 
-        @discardableResult open func setNetTask(_ netTask: NetTask?) -> Self {
+        @discardableResult public func setNetTask(_ netTask: NetTask?) -> Self {
             self.netTask = netTask
             return self
         }
 
-        @discardableResult open func setObject(_ responseObject: Any?) -> Self {
+        @discardableResult public func setObject(_ responseObject: Any?) -> Self {
             self.responseObject = responseObject
             return self
         }

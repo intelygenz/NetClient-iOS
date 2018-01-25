@@ -8,7 +8,7 @@
 
 import Alamofire
 
-public class NetAlamofire: Net {
+open class NetAlamofire: Net {
 
     open static let shared: Net = NetAlamofire(URLSession.shared)!
 
@@ -85,9 +85,9 @@ extension NetAlamofire {
 
     func urlRequest(_ netRequest: NetRequest) -> URLRequest {
         var builder = netRequest.builder()
-        requestInterceptors.forEach({ interceptor in
+        requestInterceptors.forEach { interceptor in
             builder = interceptor(builder)
-        })
+        }
         return builder.build().urlRequest
     }
 
@@ -112,9 +112,9 @@ extension NetAlamofire {
             return nil
         }
         var builder = response.builder()
-        responseInterceptors.forEach({ interceptor in
+        responseInterceptors.forEach { interceptor in
             builder = interceptor(builder)
-        })
+        }
         return builder.build()
     }
 

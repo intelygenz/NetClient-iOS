@@ -20,7 +20,8 @@ extension NetTask {
 }
 
 extension Alamofire.DataRequest: NetTaskProtocol {
-    open var earliestBeginDate: Date? {
+
+    public var earliestBeginDate: Date? {
         get {
             return nil
         }
@@ -28,10 +29,12 @@ extension Alamofire.DataRequest: NetTaskProtocol {
             assertionFailure("earliestBeginDate isn't supported by NetAlamofire, please use NetURLSession instead.")
         }
     }
+
 }
 
 extension Alamofire.DownloadRequest: NetTaskProtocol {
-    open var earliestBeginDate: Date? {
+
+    public var earliestBeginDate: Date? {
         get {
             return nil
         }
@@ -39,4 +42,5 @@ extension Alamofire.DownloadRequest: NetTaskProtocol {
             assertionFailure("earliestBeginDate isn't supported by NetAlamofire, please use NetURLSession instead.")
         }
     }
+    
 }

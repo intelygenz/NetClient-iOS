@@ -28,6 +28,10 @@ public protocol NetTaskProtocol: class {
 
 open class NetTask {
 
+    public typealias CompletionClosure = (NetResponse?, NetError?) -> Swift.Void
+    public typealias RetryClosure = (NetResponse?, NetError?, UInt) -> Bool
+    public typealias ProgressClosure = (Progress) -> Swift.Void
+
     public enum NetState : Int {
         case running, suspended, canceling, completed, waitingForConnectivity
     }
@@ -94,13 +98,6 @@ open class NetTask {
         retryClosure = nil
     }
 
-}
-
-extension NetTask {
-
-    public typealias CompletionClosure = (NetResponse?, NetError?) -> Swift.Void
-    public typealias RetryClosure = (NetResponse?, NetError?, UInt) -> Bool
-
     @discardableResult open func async(_ completion: CompletionClosure? = nil) -> Self {
         guard state == .suspended else {
             return self
@@ -159,20 +156,10 @@ extension NetTask {
         return self
     }
 
-}
-
-extension NetTask {
-
-    public typealias ProgressClosure = (Progress) -> Swift.Void
-
     @discardableResult open func progress(_ progressClosure: ProgressClosure?) -> Self {
         self.progressClosure = progressClosure
         return self
     }
-
-}
-
-extension NetTask: NetTaskProtocol {
 
     open var earliestBeginDate: Date? {
         get {
@@ -203,25 +190,13 @@ extension NetTask: NetTaskProtocol {
         netTask?.resume()
     }
 
-}
-
-extension NetTask: Hashable {
-
     open var hashValue: Int {
         return identifier.hashValue
     }
-    
-}
-
-extension NetTask: Equatable {
 
     open static func ==(lhs: NetTask, rhs: NetTask) -> Bool {
         return lhs.identifier == rhs.identifier
     }
-
-}
-
-extension NetTask: CustomStringConvertible {
 
     open var description: String {
         var description = String(describing: NetTask.self) + " " + identifier.description + " (" + String(describing: state) + ")"
@@ -231,12 +206,18 @@ extension NetTask: CustomStringConvertible {
         return description
     }
 
-}
-
-extension NetTask: CustomDebugStringConvertible {
-
     open var debugDescription: String {
         return description
     }
-    
+
 }
+
+extension NetTask: NetTaskProtocol {}
+
+extension NetTask: Hashable {}
+
+extension NetTask: Equatable {}
+
+extension NetTask: CustomStringConvertible {}
+
+extension NetTask: CustomDebugStringConvertible {}

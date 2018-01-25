@@ -33,11 +33,11 @@ extension NetRequest {
         }
         var acceptEncoding: [NetContentEncoding]? = nil
         if let acceptEncodingValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.acceptEncoding) {
-            acceptEncoding = acceptEncodingValue.components(separatedBy: ", ").flatMap({NetContentEncoding(rawValue: $0)})
+            acceptEncoding = acceptEncodingValue.components(separatedBy: ", ").flatMap { NetContentEncoding(rawValue: $0) }
         }
         var cacheControl: [NetCacheControl]? = nil
         if let cacheControlValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.cacheControl) {
-            cacheControl = cacheControlValue.components(separatedBy: ", ").flatMap({NetCacheControl(rawValue: $0)})
+            cacheControl = cacheControlValue.components(separatedBy: ", ").flatMap { NetCacheControl(rawValue: $0) }
         }
         var authorization = NetAuthorization.none
         if let authorizationValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.authorization) {

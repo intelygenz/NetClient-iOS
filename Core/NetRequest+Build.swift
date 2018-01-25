@@ -87,47 +87,47 @@ extension NetRequest {
             self.init(url)
         }
 
-        @discardableResult open func setCache(_ cache: NetRequest.NetCachePolicy?) -> Self {
+        @discardableResult public func setCache(_ cache: NetRequest.NetCachePolicy?) -> Self {
             self.cache = cache
             return self
         }
 
-        @discardableResult open func setTimeout(_ timeout: TimeInterval?) -> Self {
+        @discardableResult public func setTimeout(_ timeout: TimeInterval?) -> Self {
             self.timeout = timeout
             return self
         }
 
-        @discardableResult open func setMainDocumentURL(_ mainDocumentURL: URL?) -> Self {
+        @discardableResult public func setMainDocumentURL(_ mainDocumentURL: URL?) -> Self {
             self.mainDocumentURL = mainDocumentURL
             return self
         }
 
-        @discardableResult open func setServiceType(_ serviceType: NetRequest.NetServiceType?) -> Self {
+        @discardableResult public func setServiceType(_ serviceType: NetRequest.NetServiceType?) -> Self {
             self.serviceType = serviceType
             return self
         }
 
-        @discardableResult open func setContentType(_ contentType: NetContentType?) -> Self {
+        @discardableResult public func setContentType(_ contentType: NetContentType?) -> Self {
             self.contentType = contentType
             return self
         }
 
-        @discardableResult open func setContentLength(_ contentLength: NetContentLength?) -> Self {
+        @discardableResult public func setContentLength(_ contentLength: NetContentLength?) -> Self {
             self.contentLength = contentLength
             return self
         }
 
-        @discardableResult open func setAccept(_ accept: NetContentType?) -> Self {
+        @discardableResult public func setAccept(_ accept: NetContentType?) -> Self {
             self.accept = accept
             return self
         }
 
-        @discardableResult open func setAcceptEncodings(_ acceptEncodings: [NetContentEncoding]?) -> Self {
+        @discardableResult public func setAcceptEncodings(_ acceptEncodings: [NetContentEncoding]?) -> Self {
             self.acceptEncoding = acceptEncodings
             return self
         }
 
-        @discardableResult open func addAcceptEncoding(_ acceptEncoding: NetContentEncoding?) -> Self {
+        @discardableResult public func addAcceptEncoding(_ acceptEncoding: NetContentEncoding?) -> Self {
             if self.acceptEncoding == nil {
                 setAcceptEncodings([])
             }
@@ -141,12 +141,12 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setCacheControls(_ cacheControls: [NetCacheControl]?) -> Self {
+        @discardableResult public func setCacheControls(_ cacheControls: [NetCacheControl]?) -> Self {
             self.cacheControl = cacheControls
             return self
         }
 
-        @discardableResult open func addCacheControl(_ cacheControl: NetCacheControl?) -> Self {
+        @discardableResult public func addCacheControl(_ cacheControl: NetCacheControl?) -> Self {
             if self.cacheControl == nil {
                 setCacheControls([])
             }
@@ -160,22 +160,22 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setAllowsCellularAccess(_ allowsCellularAccess: Bool?) -> Self {
+        @discardableResult public func setAllowsCellularAccess(_ allowsCellularAccess: Bool?) -> Self {
             self.allowsCellularAccess = allowsCellularAccess
             return self
         }
 
-        @discardableResult open func setMethod(_ method: NetRequest.NetMethod?) -> Self {
+        @discardableResult public func setMethod(_ method: NetRequest.NetMethod?) -> Self {
             self.method = method
             return self
         }
 
-        @discardableResult open func setHeaders(_ headers: [String : String]?) -> Self {
+        @discardableResult public func setHeaders(_ headers: [String : String]?) -> Self {
             self.headers = headers
             return self
         }
 
-        @discardableResult open func addHeader(_ key: String, value: String?) -> Self {
+        @discardableResult public func addHeader(_ key: String, value: String?) -> Self {
             if self.headers == nil {
                 setHeaders([:])
             }
@@ -183,7 +183,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setBody(_ body: Data?) -> Self {
+        @discardableResult public func setBody(_ body: Data?) -> Self {
             if body != nil {
                 setBodyStream(nil)
                 if contentType == nil {
@@ -200,7 +200,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setURLParameters(_ urlParameters: [String: Any]?, resolvingAgainstBaseURL: Bool = false) -> Self {
+        @discardableResult public func setURLParameters(_ urlParameters: [String: Any]?, resolvingAgainstBaseURL: Bool = false) -> Self {
             if var components = URLComponents(url: url, resolvingAgainstBaseURL: resolvingAgainstBaseURL) {
                 components.percentEncodedQuery = nil
                 if let urlParameters = urlParameters, urlParameters.count > 0 {
@@ -213,7 +213,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func addURLParameter(_ key: String, value: Any?, resolvingAgainstBaseURL: Bool = false) -> Self {
+        @discardableResult public func addURLParameter(_ key: String, value: Any?, resolvingAgainstBaseURL: Bool = false) -> Self {
             guard let value = value else {
                 return self
             }
@@ -227,7 +227,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setFormParameters(_ formParameters: [String: Any]?, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) -> Self {
+        @discardableResult public func setFormParameters(_ formParameters: [String: Any]?, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) -> Self {
             guard let formParameters = formParameters else {
                 return self
             }
@@ -244,7 +244,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setStringBody(_ stringBody: String?, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) -> Self {
+        @discardableResult public func setStringBody(_ stringBody: String?, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) -> Self {
             guard let stringBody = stringBody else {
                 return self
             }
@@ -261,7 +261,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setJSONObject<T: Encodable>(_ jsonObject: T?) throws -> Self {
+        @discardableResult public func setJSONObject<T: Encodable>(_ jsonObject: T?) throws -> Self {
             guard let jsonObject = jsonObject else {
                 return self
             }
@@ -278,7 +278,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setJSONBody(_ jsonBody: Any?, options: JSONSerialization.WritingOptions = .prettyPrinted) throws -> Self {
+        @discardableResult public func setJSONBody(_ jsonBody: Any?, options: JSONSerialization.WritingOptions = .prettyPrinted) throws -> Self {
             guard let jsonBody = jsonBody else {
                 return self
             }
@@ -295,7 +295,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setPlistObject<T: Encodable>(_ plistObject: T?) throws -> Self {
+        @discardableResult public func setPlistObject<T: Encodable>(_ plistObject: T?) throws -> Self {
             guard let plistObject = plistObject else {
                 return self
             }
@@ -312,7 +312,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setPlistBody(_ plistBody: Any?, format: PropertyListSerialization.PropertyListFormat = .xml, options: PropertyListSerialization.WriteOptions = 0) throws -> Self {
+        @discardableResult public func setPlistBody(_ plistBody: Any?, format: PropertyListSerialization.PropertyListFormat = .xml, options: PropertyListSerialization.WriteOptions = 0) throws -> Self {
             guard let plistBody = plistBody else {
                 return self
             }
@@ -329,7 +329,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setBodyStream(_ bodyStream: InputStream?) -> Self {
+        @discardableResult public func setBodyStream(_ bodyStream: InputStream?) -> Self {
             if bodyStream != nil {
                 setBody(nil)
                 if contentType == nil {
@@ -343,7 +343,7 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setMultipartFormData(_ multipartFormData: NetMultipartFormData?) throws -> Self {
+        @discardableResult public func setMultipartFormData(_ multipartFormData: NetMultipartFormData?) throws -> Self {
             guard let multipartFormData = multipartFormData else {
                 return self
             }
@@ -356,27 +356,27 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult open func setHandleCookies(_ handleCookies: Bool?) -> Self {
+        @discardableResult public func setHandleCookies(_ handleCookies: Bool?) -> Self {
             self.handleCookies = handleCookies
             return self
         }
 
-        @discardableResult open func setUsePipelining(_ usePipelining: Bool?) -> Self {
+        @discardableResult public func setUsePipelining(_ usePipelining: Bool?) -> Self {
             self.usePipelining = usePipelining
             return self
         }
 
-        @discardableResult open func setBasicAuthorization(user: String, password: String) -> Self {
+        @discardableResult public func setBasicAuthorization(user: String, password: String) -> Self {
             self.authorization = .basic(user: user, password: password)
             return self
         }
 
-        @discardableResult open func setBearerAuthorization(token: String) -> Self {
+        @discardableResult public func setBearerAuthorization(token: String) -> Self {
             self.authorization = .bearer(token: token)
             return self
         }
 
-        @discardableResult open func setCustomAuthorization(_ authorization: String) -> Self {
+        @discardableResult public func setCustomAuthorization(_ authorization: String) -> Self {
             self.authorization = .custom(authorization)
             return self
         }

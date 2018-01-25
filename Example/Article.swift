@@ -11,6 +11,10 @@ struct Article: Codable {
 
     public let title: String
 
+    public init(title: String) {
+        self.title = title
+    }
+
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         let entry = try values.nestedContainer(keyedBy: AdditionalInfoKeys.self, forKey: .entry)

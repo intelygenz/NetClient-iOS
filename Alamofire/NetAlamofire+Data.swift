@@ -10,7 +10,7 @@ import Alamofire
 
 extension NetAlamofire {
 
-    open func data(_ request: NetRequest) -> NetTask {
+    public func data(_ request: NetRequest) -> NetTask {
         let dataRequest = sessionManager.request(urlRequest(request))
         dataRequest.suspend()
         var netDataTask: NetTask?
@@ -35,18 +35,18 @@ extension NetAlamofire {
         return netDataTask!
     }
 
-    open func data(_ request: URLRequest) throws -> NetTask {
+    public func data(_ request: URLRequest) throws -> NetTask {
         guard let netRequest = request.netRequest else {
             throw netError(URLError(.badURL))!
         }
         return data(netRequest)
     }
 
-    open func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> NetTask {
+    public func data(_ url: URL, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) -> NetTask {
         return data(netRequest(url, cache: cachePolicy, timeout: timeoutInterval))
     }
 
-    open func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetTask {
+    public func data(_ urlString: String, cachePolicy: NetRequest.NetCachePolicy? = nil, timeoutInterval: TimeInterval? = nil) throws -> NetTask {
         guard let url = URL(string: urlString) else {
             throw netError(URLError(.badURL))!
         }
