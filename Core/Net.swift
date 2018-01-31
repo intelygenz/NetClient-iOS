@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias InterceptorToken = UUID
+
 public typealias RequestInterceptor = (NetRequest.Builder) -> NetRequest.Builder
 
 public typealias ResponseInterceptor = (NetResponse.Builder) -> NetResponse.Builder
@@ -16,15 +18,13 @@ public protocol Net: class {
 
     static var shared: Net { get }
 
-    var requestInterceptors: [RequestInterceptor] { get set }
-
-    var responseInterceptors: [ResponseInterceptor] { get set }
-
     var retryClosure: NetTask.RetryClosure? { get set }
 
-    func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor)
+    func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) -> InterceptorToken
 
-    func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor)
+    func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) -> InterceptorToken
+
+    func removeInterceptor(_ token: InterceptorToken) -> Bool
 
     func data(_ request: NetRequest) -> NetTask
 

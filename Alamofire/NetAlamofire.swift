@@ -24,9 +24,9 @@ open class NetAlamofire: Net {
         return URLCache(memoryCapacity: defaultMemoryCapacity, diskCapacity: defaultDiskCapacity, diskPath: defaultDiskPath)
     }()
 
-    open var requestInterceptors = [RequestInterceptor]()
+    private var requestInterceptors = [InterceptorToken: RequestInterceptor]()
 
-    open var responseInterceptors = [ResponseInterceptor]()
+    private var responseInterceptors = [InterceptorToken: ResponseInterceptor]()
 
     open var retryClosure: NetTask.RetryClosure? {
         didSet {
@@ -71,12 +71,22 @@ open class NetAlamofire: Net {
         sessionManager = nil
     }
 
-    open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) {
-        requestInterceptors.append(interceptor)
+    open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) -> InterceptorToken {
+        let token = InterceptorToken()
+        requestInterceptors[token] = interceptor
+        return token
     }
 
-    open func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) {
-        responseInterceptors.append(interceptor)
+    open func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) -> InterceptorToken {
+        let token = InterceptorToken()
+        responseInterceptors[token] = interceptor
+        return token
+    }
+
+    open func removeInterceptor(_ token: InterceptorToken) -> Bool {
+        var removed = requestInterceptors.removeValue(forKey: token) != nil
+        removed = responseInterceptors.removeValue(forKey: token) != nil || removed
+        return removed
     }
 
 }
@@ -85,7 +95,7 @@ extension NetAlamofire {
 
     func urlRequest(_ netRequest: NetRequest) -> URLRequest {
         var builder = netRequest.builder()
-        requestInterceptors.forEach { interceptor in
+        requestInterceptors.values.forEach { interceptor in
             builder = interceptor(builder)
         }
         return builder.build().urlRequest
@@ -112,7 +122,7 @@ extension NetAlamofire {
             return nil
         }
         var builder = response.builder()
-        responseInterceptors.forEach { interceptor in
+        responseInterceptors.values.forEach { interceptor in
             builder = interceptor(builder)
         }
         return builder.build()
