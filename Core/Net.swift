@@ -20,11 +20,11 @@ public protocol Net: class {
 
     var retryClosure: NetTask.RetryClosure? { get set }
 
-    func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) -> InterceptorToken
+    @discardableResult func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) -> InterceptorToken
 
-    func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) -> InterceptorToken
+    @discardableResult func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) -> InterceptorToken
 
-    func removeInterceptor(_ token: InterceptorToken) -> Bool
+    @discardableResult func removeInterceptor(_ token: InterceptorToken) -> Bool
 
     func data(_ request: NetRequest) -> NetTask
 

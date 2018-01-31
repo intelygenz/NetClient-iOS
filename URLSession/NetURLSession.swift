@@ -78,19 +78,19 @@ open class NetURLSession: Net {
         serverTrust = serverTrustPolicies
     }
 
-    open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) -> InterceptorToken {
+    @discardableResult open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) -> InterceptorToken {
         let token = InterceptorToken()
         requestInterceptors[token] = interceptor
         return token
     }
 
-    open func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) -> InterceptorToken {
+    @discardableResult open func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) -> InterceptorToken {
         let token = InterceptorToken()
         responseInterceptors[token] = interceptor
         return token
     }
 
-    open func removeInterceptor(_ token: InterceptorToken) -> Bool {
+    @discardableResult open func removeInterceptor(_ token: InterceptorToken) -> Bool {
         guard requestInterceptors.removeValue(forKey: token) != nil else {
             return responseInterceptors.removeValue(forKey: token) != nil
         }
