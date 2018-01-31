@@ -91,9 +91,10 @@ open class NetURLSession: Net {
     }
 
     open func removeInterceptor(_ token: InterceptorToken) -> Bool {
-        var removed = requestInterceptors.removeValue(forKey: token) != nil
-        removed = responseInterceptors.removeValue(forKey: token) != nil || removed
-        return removed
+        guard requestInterceptors.removeValue(forKey: token) != nil else {
+            return responseInterceptors.removeValue(forKey: token) != nil
+        }
+        return true
     }
 
     deinit {
