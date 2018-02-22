@@ -1,3 +1,8 @@
+# Release 0.4.4
+
+- [x] [#12](https://github.com/intelygenz/NetClient-iOS/pull/12) New removable interceptors API
+- [x] New NetResponse.Builder [helpers](https://github.com/intelygenz/NetClient-iOS/blob/master/Core/NetResponse%2BBuild.swift#L106) for [Stub](https://en.wikipedia.org/wiki/Method_stub).
+
 # Release 0.4.3
 
 - [x] [Stub](https://en.wikipedia.org/wiki/Method_stub) Implementation
