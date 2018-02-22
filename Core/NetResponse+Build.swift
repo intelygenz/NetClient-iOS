@@ -103,6 +103,56 @@ extension NetResponse {
             return self
         }
 
+        @discardableResult public func setString(_ string: String?, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) -> Self {
+            guard let string = string,
+                let data = string.data(using: encoding, allowLossyConversion: allowLossyConversion) else {
+                return self
+            }
+            setObject(data)
+            setContentLength(Int64(data.count))
+            return self
+        }
+
+        @discardableResult public func setJSON<T: Encodable>(_ encodable: T?) throws -> Self {
+            guard let encodable = encodable else {
+                return self
+            }
+            let data = try JSONEncoder().encode(encodable)
+            setObject(data)
+            setContentLength(Int64(data.count))
+            return self
+        }
+
+        @discardableResult public func setJSON(_ object: Any?, options: JSONSerialization.WritingOptions = .prettyPrinted) throws -> Self {
+            guard let jsonObject = object else {
+                return self
+            }
+            let data = try JSONSerialization.data(withJSONObject: jsonObject, options: options)
+            setObject(data)
+            setContentLength(Int64(data.count))
+            return self
+        }
+
+        @discardableResult public func setPlist<T: Encodable>(_ encodable: T?) throws -> Self {
+            guard let encodable = encodable else {
+                return self
+            }
+            let data = try PropertyListEncoder().encode(encodable)
+            setObject(data)
+            setContentLength(Int64(data.count))
+            return self
+        }
+
+        @discardableResult public func setPlist(_ object: Any?, format: PropertyListSerialization.PropertyListFormat = .xml, options: PropertyListSerialization.WriteOptions = 0) throws -> Self {
+            guard let plistBody = object else {
+                return self
+            }
+            let data = try PropertyListSerialization.data(fromPropertyList: plistBody, format: format, options: options)
+            setObject(data)
+            setContentLength(Int64(data.count))
+            return self
+        }
+
         public func build() -> NetResponse {
             return NetResponse(self)
         }
