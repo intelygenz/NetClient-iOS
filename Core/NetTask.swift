@@ -26,7 +26,10 @@ public protocol NetTaskProtocol: class {
 
 }
 
-open class NetTask {
+open class NetTask: NetTaskProtocol,
+                    Hashable,
+                    CustomStringConvertible,
+                    CustomDebugStringConvertible {
 
     public typealias CompletionClosure = (NetResponse?, NetError?) -> Swift.Void
     public typealias RetryClosure = (NetResponse?, NetError?, UInt) -> Bool
@@ -156,6 +159,8 @@ open class NetTask {
         return self
     }
 
+    // MARK: NetTaskProtocol
+
     @discardableResult open func progress(_ progressClosure: ProgressClosure?) -> Self {
         self.progressClosure = progressClosure
         return self
@@ -190,13 +195,19 @@ open class NetTask {
         netTask?.resume()
     }
 
+    // MARK: Hashable
+
     open var hashValue: Int {
         return identifier.hashValue
     }
 
+    // MARK: Equatable
+
     open static func ==(lhs: NetTask, rhs: NetTask) -> Bool {
         return lhs.identifier == rhs.identifier
     }
+
+    // MARK: CustomStringConvertible
 
     open var description: String {
         var description = String(describing: NetTask.self) + " " + identifier.description + " (" + String(describing: state) + ")"
@@ -206,18 +217,10 @@ open class NetTask {
         return description
     }
 
+    // MARK: CustomDebugStringConvertible
+
     open var debugDescription: String {
         return description
     }
 
 }
-
-extension NetTask: NetTaskProtocol {}
-
-extension NetTask: Hashable {}
-
-extension NetTask: Equatable {}
-
-extension NetTask: CustomStringConvertible {}
-
-extension NetTask: CustomDebugStringConvertible {}

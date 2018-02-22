@@ -15,9 +15,9 @@ open class NetStub: Net {
     
     open static var shared: Net = NetStub()
 
-    open var requestInterceptors = [RequestInterceptor]()
+    private var requestInterceptors = [InterceptorToken: RequestInterceptor]()
 
-    open var responseInterceptors = [ResponseInterceptor]()
+    private var responseInterceptors = [InterceptorToken: ResponseInterceptor]()
 
     open var retryClosure: NetTask.RetryClosure?
 
@@ -27,20 +27,32 @@ open class NetStub: Net {
         self.nextResult = nextResult
     }
 
-    open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) {
-        requestInterceptors.append(interceptor)
+    @discardableResult open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) -> InterceptorToken {
+        let token = InterceptorToken()
+        requestInterceptors[token] = interceptor
+        return token
     }
 
-    open func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) {
-        responseInterceptors.append(interceptor)
+    @discardableResult open func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) -> InterceptorToken {
+        let token = InterceptorToken()
+        responseInterceptors[token] = interceptor
+        return token
+    }
+
+    @discardableResult open func removeInterceptor(_ token: InterceptorToken) -> Bool {
+        guard requestInterceptors.removeValue(forKey: token) != nil else {
+            return responseInterceptors.removeValue(forKey: token) != nil
+        }
+        return true
     }
 
     func stub(_ request: NetRequest? = nil) -> NetTask {
         var requestBuilder = request?.builder()
-        if let builder = requestBuilder {
-            requestInterceptors.forEach { interceptor in
-                requestBuilder = interceptor(builder)
+        if var builder = requestBuilder {
+            requestInterceptors.values.forEach { interceptor in
+                builder = interceptor(builder)
             }
+            requestBuilder = builder
         }
         guard let nextResult = nextResult else {
             return NetTaskStub(request: requestBuilder?.build())
@@ -48,7 +60,7 @@ open class NetStub: Net {
         switch nextResult {
         case .response(let response):
             var responseBuilder = response.builder()
-            responseInterceptors.forEach { interceptor in
+            responseInterceptors.values.forEach { interceptor in
                 responseBuilder = interceptor(responseBuilder)
             }
             return NetTaskStub(request: requestBuilder?.build(), response: responseBuilder.build())

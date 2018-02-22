@@ -12,6 +12,10 @@ class NetTaskStub: NetTask {
     override func async(_ completion: NetTask.CompletionClosure?) -> Self {
         completionClosure = completion
         progressClosure?(Progress(totalUnitCount: 0))
+        guard let response = response else {
+            completion?(nil, error ?? .net(code: nil, message: "Next result not specified.", headers: nil, object: nil, underlying: nil))
+            return self
+        }
         completion?(response, error)
         return self
     }
