@@ -502,7 +502,7 @@ public class NetMultipartFormData {
         guard bodyPartError == nil else {
             return
         }
-        bodyPartError = NetError.parse(code: underlying?._code, message: reason, object: object, underlying: underlying)
+        bodyPartError = .parse(code: underlying?._code, message: reason, object: object, underlying: underlying)
     }
 
 

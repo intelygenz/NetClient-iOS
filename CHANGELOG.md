@@ -1,3 +1,7 @@
+# Release 0.4.5
+
+- [x] Added customizable acceptable status codes range
+
 # Release 0.4.4
 
 - [x] [#12](https://github.com/intelygenz/NetClient-iOS/pull/12) New removable interceptors API

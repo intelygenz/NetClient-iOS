@@ -26,6 +26,8 @@ public protocol Net: class {
 
     @discardableResult func removeInterceptor(_ token: InterceptorToken) -> Bool
 
+    var acceptableStatusCodes: CountableRange<Int> { get set }
+
     func data(_ request: NetRequest) -> NetTask
 
     func download(_ resumeData: Data) -> NetTask

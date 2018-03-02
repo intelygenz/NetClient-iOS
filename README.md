@@ -32,6 +32,7 @@
 - [x] TLS Certificate and Public Key Pinning
 - [x] Retry requests
 - [x] Codable / Decodable / Encodable protocols compatible (JSON / Property List)
+- [x] Customizable acceptable status codes range
 - [x] watchOS Compatible
 - [x] tvOS Compatible
 - [x] macOS Compatible
