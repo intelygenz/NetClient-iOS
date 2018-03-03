@@ -72,12 +72,12 @@ class ViewController: UIViewController {
         // Decode
         net.data(request).async { (response, error) in
             do {
-                if let article: Article = try response?.decode() {
+                if let error = error {
+                    print("Net error: \(error)")
+                } else if let article: Article = try response?.decode() {
                     print(article)
                     // Encode
                     try request.builder().setJSONObject(article)
-                } else if let error = error {
-                    print("Net error: \(error)")
                 }
             } catch {
                 print("Parse error: \(error.localizedDescription)")

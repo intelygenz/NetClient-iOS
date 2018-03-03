@@ -18,8 +18,8 @@ extension NetAlamofire {
             netDataTask?.progress = progress
             netDataTask?.progressClosure?(progress)
         }
-        dataRequest.validate(statusCode: acceptableStatusCodes)
-        dataRequest.response(queue: queue) { [weak self] response in
+        .validate(statusCode: acceptableStatusCodes)
+        .response(queue: queue) { [weak self] response in
             let netResponse = self?.netResponse(response.response, netDataTask, response.data)
             let netError = self?.netError(response.error, response.data, response.response)
             netDataTask?.response = netResponse

@@ -139,8 +139,8 @@ open class NetTask: NetTaskProtocol,
         }
         guard let urlRequest = request?.urlRequest else {
             guard let taskError = error else {
-                let error = URLError(.resourceUnavailable)
-                throw NetError.net(code: error._code, message: "Request not found.", headers: response?.headers, object: response?.responseObject, underlying: error)
+                let urlError = URLError(.resourceUnavailable)
+                throw NetError.net(code: urlError._code, message: "Request not found.", headers: response?.headers, object: response?.responseObject, underlying: urlError)
             }
             throw taskError
         }
@@ -148,8 +148,8 @@ open class NetTask: NetTaskProtocol,
             return NetResponse(cachedResponse, self)
         }
         guard let taskError = error else {
-            let error = URLError(.resourceUnavailable)
-            throw NetError.net(code: error._code, message: "Cached response not found.", headers: response?.headers, object: response?.responseObject, underlying: error)
+            let urlError = URLError(.resourceUnavailable)
+            throw NetError.net(code: urlError._code, message: "Cached response not found.", headers: response?.headers, object: response?.responseObject, underlying: urlError)
         }
         throw taskError
     }

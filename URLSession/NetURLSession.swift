@@ -47,7 +47,7 @@ open class NetURLSession: Net {
 
     open var retryClosure: NetTask.RetryClosure?
 
-    open var acceptableStatusCodes = 200..<300
+    open var acceptableStatusCodes = defaultAcceptableStatusCodes
 
     open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)?
 
@@ -161,6 +161,8 @@ extension NetURLSession {
     func netError(_ error: Error?, _ responseObject: Any? = nil, _ response: URLResponse? = nil) -> NetError? {
         if let error = error {
             return .net(code: error._code, message: error.localizedDescription, headers: (response as? HTTPURLResponse)?.allHeaderFields, object: responseObject, underlying: error)
+        } else if let httpResponse = response as? HTTPURLResponse, !(acceptableStatusCodes ~= httpResponse.statusCode) {
+            return .net(code: httpResponse.statusCode, message: HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode), headers: httpResponse.allHeaderFields, object: responseObject, underlying: error)
         }
         return nil
     }
@@ -168,10 +170,7 @@ extension NetURLSession {
     func process(_ netTask: NetTask?, _ netResponse: NetResponse?, _ netError: NetError?) {
         netTask?.response = netResponse
         netTask?.error = netError
-        if netTask?.error == nil, let statusCode = netTask?.response?.statusCode, !(acceptableStatusCodes ~= statusCode) {
-            netTask?.error = .net(code: statusCode, message: "Response status code \(statusCode).", headers: netTask?.response?.headers, object: netTask?.response?.responseObject, underlying: nil)
-        }
-        if let request = netTask?.request, let retryCount = netTask?.retryCount, netTask?.retryClosure?(netTask?.response, netTask?.error, retryCount) == true || retryClosure?(netTask?.response, netTask?.error, retryCount) == true {
+        if let request = netTask?.request, let retryCount = netTask?.retryCount, netTask?.retryClosure?(netResponse, netError, retryCount) == true || retryClosure?(netResponse, netError, retryCount) == true {
             let retryTask = self.data(request)
             netTask?.netTask = retryTask.netTask
             netTask?.state = .suspended
@@ -188,7 +187,7 @@ extension NetURLSession {
             netTask?.resume()
         } else {
             netTask?.dispatchSemaphore?.signal()
-            netTask?.completionClosure?(netTask?.response, netTask?.error)
+            netTask?.completionClosure?(netResponse, netError)
         }
     }
 

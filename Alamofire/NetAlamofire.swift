@@ -34,7 +34,7 @@ open class NetAlamofire: Net {
         }
     }
 
-    open var acceptableStatusCodes = 200..<300
+    open var acceptableStatusCodes = defaultAcceptableStatusCodes
 
     open private(set) var sessionManager: Alamofire.SessionManager!
 
