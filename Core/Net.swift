@@ -10,7 +10,9 @@ import Foundation
 
 public typealias InterceptorToken = UUID
 
-public typealias StatusCodes = CountableRange<Int>
+public typealias StatusCode = Int
+
+public typealias StatusCodes = Set<StatusCode>
 
 public typealias RequestInterceptor = (NetRequest.Builder) -> NetRequest.Builder
 
@@ -56,5 +58,5 @@ public protocol Net: class {
 }
 
 extension Net {
-    static var defaultAcceptableStatusCodes: StatusCodes { return 200..<300 }
+    static var defaultAcceptableStatusCodes: StatusCodes { return Set(200..<300) }
 }
