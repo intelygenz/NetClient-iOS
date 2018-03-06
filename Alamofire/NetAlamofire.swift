@@ -34,6 +34,8 @@ open class NetAlamofire: Net {
         }
     }
 
+    open var acceptableStatusCodes = defaultAcceptableStatusCodes
+
     open private(set) var sessionManager: Alamofire.SessionManager!
 
     open var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)? {
@@ -131,7 +133,7 @@ extension NetAlamofire {
 
     func netError(_ error: Error?, _ responseObject: Any? = nil, _ response: URLResponse? = nil) -> NetError? {
         if let error = error {
-            return NetError.net(code: error._code, message: error.localizedDescription, headers: (response as? HTTPURLResponse)?.allHeaderFields, object: responseObject, underlying: error)
+            return .net(code: error._code, message: error.localizedDescription, headers: (response as? HTTPURLResponse)?.allHeaderFields, object: responseObject, underlying: error)
         }
         return nil
     }

@@ -18,7 +18,8 @@ extension NetAlamofire {
             netDownloadTask?.progress = progress
             netDownloadTask?.progressClosure?(progress)
         }
-        downloadRequest.response(queue: queue) { [weak self] response in
+        .validate(statusCode: acceptableStatusCodes)
+        .response(queue: queue) { [weak self] response in
             let netResponse = self?.netResponse(response.response, netDownloadTask, response.destinationURL)
             let netError = self?.netError(response.error, response.destinationURL, response.response)
             netDownloadTask?.response = netResponse
@@ -43,7 +44,8 @@ extension NetAlamofire {
             netDownloadTask?.progress = progress
             netDownloadTask?.progressClosure?(progress)
         }
-        downloadRequest.response(queue: queue) { [weak self] response in
+        .validate(statusCode: acceptableStatusCodes)
+        .response(queue: queue) { [weak self] response in
             let netResponse = self?.netResponse(response.response, netDownloadTask, response.destinationURL)
             let netError = self?.netError(response.error, response.destinationURL, response.response)
             netDownloadTask?.response = netResponse

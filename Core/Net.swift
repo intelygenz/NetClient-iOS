@@ -10,6 +10,10 @@ import Foundation
 
 public typealias InterceptorToken = UUID
 
+public typealias StatusCode = Int
+
+public typealias StatusCodes = Set<StatusCode>
+
 public typealias RequestInterceptor = (NetRequest.Builder) -> NetRequest.Builder
 
 public typealias ResponseInterceptor = (NetResponse.Builder) -> NetResponse.Builder
@@ -25,6 +29,8 @@ public protocol Net: class {
     @discardableResult func addResponseInterceptor(_ interceptor: @escaping ResponseInterceptor) -> InterceptorToken
 
     @discardableResult func removeInterceptor(_ token: InterceptorToken) -> Bool
+
+    var acceptableStatusCodes: StatusCodes { get set }
 
     func data(_ request: NetRequest) -> NetTask
 
@@ -49,4 +55,8 @@ public protocol Net: class {
     func stream(_ hostName: String, port: Int) -> NetTask
     #endif
 
+}
+
+extension Net {
+    static var defaultAcceptableStatusCodes: StatusCodes { return Set(200..<300) }
 }

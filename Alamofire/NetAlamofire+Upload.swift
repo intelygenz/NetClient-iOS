@@ -18,7 +18,8 @@ extension NetAlamofire {
             netUploadTask?.progress = progress
             netUploadTask?.progressClosure?(progress)
         }
-        uploadRequest.response(queue: queue) { [weak self] response in
+        .validate(statusCode: acceptableStatusCodes)
+        .response(queue: queue) { [weak self] response in
             let netResponse = self?.netResponse(response.response, netUploadTask, response.data)
             let netError = self?.netError(response.error, response.data, response.response)
             netUploadTask?.response = netResponse
@@ -61,7 +62,8 @@ extension NetAlamofire {
             netUploadTask?.progress = progress
             netUploadTask?.progressClosure?(progress)
         }
-        uploadRequest.response(queue: queue) { [weak self] response in
+        .validate(statusCode: acceptableStatusCodes)
+        .response(queue: queue) { [weak self] response in
             let netResponse = self?.netResponse(response.response, netUploadTask, response.data)
             let netError = self?.netError(response.error, response.data, response.response)
             netUploadTask?.response = netResponse
@@ -104,7 +106,8 @@ extension NetAlamofire {
             netUploadTask?.progress = progress
             netUploadTask?.progressClosure?(progress)
         }
-        uploadRequest.response(queue: queue) { [weak self] response in
+        .validate(statusCode: acceptableStatusCodes)
+        .response(queue: queue) { [weak self] response in
             let netResponse = self?.netResponse(response.response, netUploadTask, response.data)
             let netError = self?.netError(response.error, response.data, response.response)
             netUploadTask?.response = netResponse

@@ -47,6 +47,8 @@ open class NetURLSession: Net {
 
     open var retryClosure: NetTask.RetryClosure?
 
+    open var acceptableStatusCodes = defaultAcceptableStatusCodes
+
     open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)?
 
     open private(set) var serverTrust = [String: NetServerTrust]()
@@ -158,7 +160,9 @@ extension NetURLSession {
 
     func netError(_ error: Error?, _ responseObject: Any? = nil, _ response: URLResponse? = nil) -> NetError? {
         if let error = error {
-            return NetError.net(code: error._code, message: error.localizedDescription, headers: (response as? HTTPURLResponse)?.allHeaderFields, object: responseObject, underlying: error)
+            return .net(code: error._code, message: error.localizedDescription, headers: (response as? HTTPURLResponse)?.allHeaderFields, object: responseObject, underlying: error)
+        } else if let httpResponse = response as? HTTPURLResponse, !acceptableStatusCodes.contains(httpResponse.statusCode) {
+            return .net(code: httpResponse.statusCode, message: HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode), headers: httpResponse.allHeaderFields, object: responseObject, underlying: error)
         }
         return nil
     }

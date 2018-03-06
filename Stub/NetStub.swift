@@ -21,6 +21,8 @@ open class NetStub: Net {
 
     open var retryClosure: NetTask.RetryClosure?
 
+    open var acceptableStatusCodes = defaultAcceptableStatusCodes
+
     open var nextResult: Result?
 
     public init(_ nextResult: Result? = nil) {

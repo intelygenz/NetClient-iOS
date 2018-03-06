@@ -313,16 +313,16 @@ public class NetMultipartFormData {
         }
 
         if FileManager.default.fileExists(atPath: fileURL.path) {
-            let underlying = URLError(.fileDoesNotExist)
-            throw NetError.parse(code: underlying._code, message: "Output stream file already exists.", object: fileURL, underlying: underlying)
+            let urlError = URLError(.fileDoesNotExist)
+            throw NetError.parse(code: urlError._code, message: "Output stream file already exists.", object: fileURL, underlying: urlError)
         } else if !fileURL.isFileURL {
-            let underlying = URLError(.badURL)
-            throw NetError.parse(code: underlying._code, message: "Output stream URL is invalid.", object: fileURL, underlying: underlying)
+            let urlError = URLError(.badURL)
+            throw NetError.parse(code: urlError._code, message: "Output stream URL is invalid.", object: fileURL, underlying: urlError)
         }
 
         guard let outputStream = OutputStream(url: fileURL, append: false) else {
-            let underlying = URLError(.cannotCreateFile)
-            throw NetError.parse(code: underlying._code, message: "Output stream creation failed.", object: fileURL, underlying: underlying)
+            let urlError = URLError(.cannotCreateFile)
+            throw NetError.parse(code: urlError._code, message: "Output stream creation failed.", object: fileURL, underlying: urlError)
         }
 
         outputStream.open()
@@ -502,7 +502,7 @@ public class NetMultipartFormData {
         guard bodyPartError == nil else {
             return
         }
-        bodyPartError = NetError.parse(code: underlying?._code, message: reason, object: object, underlying: underlying)
+        bodyPartError = .parse(code: underlying?._code, message: reason, object: object, underlying: underlying)
     }
 
 
