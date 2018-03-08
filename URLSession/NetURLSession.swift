@@ -171,7 +171,7 @@ extension NetURLSession {
         netTask?.response = netResponse
         netTask?.error = netError
         if let request = netTask?.request, let retryCount = netTask?.retryCount, netTask?.retryClosure?(netResponse, netError, retryCount) == true || retryClosure?(netResponse, netError, retryCount) == true {
-            let retryTask = self.data(request)
+            let retryTask = self.data(netTask?.request ?? request)
             netTask?.netTask = retryTask.netTask
             netTask?.state = .suspended
             netTask?.retryCount += 1

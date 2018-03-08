@@ -1,3 +1,7 @@
+# Release 0.4.6
+
+- [x] Minor bug fix retrying requests
+
 # Release 0.4.5
 
 - [x] Added customizable acceptable status codes range
