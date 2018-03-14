@@ -69,11 +69,11 @@ open class NetTask: NetTaskProtocol,
 
     open internal(set) var retryCount: UInt = 0
 
-    fileprivate(set) var dispatchSemaphore: DispatchSemaphore?
+    private(set) var dispatchSemaphore: DispatchSemaphore?
 
     var completionClosure: CompletionClosure?
 
-    fileprivate(set) var retryClosure: RetryClosure?
+    private(set) var retryClosure: RetryClosure?
 
     var progressClosure: ProgressClosure?
 

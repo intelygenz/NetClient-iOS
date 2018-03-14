@@ -10,7 +10,7 @@ import Foundation
 
 class NetURLSessionDelegate: NSObject {
 
-    fileprivate weak final var netURLSession: NetURLSession?
+    private weak final var netURLSession: NetURLSession?
 
     final var tasks = [URLSessionTask: NetTask]()
 
@@ -42,8 +42,8 @@ extension NetURLSessionDelegate: URLSessionTaskDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting taskMetrics: URLSessionTaskMetrics) {
         if let netTask = tasks[task] {
             netTask.metrics = NetTaskMetrics(taskMetrics, request: netTask.request, response: netTask.response)
+            tasks[task] = nil
         }
-        tasks[task] = nil
     }
 
     @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
@@ -58,9 +58,29 @@ extension NetURLSessionDelegate: URLSessionTaskDelegate {
         }
     }
 
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let netTask = tasks[task] {
+            let netError = netURLSession?.netError(error, netTask.response?.responseObject, task.response)
+            netURLSession?.process(netTask, netTask.response, netError)
+            tasks[task] = nil
+        }
+    }
+
 }
 
-extension NetURLSessionDelegate: URLSessionDataDelegate {}
+extension NetURLSessionDelegate: URLSessionDataDelegate {
+
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        if let netTask = tasks[dataTask] {
+            guard let response = netTask.response, var oldData = try? response.object() as Data else {
+                tasks[dataTask]?.response = netURLSession?.netResponse(dataTask.response, netTask, data)
+                return
+            }
+            tasks[dataTask]?.response = netURLSession?.netResponse(dataTask.response, netTask, oldData.append(data))
+        }
+    }
+
+}
 
 
 extension NetURLSessionDelegate: URLSessionDownloadDelegate {
@@ -74,7 +94,7 @@ extension NetURLSessionDelegate: URLSessionStreamDelegate {}
 
 extension NetURLSessionDelegate {
 
-    fileprivate func handle(_ challenge: URLAuthenticationChallenge, _ netTask: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
+    private func handle(_ challenge: URLAuthenticationChallenge, _ netTask: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let authChallenge = netURLSession?.authChallenge else {
             guard challenge.previousFailureCount == 0 else {
                 challenge.sender?.cancel(challenge)

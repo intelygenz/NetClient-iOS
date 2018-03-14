@@ -10,7 +10,7 @@ import Foundation
 
 open class NetURLSession: Net {
 
-    open static let shared: Net = NetURLSession(URLSession.shared)
+    open static let shared: Net = NetURLSession(.shared)
 
     open static let defaultCache: URLCache = {
         let defaultMemoryCapacity = 4 * 1024 * 1024
@@ -53,7 +53,7 @@ open class NetURLSession: Net {
 
     open private(set) var serverTrust = [String: NetServerTrust]()
 
-    fileprivate final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
+    private final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
     public convenience init() {
         let defaultConfiguration = URLSessionConfiguration.default

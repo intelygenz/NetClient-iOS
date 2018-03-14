@@ -14,7 +14,7 @@ import RxSwift
 
 class ViewController: UIViewController {
 
-    let net: Net = NetURLSession.shared
+    let net: Net = NetURLSession()
     let kommander: Kommander = .default
 
     override func viewDidLoad() {

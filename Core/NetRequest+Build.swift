@@ -415,7 +415,7 @@ extension NetRequest {
 
 extension NetRequest.Builder {
 
-    fileprivate func query(_ parameters: [String: Any]) -> String {
+    private func query(_ parameters: [String: Any]) -> String {
         var components = [(String, String)]()
 
         for key in parameters.keys.sorted(by: <) {
@@ -427,7 +427,7 @@ extension NetRequest.Builder {
         return components.map { "\($0)=\($1)" }.joined(separator: "&")
     }
 
-    fileprivate func queryComponents(_ key: String, value: Any) -> [(String, String)] {
+    private func queryComponents(_ key: String, value: Any) -> [(String, String)] {
         var components: [(String, String)] = []
 
         if let dictionary = value as? [String: Any] {
@@ -453,7 +453,7 @@ extension NetRequest.Builder {
         return components
     }
 
-    fileprivate func escape(_ string: String) -> String {
+    private func escape(_ string: String) -> String {
         let generalDelimitersToEncode = ":#[]@"
         let subDelimitersToEncode = "!$&'()*+,;="
 
