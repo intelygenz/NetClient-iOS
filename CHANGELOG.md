@@ -1,3 +1,8 @@
+# Release 0.4.7
+
+- [x] NetStub with AsyncBehavior
+- [x] Working with Kommander 1.0
+
 # Release 0.4.6
 
 - [x] Minor bug fix retrying requests

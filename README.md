@@ -318,6 +318,8 @@ import Net
 
 let net = NetStub()
 
+net.asyncBehavior = .delayed(.main, .seconds(10)) // If you want to delay the response.
+
 net.nextResult = .response(NetResponse.builder()....build())
 
 // Your test request here

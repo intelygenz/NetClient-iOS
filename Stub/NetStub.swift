@@ -12,6 +12,10 @@ open class NetStub: Net {
     public enum Result {
         case response(NetResponse), error(NetError)
     }
+
+    public enum AsyncBehavior {
+        case immediate(DispatchQueue?), delayed(DispatchQueue?, DispatchTimeInterval)
+    }
     
     open static var shared: Net = NetStub()
 
@@ -25,8 +29,11 @@ open class NetStub: Net {
 
     open var nextResult: Result?
 
-    public init(_ nextResult: Result? = nil) {
+    open var asyncBehavior: AsyncBehavior
+
+    public init(_ nextResult: Result? = nil, _ asyncBehavior: AsyncBehavior = .immediate(nil)) {
         self.nextResult = nextResult
+        self.asyncBehavior = asyncBehavior
     }
 
     @discardableResult open func addRequestInterceptor(_ interceptor: @escaping RequestInterceptor) -> InterceptorToken {
@@ -57,7 +64,12 @@ open class NetStub: Net {
             requestBuilder = builder
         }
         guard let nextResult = nextResult else {
-            return NetTaskStub(request: requestBuilder?.build())
+            switch asyncBehavior {
+            case .immediate(let queue):
+                return NetTaskStub(request: requestBuilder?.build(), queue: queue)
+            case .delayed(let queue, let delay):
+                return NetTaskStub(request: requestBuilder?.build(), queue: queue, delay: delay)
+            }
         }
         switch nextResult {
         case .response(let response):
@@ -65,15 +77,23 @@ open class NetStub: Net {
             responseInterceptors.values.forEach { interceptor in
                 responseBuilder = interceptor(responseBuilder)
             }
-            return NetTaskStub(request: requestBuilder?.build(), response: responseBuilder.build())
+            switch asyncBehavior {
+            case .immediate(let queue):
+                return NetTaskStub(request: requestBuilder?.build(), response: responseBuilder.build(), queue: queue)
+            case .delayed(let queue, let delay):
+                return NetTaskStub(request: requestBuilder?.build(), response: responseBuilder.build(), queue: queue, delay: delay)
+            }
         case .error(let error):
             var retryCount: UInt = 0
             while retryClosure?(nil, error, retryCount) == true {
                 retryCount += 1
             }
-            let netTask = NetTaskStub(request: requestBuilder?.build(), error: error)
-            netTask.retryCount = retryCount
-            return netTask
+            switch asyncBehavior {
+            case .immediate(let queue):
+                return NetTaskStub(request: requestBuilder?.build(), error: error, retryCount: retryCount, queue: queue)
+            case .delayed(let queue, let delay):
+                return NetTaskStub(request: requestBuilder?.build(), error: error, retryCount: retryCount, queue: queue, delay: delay)
+            }
         }
     }
 
