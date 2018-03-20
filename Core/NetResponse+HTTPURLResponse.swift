@@ -14,4 +14,11 @@ extension NetResponse {
         self.init(httpResponse.url, mimeType: httpResponse.mimeType, contentLength: httpResponse.expectedContentLength, textEncoding: httpResponse.textEncodingName, filename: httpResponse.suggestedFilename, statusCode: httpResponse.statusCode, headers: httpResponse.allHeaderFields, localizedDescription: HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode), netTask: netTask, responseObject: responseObject)
     }
 
+    public var httpResponse: HTTPURLResponse? {
+        guard let url = url, let statusCode = statusCode, let headers = headers as? [String : String] else {
+            return nil
+        }
+        return HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: headers)
+    }
+
 }

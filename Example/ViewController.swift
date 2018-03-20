@@ -57,13 +57,13 @@ class ViewController: UIViewController {
         }
 
         // Kommander
-        net.data(request).execute(by: kommander, onSuccess: { object in
+        net.data(request).execute(by: kommander, success: { object in
             print(object)
         }) { error in
             print("Error: \(String(describing: error?.localizedDescription))")
         }
 
-        net.data(request).executeDecoding(by: kommander, onSuccess: { object in
+        net.data(request).executeDecoding(by: kommander, success: { object in
             print(object as Article)
         }) { error in
             print("Error: \(String(describing: error?.localizedDescription))")

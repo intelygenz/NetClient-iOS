@@ -8,29 +8,52 @@
 
 import Foundation
 
-/// Kommand<Result> state
-public enum State {
-    /// Uninitialized state
-    case uninitialized
-    /// Ready state
-    case ready
-    /// Executing state
-    case running
-    /// Finished state
-    case finished
-    /// Cancelled state
-    case cancelled
-}
-
 /// Generic Kommand
 open class Kommand<Result> {
 
-    /// Action block type
-    public typealias ActionBlock = () throws -> Result
-    /// Success block type
-    public typealias SuccessBlock = (_ result: Result) -> Void
-    /// Error block type
-    public typealias ErrorBlock = (_ error: Error?) -> Void
+    /// Kommand<Result> state
+    public indirect enum State: Equatable {
+        /// Uninitialized state
+        case uninitialized
+        /// Ready state
+        case ready
+        /// Executing state
+        case running
+        /// Succeeded state
+        case succeeded(Result)
+        /// Failed state
+        case failed(Swift.Error?)
+        /// Cancelled state
+        case cancelled
+
+        public static func ==(lhs: State, rhs: State) -> Bool {
+            switch (lhs, rhs) {
+            case (.uninitialized, .uninitialized):
+                return true
+            case (.ready, .ready):
+                return true
+            case (.running, .running):
+                return true
+            case (.succeeded, .succeeded):
+                return true
+            case (.failed, .failed):
+                return true
+            case (.cancelled, .cancelled):
+                return true
+            default:
+                return false
+            }
+        }
+    }
+
+    /// Action closure type
+    public typealias ActionClosure = () throws -> Result
+    /// Success closure type
+    public typealias SuccessClosure = (_ result: Result) -> Void
+    /// Error closure type
+    public typealias ErrorClosure = (_ error: Swift.Error?) -> Void
+    /// Retry closure type
+    public typealias RetryClosure = (_ error: Swift.Error?, _ executionCount: UInt) -> Bool
 
     /// Kommand<Result> state
     internal(set) public final var state = State.uninitialized
@@ -39,20 +62,25 @@ open class Kommand<Result> {
     private final weak var deliverer: Dispatcher?
     /// Executor
     private final weak var executor: Dispatcher?
-    /// Action block
-    private(set) final var actionBlock: ActionBlock?
-    /// Success block
-    private(set) final var successBlock: SuccessBlock?
-    /// Error block
-    private(set) final var errorBlock: ErrorBlock?
+    /// Action closure
+    private(set) final var actionClosure: ActionClosure?
+    /// Success closure
+    private(set) final var successClosure: SuccessClosure?
+    /// Error closure
+    private(set) final var errorClosure: ErrorClosure?
+    /// Retry closure
+    private(set) final var retryClosure: RetryClosure?
+    /// Execution count
+    internal(set) final var executionCount: UInt
     /// Operation to cancel
     internal(set) final weak var operation: Operation?
 
-    /// Kommand<Result> instance with deliverer, executor and actionBlock returning generic and throwing errors
-    public init(deliverer: Dispatcher = .current, executor: Dispatcher = .default, actionBlock: @escaping ActionBlock) {
+    /// Kommand<Result> instance with deliverer, executor and actionClosure returning generic and throwing errors
+    public init(deliverer: Dispatcher = .current, executor: Dispatcher = .default, actionClosure: @escaping ActionClosure) {
         self.deliverer = deliverer
         self.executor = executor
-        self.actionBlock = actionBlock
+        self.actionClosure = actionClosure
+        executionCount = 0
         state = .ready
     }
 
@@ -61,26 +89,51 @@ open class Kommand<Result> {
         operation = nil
         deliverer = nil
         executor = nil
-        actionBlock = nil
-        successBlock = nil
-        errorBlock = nil
+        actionClosure = nil
+        successClosure = nil
+        errorClosure = nil
+        retryClosure = nil
     }
 
-    /// Specify Kommand<Result> success block
-    @discardableResult open func onSuccess(_ onSuccess: @escaping SuccessBlock) -> Self {
-        self.successBlock = onSuccess
+    /// Specify Kommand<Result> success closure
+    @discardableResult open func success(_ success: @escaping SuccessClosure) -> Self {
+        self.successClosure = success
         return self
     }
 
-    /// Specify Kommand<Result> error block
-    @discardableResult open func onError(_ onError: @escaping ErrorBlock) -> Self {
-        self.errorBlock = onError
+    /// Specify Kommand<Result> error closure
+    @discardableResult open func error(_ error: @escaping ErrorClosure) -> Self {
+        self.errorClosure = error
         return self
+    }
+
+    /// Specify Kommand<Result> retry closure
+    @discardableResult open func retry(_ retry: @escaping RetryClosure) -> Self {
+        self.retryClosure = retry
+        return self
+    }
+
+    var result: Result? {
+        switch state {
+        case .succeeded(let result):
+            return result
+        default:
+            return nil
+        }
+    }
+
+    var error: Error? {
+        switch state {
+        case .failed(let error):
+            return error
+        default:
+            return nil
+        }
     }
 
     /// Execute Kommand<Result> after delay
     @discardableResult open func execute(after delay: DispatchTimeInterval) -> Self {
-        executor?.execute(after: delay, block: { 
+        executor?.execute(after: delay, closure: { 
             self.execute()
         })
         return self
@@ -93,15 +146,16 @@ open class Kommand<Result> {
         }
         operation = executor?.execute {
             do {
-                if let actionBlock = self.actionBlock {
+                if let actionClosure = self.actionClosure {
                     self.state = .running
-                    let result = try actionBlock()
+                    self.executionCount += 1
+                    let result = try actionClosure()
                     guard self.state == .running else {
                         return
                     }
                     self.deliverer?.execute {
-                        self.state = .finished
-                        self.successBlock?(result)
+                        self.state = .succeeded(result)
+                        self.successClosure?(result)
                     }
                 }
             } catch {
@@ -109,8 +163,13 @@ open class Kommand<Result> {
                     return
                 }
                 self.deliverer?.execute {
-                    self.state = .finished
-                    self.errorBlock?(error)
+                    self.state = .failed(error)
+                    if self.retryClosure?(error, self.executionCount) == true {
+                        self.state = .ready
+                        self.execute()
+                    } else {
+                        self.errorClosure?(error)
+                    }
                 }
             }
         }
@@ -119,7 +178,7 @@ open class Kommand<Result> {
 
     /// Cancel Kommand<Result> after delay
     @discardableResult open func cancel(_ throwingError: Bool = false, after delay: DispatchTimeInterval) -> Self {
-        executor?.execute(after: delay, block: {
+        executor?.execute(after: delay, closure: {
             self.cancel(throwingError)
         })
         return self
@@ -127,12 +186,12 @@ open class Kommand<Result> {
 
     /// Cancel Kommand<Result>
     @discardableResult open func cancel(_ throwingError: Bool = false) -> Self {
-        guard state != .cancelled else {
+        guard state == .ready || state == .running else {
             return self
         }
         self.deliverer?.execute {
             if throwingError {
-                self.errorBlock?(KommandCancelledError(self))
+                self.errorClosure?(KommandCancelledError(self))
             }
         }
         if let operation = operation, !operation.isFinished {
@@ -144,7 +203,7 @@ open class Kommand<Result> {
 
     /// Retry Kommand<Result> after delay
     @discardableResult open func retry(after delay: DispatchTimeInterval) -> Self {
-        executor?.execute(after: delay, block: {
+        executor?.execute(after: delay, closure: {
             self.retry()
         })
         return self

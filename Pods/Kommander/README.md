@@ -8,7 +8,9 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager Compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
 [![Build Status](https://travis-ci.org/intelygenz/Kommander-iOS.svg?branch=master)](https://travis-ci.org/intelygenz/Kommander-iOS)
+[![Documentation](https://img.shields.io/badge/documentation-100%25-brightgreen.svg?style=flat)](https://intelygenz.github.io/Kommander-iOS)
 [![Downloads](https://img.shields.io/cocoapods/dt/Kommander.svg)](http://cocoapods.org/pods/Kommander)
+[![Help Contribute to Open Source](https://www.codetriage.com/intelygenz/kommander-ios/badges/users.svg)](https://www.codetriage.com/intelygenz/kommander-ios)
 
 **Kommander** is a Swift library to manage the task execution in different threads. Through the definition a simple but powerful concept, [**Kommand**](https://en.wikipedia.org/wiki/Command_pattern).
 
@@ -23,18 +25,20 @@ Inspired on the Java library [**Kommander**](https://github.com/Wokdsem/Kommande
 - [x] Execute kommand or multiple kommands
 - [x] Cancel kommand or multiple kommands
 - [x] Retry kommand or multiple kommands
-- [x] Set kommand success block
-- [x] Set kommand error block
+- [x] Set kommand success closure
+- [x] Set kommand error closure
 - [x] Main thread dispatcher
 - [x] Current thread dispatcher
 - [x] Custom OperationQueue dispatcher
 - [x] Execute single or multiple Operation
-- [x] Execute sequential or concurrent blocks
+- [x] Execute sequential or concurrent closures
 - [x] Execute DispatchWorkItem
 - [x] Kommand state
+- [x] iOS compatible
 - [x] watchOS compatible
 - [x] tvOS compatible
 - [x] macOS compatible
+- [x] Swift 4 version
 - [x] Swift 3 version
 - [x] Swift 2 version
 - [x] Objective-C version
@@ -76,7 +80,7 @@ github "intelygenz/Kommander-iOS"
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/intelygenz/Kommander-iOS.git")
+    .package(url: "https://github.com/intelygenz/Kommander-iOS.git")
 ]
 ```
 
@@ -85,45 +89,59 @@ dependencies: [
 #### Making, executing, cancelling and retrying Kommands:
 
 ```swift
-Kommander().makeKommand {
+Kommander().make {
     // Your code here
 }.execute()
 ```
 
 ```swift
-Kommander().makeKommand {
+Kommander().make {
     // Your code here
 }.execute(after: .seconds(2))
 ```
 
 ```swift
-Kommander().makeKommand {
+Kommander().make {
     return "Your string"
-}.onSuccess { yourString in
+}.success { yourString in
     print(yourString)
 }.execute()
 ```
 
 ```swift
-Kommander().makeKommand {
+Kommander().make {
     throw CocoaError(.featureUnsupported)
-}.onError({ error in
+}.error { error in
     print(String(describing: error!))
-}).execute()
+}.execute()
 ```
 
+##### Retry after cancellation:
+
 ```swift
-let kommand = Kommander().makeKommand { () -> Any? in
+let kommand = Kommander().make { () -> Any? in
     // Your code here
-}.onSuccess { result in
+}.success { result in
     // Your success handling here
-}.onError({ error in
+}.error { error in
     // Your error handling here
-}).execute()
+}.execute()
 
 kommand.cancel()
 
 kommand.retry()
+```
+
+##### Retry after failure:
+
+```swift
+let kommand = Kommander().make { () -> Any? in
+    // Your code here
+}.error { error in
+    // Your error handling here
+}.retry { error, executionCount in
+    return executionCount < 2
+}.execute()
 ```
 
 #### Creating Kommanders:
@@ -131,8 +149,10 @@ kommand.retry()
 ```swift
 Kommander(deliverer: Dispatcher = .current, executor: Dispatcher = .default)
 
-Kommander(deliverer: Dispatcher = .current, name: String, qos: QualityOfService = .default, maxConcurrentOperationCount: Int = .default)
+Kommander(deliverer: Dispatcher = .current, name: String, qos: QualityOfService = .default, maxConcurrentOperations: Int = .default)
 ```
+
+##### Shortcuts:
 
 ```swift
 Kommander.main
@@ -157,8 +177,10 @@ CurrentDispatcher()
 
 MainDispatcher()
 
-Dispatcher(name: String, qos: QualityOfService = .default, maxConcurrentOperationCount: Int = .default)
+Dispatcher(name: String, qos: QualityOfService = .default, maxConcurrentOperations: Int = .default)
 ```
+
+##### Shortcuts:
 
 ```swift
 Dispatcher.main

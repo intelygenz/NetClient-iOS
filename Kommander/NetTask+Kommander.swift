@@ -11,13 +11,13 @@ import Kommander
 extension NetTask {
 
     /// Execute NetTask
-    @discardableResult public func execute<T>(by kommander: Kommander, after delay: DispatchTimeInterval? = nil, onSuccess: ((_ result: T) -> Void)?, onError: ((_ error: Error?) -> Void)?) -> Kommand<T> {
-        let kommand = kommander.makeKommand {
+    @discardableResult public func execute<T>(by kommander: Kommander, after delay: DispatchTimeInterval? = nil, success: ((_ result: T) -> Void)?, error: ((_ error: Error?) -> Void)?) -> Kommand<T> {
+        let kommand = kommander.make {
             return try self.sync().object()
-        }.onSuccess { result in
-            onSuccess?(result)
-        }.onError { error in
-            onError?(error)
+        }.success {
+            success?($0)
+        }.error {
+            error?($0)
         }
         if let delay = delay {
             kommand.execute(after: delay)
@@ -28,13 +28,13 @@ extension NetTask {
     }
 
     /// Execute NetTask decoding the result
-    @discardableResult public func executeDecoding<D: Decodable>(by kommander: Kommander, after delay: DispatchTimeInterval? = nil, onSuccess: ((_ result: D) -> Void)?, onError: ((_ error: Error?) -> Void)?) -> Kommand<D> {
-        let kommand = kommander.makeKommand {
+    @discardableResult public func executeDecoding<D: Decodable>(by kommander: Kommander, after delay: DispatchTimeInterval? = nil, success: ((_ result: D) -> Void)?, error: ((_ error: Error?) -> Void)?) -> Kommand<D> {
+        let kommand = kommander.make {
             return try self.sync().decode()
-            }.onSuccess { result in
-                onSuccess?(result)
-            }.onError { error in
-                onError?(error)
+            }.success {
+                success?($0)
+            }.error {
+                error?($0)
         }
         if let delay = delay {
             kommand.execute(after: delay)
