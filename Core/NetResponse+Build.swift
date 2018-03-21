@@ -106,7 +106,7 @@ extension NetResponse {
         @discardableResult public func setString(_ string: String?, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) -> Self {
             guard let string = string,
                 let data = string.data(using: encoding, allowLossyConversion: allowLossyConversion) else {
-                return self
+                    return self
             }
             setObject(data)
             setContentLength(Int64(data.count))

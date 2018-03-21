@@ -175,7 +175,6 @@ extension NetURLSession {
             netTask?.netTask = retryTask.netTask
             netTask?.state = .suspended
             netTask?.retryCount += 1
-            retryTask.request = nil
             retryTask.progressClosure = { progress in
                 netTask?.progress = progress
                 netTask?.progressClosure?(progress)
