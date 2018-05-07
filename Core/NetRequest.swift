@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NetRequest {
+public struct NetRequest: Hashable {
 
     public typealias NetContentLength = UInt64
 
@@ -65,6 +65,10 @@ public struct NetRequest {
     public let usePipelining: Bool
 
     public let authorization: NetAuthorization
+
+    public var hashValue: Int {
+        return url.hashValue + httpMethod.hashValue
+    }
 
 }
 
@@ -162,22 +166,6 @@ extension NetRequest: CustomDebugStringConvertible {
         components.append("\"\(url.absoluteString)\"")
 
         return components.joined(separator: " \\\n\t")
-    }
-
-}
-
-extension NetRequest: Hashable {
-
-    public var hashValue: Int {
-        return url.hashValue + httpMethod.hashValue
-    }
-
-}
-
-extension NetRequest: Equatable {
-
-    public static func ==(lhs: NetRequest, rhs: NetRequest) -> Bool {
-        return lhs.url == rhs.url && lhs.httpMethod == rhs.httpMethod
     }
 
 }

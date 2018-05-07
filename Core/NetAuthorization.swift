@@ -8,11 +8,9 @@
 
 import Foundation
 
-public enum NetAuthorization {
+public enum NetAuthorization: Hashable {
     case none, basic(user: String, password: String), bearer(token: String), custom(String)
 }
-
-extension NetAuthorization: Equatable {}
 
 extension NetAuthorization: RawRepresentable {
 

@@ -8,11 +8,9 @@
 
 import Foundation
 
-public enum NetCacheControl {
+public enum NetCacheControl: Equatable {
     case maxAge(TimeInterval), maxStale(TimeInterval?), minFresh(TimeInterval), noCache, noStore, noTransform, onlyIfCached, custom(String)
 }
-
-extension NetCacheControl: Equatable {}
 
 extension NetCacheControl: RawRepresentable {
 

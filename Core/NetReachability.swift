@@ -11,11 +11,11 @@ import SystemConfiguration
 
 public class NetReachability {
 
-    public enum Connection {
+    public enum Connection: Hashable {
         case ethernetOrWiFi, wwan
     }
 
-    public enum Status {
+    public enum Status: Hashable {
         case unknown, unreachable, reachable(Connection)
     }
 
@@ -142,23 +142,6 @@ public class NetReachability {
         #endif
 
         return networkStatus
-    }
-
-}
-
-extension NetReachability.Status: Equatable {
-
-    public static func ==(lhs: NetReachability.Status, rhs: NetReachability.Status) -> Bool {
-        switch (lhs, rhs) {
-        case (.unknown, .unknown):
-            return true
-        case (.unreachable, .unreachable):
-            return true
-        case let (.reachable(lhsConnectionType), .reachable(rhsConnectionType)):
-            return lhsConnectionType == rhsConnectionType
-        default:
-            return false
-        }
     }
 
 }

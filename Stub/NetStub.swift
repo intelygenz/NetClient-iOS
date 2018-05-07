@@ -13,7 +13,7 @@ open class NetStub: Net {
         case response(NetResponse), error(NetError)
     }
 
-    public enum AsyncBehavior {
+    public enum AsyncBehavior: Equatable {
         case immediate(DispatchQueue?), delayed(DispatchQueue?, DispatchTimeInterval)
     }
     

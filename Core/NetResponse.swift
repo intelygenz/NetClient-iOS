@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NetResponse {
+public struct NetResponse: Equatable {
 
     public let url: URL?
 
@@ -31,6 +31,13 @@ public struct NetResponse {
     public weak var netTask: NetTask?
 
     let responseObject: Any?
+
+    public static func ==(lhs: NetResponse, rhs: NetResponse) -> Bool {
+        guard lhs.url != nil && rhs.url != nil else {
+            return false
+        }
+        return lhs.url == rhs.url
+    }
 
 }
 
@@ -77,17 +84,6 @@ extension NetResponse {
         default:
             return error
         }
-    }
-
-}
-
-extension NetResponse: Equatable {
-
-    public static func ==(lhs: NetResponse, rhs: NetResponse) -> Bool {
-        guard lhs.url != nil && rhs.url != nil else {
-            return false
-        }
-        return lhs.url == rhs.url
     }
 
 }

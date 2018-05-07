@@ -21,7 +21,7 @@ public class NetMultipartFormData {
     }
 
     struct BoundaryGenerator {
-        enum BoundaryType {
+        enum BoundaryType: Hashable {
             case initial, encapsulated, final
         }
 
