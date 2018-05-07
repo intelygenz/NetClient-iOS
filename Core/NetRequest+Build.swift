@@ -30,6 +30,8 @@ extension NetRequest {
 
         public private(set) var acceptEncoding: [NetContentEncoding]?
 
+        public private(set) var contentEncoding: [NetContentEncoding]?
+
         public private(set) var cacheControl: [NetCacheControl]?
 
         public private(set) var allowsCellularAccess: Bool?
@@ -58,6 +60,7 @@ extension NetRequest {
             contentLength = netRequest.contentLength
             accept = netRequest.accept
             acceptEncoding = netRequest.acceptEncoding
+            contentEncoding = netRequest.contentEncoding
             cacheControl = netRequest.cacheControl
             allowsCellularAccess = netRequest.allowsCellularAccess
             method = netRequest.httpMethod != .GET ? netRequest.httpMethod : nil
@@ -137,6 +140,25 @@ extension NetRequest {
                 }
                 acceptEncodings.append(acceptEncoding)
                 setAcceptEncodings(acceptEncodings)
+            }
+            return self
+        }
+
+        @discardableResult public func setContentEncodings(_ contentEncodings: [NetContentEncoding]?) -> Self {
+            self.contentEncoding = contentEncodings
+            return self
+        }
+
+        @discardableResult public func addContentEncoding(_ contentEncoding: NetContentEncoding?) -> Self {
+            if self.contentEncoding == nil {
+                setContentEncodings([])
+            }
+            if let contentEncoding = contentEncoding, var contentEncodings = self.contentEncoding {
+                if contentEncodings.contains(contentEncoding), let index = contentEncodings.index(of: contentEncoding) {
+                    contentEncodings.remove(at: index)
+                }
+                contentEncodings.append(contentEncoding)
+                setContentEncodings(contentEncodings)
             }
             return self
         }
@@ -408,7 +430,7 @@ extension NetRequest {
     }
 
     public init(_ builder: Builder) {
-        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, contentLength: builder.contentLength, accept: builder.accept, acceptEncoding: builder.acceptEncoding, cacheControl: builder.cacheControl, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
+        self.init(builder.url, cache: builder.cache ?? .useProtocolCachePolicy, timeout: builder.timeout ?? 60, mainDocumentURL: builder.mainDocumentURL, serviceType: builder.serviceType ?? .default, contentType: builder.contentType, contentLength: builder.contentLength, accept: builder.accept, acceptEncoding: builder.acceptEncoding, contentEncoding: builder.contentEncoding, cacheControl: builder.cacheControl, allowsCellularAccess: builder.allowsCellularAccess ?? true, method: builder.method ?? .GET, headers: builder.headers, body: builder.body, bodyStream: builder.bodyStream, handleCookies: builder.handleCookies ?? true, usePipelining: builder.usePipelining ?? true, authorization: builder.authorization ?? .none)
     }
 
 }

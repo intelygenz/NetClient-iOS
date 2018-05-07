@@ -1,0 +1,10 @@
+module Kommander [system] {
+  umbrella header "Kommander-iOS9.0-umbrella.h"
+  exclude header "Kommander-iOS8.0-umbrella.h"
+  exclude header "Kommander-watchOS2.0-umbrella.h"
+  exclude header "Kommander-tvOS9.0-umbrella.h"
+  exclude header "Kommander-macOS10.10-umbrella.h"
+
+  export *
+  module * { export * }
+}

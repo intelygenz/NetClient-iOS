@@ -1,4 +1,4 @@
-framework module Pods_tvOS {
+module Pods_tvOS [system] {
   umbrella header "Pods-tvOS-umbrella.h"
 
   export *

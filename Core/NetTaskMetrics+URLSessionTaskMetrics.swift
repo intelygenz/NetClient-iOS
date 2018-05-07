@@ -14,7 +14,7 @@ extension NetTaskMetrics {
     public init(_ urlSessionTaskMetrics: URLSessionTaskMetrics, request: NetRequest? = nil, response: NetResponse? = nil) {
         var transactionMetrics = [NetTransactionMetrics]()
         #if !os(watchOS)
-        transactionMetrics = urlSessionTaskMetrics.transactionMetrics.flatMap {
+        transactionMetrics = urlSessionTaskMetrics.transactionMetrics.compactMap {
             NetTransactionMetrics(request: request, response: response, fetchStartDate: $0.fetchStartDate, domainLookupStartDate: $0.domainLookupStartDate, domainLookupEndDate: $0.domainLookupEndDate, connectStartDate: $0.connectStartDate, secureConnectionStartDate: $0.secureConnectionStartDate, secureConnectionEndDate: $0.secureConnectionEndDate, connectEndDate: $0.connectEndDate, requestStartDate: $0.requestStartDate, requestEndDate: $0.requestEndDate, responseStartDate: $0.responseStartDate, responseEndDate: $0.responseEndDate, networkProtocolName: $0.networkProtocolName, isProxyConnection: $0.isProxyConnection, isReusedConnection: $0.isReusedConnection, resourceFetchType: NetTransactionMetrics.NetResourceFetchType(rawValue: $0.resourceFetchType.rawValue) ?? .unknown)
         }
         #endif

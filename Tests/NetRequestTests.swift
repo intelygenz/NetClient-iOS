@@ -79,9 +79,10 @@ class NetRequestTests: XCTestCase {
         let url = URL(string: "http://www.alexruperez.com/entries/3491-intelygenz-netclient-ios.json")!
         let builder = NetRequest(url).builder()
         let body = "body".data(using: .utf8)
-        builder.addAcceptEncoding(NetRequest.NetContentEncoding.gzip).addAcceptEncoding(NetRequest.NetContentEncoding.deflate).setBody(body).setURLParameters(["foo": "bar", "igz": "rules"])
+        builder.addAcceptEncoding(NetRequest.NetContentEncoding.gzip).addAcceptEncoding(NetRequest.NetContentEncoding.deflate).addContentEncoding(NetRequest.NetContentEncoding.gzip).setBody(body).setURLParameters(["foo": "bar", "igz": "rules"])
         var urlRequest = builder.build().urlRequest
         XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Accept-Encoding"), "gzip, deflate")
+        XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Content-Encoding"), "gzip")
         XCTAssertEqual(urlRequest.httpBody, body)
         XCTAssertEqual(urlRequest.url?.absoluteString, url.absoluteString + "?foo=bar&igz=rules")
         builder.addURLParameter("intelygenz", value: "cool")

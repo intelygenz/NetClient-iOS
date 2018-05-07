@@ -2,6 +2,7 @@
 
 - [x] NetStub with AsyncBehavior
 - [x] Working with Kommander 1.0
+- [x] Content-Encoding compatible
 
 # Release 0.4.6
 

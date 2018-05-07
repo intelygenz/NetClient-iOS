@@ -1,4 +1,4 @@
-framework module Pods_watchOS {
+module Pods_watchOS [system] {
   umbrella header "Pods-watchOS-umbrella.h"
 
   export *

@@ -96,6 +96,7 @@ do {
                 .setCacheControls([.maxAge(500)])
                 .setURLParameters(["foo": "bar"])
                 .setAcceptEncodings([.gzip, .deflate])
+                .setContentEncodings([.gzip])
                 .setBasicAuthorization(user: "user", password: "password")
                 .setHeaders(["foo": "bar"])
                 .build()

@@ -15,6 +15,7 @@ extension NetRequest {
         static let contentType = "Content-Type"
         static let accept = "Accept"
         static let acceptEncoding = "Accept-Encoding"
+        static let contentEncoding = "Content-Encoding"
         static let cacheControl = "Cache-Control"
         static let authorization = "Authorization"
     }
@@ -33,11 +34,15 @@ extension NetRequest {
         }
         var acceptEncoding: [NetContentEncoding]? = nil
         if let acceptEncodingValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.acceptEncoding) {
-            acceptEncoding = acceptEncodingValue.components(separatedBy: ", ").flatMap { NetContentEncoding(rawValue: $0) }
+            acceptEncoding = acceptEncodingValue.components(separatedBy: ", ").compactMap { NetContentEncoding(rawValue: $0) }
+        }
+        var contentEncoding: [NetContentEncoding]? = nil
+        if let contentEncodingValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.contentEncoding) {
+            contentEncoding = contentEncodingValue.components(separatedBy: ", ").compactMap { NetContentEncoding(rawValue: $0) }
         }
         var cacheControl: [NetCacheControl]? = nil
         if let cacheControlValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.cacheControl) {
-            cacheControl = cacheControlValue.components(separatedBy: ", ").flatMap { NetCacheControl(rawValue: $0) }
+            cacheControl = cacheControlValue.components(separatedBy: ", ").compactMap { NetCacheControl(rawValue: $0) }
         }
         var authorization = NetAuthorization.none
         if let authorizationValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.authorization) {
@@ -51,7 +56,7 @@ extension NetRequest {
         if let contentLengthValue = urlRequest.value(forHTTPHeaderField: HTTPHeader.contentLength), let contentLengthInt64 = NetContentLength(contentLengthValue) {
             contentLength = contentLengthInt64
         }
-        self.init(url, cache: NetCachePolicy(rawValue: urlRequest.cachePolicy.rawValue) ?? .useProtocolCachePolicy, timeout: urlRequest.timeoutInterval, mainDocumentURL: urlRequest.mainDocumentURL, serviceType: NetServiceType(rawValue: urlRequest.networkServiceType.rawValue) ?? .default, contentType: contentType, contentLength: contentLength, accept: accept, acceptEncoding: acceptEncoding, cacheControl: cacheControl, allowsCellularAccess: urlRequest.allowsCellularAccess, method: method, headers: urlRequest.allHTTPHeaderFields, body: urlRequest.httpBody, bodyStream: urlRequest.httpBodyStream, handleCookies: urlRequest.httpShouldHandleCookies, usePipelining: urlRequest.httpShouldUsePipelining, authorization: authorization)
+        self.init(url, cache: NetCachePolicy(rawValue: urlRequest.cachePolicy.rawValue) ?? .useProtocolCachePolicy, timeout: urlRequest.timeoutInterval, mainDocumentURL: urlRequest.mainDocumentURL, serviceType: NetServiceType(rawValue: urlRequest.networkServiceType.rawValue) ?? .default, contentType: contentType, contentLength: contentLength, accept: accept, acceptEncoding: acceptEncoding, contentEncoding: contentEncoding, cacheControl: cacheControl, allowsCellularAccess: urlRequest.allowsCellularAccess, method: method, headers: urlRequest.allHTTPHeaderFields, body: urlRequest.httpBody, bodyStream: urlRequest.httpBodyStream, handleCookies: urlRequest.httpShouldHandleCookies, usePipelining: urlRequest.httpShouldUsePipelining, authorization: authorization)
     }
 
     public var urlRequest: URLRequest {
@@ -66,8 +71,9 @@ extension NetRequest {
             urlRequest.setValue("\(contentLength)", forHTTPHeaderField: HTTPHeader.contentLength)
         }
         urlRequest.setValue(accept?.rawValue, forHTTPHeaderField: HTTPHeader.accept)
-        urlRequest.setValue(acceptEncoding?.flatMap({$0.rawValue}).joined(separator: ", "), forHTTPHeaderField: HTTPHeader.acceptEncoding)
-        urlRequest.setValue(cacheControl?.flatMap({$0.rawValue}).joined(separator: ", "), forHTTPHeaderField: HTTPHeader.cacheControl)
+        urlRequest.setValue(acceptEncoding?.compactMap({$0.rawValue}).joined(separator: ", "), forHTTPHeaderField: HTTPHeader.acceptEncoding)
+        urlRequest.setValue(contentEncoding?.compactMap({$0.rawValue}).joined(separator: ", "), forHTTPHeaderField: HTTPHeader.contentEncoding)
+        urlRequest.setValue(cacheControl?.compactMap({$0.rawValue}).joined(separator: ", "), forHTTPHeaderField: HTTPHeader.cacheControl)
         if authorization != .none {
             urlRequest.setValue(authorization.rawValue, forHTTPHeaderField: HTTPHeader.authorization)
         }
