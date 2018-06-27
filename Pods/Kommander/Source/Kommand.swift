@@ -22,7 +22,7 @@ open class Kommand<Result> {
         /// Succeeded state
         case succeeded(Result)
         /// Failed state
-        case failed(Swift.Error?)
+        case failed(Swift.Error)
         /// Cancelled state
         case cancelled
 
@@ -76,7 +76,7 @@ open class Kommand<Result> {
     internal(set) final weak var operation: Operation?
 
     /// Kommand<Result> instance with deliverer, executor and actionClosure returning generic and throwing errors
-    public init(deliverer: Dispatcher = .current, executor: Dispatcher = .default, actionClosure: @escaping ActionClosure) {
+    public required init(deliverer: Dispatcher = .current, executor: Dispatcher = .default, actionClosure: @escaping ActionClosure) {
         self.deliverer = deliverer
         self.executor = executor
         self.actionClosure = actionClosure
@@ -113,22 +113,18 @@ open class Kommand<Result> {
         return self
     }
 
-    var result: Result? {
-        switch state {
-        case .succeeded(let result):
-            return result
-        default:
+    open var result: Result? {
+        guard case .succeeded(let result) = state else {
             return nil
         }
+        return result
     }
 
-    var error: Error? {
-        switch state {
-        case .failed(let error):
-            return error
-        default:
+    open var error: Error? {
+        guard case .failed(let error) = state else {
             return nil
         }
+        return error
     }
 
     /// Execute Kommand<Result> after delay

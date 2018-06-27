@@ -1,4 +1,4 @@
-module Pods_ExampleUITests [system] {
+module Pods_ExampleUITests {
   umbrella header "Pods-ExampleUITests-umbrella.h"
 
   export *

@@ -10,9 +10,9 @@ import Alamofire
 
 open class NetAlamofire: Net {
 
-    open static let shared: Net = NetAlamofire(.shared)!
+    public static let shared: Net = NetAlamofire(.shared)!
 
-    open static let defaultCache: URLCache = {
+    public static let defaultCache: URLCache = {
         let defaultMemoryCapacity = 4 * 1024 * 1024
         let defaultDiskCapacity = 5 * defaultMemoryCapacity
         let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first

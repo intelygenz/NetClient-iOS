@@ -1,0 +1,9 @@
+module RxSwift {
+  umbrella header "RxSwift-macOS-umbrella.h"
+  exclude header "RxSwift-iOS-umbrella.h"
+  exclude header "RxSwift-watchOS-umbrella.h"
+  exclude header "RxSwift-tvOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,4 +1,4 @@
-module Pods_macOS [system] {
+module Pods_macOS {
   umbrella header "Pods-macOS-umbrella.h"
 
   export *

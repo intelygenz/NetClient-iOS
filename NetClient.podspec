@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'NetClient'
-  s.version          = '0.4.7'
+  s.version          = '0.4.8'
   s.summary          = 'Versatile HTTP networking library written in Swift.'
 
   s.homepage         = 'https://github.com/intelygenz/NetClient-iOS'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/intelygenz'
   s.screenshot       = 'https://github.com/intelygenz/NetClient-iOS/raw/master/Logo.png'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
   s.tvos.deployment_target = '9.0'
   s.osx.deployment_target = '10.10'
@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'RxSwift' do |ss|
     ss.dependency 'NetClient/URLSession'
-    ss.dependency 'RxSwift', '~> 4.1'
+    ss.dependency 'RxSwift', '~> 4.2'
     ss.source_files = "RxSwift/*.{h,swift}"
   end
   

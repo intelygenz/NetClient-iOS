@@ -17,7 +17,7 @@ open class NetStub: Net {
         case immediate(DispatchQueue?), delayed(DispatchQueue?, DispatchTimeInterval)
     }
     
-    open static var shared: Net = NetStub()
+    public static var shared: Net = NetStub()
 
     private var requestInterceptors = [InterceptorToken: RequestInterceptor]()
 

@@ -1,4 +1,4 @@
-module Pods_Example [system] {
+module Pods_Example {
   umbrella header "Pods-Example-umbrella.h"
 
   export *

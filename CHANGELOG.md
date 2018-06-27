@@ -1,3 +1,7 @@
+# Release 0.4.8
+
+- [x] Ready for Swift 4.2.
+
 # Release 0.4.7
 
 - [x] NetStub with AsyncBehavior

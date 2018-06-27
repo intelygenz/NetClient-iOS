@@ -39,7 +39,7 @@ open class NetTask: NetTaskProtocol,
         case running, suspended, canceling, completed, waitingForConnectivity
     }
 
-    open let identifier: NetTaskIdentifier
+    public let identifier: NetTaskIdentifier
 
     open var request: NetRequest?
 
@@ -49,7 +49,7 @@ open class NetTask: NetTaskProtocol,
         }
     }
 
-    open let taskDescription: String?
+    public let taskDescription: String?
 
     open internal(set) var state: NetState
 
@@ -203,7 +203,7 @@ open class NetTask: NetTaskProtocol,
 
     // MARK: Equatable
 
-    open static func ==(lhs: NetTask, rhs: NetTask) -> Bool {
+    public static func ==(lhs: NetTask, rhs: NetTask) -> Bool {
         return lhs.identifier == rhs.identifier
     }
 
