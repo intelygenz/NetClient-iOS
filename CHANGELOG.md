@@ -1,3 +1,7 @@
+# Release 0.4.9
+
+- [x] Codable / Decodable / Encodable protocols compatible with output formatting, date coding strategy, data coding strategy, non conforming float coding strategy, key coding strategy and coding user info dictionary.
+
 # Release 0.4.8
 
 - [x] Ready for Swift 4.2.

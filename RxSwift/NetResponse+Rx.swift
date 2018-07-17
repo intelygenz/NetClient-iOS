@@ -16,9 +16,17 @@ extension ObservableType where E == NetResponse {
         }
     }
 
-    public func decode<D: Decodable>() -> Observable<D> {
+    public func decode<D: Decodable>(dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
+                                     dataDecodingStrategy: JSONDecoder.DataDecodingStrategy = .base64,
+                                     nonConformingFloatDecodingStrategy: JSONDecoder.NonConformingFloatDecodingStrategy = .throw,
+                                     keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys,
+                                     userInfo: [CodingUserInfoKey : Any] = [:]) -> Observable<D> {
         return flatMap {
-            return Observable.just(try $0.decode())
+            return Observable.just(try $0.decode(dateDecodingStrategy: dateDecodingStrategy,
+                                                 dataDecodingStrategy: dataDecodingStrategy,
+                                                 nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
+                                                 keyDecodingStrategy: keyDecodingStrategy,
+                                                 userInfo: userInfo))
         }
     }
 
@@ -32,9 +40,17 @@ extension PrimitiveSequence where TraitType == SingleTrait, ElementType == NetRe
         }
     }
 
-    public func decode<D: Decodable>() -> Single<D> {
+    public func decode<D: Decodable>(dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
+                                     dataDecodingStrategy: JSONDecoder.DataDecodingStrategy = .base64,
+                                     nonConformingFloatDecodingStrategy: JSONDecoder.NonConformingFloatDecodingStrategy = .throw,
+                                     keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys,
+                                     userInfo: [CodingUserInfoKey : Any] = [:]) -> Single<D> {
         return flatMap {
-            return Single.just(try $0.decode())
+            return Single.just(try $0.decode(dateDecodingStrategy: dateDecodingStrategy,
+                                             dataDecodingStrategy: dataDecodingStrategy,
+                                             nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
+                                             keyDecodingStrategy: keyDecodingStrategy,
+                                             userInfo: userInfo))
         }
     }
 

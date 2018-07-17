@@ -113,11 +113,24 @@ extension NetResponse {
             return self
         }
 
-        @discardableResult public func setJSON<T: Encodable>(_ encodable: T?) throws -> Self {
+        @discardableResult public func setJSON<T: Encodable>(_ encodable: T?,
+                                                             outputFormatting: JSONEncoder.OutputFormatting = .prettyPrinted,
+                                                             dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .deferredToDate,
+                                                             dataEncodingStrategy: JSONEncoder.DataEncodingStrategy = .base64,
+                                                             nonConformingFloatEncodingStrategy: JSONEncoder.NonConformingFloatEncodingStrategy = .throw,
+                                                             keyEncodingStrategy: JSONEncoder.KeyEncodingStrategy = .useDefaultKeys,
+                                                             userInfo: [CodingUserInfoKey : Any] = [:]) throws -> Self {
             guard let encodable = encodable else {
                 return self
             }
-            let data = try JSONEncoder().encode(encodable)
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = outputFormatting
+            jsonEncoder.dateEncodingStrategy = dateEncodingStrategy
+            jsonEncoder.dataEncodingStrategy = dataEncodingStrategy
+            jsonEncoder.nonConformingFloatEncodingStrategy = nonConformingFloatEncodingStrategy
+            jsonEncoder.keyEncodingStrategy = keyEncodingStrategy
+            jsonEncoder.userInfo = userInfo
+            let data = try jsonEncoder.encode(encodable)
             setObject(data)
             setContentLength(Int64(data.count))
             return self

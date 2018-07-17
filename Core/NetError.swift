@@ -18,22 +18,42 @@ extension NetError {
     public func object<T>() throws -> T {
         switch self {
         case .net(let code, _, _, let object, let underlying):
-            return try objectTransformation(code, object, underlying)
+            return try objectTransformation(code: code, object: object, underlying: underlying)
         case .parse(let code, _, let object, let underlying):
-            return try objectTransformation(code, object, underlying)
+            return try objectTransformation(code: code, object: object, underlying: underlying)
         }
     }
 
-    public func decode<D: Decodable>() throws -> D {
+    public func decode<D: Decodable>(dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
+                                     dataDecodingStrategy: JSONDecoder.DataDecodingStrategy = .base64,
+                                     nonConformingFloatDecodingStrategy: JSONDecoder.NonConformingFloatDecodingStrategy = .throw,
+                                     keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys,
+                                     userInfo: [CodingUserInfoKey : Any] = [:]) throws -> D {
         switch self {
         case .net(let code, _, _, let object, let underlying):
-            return try decodeTransformation(code, object, underlying)
+            return try decodeTransformation(code: code,
+                                            object: object,
+                                            underlying: underlying,
+                                            dateDecodingStrategy: dateDecodingStrategy,
+                                            dataDecodingStrategy: dataDecodingStrategy,
+                                            nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
+                                            keyDecodingStrategy: keyDecodingStrategy,
+                                            userInfo: userInfo)
         case .parse(let code, _, let object, let underlying):
-            return try decodeTransformation(code, object, underlying)
+            return try decodeTransformation(code: code,
+                                            object: object,
+                                            underlying: underlying,
+                                            dateDecodingStrategy: dateDecodingStrategy,
+                                            dataDecodingStrategy: dataDecodingStrategy,
+                                            nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
+                                            keyDecodingStrategy: keyDecodingStrategy,
+                                            userInfo: userInfo)
         }
     }
 
-    private func objectTransformation<T>(_ code: Int? = nil, _ object: Any? = nil, _ underlying: Error? = nil) throws -> T {
+    private func objectTransformation<T>(code: Int?,
+                                         object: Any?,
+                                         underlying: Error?) throws -> T {
         do {
             return try NetTransformer.object(object: object)
         } catch {
@@ -41,9 +61,21 @@ extension NetError {
         }
     }
 
-    private func decodeTransformation<D: Decodable>(_ code: Int? = nil, _ object: Any? = nil, _ underlying: Error? = nil) throws -> D {
+    private func decodeTransformation<D: Decodable>(code: Int?,
+                                                    object: Any?,
+                                                    underlying: Error?,
+                                                    dateDecodingStrategy: JSONDecoder.DateDecodingStrategy,
+                                                    dataDecodingStrategy: JSONDecoder.DataDecodingStrategy,
+                                                    nonConformingFloatDecodingStrategy: JSONDecoder.NonConformingFloatDecodingStrategy,
+                                                    keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy,
+                                                    userInfo: [CodingUserInfoKey : Any]) throws -> D {
         do {
-            return try NetTransformer.decode(object: object)
+            return try NetTransformer.decode(object: object,
+                                             dateDecodingStrategy: dateDecodingStrategy,
+                                             dataDecodingStrategy: dataDecodingStrategy,
+                                             nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
+                                             keyDecodingStrategy: keyDecodingStrategy,
+                                             userInfo: userInfo)
         } catch {
             throw handle(error, code, underlying)
         }

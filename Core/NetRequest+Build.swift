@@ -283,11 +283,24 @@ extension NetRequest {
             return self
         }
 
-        @discardableResult public func setJSONObject<T: Encodable>(_ jsonObject: T?) throws -> Self {
+        @discardableResult public func setJSONObject<T: Encodable>(_ jsonObject: T?,
+                                                                   outputFormatting: JSONEncoder.OutputFormatting = .prettyPrinted,
+                                                                   dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .deferredToDate,
+                                                                   dataEncodingStrategy: JSONEncoder.DataEncodingStrategy = .base64,
+                                                                   nonConformingFloatEncodingStrategy: JSONEncoder.NonConformingFloatEncodingStrategy = .throw,
+                                                                   keyEncodingStrategy: JSONEncoder.KeyEncodingStrategy = .useDefaultKeys,
+                                                                   userInfo: [CodingUserInfoKey : Any] = [:]) throws -> Self {
             guard let jsonObject = jsonObject else {
                 return self
             }
-            body = try JSONEncoder().encode(jsonObject)
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = outputFormatting
+            jsonEncoder.dateEncodingStrategy = dateEncodingStrategy
+            jsonEncoder.dataEncodingStrategy = dataEncodingStrategy
+            jsonEncoder.nonConformingFloatEncodingStrategy = nonConformingFloatEncodingStrategy
+            jsonEncoder.keyEncodingStrategy = keyEncodingStrategy
+            jsonEncoder.userInfo = userInfo
+            body = try jsonEncoder.encode(jsonObject)
             if contentType == nil {
                 setContentType(.json)
             }

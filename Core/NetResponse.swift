@@ -69,9 +69,18 @@ extension NetResponse {
         }
     }
 
-    public func decode<D: Decodable>() throws -> D {
+    public func decode<D: Decodable>(dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
+                                     dataDecodingStrategy: JSONDecoder.DataDecodingStrategy = .base64,
+                                     nonConformingFloatDecodingStrategy: JSONDecoder.NonConformingFloatDecodingStrategy = .throw,
+                                     keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys,
+                                     userInfo: [CodingUserInfoKey : Any] = [:]) throws -> D {
         do {
-            return try NetTransformer.decode(object: responseObject)
+            return try NetTransformer.decode(object: responseObject,
+                                             dateDecodingStrategy: dateDecodingStrategy,
+                                             dataDecodingStrategy: dataDecodingStrategy,
+                                             nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
+                                             keyDecodingStrategy: keyDecodingStrategy,
+                                             userInfo: userInfo)
         } catch {
             throw handle(error)
         }
