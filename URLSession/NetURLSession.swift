@@ -49,9 +49,9 @@ open class NetURLSession: Net {
 
     open var acceptableStatusCodes = defaultAcceptableStatusCodes
 
-    open private(set) var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)?
+    open var authChallenge: ((URLAuthenticationChallenge, (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) -> Swift.Void)?
 
-    open private(set) var serverTrust = [String: NetServerTrust]()
+    open var serverTrust = [String: NetServerTrust]()
 
     private final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
