@@ -19,9 +19,9 @@ open class NetStub: Net {
     
     public static var shared: Net = NetStub()
 
-    private var requestInterceptors = [InterceptorToken: RequestInterceptor]()
+    var requestInterceptors = [InterceptorToken: RequestInterceptor]()
 
-    private var responseInterceptors = [InterceptorToken: ResponseInterceptor]()
+    var responseInterceptors = [InterceptorToken: ResponseInterceptor]()
 
     open var retryClosure: NetTask.RetryClosure?
 

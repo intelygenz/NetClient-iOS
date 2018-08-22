@@ -86,7 +86,7 @@ extension NetResponse {
         }
     }
 
-    private func handle(_ error: Error) -> Error {
+    func handle(_ error: Error) -> Error {
         switch error as! NetError {
         case .parse(let transformCode, let message, let object, let underlying):
             return NetError.parse(code: transformCode ?? statusCode, message: message, object: object ?? responseObject, underlying: underlying)

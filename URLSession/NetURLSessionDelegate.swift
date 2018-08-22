@@ -10,7 +10,7 @@ import Foundation
 
 class NetURLSessionDelegate: NSObject {
 
-    private weak final var netURLSession: NetURLSession?
+    weak var netURLSession: NetURLSession?
 
     final var tasks = [URLSessionTask: NetTask]()
 
@@ -94,7 +94,7 @@ extension NetURLSessionDelegate: URLSessionStreamDelegate {}
 
 extension NetURLSessionDelegate {
 
-    private func handle(_ challenge: URLAuthenticationChallenge, _ netTask: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
+    func handle(_ challenge: URLAuthenticationChallenge, _ netTask: NetTask? = nil, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let authChallenge = netURLSession?.authChallenge else {
             guard challenge.previousFailureCount == 0 else {
                 challenge.sender?.cancel(challenge)

@@ -81,7 +81,7 @@ extension NetError {
         }
     }
 
-    private func handle(_ error: Error, _ code: Int? = nil, _ underlying: Error? = nil) -> Error {
+    func handle(_ error: Error, _ code: Int? = nil, _ underlying: Error? = nil) -> Error {
         switch error as! NetError {
         case .parse(let transformCode, let message, let object, let transformUnderlying):
             return NetError.parse(code: transformCode ?? code, message: message, object: object, underlying: transformUnderlying ?? underlying)

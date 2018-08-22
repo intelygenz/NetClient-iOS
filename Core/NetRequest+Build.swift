@@ -450,7 +450,7 @@ extension NetRequest {
 
 extension NetRequest.Builder {
 
-    private func query(_ parameters: [String: Any]) -> String {
+    func query(_ parameters: [String: Any]) -> String {
         var components = [(String, String)]()
 
         for key in parameters.keys.sorted(by: <) {
@@ -462,7 +462,7 @@ extension NetRequest.Builder {
         return components.map { "\($0)=\($1)" }.joined(separator: "&")
     }
 
-    private func queryComponents(_ key: String, value: Any) -> [(String, String)] {
+    func queryComponents(_ key: String, value: Any) -> [(String, String)] {
         var components: [(String, String)] = []
 
         if let dictionary = value as? [String: Any] {
@@ -488,7 +488,7 @@ extension NetRequest.Builder {
         return components
     }
 
-    private func escape(_ string: String) -> String {
+    func escape(_ string: String) -> String {
         let generalDelimitersToEncode = ":#[]@"
         let subDelimitersToEncode = "!$&'()*+,;="
 

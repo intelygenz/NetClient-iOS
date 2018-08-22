@@ -41,9 +41,9 @@ open class NetURLSession: Net {
         }
     }
 
-    private var requestInterceptors = [InterceptorToken: RequestInterceptor]()
+    var requestInterceptors = [InterceptorToken: RequestInterceptor]()
 
-    private var responseInterceptors = [InterceptorToken: ResponseInterceptor]()
+    var responseInterceptors = [InterceptorToken: ResponseInterceptor]()
 
     open var retryClosure: NetTask.RetryClosure?
 
@@ -53,7 +53,7 @@ open class NetURLSession: Net {
 
     open var serverTrust = [String: NetServerTrust]()
 
-    private final var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
+    var taskObserver: NetURLSessionTaskObserver? = NetURLSessionTaskObserver()
 
     public convenience init() {
         let defaultConfiguration = URLSessionConfiguration.default

@@ -24,9 +24,9 @@ open class NetAlamofire: Net {
         return URLCache(memoryCapacity: defaultMemoryCapacity, diskCapacity: defaultDiskCapacity, diskPath: defaultDiskPath)
     }()
 
-    private var requestInterceptors = [InterceptorToken: RequestInterceptor]()
+    var requestInterceptors = [InterceptorToken: RequestInterceptor]()
 
-    private var responseInterceptors = [InterceptorToken: ResponseInterceptor]()
+    var responseInterceptors = [InterceptorToken: ResponseInterceptor]()
 
     open var retryClosure: NetTask.RetryClosure? {
         didSet {

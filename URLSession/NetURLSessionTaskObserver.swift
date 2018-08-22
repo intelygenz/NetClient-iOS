@@ -96,7 +96,7 @@ class NetURLSessionTaskObserver: NSObject {
 
 extension NetURLSessionTaskObserver {
 
-    private func syncProgress(_ task: URLSessionTask, totalUnitCount: Int64) -> Progress {
+    func syncProgress(_ task: URLSessionTask, totalUnitCount: Int64) -> Progress {
         let taskProgress = Progress(totalUnitCount: totalUnitCount)
         taskProgress.isPausable = true
         taskProgress.isCancellable = true
