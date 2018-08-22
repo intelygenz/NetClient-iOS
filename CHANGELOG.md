@@ -1,3 +1,7 @@
+# Release 0.4.11
+
+- [x] Compatible with CocoaPods Swift Static Libraries.
+
 # Release 0.4.10
 
 - [x] Allows to clear authChallenge or serverTrust after initialization.
