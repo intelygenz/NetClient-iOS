@@ -1,6 +1,6 @@
 # Release 0.4.12
 
-- [x] Comptible with iOS 12 responsive data service type.
+- [x] Compatible with iOS 12 responsive data service type.
 
 # Release 0.4.11
 
