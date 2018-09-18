@@ -17,7 +17,7 @@ public struct NetRequest: Hashable {
     }
 
     public enum NetServiceType: UInt {
-        case `default`, voip, video, background, voice, callSignaling = 11
+        case `default`, voip, video, background, voice, responsiveData = 6, callSignaling = 11
     }
 
     public enum NetMethod: String {

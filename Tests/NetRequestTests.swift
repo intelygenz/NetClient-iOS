@@ -29,7 +29,10 @@ class NetRequestTests: XCTestCase {
         XCTAssertEqual(NetRequest.NetServiceType.background.rawValue, URLRequest.NetworkServiceType.background.rawValue)
         XCTAssertEqual(NetRequest.NetServiceType.voice.rawValue, URLRequest.NetworkServiceType.voice.rawValue)
         if #available(iOS 10.0, *) {
-            XCTAssertEqual(NetRequest.NetServiceType.callSignaling.rawValue, URLRequest.NetworkServiceType.networkServiceTypeCallSignaling.rawValue)
+            XCTAssertEqual(NetRequest.NetServiceType.callSignaling.rawValue, URLRequest.NetworkServiceType.callSignaling.rawValue)
+        }
+        if #available(iOS 12.0, *) {
+            XCTAssertEqual(NetRequest.NetServiceType.responsiveData.rawValue, URLRequest.NetworkServiceType.responsiveData.rawValue)
         }
     }
 
