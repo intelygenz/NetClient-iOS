@@ -1,3 +1,7 @@
+# Release 0.4.12
+
+- [x] Comptible with iOS 12 responsive data service type.
+
 # Release 0.4.11
 
 - [x] Compatible with CocoaPods Swift Static Libraries.
