@@ -1,16 +1,1 @@
-#ifdef __OBJC__
-#import <Cocoa/Cocoa.h>
-#else
-#ifndef FOUNDATION_EXPORT
-#if defined(__cplusplus)
-#define FOUNDATION_EXPORT extern "C"
-#else
-#define FOUNDATION_EXPORT extern
-#endif
-#endif
-#endif
-
-
-FOUNDATION_EXPORT double MoyaVersionNumber;
-FOUNDATION_EXPORT const unsigned char MoyaVersionString[];
-
+/Users/alexruperez/Projects/NetClient-iOS/Pods/Target Support Files/Moya-macOS/Moya-macOS-umbrella.h

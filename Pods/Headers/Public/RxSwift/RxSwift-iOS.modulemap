@@ -1,9 +1,1 @@
-module RxSwift {
-  umbrella header "RxSwift-iOS-umbrella.h"
-  exclude header "RxSwift-watchOS-umbrella.h"
-  exclude header "RxSwift-tvOS-umbrella.h"
-  exclude header "RxSwift-macOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
+/Users/alexruperez/Projects/NetClient-iOS/Pods/Target Support Files/RxSwift-iOS/RxSwift-iOS.modulemap

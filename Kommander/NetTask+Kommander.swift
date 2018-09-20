@@ -46,10 +46,10 @@ extension NetTask {
                                           nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
                                           keyDecodingStrategy: keyDecodingStrategy,
                                           userInfo: userInfo)
-            }.success {
-                success?($0)
-            }.error {
-                error?($0)
+        }.success {
+            success?($0)
+        }.error {
+            error?($0)
         }
         if let delay = delay {
             kommand.execute(after: delay)

@@ -1,5 +1,8 @@
-framework module Moya {
+module Moya {
   umbrella header "Moya-tvOS-umbrella.h"
+  exclude header "Moya-iOS-umbrella.h"
+  exclude header "Moya-watchOS-umbrella.h"
+  exclude header "Moya-macOS-umbrella.h"
 
   export *
   module * { export * }

@@ -1,5 +1,8 @@
-framework module Kommander {
+module Kommander {
   umbrella header "Kommander-macOS-umbrella.h"
+  exclude header "Kommander-iOS-umbrella.h"
+  exclude header "Kommander-watchOS-umbrella.h"
+  exclude header "Kommander-tvOS-umbrella.h"
 
   export *
   module * { export * }

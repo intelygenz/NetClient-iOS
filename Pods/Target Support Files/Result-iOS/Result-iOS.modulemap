@@ -1,5 +1,8 @@
-framework module Result {
+module Result {
   umbrella header "Result-iOS-umbrella.h"
+  exclude header "Result-watchOS-umbrella.h"
+  exclude header "Result-tvOS-umbrella.h"
+  exclude header "Result-macOS-umbrella.h"
 
   export *
   module * { export * }

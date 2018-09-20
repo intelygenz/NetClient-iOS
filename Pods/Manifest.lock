@@ -1,13 +1,13 @@
 PODS:
   - Alamofire (4.7.3)
-  - Kommander (1.0.2)
+  - Kommander (1.1)
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
   - Result (3.2.4)
-  - RxSwift (4.2.0)
+  - RxSwift (4.3.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -25,11 +25,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  Kommander: adbc5d95589487a990320d37bdf5b48d467ad28b
+  Kommander: 39d38924a9c21796e2ac26f0b9c2bd0d15f96c74
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  RxSwift: a9717a34df3179fe63563f76e046ad345078dd3a
 
 PODFILE CHECKSUM: 2ad944a5e4acfdfca85dc2ee9291af91d4ba9e9a
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1
