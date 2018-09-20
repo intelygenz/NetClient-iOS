@@ -2,7 +2,7 @@ language: swift
 osx_image: xcode10
 script:
 - xcodebuild -workspace Net.xcworkspace -scheme Example -destination "platform=iOS
-  Simulator,name=iPhone XS,OS=12" -configuration Debug -enableCodeCoverage YES clean
+  Simulator,name=iPhone XS,OS=12.0" -configuration Debug -enableCodeCoverage YES clean
   build test
 after_success:
 - bash <(curl -s https://codecov.io/bash)
