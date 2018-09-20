@@ -1,3 +1,7 @@
+# Release 0.5.0
+
+- [x] Removed NetURLSessionTaskObserver, upload and download progress closures with Progress only available for iOS >= 11.
+
 # Release 0.4.12
 
 - [x] Compatible with iOS 12 responsive data service type.

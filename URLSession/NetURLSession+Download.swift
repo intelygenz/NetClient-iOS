@@ -16,7 +16,6 @@ extension NetURLSession {
             self?.process(netDownloadTask, netResponse, netError)
         }
         netDownloadTask = netTask(task)
-        observe(task, netDownloadTask)
         return netDownloadTask!
     }
 
@@ -28,7 +27,6 @@ extension NetURLSession {
             self?.process(netDownloadTask, netResponse, netError)
         }
         netDownloadTask = netTask(task, request)
-        observe(task, netDownloadTask)
         return netDownloadTask!
     }
 

@@ -155,7 +155,6 @@
 		D579EE7B1EAE8E1C00A2F311 /* NetURLSession+Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF61EAD3D1E00E1354D /* NetURLSession+Upload.swift */; };
 		D579EE7C1EAE8E1C00A2F311 /* NetURLSession+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF51EAD3D1E00E1354D /* NetURLSession+Stream.swift */; };
 		D579EE7D1EAE8E1C00A2F311 /* NetURLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF81EAD3D1E00E1354D /* NetURLSessionDelegate.swift */; };
-		D579EE7E1EAE8E1C00A2F311 /* NetURLSessionTaskObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF91EAD3D1E00E1354D /* NetURLSessionTaskObserver.swift */; };
 		D579EE7F1EAE8E1D00A2F311 /* NetTask+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF11EAD3D1E00E1354D /* NetTask+URLSessionTask.swift */; };
 		D579EE801EAE8E1D00A2F311 /* NetURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF71EAD3D1E00E1354D /* NetURLSession.swift */; };
 		D579EE811EAE8E1D00A2F311 /* NetURLSession+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF31EAD3D1E00E1354D /* NetURLSession+Data.swift */; };
@@ -163,7 +162,6 @@
 		D579EE831EAE8E1D00A2F311 /* NetURLSession+Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF61EAD3D1E00E1354D /* NetURLSession+Upload.swift */; };
 		D579EE841EAE8E1D00A2F311 /* NetURLSession+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF51EAD3D1E00E1354D /* NetURLSession+Stream.swift */; };
 		D579EE851EAE8E1D00A2F311 /* NetURLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF81EAD3D1E00E1354D /* NetURLSessionDelegate.swift */; };
-		D579EE861EAE8E1D00A2F311 /* NetURLSessionTaskObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF91EAD3D1E00E1354D /* NetURLSessionTaskObserver.swift */; };
 		D579EE871EAE8E1E00A2F311 /* NetTask+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF11EAD3D1E00E1354D /* NetTask+URLSessionTask.swift */; };
 		D579EE881EAE8E1E00A2F311 /* NetURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF71EAD3D1E00E1354D /* NetURLSession.swift */; };
 		D579EE891EAE8E1E00A2F311 /* NetURLSession+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF31EAD3D1E00E1354D /* NetURLSession+Data.swift */; };
@@ -171,7 +169,6 @@
 		D579EE8B1EAE8E1E00A2F311 /* NetURLSession+Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF61EAD3D1E00E1354D /* NetURLSession+Upload.swift */; };
 		D579EE8C1EAE8E1E00A2F311 /* NetURLSession+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF51EAD3D1E00E1354D /* NetURLSession+Stream.swift */; };
 		D579EE8D1EAE8E1E00A2F311 /* NetURLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF81EAD3D1E00E1354D /* NetURLSessionDelegate.swift */; };
-		D579EE8E1EAE8E1E00A2F311 /* NetURLSessionTaskObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF91EAD3D1E00E1354D /* NetURLSessionTaskObserver.swift */; };
 		D579EE8F1EAE8E1E00A2F311 /* NetTask+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF11EAD3D1E00E1354D /* NetTask+URLSessionTask.swift */; };
 		D579EE901EAE8E1E00A2F311 /* NetURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF71EAD3D1E00E1354D /* NetURLSession.swift */; };
 		D579EE911EAE8E1E00A2F311 /* NetURLSession+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF31EAD3D1E00E1354D /* NetURLSession+Data.swift */; };
@@ -179,7 +176,6 @@
 		D579EE931EAE8E1E00A2F311 /* NetURLSession+Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF61EAD3D1E00E1354D /* NetURLSession+Upload.swift */; };
 		D579EE941EAE8E1E00A2F311 /* NetURLSession+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF51EAD3D1E00E1354D /* NetURLSession+Stream.swift */; };
 		D579EE951EAE8E1E00A2F311 /* NetURLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF81EAD3D1E00E1354D /* NetURLSessionDelegate.swift */; };
-		D579EE961EAE8E1E00A2F311 /* NetURLSessionTaskObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5468BF91EAD3D1E00E1354D /* NetURLSessionTaskObserver.swift */; };
 		D5A521741E7B342100406F0F /* Net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A5216A1E7B342100406F0F /* Net.framework */; };
 		D5A521CE1E7B348100406F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A521CD1E7B348100406F0F /* AppDelegate.swift */; };
 		D5A521D01E7B348100406F0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A521CF1E7B348100406F0F /* ViewController.swift */; };
@@ -330,7 +326,6 @@
 		D5468BF61EAD3D1E00E1354D /* NetURLSession+Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetURLSession+Upload.swift"; sourceTree = "<group>"; };
 		D5468BF71EAD3D1E00E1354D /* NetURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetURLSession.swift; sourceTree = "<group>"; };
 		D5468BF81EAD3D1E00E1354D /* NetURLSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetURLSessionDelegate.swift; sourceTree = "<group>"; };
-		D5468BF91EAD3D1E00E1354D /* NetURLSessionTaskObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetURLSessionTaskObserver.swift; sourceTree = "<group>"; };
 		D579EE101EAE3AF500A2F311 /* NetAlamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetAlamofire.swift; sourceTree = "<group>"; };
 		D579EE151EAE3B2A00A2F311 /* NetRequest+Moya.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetRequest+Moya.swift"; sourceTree = "<group>"; };
 		D579EE231EAE633E00A2F311 /* NetTask+AlamofireRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetTask+AlamofireRequest.swift"; sourceTree = "<group>"; };
@@ -499,7 +494,6 @@
 				D5468BF61EAD3D1E00E1354D /* NetURLSession+Upload.swift */,
 				D5468BF51EAD3D1E00E1354D /* NetURLSession+Stream.swift */,
 				D5468BF81EAD3D1E00E1354D /* NetURLSessionDelegate.swift */,
-				D5468BF91EAD3D1E00E1354D /* NetURLSessionTaskObserver.swift */,
 			);
 			path = URLSession;
 			sourceTree = "<group>";
@@ -1092,7 +1086,6 @@
 				D523AB0E1E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				D579EE2C1EAE7E3200A2F311 /* NetAlamofire+Data.swift in Sources */,
 				D579EE6C1EAE818D00A2F311 /* NetResponse+URLResponse.swift in Sources */,
-				D579EE7E1EAE8E1C00A2F311 /* NetURLSessionTaskObserver.swift in Sources */,
 				D579EE241EAE633E00A2F311 /* NetTask+AlamofireRequest.swift in Sources */,
 				81ACB7DE1E83C656006D05DD /* NetRequest.swift in Sources */,
 				D579EE6B1EAE818D00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
@@ -1148,7 +1141,6 @@
 				818FC92F1E82BFDF00FEC5A3 /* NetError.swift in Sources */,
 				D579EE2D1EAE7E3200A2F311 /* NetAlamofire+Data.swift in Sources */,
 				D579EE6F1EAE818E00A2F311 /* NetResponse+URLResponse.swift in Sources */,
-				D579EE861EAE8E1D00A2F311 /* NetURLSessionTaskObserver.swift in Sources */,
 				D579EE251EAE633E00A2F311 /* NetTask+AlamofireRequest.swift in Sources */,
 				D523AB0F1E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				D579EE6E1EAE818E00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
@@ -1196,7 +1188,6 @@
 				D523AB101E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				D579EE2E1EAE7E3200A2F311 /* NetAlamofire+Data.swift in Sources */,
 				D579EE721EAE818F00A2F311 /* NetResponse+URLResponse.swift in Sources */,
-				D579EE8E1EAE8E1E00A2F311 /* NetURLSessionTaskObserver.swift in Sources */,
 				D579EE261EAE633E00A2F311 /* NetTask+AlamofireRequest.swift in Sources */,
 				81ACB7E01E83C658006D05DD /* NetRequest.swift in Sources */,
 				D579EE711EAE818F00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
@@ -1244,7 +1235,6 @@
 				D523AB111E8710D30093D793 /* NetRequest+Build.swift in Sources */,
 				D579EE2F1EAE7E3200A2F311 /* NetAlamofire+Data.swift in Sources */,
 				D579EE751EAE818F00A2F311 /* NetResponse+URLResponse.swift in Sources */,
-				D579EE961EAE8E1E00A2F311 /* NetURLSessionTaskObserver.swift in Sources */,
 				D579EE271EAE633E00A2F311 /* NetTask+AlamofireRequest.swift in Sources */,
 				81ACB7E11E83C659006D05DD /* NetRequest.swift in Sources */,
 				D579EE741EAE818F00A2F311 /* NetTaskMetrics+URLSessionTaskMetrics.swift in Sources */,
@@ -1373,8 +1363,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
-				DYLIB_COMPATIBILITY_VERSION = 0.4.7;
-				DYLIB_CURRENT_VERSION = 0.4.12;
+				DYLIB_COMPATIBILITY_VERSION = 0.5.0;
+				DYLIB_CURRENT_VERSION = 0.5.0;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1430,8 +1420,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = "$(DYLIB_CURRENT_VERSION)";
 				DEVELOPMENT_TEAM = 3VW789WSMP;
-				DYLIB_COMPATIBILITY_VERSION = 0.4.7;
-				DYLIB_CURRENT_VERSION = 0.4.12;
+				DYLIB_COMPATIBILITY_VERSION = 0.5.0;
+				DYLIB_CURRENT_VERSION = 0.5.0;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1466,7 +1456,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1477,7 +1466,6 @@
 				DEFINES_MODULE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

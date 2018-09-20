@@ -16,7 +16,6 @@ extension NetURLSession {
             self?.process(netDataTask, netResponse, netError)
         }
         netDataTask = netTask(task, request)
-        observe(task, netDataTask)
         return netDataTask!
     }
 

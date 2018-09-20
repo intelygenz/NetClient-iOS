@@ -11,7 +11,6 @@ extension NetURLSession {
     public func upload(_ streamedRequest: NetRequest) -> NetTask {
         let task = session.uploadTask(withStreamedRequest: urlRequest(streamedRequest))
         let netUploadTask = netTask(task, streamedRequest)
-        observe(task, netUploadTask)
         return netUploadTask
     }
 
@@ -41,7 +40,6 @@ extension NetURLSession {
             self?.process(netUploadTask, netResponse, netError)
         }
         netUploadTask = netTask(task, request)
-        observe(task, netUploadTask)
         return netUploadTask!
     }
 
@@ -71,7 +69,6 @@ extension NetURLSession {
             self?.process(netUploadTask, netResponse, netError)
         }
         netUploadTask = netTask(task, request)
-        observe(task, netUploadTask)
         return netUploadTask!
     }
 

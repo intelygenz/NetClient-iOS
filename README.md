@@ -23,7 +23,7 @@
 - [x] Basic, Bearer and Custom Authorization Handling
 - [x] Default and Custom Cache Controls
 - [x] Default and Custom Content Types
-- [x] Upload and Download Progress Closures with Progress
+- [x] Upload and Download Progress Closures with Progress (only iOS >= 11)
 - [x] cURL Command Debug Output
 - [x] Request and Response Interceptors
 - [x] Asynchronous and synchronous task execution

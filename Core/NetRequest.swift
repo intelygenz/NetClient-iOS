@@ -24,7 +24,7 @@ public struct NetRequest: Hashable {
         case GET, POST, PUT, DELETE, PATCH, UPDATE, HEAD, TRACE, OPTIONS, CONNECT, SEARCH, COPY, MERGE, LABEL, LOCK, UNLOCK, MOVE, MKCOL, PROPFIND, PROPPATCH
     }
 
-    public enum NetContentEncoding: String {
+    public enum NetContentEncoding: String, CaseIterable {
         case gzip, compress, deflate, identity, br
     }
 
